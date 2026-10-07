@@ -1,0 +1,800 @@
+.design-v2 .section-product-anchor {
+    background: var(--brand-cream);
+    padding: 0 max(100px, (100% - var(--content-max-width))/2);
+    padding-bottom: 100px
+}
+
+.design-v2 .section-product-anchor--white {
+    background: var(--bg-white)
+}
+
+.design-v2 .section-product-anchor .feature-cards-row {
+    margin-top: 0
+}
+
+.design-v2 .section-product-anchor .feature-card-image:before {
+    background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, .05) 35%, transparent 60%)
+}
+
+.design-v2 .section-product-anchor .feature-card-blue-overlay:before {
+    background: linear-gradient(0deg, rgba(10, 25, 60, .6) 0, rgba(15, 40, 80, .25) 30%, transparent 65%)
+}
+
+.design-v2 .section-product-anchor .feature-cards-row {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 2fr 1fr
+}
+
+.design-v2 .section-product-anchor .feature-card-image {
+    align-items: flex-end;
+    background-position: 50%;
+    background-size: cover;
+    border: 1px solid var(--text-primary);
+    border-radius: 24px;
+    display: flex;
+    min-height: 520px;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .section-product-anchor .feature-card-image:before {
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .section-product-anchor .feature-card-blue-overlay:before {
+    mix-blend-mode: multiply
+}
+
+.design-v2 .section-product-anchor .feature-card-overlay {
+    padding: 32px;
+    position: relative;
+    width: 100%;
+    z-index: 2
+}
+
+.design-v2 .section-product-anchor .feature-card-label {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: hsla(0, 0%, 100%, .15);
+    border-radius: 6px;
+    color: var(--text-white);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-product-anchor .feature-card-title {
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: var(--text-heading-md);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 12px
+}
+
+.design-v2 .section-product-anchor .feature-card-desc {
+    color: hsla(0, 0%, 100%, .8);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    line-height: 1.6;
+    margin: 0 0 20px;
+    max-width: 380px
+}
+
+.design-v2 .section-product-anchor .feature-card-link {
+    align-items: center;
+    color: var(--text-white);
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    gap: 8px;
+    text-decoration: none;
+    transition: gap .3s ease
+}
+
+.design-v2 .section-product-anchor .feature-card-link:hover {
+    gap: 12px
+}
+
+.design-v2 .section-product-anchor .feature-card-link-arrow {
+    align-items: center;
+    display: inline-flex;
+    transition: transform .3s ease
+}
+
+.design-v2 .section-product-anchor .feature-card-link:hover .feature-card-link-arrow {
+    transform: translateX(4px)
+}
+
+.design-v2 .section-product-anchor .feature-card-link-arrow svg {
+    height: 16px;
+    width: 16px;
+    fill: currentColor
+}
+
+.design-v2 .section-product-anchor .dust-particles {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .section-product-anchor .eye-radiate {
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    z-index: 1
+}
+
+.design-v2 .section-product-anchor .eye-radiate-ring {
+    animation: eyeRadiateProductAnchor 8s ease-out infinite;
+    border: 1px solid hsla(0, 0%, 100%, .45);
+    border-radius: 50%;
+    height: 60px;
+    left: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    will-change: transform, opacity
+}
+
+.design-v2 .section-product-anchor .eye-radiate-ring:first-child {
+    animation-delay: 0s
+}
+
+.design-v2 .section-product-anchor .eye-radiate-ring:nth-child(2) {
+    animation-delay: 1.6s
+}
+
+.design-v2 .section-product-anchor .eye-radiate-ring:nth-child(3) {
+    animation-delay: 3.2s
+}
+
+.design-v2 .section-product-anchor .eye-radiate-ring:nth-child(4) {
+    animation-delay: 4.8s
+}
+
+.design-v2 .section-product-anchor .eye-radiate-ring:nth-child(5) {
+    animation-delay: 6.4s
+}
+
+@keyframes eyeRadiateProductAnchor {
+    0% {
+        opacity: 0;
+        transform: scale(.5)
+    }
+    3% {
+        opacity: .5
+    }
+    40% {
+        opacity: 0
+    }
+    to {
+        opacity: 0;
+        transform: scale(10)
+    }
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-product-anchor {
+        padding: 0 40px 60px
+    }
+}
+
+@media(max-width:900px) {
+    .design-v2 .section-product-anchor .feature-cards-row {
+        grid-template-columns: 1fr
+    }
+    .design-v2 .section-product-anchor .feature-card-image {
+        min-height: 400px
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-product-anchor {
+        padding: 0 20px 60px
+    }
+    .design-v2 .section-product-anchor .feature-cards-row {
+        gap: 16px
+    }
+    .design-v2 .section-product-anchor .feature-card-image {
+        border-radius: 16px;
+        min-height: 360px
+    }
+    .design-v2 .section-product-anchor .feature-card-overlay {
+        padding: 24px
+    }
+    .design-v2 .section-product-anchor .feature-card-title {
+        font-size: var(--text-body-xl)
+    }
+    .design-v2 .section-product-anchor .feature-card-desc {
+        font-size: var(--text-body-sm)
+    }
+}
+
+.design-v2.section-authority-spotlight {
+    background: var(--bg-white);
+    padding: 100px max(100px, (100% - var(--content-max-width))/2);
+    position: relative
+}
+
+.design-v2.section-authority-spotlight--cream {
+    background: var(--brand-cream)
+}
+
+.design-v2 .authority-spotlight-container {
+    margin: 0 auto;
+    max-width: none
+}
+
+.design-v2 .authority-spotlight-header {
+    margin-bottom: 32px;
+    text-align: left
+}
+
+.design-v2 .authority-spotlight-eyebrow {
+    background: rgba(0, 0, 0, .06);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .authority-spotlight-title {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-size: var(--text-section);
+    font-weight: var(--arizona-heading-weight);
+    letter-spacing: var(--arizona-heading-letter-spacing);
+    line-height: var(--arizona-heading-line-height);
+    margin-bottom: 20px
+}
+
+.design-v2 .authority-spotlight-row {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 2fr 1fr;
+    margin-top: 24px
+}
+
+.design-v2 .authority-spotlight-card-primary {
+    align-items: stretch;
+    background-position: 50%;
+    background-size: cover;
+    border: 1px solid var(--text-primary);
+    border-radius: 24px;
+    display: flex;
+    min-height: 520px;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .authority-spotlight-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 32px;
+    position: relative;
+    width: 100%;
+    z-index: 2
+}
+
+.design-v2 .authority-spotlight-card-meta {
+    align-items: center;
+    display: flex;
+    gap: 12px
+}
+
+.design-v2 .authority-spotlight-avatar {
+    border: 2px solid hsla(0, 0%, 100%, .3);
+    border-radius: 50%;
+    height: 56px;
+    overflow: hidden;
+    width: 56px
+}
+
+.design-v2 .authority-spotlight-avatar img {
+    height: 125%;
+    margin-top: -5%;
+    object-fit: cover;
+    object-position: center top;
+    width: 125%
+}
+
+.design-v2 .authority-spotlight-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.design-v2 .authority-spotlight-name {
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600
+}
+
+.design-v2 .authority-spotlight-role {
+    color: hsla(0, 0%, 100%, .7);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 400
+}
+
+.design-v2 .authority-spotlight-card-title {
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: var(--text-heading-md);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    max-width: 50%
+}
+
+.design-v2 .authority-spotlight-card-desc {
+    color: hsla(0, 0%, 100%, .8);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    line-height: 1.6;
+    margin: 0 0 48px;
+    max-width: 380px
+}
+
+.design-v2 .authority-spotlight-card-link {
+    align-items: center;
+    color: var(--text-white);
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    gap: 8px;
+    text-decoration: none;
+    transition: gap .3s ease
+}
+
+.design-v2 .authority-spotlight-card-link:hover {
+    gap: 12px
+}
+
+.design-v2 .authority-spotlight-card-link svg {
+    height: 16px;
+    width: 16px;
+    fill: currentColor;
+    transition: transform .3s ease
+}
+
+.design-v2 .authority-spotlight-card-link:hover svg {
+    transform: translateX(4px)
+}
+
+.design-v2 .authority-spotlight-card-primary .dust-particles,
+.design-v2 .section-authority-spotlight .dust-particles {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .authority-spotlight-card-primary .eye-radiate,
+.design-v2 .section-authority-spotlight .eye-radiate {
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    z-index: 1
+}
+
+.design-v2 .authority-spotlight-card-primary .eye-radiate-ring,
+.design-v2 .section-authority-spotlight .eye-radiate-ring {
+    animation: eyeRadiateProductAnchor 8s ease-out infinite;
+    border: 1px solid hsla(0, 0%, 100%, .45);
+    border-radius: 50%;
+    height: 60px;
+    left: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    will-change: transform, opacity
+}
+
+.design-v2 .section-authority-spotlight .eye-radiate-ring:first-child {
+    animation-delay: 0s
+}
+
+.design-v2 .section-authority-spotlight .eye-radiate-ring:nth-child(2) {
+    animation-delay: 1.6s
+}
+
+.design-v2 .section-authority-spotlight .eye-radiate-ring:nth-child(3) {
+    animation-delay: 3.2s
+}
+
+.design-v2 .section-authority-spotlight .eye-radiate-ring:nth-child(4) {
+    animation-delay: 4.8s
+}
+
+.design-v2 .section-authority-spotlight .eye-radiate-ring:nth-child(5) {
+    animation-delay: 6.4s
+}
+
+.design-v2 .authority-spotlight-card-linkedin {
+    background: var(--text-primary);
+    border: 1px solid var(--text-primary);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 520px;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .linkedin-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 32px
+}
+
+.design-v2 .linkedin-card-header {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px
+}
+
+.design-v2 .linkedin-icon {
+    height: 24px;
+    width: 24px;
+    fill: var(--text-white)
+}
+
+.design-v2 .linkedin-label {
+    color: hsla(0, 0%, 100%, .85);
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.design-v2 .linkedin-post-preview {
+    display: flex;
+    flex: 1;
+    flex-direction: column
+}
+
+.design-v2 .linkedin-post-text {
+    color: var(--text-white);
+    display: -webkit-box;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0 0 auto;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden
+}
+
+.design-v2 .linkedin-card-footer {
+    align-items: center;
+    border-top: 1px solid hsla(0, 0%, 100%, .15);
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 20px
+}
+
+.design-v2 .authority-spotlight-mini-avatar {
+    border-radius: 50%;
+    height: 32px;
+    overflow: hidden;
+    width: 32px
+}
+
+.design-v2 .authority-spotlight-mini-avatar img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%
+}
+
+.design-v2 .linkedin-author {
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600
+}
+
+.design-v2 .linkedin-followers-badge {
+    background: var(--brand-white);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    margin-left: auto;
+    padding: 6px 12px
+}
+
+.design-v2 .linkedin-card-link {
+    align-items: center;
+    color: var(--text-white);
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    gap: 8px;
+    margin-top: 20px;
+    text-decoration: none;
+    transition: gap .3s ease
+}
+
+.design-v2 .linkedin-card-link:hover {
+    gap: 12px
+}
+
+.design-v2 .linkedin-card-link svg {
+    height: 16px;
+    width: 16px;
+    fill: currentColor;
+    transition: transform .3s ease
+}
+
+.design-v2 .linkedin-card-link:hover svg {
+    transform: translateX(4px)
+}
+
+@media(max-width:1024px) {
+    .design-v2.section-authority-spotlight {
+        padding: 60px 40px
+    }
+    .design-v2 .authority-spotlight-title {
+        font-size: var(--text-heading-xl)
+    }
+}
+
+@media(max-width:900px) {
+    .design-v2 .authority-spotlight-row {
+        grid-template-columns: 1fr
+    }
+    .design-v2 .authority-spotlight-card-linkedin,
+    .design-v2 .authority-spotlight-card-primary {
+        min-height: 400px
+    }
+    .design-v2 .authority-spotlight-card-title {
+        max-width: 100%
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2.section-authority-spotlight {
+        padding: 60px 20px
+    }
+    .design-v2 .authority-spotlight-title {
+        font-size: var(--text-heading-lg)
+    }
+    .design-v2 .authority-spotlight-card-linkedin,
+    .design-v2 .authority-spotlight-card-primary {
+        border-radius: 16px;
+        min-height: 360px
+    }
+    .design-v2 .authority-spotlight-row {
+        gap: 16px;
+        margin-top: 16px
+    }
+    .design-v2 .authority-spotlight-card-content {
+        padding: 24px
+    }
+    .design-v2 .authority-spotlight-card-title {
+        font-size: var(--text-body-xl)
+    }
+    .design-v2 .authority-spotlight-card-desc {
+        font-size: var(--text-body-sm)
+    }
+    .design-v2 .linkedin-card-inner {
+        padding: 24px
+    }
+    .design-v2 .linkedin-post-text {
+        font-size: var(--text-body)
+    }
+}
+/* ══ Scrim for the pastel artwork ═══════════════════════════════════════════
+   The cards used to sit on dark photographs, so a 50% wash at the very bottom
+   was enough for the white copy. These backgrounds are pale, so the scrim runs
+   deeper and reaches further up the card — otherwise the headline, description
+   and link have nothing to sit against. */
+.design-v2 .section-product-anchor .feature-card-image:before {
+    background: linear-gradient(0deg, rgba(8, 14, 34, .9) 0, rgba(8, 14, 34, .76) 26%, rgba(8, 14, 34, .46) 50%, rgba(8, 14, 34, .14) 74%, transparent 100%)
+}
+
+/* ══ Light cards ════════════════════════════════════════════════════════════
+   The artwork is now as bright as the hero, so a dark scrim would undo exactly
+   what it is there for. The wash lifts the foreground to near-white instead,
+   and the copy goes dark — which is the right way round on a light card. */
+.design-v2 .section-product-anchor .feature-card-image:before {
+    background: linear-gradient(0deg, hsla(0, 0%, 100%, .62) 0, hsla(0, 0%, 100%, .34) 22%, hsla(0, 0%, 100%, .1) 42%, hsla(0, 0%, 100%, 0) 62%)
+}
+
+.design-v2 .section-product-anchor .feature-card-title {
+    color: var(--text-primary, #10022c)
+}
+
+.design-v2 .section-product-anchor .feature-card-desc {
+    color: rgba(16, 2, 44, .72)
+}
+
+.design-v2 .section-product-anchor .feature-card-link {
+    color: var(--text-primary, #10022c)
+}
+
+.design-v2 .section-product-anchor .feature-card-label {
+    background: hsla(0, 0%, 100%, .82);
+    border: 1px solid rgba(16, 2, 44, .1);
+    color: rgba(16, 2, 44, .7)
+}
+
+.design-v2 .section-product-anchor .feature-card-image {
+    border-color: rgba(16, 2, 44, .12)
+}
+
+/* ══ Dark artwork: copy back to white ═══════════════════════════════════════
+   The cards briefly ran dark type on a white wash, which suited the pale pastel
+   backgrounds. The artwork is a dusk scene now, so the copy returns to white
+   over a dark scrim — the pairing the cards were originally built for. */
+.design-v2 .section-product-anchor .feature-card-image:before {
+    background: linear-gradient(0deg, rgba(6, 10, 26, .88) 0, rgba(6, 10, 26, .62) 26%, rgba(6, 10, 26, .28) 50%, rgba(6, 10, 26, 0) 76%)
+}
+
+.design-v2 .section-product-anchor .feature-card-title,
+.design-v2 .section-product-anchor .feature-card-link {
+    color: var(--text-white, #fff)
+}
+
+.design-v2 .section-product-anchor .feature-card-desc {
+    color: hsla(0, 0%, 100%, .84)
+}
+
+.design-v2 .section-product-anchor .feature-card-label {
+    background: hsla(0, 0%, 100%, .16);
+    border: 1px solid hsla(0, 0%, 100%, .28);
+    color: #fff
+}
+
+.design-v2 .section-product-anchor .feature-card-image {
+    border-color: rgba(16, 2, 44, .3)
+}
+
+/* No scrim on the authority card: the sagebrush artwork that needed one is
+   gone, and its replacement (the dusk valley with the network lines) is
+   already at its darkest in the upper-left where all the copy sits. */
+
+/* Keep the copy above the ember field. */
+.design-v2 .authority-spotlight-card-primary .authority-spotlight-card-content {
+    position: relative;
+    z-index: 2
+}
+
+/* The clamp cut the sentence mid-word at "Perfection is n..." while 250px of
+   empty card sat underneath it. There is room for the whole thing. */
+.design-v2 .linkedin-post-text {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: none
+}
+
+/* ══ One panorama across both cards ═════════════════════════════════════════
+   The two cards carry the left and right halves of a single image, cut to the
+   ratio the pair spans so the ridgeline runs on across the gap. The picture
+   fills each card top to bottom and the copy sits on it.
+   Text on a photograph needs a scrim - measured, the artwork behind the copy
+   ranges 39 to 238 within a single line, so no flat text colour clears 4.5:1
+   on its own. This one is confined to the bottom 62%, where the artwork is
+   already dark forest, so the mountains and sky above are untouched. */
+.design-v2 .section-product-anchor .feature-card-image--light {
+    background-position: center !important;
+    background-size: cover !important;
+    border-color: rgba(16, 2, 44, .12);
+    display: flex;
+    flex-direction: column;
+    height: 520px !important;
+    justify-content: flex-end;
+    min-height: 520px !important;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .section-product-anchor .feature-card-image--light:before {
+    /* Deep muted teal, not near-black - rgba(10,22,30,.82) was crushing the
+       foreground to black and taking the pine detail with it. This is lighter
+       and tinted to the artwork's own colour, so the forest reads as deep teal
+       and the trees stay visible. Alphas are the minimum that still hold white
+       text at AA over the brightest pixels behind it. */
+    background: linear-gradient(0deg,
+        rgba(14, 46, 56, .76) 0,
+        rgba(14, 46, 56, .72) 25%,
+        rgba(14, 46, 56, .67) 44%,
+        rgba(14, 46, 56, .38) 55%,
+        rgba(14, 46, 56, 0) 62%);
+    content: "";
+    display: block;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .section-product-anchor .feature-card-image--light .feature-card-overlay {
+    background: none;
+    border: 0;
+    margin-top: auto;
+    min-height: 0;
+    /* Lifted off the bottom edge. */
+    padding: 32px 32px 46px;
+    position: relative;
+    z-index: 2
+}
+
+.design-v2 .section-product-anchor .feature-card-image--light .feature-card-title,
+.design-v2 .section-product-anchor .feature-card-image--light .feature-card-link {
+    color: #fff
+}
+
+.design-v2 .section-product-anchor .feature-card-image--light .feature-card-desc {
+    color: hsla(0, 0%, 100%, .86)
+}
+
+.design-v2 .section-product-anchor .feature-card-image--light .feature-card-label {
+    background: hsla(0, 0%, 100%, .16);
+    border: 1px solid hsla(0, 0%, 100%, .3);
+    color: #fff
+}
+
+/* The mote field sits above the artwork and the scrim, below the copy. Cooled
+   to the artwork's own palette - the shared preset is warm ember orange, which
+   was drawn for dusk desert scenes and reads as sparks against blue-green
+   forest. Here they are pale mist instead. */
+.design-v2 .section-product-anchor .feature-card-image--light .dust-particles {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .section-product-anchor .feature-card-image--light .dust-particle {
+    filter: hue-rotate(150deg) saturate(.35) brightness(1.35)
+}
+
+/* Quote card: no motes, and its own background rather than the shared
+   --text-primary black (which also drives the border, so it is overridden
+   here rather than changed at the variable). */
+.design-v2 .authority-spotlight-card-linkedin {
+    background: #10252b
+}

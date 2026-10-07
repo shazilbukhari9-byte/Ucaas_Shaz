@@ -1,0 +1,28 @@
+/* Scroll-in motion (components/landing/ScrollMotion.jsx). Only opacity and
+   the individual translate / scale properties animate — compositor-only,
+   and they add to an element's own transform instead of replacing it. The
+   attributes are removed once an item settles, so nothing lingers. */
+/* !important so a component's own transition list cannot drop the fade for
+   the second or so the entrance takes. */
+[data-sm="in"] {
+    transition:
+        opacity .7s cubic-bezier(.2, .7, .2, 1) var(--sm-d, 0ms),
+        translate .8s cubic-bezier(.2, .8, .2, 1) var(--sm-d, 0ms),
+        scale .8s cubic-bezier(.2, .8, .2, 1) var(--sm-d, 0ms) !important
+}
+/* Hidden at once while waiting (no fade-out on load) — !important so a
+   component's own state classes (e.g. an open row) cannot show it early;
+   only the way in animates. */
+[data-sm="wait"] { opacity: 0 !important; transition: none !important }
+[data-sm="wait"][data-sm-kind="up"] { translate: 0 22px !important }
+[data-sm="wait"][data-sm-kind="left"] { translate: -22px 0 !important }
+[data-sm="wait"][data-sm-kind="pop"] { scale: .94 !important; translate: 0 16px !important }
+/* The product shot settles up from slightly smaller, a touch slower. */
+[data-sm="wait"][data-sm-kind="shot"] { scale: .96 !important; translate: 0 36px !important }
+[data-sm="in"][data-sm-kind="shot"] { transition-duration: .9s, 1s, 1s !important }
+/* Back to the element's own opacity (some rows are dimmed on purpose). */
+[data-sm="in"] { scale: none; translate: none }
+
+@media (prefers-reduced-motion: reduce) {
+    [data-sm] { opacity: 1 !important; scale: none !important; transition: none !important; translate: none !important }
+}

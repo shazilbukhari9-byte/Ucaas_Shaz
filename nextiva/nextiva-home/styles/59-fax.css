@@ -1,0 +1,287 @@
+/* Online Fax page (components/landing/fax/*). */
+
+/* ── Hero: fax composer + inbox ───────────────────────────────────────── */
+.fxm {
+    --fxm-ink: #10022c;
+    --fxm-muted: #5b6475;
+    --fxm-line: rgba(16, 2, 44, .08);
+    --fxm-acc: #2563eb;
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    background: rgba(255, 253, 250, .9);
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, .08), 0 40px 80px -36px rgba(30, 41, 79, .5), inset 0 1px 0 rgba(255, 255, 255, .9);
+    color: var(--fxm-ink);
+    padding: 14px 16px 16px;
+    text-align: left
+}
+.fxm :where(button) { cursor: pointer; font: inherit }
+.fxm button:focus-visible, .fxm input:focus-visible { outline: 2px solid var(--fxm-acc); outline-offset: 2px }
+.fxm-head { align-items: center; display: flex; gap: 10px; padding: 0 2px 12px }
+.fxm-title { align-items: center; display: flex; font-size: 14.5px; font-variant-numeric: tabular-nums; font-weight: 600; gap: 10px; margin-left: 4px; white-space: nowrap }
+.fxm-enc { align-items: center; background: #eff6ff; border-radius: 999px; color: #1d4ed8; display: inline-flex; font-size: 11px; font-weight: 700; gap: 4px; margin-left: auto; padding: 4px 10px }
+
+.fxm-tabs { background: #f1eef3; border-radius: 12px; display: grid; gap: 3px; grid-template-columns: 1fr 1fr; margin-bottom: 10px; padding: 3px }
+.fxm-tabs button { align-items: center; background: transparent; border: 0; border-radius: 9px; color: var(--fxm-muted); display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 6px; justify-content: center; padding: 7px }
+.fxm-tabs button.is-on { background: #fff; box-shadow: 0 1px 3px rgba(16, 2, 44, .12); color: var(--fxm-ink) }
+.fxm-tabs b { background: #dc2626; border-radius: 999px; color: #fff; font-size: 10px; padding: 0 6px }
+
+.fxm-pane { animation: psm-in .3s ease; background: #fff; border: 1px solid var(--fxm-line); border-radius: 14px; display: flex; flex-direction: column; gap: 7px; height: 276px; padding: 12px }
+.fxm-k { color: #9a948e; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase }
+.fxm-to { display: grid; gap: 5px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.fxm-to button { align-items: flex-start; background: #faf9f7; border: 1px solid var(--fxm-line); border-radius: 10px; color: var(--fxm-ink); display: flex; flex-direction: column; gap: 1px; min-width: 0; padding: 7px 9px; text-align: left; transition: all .15s ease }
+.fxm-to button b { font-size: 12px; font-weight: 600; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.fxm-to button em { color: #8a8f9c; font-size: 10px; font-style: normal; font-variant-numeric: tabular-nums; white-space: nowrap }
+.fxm-to button.is-on { background: #eff6ff; border-color: rgba(37, 99, 235, .45) }
+.fxm-docs { display: flex; flex-direction: column; gap: 4px }
+.fxm-docs button { align-items: center; background: transparent; border: 1px solid var(--fxm-line); border-radius: 10px; color: var(--fxm-ink); display: flex; font-size: 12.5px; gap: 8px; padding: 6px 10px; text-align: left; transition: all .15s ease }
+.fxm-docs button i { color: #dc2626; font-size: 16px }
+.fxm-docs button span { flex: 1; font-weight: 500 }
+.fxm-docs button em { color: #8a8f9c; font-size: 11px; font-style: normal }
+.fxm-docs button.is-on { background: #eff6ff; border-color: rgba(37, 99, 235, .45) }
+.fxm-send-row { align-items: center; display: flex; gap: 10px; margin-top: auto }
+.fxm-cover { align-items: center; color: var(--fxm-ink); cursor: pointer; display: inline-flex; font-size: 12.5px; font-weight: 500; gap: 7px; position: relative }
+.fxm-cover input { height: 1px; opacity: 0; position: absolute; width: 1px }
+.fxm-cover span { background: #e4e0dc; border-radius: 999px; height: 18px; position: relative; transition: background .15s ease; width: 32px }
+.fxm-cover span::after { background: #fff; border-radius: 50%; box-shadow: 0 1px 2px rgba(0, 0, 0, .2); content: ""; height: 14px; left: 2px; position: absolute; top: 2px; transition: transform .15s ease; width: 14px }
+.fxm-cover input:checked + span { background: var(--fxm-acc) }
+.fxm-cover input:checked + span::after { transform: translateX(14px) }
+.fxm-cover input:focus-visible + span { outline: 2px solid var(--fxm-acc); outline-offset: 2px }
+.fxm-total { color: #8a8f9c; font-size: 12px; margin-left: auto }
+.fxm-go { align-items: center; background: var(--fxm-acc); border: 0; border-radius: 10px; color: #fff; display: inline-flex; font-size: 13px; font-weight: 600; gap: 6px; padding: 9px 14px }
+.fxm-go:hover { background: #1d4ed8 }
+
+.fxm-tx { gap: 12px; justify-content: center }
+.fxm-tx-top { align-items: center; display: flex; justify-content: space-between }
+.fxm-tx-state { align-items: center; display: inline-flex; font-size: 13px; font-weight: 600; gap: 7px }
+.fxm-tx-state i { animation: vdm-blink 1s ease-in-out infinite; background: #f59e0b; border-radius: 50%; height: 8px; width: 8px }
+.fxm-tx-state--sending i { background: var(--fxm-acc) }
+.fxm-tx-state--done i { animation: none; background: #16a34a }
+.fxm-tx-to { color: #8a8f9c; font-size: 12px }
+.fxm-pages { display: flex; gap: 8px; justify-content: center; min-height: 104px }
+.fxm-sheet { background: #fff; border: 1px solid var(--fxm-line); border-radius: 6px; box-shadow: 0 6px 14px -10px rgba(16, 2, 44, .4); display: flex; flex-direction: column; gap: 5px; height: 100px; opacity: .45; padding: 12px 8px 8px; position: relative; transition: opacity .25s ease, transform .25s ease, border-color .25s ease; width: 74px }
+.fxm-sheet i { background: #e8e4e0; border-radius: 2px; display: block; height: 4px }
+.fxm-sheet i:nth-child(2) { width: 80% }
+.fxm-sheet i:nth-child(3) { width: 60% }
+.fxm-sheet em { bottom: 6px; color: #8a8f9c; font-size: 9.5px; font-style: normal; font-weight: 700; left: 8px; position: absolute }
+.fxm-sheet.is-sent { border-color: rgba(37, 99, 235, .35); opacity: 1 }
+.fxm-sheet.is-sent i { background: #bfdbfe }
+.fxm-sheet.is-now { transform: translateY(-6px) }
+.fxm-bar { background: #eef0f4; border-radius: 999px; height: 6px; overflow: hidden }
+.fxm-bar i { background: var(--fxm-acc); border-radius: inherit; display: block; height: 100%; transition: width .4s ease }
+.fxm-conf { align-items: center; animation: psm-in .3s ease; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; display: flex; gap: 10px; padding: 10px 12px }
+.fxm-conf-ic { color: #16a34a; font-size: 22px }
+.fxm-conf-txt { display: flex; flex: 1; flex-direction: column; min-width: 0 }
+.fxm-conf-txt b { font-size: 13px; font-variant-numeric: tabular-nums }
+.fxm-conf-txt em { color: #5b6475; font-size: 11px; font-style: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.fxm-conf button { background: #fff; border: 1px solid var(--fxm-line); border-radius: 999px; color: var(--fxm-ink); font-size: 11.5px; font-weight: 600; padding: 5px 10px; white-space: nowrap }
+
+.fxm-search { align-items: center; background: #faf9f7; border: 1px solid var(--fxm-line); border-radius: 10px; display: flex; gap: 6px; padding: 0 10px }
+.fxm-search i { color: #8a8f9c }
+.fxm-search input { background: transparent; border: 0; color: var(--fxm-ink); flex: 1; font: inherit; font-size: 12.5px; min-width: 0; outline: none; padding: 8px 0 }
+.fxm-list { display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 0 }
+.fxm-item { align-items: center; animation: psm-in .3s ease; background: transparent; border: 1px solid transparent; border-radius: 10px; color: inherit; display: flex; gap: 10px; padding: 7px 8px; text-align: left; transition: background .15s ease; width: 100% }
+.fxm-item:hover { background: #faf9f7 }
+.fxm-item.is-new { background: #eff6ff; border-color: rgba(37, 99, 235, .25) }
+.fxm-item-ic { align-items: center; background: #f1f5f9; border-radius: 9px; color: #475569; display: inline-flex; flex: none; font-size: 16px; height: 32px; justify-content: center; width: 32px }
+.fxm-item-txt { display: flex; flex: 1; flex-direction: column; min-width: 0 }
+.fxm-item-top { align-items: baseline; display: flex; gap: 6px; justify-content: space-between }
+.fxm-item-top b { font-size: 12.5px; font-weight: 600 }
+.fxm-item-top em { color: #9a948e; font-size: 10.5px; font-style: normal; white-space: nowrap }
+.fxm-item-snip { color: #5b6475; font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.fxm mark { background: #fde68a; border-radius: 2px; color: inherit; padding: 0 1px }
+.fxm-new { background: var(--fxm-acc); border-radius: 999px; color: #fff; flex: none; font-size: 10px; font-weight: 700; padding: 1px 7px }
+.fxm-signed { color: #16a34a; flex: none }
+.fxm-none { color: #8a8f9c; font-size: 12px; padding: 10px 4px }
+.fxm-view { display: flex; flex-direction: column; gap: 8px; height: 100% }
+.fxm-back { align-items: center; align-self: flex-start; background: transparent; border: 0; color: var(--fxm-muted); display: inline-flex; font-size: 12px; font-weight: 600; gap: 4px; padding: 0 }
+.fxm-view-body { display: flex; gap: 12px }
+.fxm-thumb { background: #fff; border: 1px solid var(--fxm-line); border-radius: 6px; box-shadow: 0 10px 20px -14px rgba(16, 2, 44, .45); display: flex; flex: none; flex-direction: column; gap: 6px; height: 150px; padding: 16px 10px; position: relative; width: 112px }
+.fxm-thumb i { background: #e8e4e0; border-radius: 2px; display: block; height: 5px }
+.fxm-thumb i:nth-child(2) { width: 85% }
+.fxm-thumb i:nth-child(4) { width: 55% }
+.fxm-thumb b { background: #f1f5f9; border-radius: 6px; bottom: 8px; color: #475569; font-size: 10px; padding: 2px 6px; position: absolute; right: 8px }
+.fxm-view-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0 }
+.fxm-view-txt b { font-size: 14px }
+.fxm-view-txt em { color: #8a8f9c; font-size: 11px; font-style: normal }
+body.design-v2 .lp .fxm-view-txt p { background: #faf9f7; border-radius: 8px; color: var(--fxm-ink); font-size: 12px !important; line-height: 1.45 !important; margin: 6px 0; padding: 8px 10px }
+.fxm-view-acts { display: flex; gap: 6px }
+.fxm-view-acts button { align-items: center; background: #fff; border: 1px solid var(--fxm-line); border-radius: 9px; color: var(--fxm-ink); display: inline-flex; font-size: 12px; font-weight: 600; gap: 5px; padding: 6px 10px }
+.fxm-view-acts button.is-on { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; cursor: default }
+
+@media (min-width: 1025px) and (max-height: 860px) { .fxm-pane { height: 258px } .fxm-pages { min-height: 92px } .fxm-sheet { height: 88px; width: 66px } }
+@media (min-width: 1025px) and (max-height: 700px) { .fxm-pane { height: 222px; gap: 5px } .fxm-head { padding-bottom: 8px } .fxm-docs button { padding: 4px 10px } .fxm-thumb { height: 120px; width: 92px } }
+@media (max-width: 560px) {
+    .fxm { border-radius: 18px; padding: 12px }
+    .fxm-head .lp-dots { display: none }
+    .fxm-title { margin-left: 0 }
+    .fxm-pane { height: auto; min-height: 280px }
+    .fxm-to button em { display: none }
+    .fxm-thumb { display: none }
+}
+
+/* ── Shared head ──────────────────────────────────────────────────────── */
+.fx-head { margin: 0 auto 44px; max-width: 760px; text-align: center }
+.fx-head .lp-intro { margin: 14px auto 0 }
+
+/* ── Channels ─────────────────────────────────────────────────────────── */
+.fx-ch { align-items: stretch; display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); margin: 0 auto; max-width: 1080px }
+.fx-ch-list { display: flex; flex-direction: column; gap: 10px }
+.fx-ch-tab { align-items: flex-start; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 18px; color: inherit; cursor: pointer; display: flex; font: inherit; gap: 14px; padding: 18px 20px; text-align: left; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease }
+.fx-ch-tab:hover { transform: translateX(3px) }
+.fx-ch-tab.is-on { border-color: rgba(37, 99, 235, .4); box-shadow: 0 20px 40px -30px rgba(37, 99, 235, .55) }
+.fx-ch-tab:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px }
+.fx-ch-ic { align-items: center; background: #f1f5f9; border-radius: 12px; color: #475569; display: inline-flex; flex: none; font-size: 19px; height: 42px; justify-content: center; transition: all .2s ease; width: 42px }
+.fx-ch-tab.is-on .fx-ch-ic { background: #2563eb; color: #fff }
+.fx-ch-txt { display: flex; flex-direction: column; gap: 2px }
+.fx-ch-txt em { color: #9a948e; font-size: 11px; font-style: normal; font-weight: 800; letter-spacing: .08em; text-transform: uppercase }
+.fx-ch-txt b { color: #10022c; font-size: 16.5px; font-weight: 600 }
+.fx-ch-txt span { color: #5b6475; font-size: 14px; line-height: 1.5 }
+.fx-ch-stage { align-items: center; animation: psm-in .35s ease; background: radial-gradient(70% 90% at 100% 0%, rgba(191, 219, 254, .55), transparent 70%), #f6f8fb; border: 1px solid rgba(16, 2, 44, .07); border-radius: 24px; display: flex; justify-content: center; min-height: 340px; padding: 28px }
+
+.fx-ch-mail { background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 16px; box-shadow: 0 26px 50px -36px rgba(30, 41, 79, .55); display: flex; flex-direction: column; max-width: 400px; overflow: hidden; width: 100% }
+.fx-ch-bar { align-items: center; background: #f4f5f8; display: flex; gap: 5px; padding: 9px 12px }
+.fx-ch-bar i { background: #d4d7de; border-radius: 50%; height: 8px; width: 8px }
+.fx-ch-bar b { color: #475569; font-size: 12px; margin-left: 8px }
+.fx-ch-field { border-bottom: 1px solid rgba(16, 2, 44, .06); color: #10022c; font-size: 13px; padding: 9px 14px }
+.fx-ch-field em { color: #8a8f9c; display: inline-block; font-style: normal; width: 62px }
+.fx-ch-body { color: #3f4654; font-size: 13px; min-height: 52px; padding: 12px 14px }
+.fx-ch-att { align-items: center; background: #fef2f2; border-radius: 10px; color: #10022c; display: flex; font-size: 12.5px; font-weight: 600; gap: 6px; margin: 0 14px; padding: 8px 10px }
+.fx-ch-att i { color: #dc2626; font-size: 16px }
+.fx-ch-att em { color: #8a8f9c; font-style: normal; font-weight: 500; margin-left: auto }
+.fx-ch-send { align-items: center; align-self: flex-end; background: #2563eb; border-radius: 9px; color: #fff; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 5px; margin: 12px 14px 14px; padding: 7px 14px }
+
+.fx-ch-web { background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 16px; box-shadow: 0 26px 50px -36px rgba(30, 41, 79, .55); display: flex; flex-direction: column; gap: 8px; max-width: 400px; padding: 16px; width: 100% }
+.fx-ch-drop { align-items: center; background: #f8fafc; border: 2px dashed #bfdbfe; border-radius: 12px; color: #1d4ed8; display: flex; font-size: 13px; font-weight: 600; gap: 8px; justify-content: center; padding: 18px 10px }
+.fx-ch-drop i { font-size: 20px }
+.fx-ch-k { color: #9a948e; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; margin-top: 4px; text-transform: uppercase }
+.fx-ch-rcpt { align-items: center; animation: psm-in .4s ease both; background: #faf9f7; border-radius: 10px; color: #10022c; display: flex; font-size: 13px; font-weight: 500; gap: 8px; padding: 8px 10px }
+.fx-ch-rcpt i { color: #16a34a }
+.fx-ch-rcpt em { color: #16a34a; font-size: 11.5px; font-style: normal; font-weight: 600; margin-left: auto }
+.fx-ch-report { align-items: center; background: #eff6ff; border-radius: 10px; color: #1d4ed8; display: flex; font-size: 12.5px; font-weight: 600; gap: 6px; margin-top: 4px; padding: 9px 10px }
+
+.fx-ch-phone { align-items: center; background: #10022c; border-radius: 30px; box-shadow: 0 30px 60px -36px rgba(16, 2, 44, .7); display: flex; flex-direction: column; gap: 10px; padding: 14px 14px 18px; width: 210px }
+.fx-ch-notch { background: #000; border-radius: 999px; height: 6px; width: 60px }
+.fx-ch-cam { align-items: center; background: linear-gradient(160deg, #3f3f46, #18181b); border-radius: 16px; display: flex; height: 200px; justify-content: center; position: relative; width: 100% }
+.fx-ch-doc { background: #fff; border-radius: 4px; display: flex; flex-direction: column; gap: 6px; height: 150px; padding: 16px 12px; position: relative; transform: rotate(-4deg); width: 116px }
+.fx-ch-doc i { background: #e4e4e7; border-radius: 2px; display: block; height: 5px }
+.fx-ch-doc i:nth-child(3) { width: 70% }
+.fx-ch-doc b { border-bottom: 2px solid #2563eb; bottom: 16px; color: #2563eb; font-family: cursive; font-size: 14px; position: absolute; right: 12px }
+.fx-ch-corner { border-color: #22d3ee; border-style: solid; height: 18px; position: absolute; width: 18px }
+.fx-ch-corner--a { border-width: 3px 0 0 3px; left: 30px; top: 18px }
+.fx-ch-corner--b { border-width: 3px 3px 0 0; right: 30px; top: 18px }
+.fx-ch-corner--c { border-width: 0 0 3px 3px; bottom: 18px; left: 30px }
+.fx-ch-corner--d { border-width: 0 3px 3px 0; bottom: 18px; right: 30px }
+.fx-ch-scan { color: #67e8f9; font-size: 11.5px; font-weight: 600 }
+.fx-ch-fax { align-items: center; background: #2563eb; border-radius: 999px; color: #fff; display: inline-flex; font-size: 13px; font-weight: 600; gap: 6px; padding: 8px 18px }
+
+/* ── Feature sheets ───────────────────────────────────────────────────── */
+.fx-feat-sec { background: #fff }
+.fx-sheets { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.fx-sheet { background: #fffefb; border: 1px solid rgba(16, 2, 44, .09); border-radius: 6px 26px 6px 6px; box-shadow: 0 1px 0 rgba(16, 2, 44, .04), 0 18px 36px -30px rgba(16, 2, 44, .4); overflow: hidden; position: relative; transition: transform .25s ease, box-shadow .25s ease }
+.fx-sheet::after { background: linear-gradient(225deg, #fff 50%, #ebe7e1 50%); border-bottom-left-radius: 6px; box-shadow: -2px 2px 4px rgba(16, 2, 44, .08); content: ""; height: 26px; position: absolute; right: 0; top: 0; width: 26px }
+.fx-sheet:hover { box-shadow: 0 26px 46px -30px rgba(16, 2, 44, .45); transform: translateY(-4px) rotate(-.4deg) }
+.fx-sheet-strip { border-bottom: 1px dashed rgba(16, 2, 44, .15); color: #8a8f9c; display: flex; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; justify-content: space-between; letter-spacing: .06em; padding: 10px 40px 9px 18px; text-transform: uppercase }
+.fx-sheet-body { padding: 18px 20px 22px }
+.fx-sheet-ic { align-items: center; background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 12px; color: var(--t-fg); display: inline-flex; font-size: 18px; height: 40px; justify-content: center; margin-bottom: 14px; width: 40px }
+body.design-v2 .lp .fx-sheet-title { color: var(--lp-ink, #10022c); font-size: 17px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 6px }
+body.design-v2 .lp .fx-sheet-text { color: var(--lp-muted, #5b6475); font-size: 14px !important; line-height: 1.55 !important; margin: 0 }
+
+/* ── Audit trail ──────────────────────────────────────────────────────── */
+.fx-au { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) }
+body.design-v2 .lp .fx-au-copy .lp-intro { margin: 14px 0 0 }
+.fx-au-points { display: flex; flex-direction: column; gap: 10px; list-style: none; margin: 24px 0 0; padding: 0 }
+.fx-au-points li { align-items: center; color: var(--lp-ink, #10022c); display: flex; font-size: 15px; font-weight: 500; gap: 10px }
+.fx-au-points i { align-items: center; background: #fff; border: 1px solid #bfdbfe; border-radius: 50%; color: #2563eb; display: inline-flex; font-size: 13px; height: 26px; justify-content: center; width: 26px }
+.fx-log { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 24px; box-shadow: 0 34px 70px -50px rgba(30, 41, 79, .5); overflow: hidden }
+.fx-log :where(button) { cursor: pointer; font: inherit }
+.fx-log-head { align-items: center; background: linear-gradient(180deg, #fbfaf8, #f6f4f1); border-bottom: 1px solid rgba(16, 2, 44, .07); display: flex; justify-content: space-between; padding: 14px 18px }
+.fx-log-head span { align-items: center; color: #10022c; display: inline-flex; font-size: 14px; font-weight: 600; gap: 7px }
+.fx-log-head span i { color: #2563eb; font-size: 17px }
+.fx-log-head button { align-items: center; background: #10022c; border: 0; border-radius: 10px; color: #fff; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 6px; padding: 8px 12px }
+.fx-log-head button:disabled { cursor: default; opacity: .6 }
+.fx-log-list { list-style: none; margin: 0; padding: 8px 10px 10px; position: relative }
+.fx-log-row { align-items: center; border-radius: 12px; display: grid; gap: 12px; grid-template-columns: 36px minmax(0, 1fr) auto; padding: 10px; position: relative }
+.fx-log-row + .fx-log-row::before { background: #e6e2dd; content: ""; height: 20px; left: 27px; position: absolute; top: -10px; width: 2px }
+.fx-log-ic { align-items: center; background: #f1f5f9; border-radius: 50%; color: #475569; display: inline-flex; font-size: 16px; height: 36px; justify-content: center; position: relative; transition: all .25s ease; width: 36px; z-index: 1 }
+.fx-log-txt { display: flex; flex-direction: column; min-width: 0 }
+.fx-log-txt b { color: #10022c; font-size: 14px; font-weight: 600 }
+.fx-log-txt em { color: #8a8f9c; font-size: 12px; font-style: normal; font-variant-numeric: tabular-nums }
+.fx-log-hash { align-items: center; background: #f6f4f1; border-radius: 8px; color: #8a8f9c; display: inline-flex; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; gap: 4px; padding: 3px 8px; transition: all .25s ease }
+.fx-log-row.is-ok .fx-log-ic { background: #dbeafe; color: #1d4ed8 }
+.fx-log-row.is-ok .fx-log-hash { background: #f0fdf4; color: #15803d }
+
+/* ── Add-on seats ─────────────────────────────────────────────────────── */
+.fx-add { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr) }
+body.design-v2 .lp .fx-add-copy .lp-intro { margin: 14px 0 0 }
+.fx-add-panel { background: #fbfaf9; border: 1px solid rgba(16, 2, 44, .08); border-radius: 24px; padding: 20px }
+.fx-add-head { align-items: baseline; display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: space-between; margin-bottom: 14px }
+.fx-add-head span { align-items: center; color: #10022c; display: inline-flex; font-size: 14px; font-weight: 600; gap: 6px }
+.fx-add-head em { color: #8a8f9c; font-size: 12px; font-style: normal }
+.fx-seats { display: grid; gap: 8px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+.fx-seat { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 14px; color: inherit; cursor: pointer; display: flex; font: inherit; gap: 8px; padding: 8px; position: relative; text-align: left; transition: border-color .15s ease, background .15s ease, transform .1s ease }
+.fx-seat:hover { transform: translateY(-1px) }
+.fx-seat:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px }
+.fx-seat-av { align-items: center; background: #f1eeea; border-radius: 50%; color: #5b6475; display: inline-flex; flex: none; font-size: 11px; font-weight: 700; height: 30px; justify-content: center; width: 30px }
+.fx-seat-txt { display: flex; flex-direction: column; line-height: 1.2; min-width: 0 }
+.fx-seat-txt b { color: #10022c; font-size: 12.5px; font-weight: 600 }
+.fx-seat-txt em { color: #9a948e; font-size: 10.5px; font-style: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.fx-seat-fax { color: #d4d0cb; font-size: 13px; margin-left: auto; transition: color .15s ease }
+.fx-seat.is-on { background: #eff6ff; border-color: rgba(37, 99, 235, .4) }
+.fx-seat.is-on .fx-seat-av { background: #2563eb; color: #fff }
+.fx-seat.is-on .fx-seat-fax { color: #2563eb }
+.fx-add-sum { display: flex; flex-direction: column; gap: 8px; margin-top: 16px }
+.fx-add-meter { background: #ece7e1; border-radius: 999px; height: 8px; overflow: hidden }
+.fx-add-meter i { background: linear-gradient(90deg, #60a5fa, #2563eb); border-radius: inherit; display: block; height: 100%; transition: width .3s ease }
+.fx-add-sum > span:last-child { color: #3f4654; font-size: 14px }
+.fx-add-sum b { color: #10022c }
+
+/* ── Use cases: document stacks ───────────────────────────────────────── */
+.fx-uc-sec { background: #fff }
+.fx-uc { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+.fx-uc-card { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease }
+.fx-uc-card:hover { box-shadow: 0 24px 44px -32px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.fx-uc-stack { background: linear-gradient(180deg, var(--t-bg), #faf8f6); height: 140px; position: relative }
+.fx-uc-doc { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 10px; box-shadow: 0 10px 20px -16px rgba(16, 2, 44, .5); display: grid; gap: 0 8px; grid-template-columns: auto 1fr; left: 18px; padding: 9px 12px; position: absolute; right: 18px; transition: transform .3s ease }
+.fx-uc-doc i { color: var(--t-fg); font-size: 18px; grid-row: span 2 }
+.fx-uc-doc b { color: #10022c; font-size: 13px; font-weight: 600 }
+.fx-uc-doc em { color: #8a8f9c; font-size: 11px; font-style: normal }
+.fx-uc-doc--0 { top: 22px; transform: rotate(-2deg) }
+.fx-uc-doc--1 { top: 72px; transform: rotate(1.5deg) }
+.fx-uc-card:hover .fx-uc-doc--0 { transform: rotate(-3deg) translateY(-4px) }
+.fx-uc-card:hover .fx-uc-doc--1 { transform: rotate(2.5deg) translateY(4px) }
+.fx-uc-body { padding: 16px 18px 20px }
+.fx-uc-ic { align-items: center; background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 10px; color: var(--t-fg); display: inline-flex; font-size: 16px; height: 34px; justify-content: center; margin-bottom: 10px; width: 34px }
+body.design-v2 .lp .fx-uc-title { color: var(--lp-ink, #10022c); font-size: 16px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 4px }
+body.design-v2 .lp .fx-uc-text { color: var(--lp-muted, #5b6475); font-size: 13.5px !important; line-height: 1.5 !important; margin: 0 }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .fx-ch { grid-template-columns: minmax(0, 1fr) }
+    .fx-sheets { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .fx-au, .fx-add { gap: 32px; grid-template-columns: minmax(0, 1fr) }
+    .fx-add-copy { grid-row: 1 }
+    .fx-uc { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 640px) {
+    .fx-ch-tab { padding: 14px 16px }
+    .fx-ch-stage { min-height: 300px; padding: 18px }
+    .fx-sheets, .fx-uc { grid-template-columns: minmax(0, 1fr) }
+    .fx-log-row { grid-template-columns: 36px minmax(0, 1fr) }
+    .fx-log-hash { grid-column: 2; justify-self: start }
+    .fx-log-head { flex-wrap: wrap; gap: 8px }
+    .fx-seats { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .fx-add-panel { padding: 14px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .fxm-pane, .fxm-item, .fxm-conf, .fxm-tx-state i, .fx-ch-stage, .fx-ch-rcpt { animation: none }
+}
+
+/* Fax hero art (dusk sky over clouds): cream wash on the copy side. */
+.lp-hero-art[style*="footer-sky-dusk"]::after {
+    background: linear-gradient(90deg, rgba(255, 248, 242, .95) 0%, rgba(255, 248, 242, .86) 36%, rgba(255, 248, 242, .38) 58%, rgba(255, 248, 242, .06) 76%)
+}
+@media (max-width: 1024px) {
+    .lp-hero-art[style*="footer-sky-dusk"]::after { background: linear-gradient(180deg, rgba(255, 248, 242, .92) 0%, rgba(255, 248, 242, .72) 55%, rgba(255, 248, 242, .3) 100%) }
+}

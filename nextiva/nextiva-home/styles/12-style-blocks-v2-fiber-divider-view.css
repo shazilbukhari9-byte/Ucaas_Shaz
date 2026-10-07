@@ -1,0 +1,77 @@
+.design-v2.fiber-divider {
+    background: var(--bg-white);
+    height: 1px;
+    overflow: hidden;
+    position: relative;
+    width: 100%
+}
+
+.design-v2.fiber-divider .fiber-line {
+    background: #e2e8f0;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.design-v2.fiber-divider .fiber-beam {
+    animation: fiberPulse 4s linear infinite;
+    background: linear-gradient(90deg, transparent 0, var(--brand-blue) 30%, var(--blue-200) 50%, var(--brand-blue) 70%, transparent 100%);
+    border-radius: 2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    top: -1px;
+    width: 150px;
+    will-change: transform, opacity
+}
+
+@keyframes fiberPulse {
+    0% {
+        opacity: 0;
+        transform: translateX(-150px)
+    }
+    10% {
+        opacity: 1
+    }
+    90% {
+        opacity: 1
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100vw)
+    }
+}
+
+.design-v2.fiber-divider.healthcare-pulse-divider {
+    align-items: center;
+    background: #fff;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    overflow: hidden
+}
+
+.design-v2.fiber-divider.healthcare-pulse-divider .fiber-beam,
+.design-v2.fiber-divider.healthcare-pulse-divider .fiber-line {
+    display: none
+}
+
+.design-v2.fiber-divider.healthcare-pulse-divider .pulse-line {
+    height: 100px;
+    width: 100%
+}
+
+.design-v2.fiber-divider.healthcare-pulse-divider .animated-beam-path {
+    animation: heartbeatBeam 4s linear infinite
+}
+
+@keyframes heartbeatBeam {
+    0% {
+        stroke-dashoffset: 0
+    }
+    to {
+        stroke-dashoffset: -1350
+    }
+}

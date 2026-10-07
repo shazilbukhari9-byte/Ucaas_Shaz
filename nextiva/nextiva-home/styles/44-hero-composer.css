@@ -1,0 +1,360 @@
+/* ── Hero chat composer: working controls ───────────────────────────────── */
+/* The composer in the hero dashboard is fully interactive (HeroChatThread):
+   formatting toggles, lists, attachments and drag-and-drop, a voice-note
+   recorder, polls, a meeting picker, an emoji tray and AI assist. These rules
+   give each state a clear look while keeping the mock's small UI scale. */
+
+/* Toolbar + action buttons: pressed state and focus ring. */
+.design-v2 .section-hero .composer-toolbar button[aria-pressed="true"],
+.design-v2 .section-hero .composer-actions button[aria-pressed="true"] {
+    background: #10022c;
+    color: #fff
+}
+
+.design-v2 .section-hero .composer-toolbar button:focus-visible,
+.design-v2 .section-hero .composer-actions button:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 1px
+}
+
+.design-v2 .section-hero .composer-sep {
+    align-self: center;
+    background: rgba(15, 23, 42, .12);
+    height: 14px;
+    margin: 0 4px;
+    width: 1px
+}
+
+.design-v2 .section-hero .composer-hint {
+    align-self: center;
+    color: #64748b;
+    font-size: 10px;
+    margin-left: auto
+}
+
+/* Composer frame: focus glow, drag-over target, recording tint. */
+.design-v2 .section-hero .chat-composer {
+    transition: border-color .2s ease, box-shadow .2s ease
+}
+
+.design-v2 .section-hero .chat-composer:focus-within {
+    border-color: rgba(99, 102, 241, .45);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, .12)
+}
+
+.design-v2 .section-hero .chat-composer.is-dragover {
+    border-color: #6366f1;
+    border-style: dashed;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, .14)
+}
+
+.design-v2 .section-hero .chat-composer.is-dragover .composer-field {
+    background: rgba(99, 102, 241, .05)
+}
+
+/* The draft previews its formatting as it is typed. */
+.design-v2 .section-hero .composer-field.is-bold { font-weight: 700 }
+.design-v2 .section-hero .composer-field.is-italic { font-style: italic }
+.design-v2 .section-hero .composer-field.is-underline { text-decoration: underline }
+.design-v2 .section-hero .composer-field.is-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px
+}
+
+/* Send: muted until there is something to send. */
+.design-v2 .section-hero .composer-actions .composer-send {
+    transition: background .2s ease, color .2s ease, transform .15s ease
+}
+
+.design-v2 .section-hero .composer-actions .composer-send:disabled {
+    cursor: default;
+    opacity: .55
+}
+
+.design-v2 .section-hero .composer-actions .composer-send.is-ready {
+    background: #10022c;
+    color: #fff
+}
+
+.design-v2 .section-hero .composer-actions .composer-send.is-ready:hover {
+    background: #2a1650;
+    color: #fff;
+    transform: translateY(-1px)
+}
+
+.design-v2 .section-hero .composer-count {
+    align-self: center;
+    color: #94a3b8;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+    margin-right: auto
+}
+
+/* AI assist: a sparkle pulse while it writes. */
+.design-v2 .section-hero .composer-actions button.is-busy {
+    animation: composerAiPulse .7s ease-in-out infinite;
+    color: #7c3aed
+}
+
+@keyframes composerAiPulse {
+    50% { background: rgba(124, 58, 237, .12); transform: scale(1.08) }
+}
+
+/* ── Voice-note recorder ─────────────────────────────────────────────── */
+.design-v2 .section-hero .composer-recorder {
+    align-items: center;
+    display: flex;
+    font-family: var(--font-body);
+    font-size: 12px;
+    gap: 8px;
+    padding: 10px 12px 6px
+}
+
+.design-v2 .section-hero .composer-rec-dot {
+    animation: composerRecDot 1s ease-in-out infinite;
+    background: #ef4444;
+    border-radius: 50%;
+    height: 8px;
+    width: 8px
+}
+
+.design-v2 .section-hero .composer-rec-label { color: #ef4444; font-weight: 600 }
+.design-v2 .section-hero .composer-rec-time { color: #10022c; font-variant-numeric: tabular-nums }
+
+.design-v2 .section-hero .composer-rec-wave {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: 2px;
+    height: 16px
+}
+
+.design-v2 .section-hero .composer-rec-wave i {
+    animation: composerRecWave .8s ease-in-out infinite alternate;
+    background: #fca5a5;
+    border-radius: 2px;
+    height: 30%;
+    width: 3px
+}
+
+.design-v2 .section-hero .composer-rec-cancel {
+    background: none;
+    border: 0;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 11px;
+    padding: 2px 4px
+}
+
+.design-v2 .section-hero .composer-rec-cancel:hover { color: #10022c; text-decoration: underline }
+
+.design-v2 .section-hero .chat-composer.is-recording .composer-actions button[aria-pressed="true"] {
+    background: #ef4444
+}
+
+@keyframes composerRecDot { 50% { opacity: .3 } }
+@keyframes composerRecWave { to { height: 100% } }
+
+/* ── Trays: emoji grid and meeting slots ─────────────────────────────── */
+.design-v2 .section-hero .composer-tray {
+    animation: composerTrayIn .18s ease;
+    border-top: 1px solid rgba(15, 23, 42, .08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px 10px 2px
+}
+
+.design-v2 .section-hero .composer-tray--emoji button {
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 28px;
+    line-height: 1;
+    padding: 0;
+    transition: background .15s ease, transform .15s ease;
+    width: 28px
+}
+
+.design-v2 .section-hero .composer-tray--emoji button:hover {
+    background: rgba(15, 23, 42, .06);
+    transform: scale(1.15)
+}
+
+.design-v2 .section-hero .composer-tray-title {
+    align-items: center;
+    color: #64748b;
+    display: flex;
+    flex-basis: 100%;
+    font-size: 10.5px;
+    font-weight: 600;
+    gap: 5px;
+    letter-spacing: .02em;
+    margin-bottom: 2px
+}
+
+.design-v2 .section-hero .composer-tray--schedule button {
+    background: #f6f8fa;
+    border: 1px solid rgba(15, 23, 42, .12);
+    border-radius: 999px;
+    color: #10022c;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 11px;
+    padding: 5px 10px;
+    transition: background .15s ease, border-color .15s ease
+}
+
+.design-v2 .section-hero .composer-tray--schedule button:hover {
+    background: #10022c;
+    border-color: #10022c;
+    color: #fff
+}
+
+@keyframes composerTrayIn {
+    from { opacity: 0; transform: translateY(4px) }
+}
+
+/* ── Sent message bodies ─────────────────────────────────────────────── */
+.design-v2 .section-hero .message .is-bold { font-weight: 700 }
+.design-v2 .section-hero .message .is-italic { font-style: italic }
+.design-v2 .section-hero .message .is-underline { text-decoration: underline }
+
+.design-v2 .section-hero .message .msg-code {
+    background: rgba(255, 255, 255, .14);
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .92em;
+    padding: 1px 4px
+}
+
+.design-v2 .section-hero .message .msg-list {
+    margin: 0;
+    padding-left: 16px
+}
+
+.design-v2 .section-hero .message .msg-list li + li { margin-top: 2px }
+
+/* Rich bubbles get a little more room than a line of text. */
+.design-v2 .section-hero .message--rich {
+    max-width: 78%;
+    padding: 9px 11px
+}
+
+.design-v2 .section-hero .msg-file,
+.design-v2 .section-hero .msg-event,
+.design-v2 .section-hero .msg-voice {
+    align-items: center;
+    display: flex;
+    gap: 9px
+}
+
+.design-v2 .section-hero .msg-file-ic,
+.design-v2 .section-hero .msg-event-ic {
+    align-items: center;
+    background: rgba(255, 255, 255, .16);
+    border-radius: 7px;
+    display: inline-flex;
+    flex: none;
+    font-size: 9px;
+    font-weight: 700;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: .03em;
+    width: 30px
+}
+
+.design-v2 .section-hero .msg-event-ic { font-size: 15px }
+
+.design-v2 .section-hero .msg-file-txt,
+.design-v2 .section-hero .msg-event-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0
+}
+
+.design-v2 .section-hero .msg-file-txt b,
+.design-v2 .section-hero .msg-event-txt b {
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero .msg-file-txt em,
+.design-v2 .section-hero .msg-event-txt em,
+.design-v2 .section-hero .msg-voice em {
+    font-size: .85em;
+    font-style: normal;
+    opacity: .7
+}
+
+.design-v2 .section-hero .msg-voice > i { font-size: 16px }
+
+.design-v2 .section-hero .msg-voice-wave {
+    align-items: center;
+    display: flex;
+    gap: 2px;
+    height: 18px;
+    width: 92px
+}
+
+.design-v2 .section-hero .msg-voice-wave i {
+    background: rgba(255, 255, 255, .7);
+    border-radius: 2px;
+    flex: 1
+}
+
+.design-v2 .section-hero .msg-poll {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 170px
+}
+
+.design-v2 .section-hero .msg-poll-q {
+    align-items: center;
+    display: flex;
+    font-weight: 600;
+    gap: 5px;
+    margin-bottom: 2px
+}
+
+.design-v2 .section-hero .msg-poll-opt {
+    align-items: center;
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 7px;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    justify-content: space-between;
+    padding: 5px 8px;
+    transition: background .15s ease
+}
+
+.design-v2 .section-hero .msg-poll-opt:hover { background: rgba(255, 255, 255, .18) }
+
+.design-v2 .section-hero .msg-poll-opt.is-voted {
+    background: #fff;
+    color: #10022c
+}
+
+.design-v2 .section-hero .msg-poll-pct {
+    font-size: .85em;
+    font-variant-numeric: tabular-nums;
+    opacity: .75
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-hero .composer-rec-dot,
+    .design-v2 .section-hero .composer-rec-wave i,
+    .design-v2 .section-hero .composer-actions button.is-busy,
+    .design-v2 .section-hero .composer-tray {
+        animation: none
+    }
+}

@@ -1,0 +1,1056 @@
+.design-v2 .section-cta-hero {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 80vh;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .section-cta-hero .cta-hero-bg {
+    background-position: 50%;
+    background-size: cover;
+    inset: 0;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .section-cta-hero .floating-particles {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2
+}
+
+.design-v2 .section-cta-hero .floating-particles .particle {
+    border-radius: 50%;
+    pointer-events: none;
+    position: absolute;
+    transform: translateZ(0);
+    will-change: transform;
+    z-index: 1
+}
+
+.design-v2 .section-cta-hero .cta-hero-content {
+    max-width: 1200px;
+    padding: 80px 60px;
+    position: relative;
+    text-align: center;
+    z-index: 3
+}
+
+.design-v2 .section-cta-hero .cta-hero-headline {
+    color: var(--text-white);
+    font-family: var(--font-display);
+    font-feature-settings: "liga" 1, "calt" 1, "case" 1;
+    font-optical-sizing: auto;
+    font-size: var(--text-display-lg);
+    font-variant-ligatures: common-ligatures;
+    font-weight: var(--arizona-hero-weight);
+    letter-spacing: var(--arizona-hero-letter-spacing);
+    line-height: var(--arizona-hero-line-height);
+    margin: 0 0 2.5rem
+}
+
+.design-v2 .section-cta-hero .cta-hero-subhead {
+    color: hsla(0, 0%, 100%, .9);
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0 auto 3.5rem;
+    max-width: 700px;
+    text-shadow: 0 1px 20px rgba(0, 0, 0, .2)
+}
+
+.design-v2 .section-cta-hero .cta-hero-cta {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center
+}
+
+.design-v2 .section-cta-hero .cta-hero-info-text {
+    color: var(--Primary-Palette-White, #fff);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: var(--letter-spacing--0_13, -.13px);
+    line-height: normal;
+    margin: 18px 0 0;
+    text-align: center
+}
+
+.design-v2 .section-cta-hero.is-style-simple {
+    background-color: var(--brand-blue);
+    min-height: auto
+}
+
+.design-v2 .section-cta-hero.is-style-simple .cta-hero-bg,
+.design-v2 .section-cta-hero.is-style-simple .floating-particles {
+    display: none
+}
+
+.design-v2 .section-cta-hero.is-style-simple .cta-hero-content {
+    max-width: 820px;
+    padding: 88px 60px;
+    text-align: center
+}
+
+.design-v2 .section-cta-hero.is-style-simple .cta-hero-headline {
+    color: #fff;
+    font-size: var(--text-section);
+    line-height: 1.05;
+    margin-bottom: 1.5rem
+}
+
+.design-v2 .section-cta-hero.is-style-simple .cta-hero-subhead {
+    color: hsla(0, 0%, 100%, .9);
+    margin-bottom: 2rem;
+    text-shadow: none
+}
+
+.design-v2 .section-cta-hero.is-style-simple .cta-hero-cta {
+    justify-content: center
+}
+
+.design-v2 .section-cta-hero.is-style-simple .btn-primary {
+    background-color: #fff;
+    color: var(--brand-blue)
+}
+
+.design-v2 .section-cta-hero.is-style-simple .btn-primary:hover {
+    background-color: hsla(0, 0%, 100%, .92);
+    color: var(--brand-blue)
+}
+
+.design-v2 .section-cta-hero.is-style-simple .btn-primary .btn-arrow {
+    background-color: var(--brand-blue);
+    color: #fff
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-cta-hero.is-style-simple .cta-hero-content {
+        padding: 64px 24px
+    }
+    .design-v2 .section-cta-hero.is-style-simple .cta-hero-headline {
+        font-size: clamp(34px, 8vw, 48px)
+    }
+    .design-v2 .section-cta-hero.is-style-simple .cta-hero-cta .btn {
+        margin: 0 auto;
+        max-width: 320px;
+        width: auto
+    }
+}
+
+@media(max-width:480px) {
+    .design-v2 .section-cta-hero.is-style-simple .cta-hero-content {
+        padding: 56px 20px
+    }
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal {
+    background-color: var(--brand-blue, #0062b8);
+    min-height: auto;
+    padding: 0
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-bg,
+.design-v2 .section-cta-hero.is-style-brand-portal .floating-particles {
+    display: none
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-content {
+    max-width: 1200px;
+    padding: 100px 60px;
+    text-align: center
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-headline {
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(56px, 9vw, 104px);
+    font-weight: var(--arizona-hero-weight);
+    letter-spacing: -.02em;
+    line-height: .95;
+    margin: 0 0 39px;
+    text-align: center;
+    text-shadow: none
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-subhead {
+    color: hsla(0, 0%, 100%, .9);
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -.018em;
+    line-height: 28.8px;
+    margin: 0 auto 40px;
+    max-width: 700px;
+    text-shadow: 0 1px 20px rgba(0, 0, 0, .2)
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-cta {
+    gap: 16px;
+    justify-content: center
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary {
+    align-items: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background: hsla(0, 0%, 100%, .1);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 2px hsla(0, 0%, 100%, .4);
+    color: #fff;
+    display: inline-flex;
+    gap: 24px;
+    min-height: 0;
+    padding: 10px 10px 10px 20px;
+    position: relative;
+    text-decoration: none;
+    transition: background-color .2s ease, box-shadow .2s ease
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary .btn-text,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary .btn-text {
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -.02em;
+    line-height: 16px
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary .btn-arrow,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary .btn-arrow {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .15);
+    border-radius: 4px;
+    color: #fff;
+    display: inline-flex;
+    height: auto;
+    justify-content: center;
+    opacity: .6;
+    padding: 8px 12px;
+    transition: opacity .2s ease, background-color .2s ease;
+    width: auto
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary .btn-arrow svg,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary .btn-arrow svg {
+    height: 16px;
+    width: 16px
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary:focus-visible,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary:hover,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary:focus-visible,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary:hover {
+    background: hsla(0, 0%, 100%, .18);
+    color: #fff
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary:focus-visible .btn-arrow,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary:hover .btn-arrow,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary:focus-visible .btn-arrow,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary:hover .btn-arrow {
+    opacity: 1
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-primary:focus-visible,
+.design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary:focus-visible {
+    outline: 2px solid hsla(0, 0%, 100%, .8);
+    outline-offset: 2px
+}
+
+.design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-info-text {
+    color: hsla(0, 0%, 100%, .75)
+}
+
+@media(max-width:960px) {
+    .design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-content {
+        padding: 80px 32px
+    }
+    .design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-headline {
+        font-size: clamp(44px, 10vw, 72px);
+        margin-bottom: 28px
+    }
+    .design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-subhead {
+        margin-bottom: 32px
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-content {
+        padding: 60px 24px
+    }
+    .design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-headline {
+        font-size: clamp(36px, 10vw, 44px);
+        letter-spacing: -.02em;
+        line-height: 1;
+        margin-bottom: 24px
+    }
+    .design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-subhead {
+        font-size: 16px;
+        line-height: 26px;
+        margin: 0 auto 40px
+    }
+    .design-v2 .section-cta-hero.is-style-brand-portal .cta-hero-cta {
+        gap: 12px;
+        width: 100%
+    }
+    .design-v2 .section-cta-hero.is-style-brand-portal .btn-primary,
+    .design-v2 .section-cta-hero.is-style-brand-portal .btn-secondary {
+        justify-content: space-between;
+        padding: 10px 10px 10px 20px;
+        width: 100%
+    }
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer {
+    padding-bottom: 140px
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .cta-hero-content {
+    padding-bottom: 0
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .cta-hero-footer {
+    align-items: flex-end;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    left: 0;
+    padding: 24px 60px 32px;
+    pointer-events: auto;
+    position: absolute;
+    right: 0;
+    z-index: 4
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-bottom-left {
+    display: grid;
+    gap: 4px;
+    justify-items: start
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-copyright,
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-slogan {
+    color: #fff;
+    display: block;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-slogan {
+    font-size: 15px;
+    font-weight: 600
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-heart {
+    color: #fff;
+    font-style: normal
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-flag {
+    display: inline-block;
+    margin-left: 4px;
+    position: relative;
+    top: -1px;
+    vertical-align: middle
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-copyright {
+    font-size: 13px;
+    font-weight: 400
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-bottom-center {
+    align-items: center;
+    display: flex
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-badges {
+    display: flex;
+    gap: .75rem
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-badge {
+    align-items: center;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-legal-links a {
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+    transition: opacity .3s ease
+}
+
+.design-v2 .section-cta-hero.is-style-ai-footer .footer-legal-links a:hover {
+    opacity: .8
+}
+
+.design-v2 .section-cta-hero.section-cta-hero--card.is-style-ai-footer {
+    padding-bottom: 100px
+}
+
+.design-v2 .section-cta-hero.section-cta-hero--card.is-style-ai-footer .cta-hero-card {
+    position: relative
+}
+
+.design-v2 .section-cta-hero--align-left {
+    justify-content: flex-start
+}
+
+.design-v2 .section-cta-hero--align-left .cta-hero-content {
+    max-width: 800px;
+    padding-left: max(60px, (100% - 1200px)/2);
+    text-align: left
+}
+
+.design-v2 .section-cta-hero--align-left .cta-hero-subhead {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.design-v2 .section-cta-hero--align-left .cta-hero-cta {
+    justify-content: flex-start
+}
+
+.design-v2 .section-cta-hero--card {
+    background: var(--brand-cream);
+    border-top: 1px solid var(--border-subtle);
+    display: block;
+    min-height: auto;
+    padding: 100px max(100px, (100% - var(--content-max-width, 1200px))/2)
+}
+
+.design-v2 .section-cta-hero--card .cta-hero-card {
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 24px;
+    min-height: 650px;
+    overflow: hidden;
+    position: relative;
+    width: 100%
+}
+
+.design-v2 .section-cta-hero--card .floating-particles {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2
+}
+
+.design-v2 .section-cta-hero--card .cta-hero-content {
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    justify-content: center;
+    padding: 48px 80px 72px;
+    position: absolute;
+    text-align: center;
+    z-index: 3
+}
+
+.design-v2 .section-cta-hero--card .cta-hero-headline {
+    font-size: var(--text-display-sm);
+    margin: 0 auto 40px;
+    max-width: 680px
+}
+
+.design-v2 .section-cta-hero--card .cta-hero-subhead {
+    margin: 0 auto 36px;
+    max-width: 480px
+}
+
+.design-v2 .section-cta-hero--card .cta-hero-cta {
+    justify-content: center
+}
+
+.design-v2 .section-cta-hero--card.section-cta-hero--align-left .cta-hero-content {
+    align-items: flex-start;
+    text-align: left
+}
+
+.design-v2 .section-cta-hero--card.section-cta-hero--align-left .cta-hero-headline,
+.design-v2 .section-cta-hero--card.section-cta-hero--align-left .cta-hero-subhead {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.design-v2 .section-cta-hero--card.section-cta-hero--align-left .cta-hero-cta {
+    justify-content: flex-start;
+    width: 100%
+}
+
+.design-v2 .section-cta-hero--card.section-cta-hero--align-left .cta-hero-info-text {
+    text-align: left
+}
+
+.design-v2 .section-cta-hero .cta-hero-social {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.design-v2 .section-cta-hero .cta-hero-social-caption {
+    color: hsla(0, 0%, 100%, .85);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0
+}
+
+.design-v2 .section-cta-hero .cta-hero-social-links {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-links {
+    gap: 12.889px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social {
+    margin-top: 27px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-caption {
+    color: hsla(0, 0%, 100%, .8);
+    font-size: 20.603px;
+    letter-spacing: -.3934px;
+    line-height: 29.505px;
+    max-width: 393px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-headline {
+    margin-bottom: 23px;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-subhead {
+    color: hsla(0, 0%, 100%, .8);
+    font-size: 20.603px;
+    letter-spacing: -.3934px;
+    line-height: 29.505px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 393px;
+    text-align: left
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .1);
+    border: 1.5px solid hsla(0, 0%, 100%, .5);
+    border-radius: 7.498px;
+    color: #fff;
+    display: inline-flex;
+    gap: 13px;
+    padding: 10.471px 16.289px;
+    text-decoration: none;
+    transition: background-color .2s ease, border-color .2s ease
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link .cta-hero-social-link-text {
+    color: inherit;
+    font-family: var(--font-body);
+    font-size: 22.49px;
+    font-weight: 600;
+    letter-spacing: -.4997px;
+    line-height: 1.2
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link .cta-hero-social-link-arrow {
+    align-items: center;
+    background: #fff;
+    border-radius: 2.749px;
+    color: #1a1a1a;
+    display: inline-flex;
+    justify-content: center;
+    padding: 6.871px 10.306px;
+    transition: background-color .2s ease, color .2s ease
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link .cta-hero-social-link-arrow svg {
+    height: 13.742px;
+    width: 13.742px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link--linkedin {
+    border-width: 1.25px;
+    gap: 12.496px;
+    padding: 14px 16.289px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link--linkedin .cta-hero-social-link-text {
+    font-size: 18px;
+    letter-spacing: -.3999px;
+    line-height: 29.991px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link--linkedin .cta-hero-social-link-arrow {
+    padding: 5.498px 8.248px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link--linkedin .cta-hero-social-link-arrow svg {
+    height: 10.997px;
+    width: 10.997px
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link:focus-visible,
+.design-v2 .section-cta-hero--social .cta-hero-social-link:hover {
+    background: hsla(0, 0%, 100%, .16);
+    border-color: hsla(0, 0%, 100%, .65);
+    color: #fff
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link:focus-visible .cta-hero-social-link-arrow,
+.design-v2 .section-cta-hero--social .cta-hero-social-link:hover .cta-hero-social-link-arrow {
+    background: #fff;
+    color: #1a1a1a
+}
+
+.design-v2 .section-cta-hero--social .cta-hero-social-link:focus-visible {
+    outline: 2px solid hsla(0, 0%, 100%, .7);
+    outline-offset: 2px
+}
+
+.design-v2 .section-cta-hero--social.section-cta-hero--card {
+    padding: 100px max(24px, (100% - 1212px)/2)
+}
+
+.design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-card {
+    background-position: 100% 75%;
+    border: 1px solid #1a1a1a;
+    box-shadow: none;
+    margin-inline: auto;
+    max-width: 1212px;
+    min-height: 460px
+}
+
+.design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-card:after {
+    background: linear-gradient(0deg, rgba(0, 0, 0, .6), rgba(0, 0, 0, .3) 50%, rgba(0, 0, 0, .1) 80%, transparent);
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2
+}
+
+.design-v2 .section-cta-hero--social.section-cta-hero--card .floating-particles {
+    z-index: 1
+}
+
+.design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-content {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 56px 64px 64px;
+    text-align: left;
+    z-index: 3
+}
+
+.design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-headline {
+    font-size: 53.664px;
+    letter-spacing: -.6133px;
+    line-height: 57.498px;
+    margin-bottom: 23px;
+    margin-top: 0;
+    max-width: 600px
+}
+
+.design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-subhead {
+    max-width: 393px
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-cta-hero--social.section-cta-hero--card {
+        padding: 80px 40px
+    }
+    .design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-content {
+        padding: 48px 40px
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-card {
+        min-height: 400px
+    }
+    .design-v2 .section-cta-hero--social.section-cta-hero--card .cta-hero-content {
+        padding: 40px 32px
+    }
+    .design-v2 .section-cta-hero--social .cta-hero-headline {
+        font-size: clamp(36px, 8vw, 48px);
+        letter-spacing: -.5px;
+        line-height: 1.08
+    }
+    .design-v2 .section-cta-hero--social .cta-hero-social-caption,
+    .design-v2 .section-cta-hero--social .cta-hero-subhead {
+        font-size: 18px;
+        line-height: 26px
+    }
+    .design-v2 .section-cta-hero--social .cta-hero-social-link {
+        padding: 8px 14px
+    }
+    .design-v2 .section-cta-hero--social .cta-hero-social-link .cta-hero-social-link-text {
+        font-size: 16px
+    }
+    .design-v2 .section-cta-hero--social .cta-hero-social-link--linkedin .cta-hero-social-link-text {
+        font-size: 15px
+    }
+    .design-v2 .section-cta-hero--social .cta-hero-social-link .cta-hero-social-link-arrow svg {
+        height: 12px;
+        width: 12px
+    }
+}
+
+.design-v2 .section-cta-hero .btn-ghost {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: hsla(0, 0%, 100%, .1);
+    border: none;
+    box-shadow: inset 0 0 0 2px hsla(0, 0%, 100%, .4);
+    color: var(--text-white)
+}
+
+.design-v2 .section-cta-hero .btn-ghost .btn-arrow {
+    background-color: hsla(0, 0%, 100%, .15);
+    color: var(--text-white)
+}
+
+.design-v2 .section-cta-hero .btn-ghost:hover {
+    background-color: hsla(0, 0%, 100%, .2);
+    box-shadow: inset 0 0 0 2px hsla(0, 0%, 100%, .6)
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-cta-hero .cta-hero-headline {
+        font-size: var(--text-display-sm)
+    }
+    .design-v2 .section-cta-hero--card {
+        padding: 60px 40px
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-content {
+        padding: 40px
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-cta-hero .cta-hero-headline {
+        font-size: var(--text-section)
+    }
+    .design-v2 .section-cta-hero .cta-hero-cta {
+        align-items: stretch;
+        flex-direction: column
+    }
+    .design-v2 .section-cta-hero .cta-hero-cta .btn {
+        justify-content: space-between;
+        width: 100%
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-headline {
+        font-size: var(--text-display-sm)
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-cta .btn {
+        display: flex;
+        justify-content: space-between;
+        width: 100%
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer {
+        flex-direction: column;
+        padding-bottom: 0
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer .cta-hero-content {
+        padding-bottom: 40px
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer .cta-hero-footer {
+        align-items: center;
+        flex-direction: column;
+        padding: 24px 30px 30px;
+        position: relative;
+        text-align: center
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer .footer-bottom-left {
+        justify-items: center
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer .footer-badges {
+        flex-wrap: wrap;
+        justify-content: center
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer .footer-legal-links {
+        justify-content: center
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-cta-hero {
+        min-height: 60vh
+    }
+    .design-v2 .section-cta-hero .cta-hero-content {
+        padding: 60px 24px
+    }
+    .design-v2 .section-cta-hero .cta-hero-headline {
+        font-size: clamp(48px, 12vw, 52px);
+        margin-bottom: 1.5rem
+    }
+    .design-v2 .section-cta-hero .cta-hero-subhead {
+        font-size: var(--text-body);
+        margin-bottom: 2rem
+    }
+    .design-v2 .section-cta-hero .cta-hero-cta .btn {
+        justify-content: space-between;
+        width: 100%
+    }
+    .design-v2 .section-cta-hero--card {
+        min-height: auto;
+        padding: 60px 20px
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-card {
+        min-height: auto
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-content {
+        inset: auto;
+        padding: 32px 24px 40px;
+        position: relative
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-headline {
+        font-size: var(--text-display-sm);
+        margin: 24px auto 40px
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-subhead {
+        font-size: var(--text-body-lg);
+        margin: 0 auto 36px
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-cta {
+        align-items: stretch;
+        flex-direction: column
+    }
+    .design-v2 .section-cta-hero--card .cta-hero-cta .btn {
+        display: flex;
+        justify-content: space-between;
+        width: 100%
+    }
+    .design-v2 .section-cta-hero--card.section-cta-hero--social .cta-hero-card {
+        min-height: 360px
+    }
+    .design-v2 .section-cta-hero--card.section-cta-hero--social .cta-hero-content {
+        padding: 40px 24px 36px
+    }
+    .design-v2 .section-cta-hero--card.section-cta-hero--social .cta-hero-headline {
+        font-size: clamp(32px, 9vw, 44px);
+        letter-spacing: -.45px;
+        line-height: 1.08;
+        margin: 0 0 16px;
+        max-width: none;
+        text-align: left
+    }
+    .design-v2 .section-cta-hero--card.section-cta-hero--social .cta-hero-subhead {
+        font-size: 17px;
+        line-height: 25px;
+        margin: 0;
+        max-width: none;
+        text-align: left
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer .footer-badges {
+        align-items: center;
+        flex-direction: column
+    }
+    .design-v2 .section-cta-hero.is-style-ai-footer .footer-legal-links {
+        align-items: center;
+        flex-direction: column;
+        gap: .75rem
+    }
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta {
+    background: #fff;
+    min-height: auto;
+    padding: 40px max(24px, (100% - var(--content-max-width))/2) 80px
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .cta-hero-bg,
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .cta-hero-content,
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .cta-hero-footer,
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .floating-particles {
+    display: none
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign {
+    margin: 0 auto;
+    max-width: 1600px
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-card {
+    align-items: center;
+    background: #001b39;
+    border-radius: 24px;
+    color: #fff;
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    min-height: 292px;
+    overflow: hidden;
+    padding: 40px 60px;
+    position: relative
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-copy {
+    display: flex;
+    flex: 1 1 613px;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 613px
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-headline {
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4.5vw, 56px);
+    font-weight: var(--arizona-heading-weight);
+    letter-spacing: -.32px;
+    line-height: 1;
+    margin: 0;
+    text-wrap: balance
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-subhead {
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: clamp(22px, 2.2vw, 26px);
+    font-weight: 700;
+    letter-spacing: -.32px;
+    line-height: 1.2;
+    margin: 0
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-actions {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 2
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-cta {
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.41px;
+    min-height: 72px;
+    padding: 13px 13px 13px 26px;
+    white-space: nowrap
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-cta .btn-arrow {
+    background: hsla(0, 0%, 100%, .2)
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-deadline {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 24px;
+    position: relative;
+    z-index: 2
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-deadline i {
+    color: #fff;
+    flex-shrink: 0;
+    font-size: 92px;
+    line-height: 1
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-deadline-text {
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 700;
+    letter-spacing: -.32px;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap
+}
+
+.design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-decorative {
+    height: auto;
+    left: -3vw;
+    pointer-events: none;
+    position: absolute;
+    top: 70%;
+    width: 150px;
+    z-index: 1
+}
+
+@media(max-width:1200px) {
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-card {
+        align-items: flex-start;
+        flex-wrap: wrap
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-copy {
+        flex: 1 1 100%;
+        max-width: none
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-actions,
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-deadline {
+        flex: 1 1 auto
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-decorative {
+        display: none
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta {
+        padding: 32px 20px 60px
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-card {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 32px;
+        min-height: 0;
+        padding: 32px 24px
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-actions .v2-cta-campaign-cta {
+        justify-content: space-between;
+        white-space: normal;
+        width: 100%
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-deadline {
+        align-items: flex-start
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-deadline i {
+        font-size: 72px
+    }
+    .design-v2 .section-cta-hero.is-style-ai-campaign-bottom-cta .v2-cta-campaign-deadline-text {
+        white-space: normal
+    }
+}

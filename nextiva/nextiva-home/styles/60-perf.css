@@ -1,0 +1,42 @@
+/* Scroll performance (hooks/useScrollPerf.js).
+   Decorative loops that sit behind frosted glass are paused while the page
+   scrolls, and every infinite animation in an off-screen section is paused
+   until it comes back into view. Nothing here changes how a still page looks. */
+
+html.is-scrolling .hero-aurora::before,
+html.is-scrolling .hero-aurora::after,
+html.is-scrolling .agx-desk,
+html.is-scrolling .agx-phone,
+html.is-scrolling .agx-live,
+html.is-scrolling .dust-particle {
+    animation-play-state: paused !important
+}
+
+/* Landing heroes with artwork: the opaque painting covers the aurora
+   completely, so its drift only cost frames (and re-blurred the glass panel
+   on top) without ever being seen. */
+.hero-aurora--under-art::before,
+.hero-aurora--under-art::after {
+    animation: none !important
+}
+
+/* Call Recording pipeline: the dashed flow line also rests while scrolling. */
+html.is-scrolling .cr-pipe::before {
+    animation-play-state: paused !important
+}
+
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after {
+    animation-play-state: paused !important
+}
+
+/* Particle layers: their motes come and go constantly, so keep that churn
+   from touching layout or paint outside the field. */
+#heroFloatingParticles,
+#floatingParticles,
+.floating-particles,
+.dust-particles {
+    contain: layout paint style;
+    pointer-events: none
+}

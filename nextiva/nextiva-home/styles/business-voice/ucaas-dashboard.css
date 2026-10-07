@@ -1,0 +1,610 @@
+/* --- hero mock: the workspace, in light glass -------------------------------- */
+
+/* Fixed authored frame, scaled to its column. The host publishes --app-scale
+   and --app-h (JS fit in HeroAppMock), so layout wraps the drawn size. */
+.pp-app-host {
+    height: var(--app-h, auto);
+    position: relative;
+    width: 100%;
+}
+
+.pp-app {
+    -webkit-backdrop-filter: blur(23px) saturate(149%);
+    backdrop-filter: blur(24px) saturate(150%);
+    background: linear-gradient(165deg, hsla(0, 0%, 100%, .62), hsla(0, 0%, 100%, .34));
+    border: 1px solid hsla(0, 0%, 100%, .85);
+    border-radius: 24px;
+    box-shadow:
+        0 44px 90px -32px rgba(40, 30, 25, .5),
+        0 0 44px -10px rgba(249, 178, 116, .2),
+        inset 0 1px 0 hsla(0, 0%, 100%, .95);
+    color: #17142e;
+    font-size: 14px;
+    padding: 14px;
+    position: relative;
+    transform: scale(var(--app-scale, 1));
+    transform-origin: top left;
+    width: 1000px;
+}
+
+/* --- top nav ----------------------------------------------------------------- */
+
+.pp2-nav {
+    align-items: center;
+    border-bottom: 1px solid rgba(23, 20, 46, .1);
+    display: flex;
+    gap: 26px;
+    padding: 8px 14px 14px;
+}
+
+/* Purple waveform mark. */
+.pp2-mark {
+    align-items: center;
+    display: inline-flex;
+    gap: 3px;
+    height: 24px;
+}
+
+.pp2-mark i {
+    background: #8b5cf6;
+    border-radius: 99px;
+    display: inline-block;
+    width: 4px;
+}
+
+.pp2-mark i:nth-child(1) { height: 35% }
+.pp2-mark i:nth-child(2) { height: 75% }
+.pp2-mark i:nth-child(3) { height: 100% }
+.pp2-mark i:nth-child(4) { height: 60% }
+.pp2-mark i:nth-child(5) { height: 30% }
+
+.pp2-mark--sm { height: 16px; gap: 2px }
+.pp2-mark--sm i { width: 3px }
+
+.pp2-tab {
+    color: rgba(23, 20, 46, .6);
+    font-size: 14.5px;
+    font-weight: 600;
+    padding-bottom: 6px;
+    position: relative;
+}
+
+.pp2-tab.is-active { color: #17142e; font-weight: 700 }
+
+.pp2-tab.is-active:after {
+    background: #8b5cf6;
+    border-radius: 99px;
+    bottom: -15px;
+    content: '';
+    height: 3px;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.pp2-avail {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .7);
+    border: 1px solid rgba(23, 20, 46, .08);
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 13.5px;
+    font-weight: 600;
+    gap: 8px;
+    margin-left: auto;
+    padding: 9px 14px;
+}
+
+.pp2-avail i {
+    animation: ppLivePulse 2s ease-in-out infinite;
+    background: #22c55e;
+    border-radius: 50%;
+    height: 8px;
+    width: 8px;
+}
+
+.pp2-avail b { color: rgba(23, 20, 46, .5); font-weight: 400 }
+
+.pp2-bell {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .7);
+    border: 1px solid rgba(23, 20, 46, .08);
+    border-radius: 50%;
+    display: inline-flex;
+    font-size: 17px;
+    height: 40px;
+    justify-content: center;
+    position: relative;
+    width: 40px;
+}
+
+.pp2-bell em {
+    align-items: center;
+    background: #8b5cf6;
+    border-radius: 999px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 9.5px;
+    font-style: normal;
+    font-weight: 800;
+    height: 15px;
+    justify-content: center;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    width: 15px;
+}
+
+.pp2-me {
+    align-items: center;
+    background: linear-gradient(150deg, #8b5cf6, #b78bfa);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 800;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}
+
+/* --- body -------------------------------------------------------------------- */
+
+.pp2-body {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 296px minmax(0, 1fr);
+    padding-top: 14px;
+}
+
+/* --- conversation list ------------------------------------------------------- */
+
+.pp2-list {
+    background: hsla(0, 0%, 100%, .42);
+    border: 1px solid hsla(0, 0%, 100%, .75);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px;
+}
+
+.pp2-search {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.pp2-search > span {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .75);
+    border: 1px solid rgba(23, 20, 46, .08);
+    border-radius: 999px;
+    color: rgba(23, 20, 46, .5);
+    display: flex;
+    flex: 1;
+    font-size: 13px;
+    gap: 8px;
+    padding: 10px 14px;
+}
+
+.pp2-search b {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .75);
+    border: 1px solid rgba(23, 20, 46, .08);
+    border-radius: 50%;
+    color: rgba(23, 20, 46, .6);
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 15px;
+    height: 38px;
+    justify-content: center;
+    width: 38px;
+}
+
+.pp2-chips { display: flex; gap: 6px; margin-bottom: 10px }
+
+.pp2-chips span {
+    background: hsla(0, 0%, 100%, .6);
+    border: 1px solid rgba(23, 20, 46, .08);
+    border-radius: 999px;
+    color: rgba(23, 20, 46, .65);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 13px;
+}
+
+.pp2-chips span.is-active {
+    background: #8b5cf6;
+    border-color: #8b5cf6;
+    color: #fff;
+}
+
+.pp2-conv {
+    align-items: center;
+    border-radius: 14px;
+    display: flex;
+    gap: 11px;
+    padding: 10px;
+}
+
+.pp2-conv.is-live {
+    background: rgba(139, 92, 246, .16);
+    border: 1px solid rgba(139, 92, 246, .3);
+}
+
+/* Initials chips, tinted per person — no photography. */
+.pp2-ava {
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 800;
+    height: 42px;
+    justify-content: center;
+    position: relative;
+    width: 42px;
+}
+
+.pp2-ava--violet { background: linear-gradient(150deg, #8b5cf6, #b78bfa) }
+.pp2-ava--teal { background: linear-gradient(150deg, #0d9488, #2dd4bf) }
+.pp2-ava--rose { background: linear-gradient(150deg, #e11d48, #fb7185) }
+.pp2-ava--amber { background: linear-gradient(150deg, #d97706, #fbbf24) }
+.pp2-ava--slate { background: linear-gradient(150deg, #475569, #94a3b8) }
+
+.pp2-ava:after {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    bottom: 0;
+    content: '';
+    height: 10px;
+    position: absolute;
+    right: 0;
+    width: 10px;
+}
+
+.pp2-ava--live:after { background: #22c55e }
+.pp2-ava--ring:after { animation: ppLivePulse 1.4s ease-in-out infinite; background: #8b5cf6 }
+.pp2-ava:not(.pp2-ava--live):not(.pp2-ava--ring):after { background: #94a3b8 }
+
+.pp2-ava--lg { font-size: 17px; height: 58px; width: 58px }
+
+.pp2-conv-id { flex: 1; min-width: 0 }
+.pp2-conv-id b { display: block; font-size: 14px; font-weight: 700 }
+
+.pp2-conv-id em {
+    color: rgba(23, 20, 46, .6);
+    display: block;
+    font-size: 12.5px;
+    font-style: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pp2-sub--live { color: #16a34a !important; font-weight: 600 }
+.pp2-sub--ring { color: #7c4ff0 !important; font-weight: 600 }
+
+.pp2-conv-end {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pp2-conv-end time { color: rgba(23, 20, 46, .5); font-size: 11.5px }
+.pp2-conv-end i { color: #8b5cf6; font-size: 14px }
+.pp2-conv.is-live .pp2-conv-end i { color: #16a34a }
+
+/* --- call view --------------------------------------------------------------- */
+
+.pp2-call {
+    background: hsla(0, 0%, 100%, .42);
+    border: 1px solid hsla(0, 0%, 100%, .75);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+}
+
+.pp2-call-head {
+    align-items: center;
+    display: flex;
+    gap: 14px;
+}
+
+.pp2-call-id b { display: block; font-size: 19px; font-weight: 700 }
+.pp2-call-id > em { color: rgba(23, 20, 46, .6); font-size: 13.5px; font-style: normal }
+
+.pp2-call-state {
+    align-items: center;
+    color: #16a34a;
+    display: flex;
+    font-size: 12.5px;
+    font-weight: 700;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.pp2-call-state i {
+    animation: ppLivePulse 2s ease-in-out infinite;
+    background: #22c55e;
+    border-radius: 50%;
+    height: 7px;
+    width: 7px;
+}
+
+.pp2-call-state time { color: rgba(23, 20, 46, .55); font-weight: 600 }
+
+/* Waveform, breathing on offset phases. */
+.pp2-wave {
+    align-items: center;
+    display: flex;
+    gap: 3px;
+    height: 40px;
+    margin-left: auto;
+}
+
+.pp2-wave i {
+    animation: ppWave 1.2s ease-in-out infinite;
+    animation-delay: calc(var(--w) * -.085s);
+    background: linear-gradient(to top, #8b5cf6, #c4b5fd);
+    border-radius: 99px;
+    height: 20%;
+    width: 3.5px;
+}
+
+.pp2-wave i:nth-child(4n) { animation-duration: 1.6s }
+.pp2-wave i:nth-child(3n) { animation-duration: .95s }
+
+@keyframes ppWave {
+    0%, to { height: 16% }
+    50% { height: 90% }
+}
+
+.pp2-actions { display: flex; gap: 10px }
+
+.pp2-actions > span {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .8);
+    border: 1px solid rgba(23, 20, 46, .08);
+    border-radius: 50%;
+    display: inline-flex;
+    font-size: 17px;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+}
+
+.pp2-end {
+    background: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: #fff;
+    transform: rotate(135deg);
+}
+
+/* --- transcript -------------------------------------------------------------- */
+
+.pp2-transcript {
+    background: hsla(0, 0%, 100%, .5);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    border-radius: 14px;
+    padding: 14px 16px;
+}
+
+.pp2-transcript-head {
+    align-items: center;
+    display: flex;
+    gap: 9px;
+    margin-bottom: 10px;
+}
+
+.pp2-transcript-head b { font-size: 14.5px }
+
+.pp2-transcript-head em {
+    align-items: center;
+    color: rgba(23, 20, 46, .6);
+    display: inline-flex;
+    font-size: 12.5px;
+    font-style: normal;
+    font-weight: 600;
+    gap: 3px;
+    margin-left: auto;
+}
+
+.pp2-line {
+    animation: ppBubbleIn .5s ease-out both;
+    animation-delay: calc(.5s + var(--t) * .7s);
+    margin-bottom: 10px;
+}
+
+.pp2-line:last-child { margin-bottom: 0 }
+
+.pp2-line-meta {
+    align-items: baseline;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 2px;
+}
+
+.pp2-line-meta b { font-size: 13px }
+.pp2-line-meta time { color: rgba(23, 20, 46, .45); font-size: 11.5px }
+
+.pp2-line p {
+    color: rgba(23, 20, 46, .8);
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin: 0 0 2px;
+}
+
+/* --- AI summary -------------------------------------------------------------- */
+
+.pp2-summary {
+    background: rgba(139, 92, 246, .14);
+    border: 1px solid rgba(139, 92, 246, .28);
+    border-radius: 14px;
+    display: grid;
+    gap: 6px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 14px 16px;
+}
+
+.pp2-summary-head {
+    align-items: center;
+    color: #7c4ff0;
+    display: flex;
+    font-size: 13.5px;
+    font-weight: 800;
+    gap: 7px;
+    grid-column: 1 / -1;
+}
+
+.pp2-summary p {
+    color: rgba(23, 20, 46, .8);
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.pp2-summary b {
+    align-self: end;
+    background: hsla(0, 0%, 100%, .8);
+    border: 1px solid rgba(139, 92, 246, .35);
+    border-radius: 10px;
+    color: #7c4ff0;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 8px 14px;
+    white-space: nowrap;
+}
+
+/* --- composer ---------------------------------------------------------------- */
+
+.pp2-compose-tabs {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 8px;
+}
+
+.pp2-compose-tabs span {
+    color: rgba(23, 20, 46, .55);
+    font-size: 13.5px;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.pp2-compose-tabs span.is-active {
+    border-bottom: 2px solid #8b5cf6;
+    color: #17142e;
+    font-weight: 700;
+}
+
+.pp2-compose-row {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .75);
+    border: 1px solid rgba(23, 20, 46, .08);
+    border-radius: 999px;
+    color: rgba(23, 20, 46, .5);
+    display: flex;
+    font-size: 13.5px;
+    gap: 12px;
+    padding: 7px 7px 7px 16px;
+}
+
+.pp2-compose-row > span { flex: 1 }
+.pp2-compose-row > i { color: rgba(23, 20, 46, .55); font-size: 17px }
+
+.pp2-compose-row b {
+    align-items: center;
+    background: linear-gradient(150deg, #8b5cf6, #7c4ff0);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    font-size: 15px;
+    height: 38px;
+    justify-content: center;
+    width: 38px;
+}
+
+/* --- floating toasts --------------------------------------------------------- */
+
+.pp2-toast {
+    -webkit-backdrop-filter: blur(15px) saturate(149%);
+    backdrop-filter: blur(16px) saturate(150%);
+    align-items: center;
+    animation: ppMiniFloat 7s ease-in-out infinite;
+    background: linear-gradient(160deg, hsla(0, 0%, 100%, .9), hsla(0, 0%, 100%, .68));
+    border: 1px solid hsla(0, 0%, 100%, .95);
+    border-radius: 16px;
+    box-shadow: 0 22px 44px -20px rgba(40, 30, 25, .5);
+    display: flex;
+    gap: 11px;
+    padding: 12px 15px;
+    position: absolute;
+    z-index: 2;
+}
+
+@keyframes ppMiniFloat {
+    0%, to { transform: translateY(0) }
+    50% { transform: translateY(-7px) }
+}
+
+.pp2-toast--call { bottom: -22px; left: -26px }
+.pp2-toast--msg { animation-delay: 1.7s; bottom: -18px; right: -20px; max-width: 270px }
+
+.pp2-toast-icon {
+    align-items: center;
+    background: #22c55e;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 16px;
+    height: 38px;
+    justify-content: center;
+    width: 38px;
+}
+
+.pp2-toast-icon--msg { background: #8b5cf6; border-radius: 12px }
+
+.pp2-toast-id { min-width: 0 }
+.pp2-toast-id b { display: block; font-size: 13.5px; font-weight: 700 }
+
+.pp2-toast-id em {
+    color: rgba(23, 20, 46, .6);
+    display: block;
+    font-size: 11.5px;
+    font-style: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pp2-toast-btn {
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 14px;
+    height: 34px;
+    justify-content: center;
+    width: 34px;
+}
+
+.pp2-toast-btn--take { animation: ppLivePulse 1.6s ease-in-out infinite; background: #22c55e }
+.pp2-toast-btn--drop { background: #dc2626; transform: rotate(135deg) }
+
+@media (prefers-reduced-motion: reduce) {
+    .pp2-wave i { animation: none; height: 45% }
+    .pp2-line,
+    .pp2-toast { animation: none }
+    .pp2-avail i,
+    .pp2-call-state i,
+    .pp2-ava--ring:after,
+    .pp2-toast-btn--take { animation: none }
+}

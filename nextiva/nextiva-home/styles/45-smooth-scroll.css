@@ -1,0 +1,11 @@
+/* ── Locomotive Scroll / Lenis ──────────────────────────────────────────── */
+/* The theme sets `html { scroll-behavior: smooth }` (29-assets-build-design-v2).
+   Once Lenis is driving the scroll it adds the `lenis` class to <html>, and a
+   CSS smooth-scroll on top would ease every frame Lenis writes a second time —
+   scrolling turns sluggish and anchor jumps overshoot. Lenis owns the easing
+   while it is active; without it (reduced motion, no JS) the theme's CSS
+   smoothing still applies. */
+html.lenis,
+html.lenis body {
+    scroll-behavior: auto !important;
+}

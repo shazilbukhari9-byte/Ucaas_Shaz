@@ -1,0 +1,2800 @@
+/* ══ Spotlight showcase: phone + admin app ══════════════════════════════════
+   Fills the right half of the "Less Busywork" card. A handset takes an inbound
+   call while, beside it, the admin app navigates itself to AI Receptionists —
+   cursor moves, AI Agent opens, the destination loads, agents appear. One 16s
+   timeline drives everything, so the whole thing plays as a loop.
+
+   Both mocks are drawn from elements. No waveform or bar chart anywhere. */
+.design-v2 .section-spotlight-hero-trust .hs {
+    font-family: var(--font-body);
+    height: 470px;
+    position: absolute;
+    right: 34px;
+    top: 92px;
+    width: 660px;
+    z-index: 2
+}
+
+/* ══ the handset ════════════════════════════════════════════════════════════ */
+.design-v2 .section-spotlight-hero-trust .hs-phone {
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    align-items: center;
+    animation: hsRise .7s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .2s;
+    backdrop-filter: blur(20px) saturate(150%);
+    background: linear-gradient(160deg, hsla(0, 0%, 100%, .82), hsla(0, 0%, 100%, .66));
+    border: 1px solid hsla(0, 0%, 100%, .7);
+    border-radius: 24px;
+    box-shadow: 0 34px 70px -22px rgba(2, 14, 40, .62), inset 0 1px 0 hsla(0, 0%, 100%, .9);
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    height: 320px;
+    left: 0;
+    padding: 20px 16px 16px;
+    position: absolute;
+    top: 84px;
+    width: 176px;
+    z-index: 3
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-notch {
+    background: rgba(16, 2, 44, .18);
+    border-radius: 999px;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    top: 9px;
+    transform: translateX(-50%);
+    width: 40px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-tag {
+    color: rgba(16, 2, 44, .45);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-av {
+    align-items: center;
+    background: linear-gradient(150deg, #6366f1, #8b5cf6);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    height: 66px;
+    justify-content: center;
+    margin-top: 4px;
+    position: relative;
+    width: 66px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-ring {
+    animation: hsRing 2.6s cubic-bezier(.2, .6, .3, 1) infinite;
+    border: 2px solid rgba(99, 102, 241, .55);
+    border-radius: 50%;
+    inset: 0;
+    position: absolute
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-ring:nth-child(2) { animation-delay: 1.3s }
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-name {
+    color: #10022c;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -.01em
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-num {
+    color: rgba(16, 2, 44, .5);
+    font-size: 11px;
+    margin-top: -6px
+}
+
+/* the status line cycles through the call, no waveform involved */
+.design-v2 .section-spotlight-hero-trust .hs-ph-status {
+    align-items: center;
+    background: rgba(22, 163, 74, .13);
+    border: 1px solid rgba(22, 163, 74, .24);
+    border-radius: 999px;
+    display: flex;
+    height: 26px;
+    justify-content: center;
+    margin-top: 2px;
+    position: relative;
+    width: 100%
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-status b {
+    color: #15803d;
+    font-size: 10.5px;
+    font-weight: 700;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: center
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-btns {
+    display: flex;
+    gap: 16px;
+    margin-top: auto
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-btn {
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    height: 38px;
+    justify-content: center;
+    width: 38px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-btn--end {
+    background: #ef4444;
+    transform: rotate(135deg)
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-ph-btn--go {
+    animation: hsPulse 1.5s ease-in-out infinite;
+    background: #16a34a
+}
+
+/* ══ the admin app ══════════════════════════════════════════════════════════ */
+.design-v2 .section-spotlight-hero-trust .hs-app {
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    animation: hsRise .7s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .35s;
+    backdrop-filter: blur(24px) saturate(160%);
+    background: linear-gradient(155deg, hsla(0, 0%, 100%, .84), hsla(0, 0%, 100%, .7));
+    border: 1px solid hsla(0, 0%, 100%, .72);
+    border-radius: 16px;
+    box-shadow: 0 40px 84px -26px rgba(2, 14, 40, .66), inset 0 1px 0 hsla(0, 0%, 100%, .9);
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 46px;
+    width: 496px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-bar {
+    align-items: center;
+    border-bottom: 1px solid rgba(16, 2, 44, .08);
+    display: flex;
+    flex: none;
+    gap: 5px;
+    padding: 10px 14px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-bar i {
+    background: rgba(16, 2, 44, .16);
+    border-radius: 50%;
+    height: 6px;
+    width: 6px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-bar b {
+    color: rgba(16, 2, 44, .55);
+    font-size: 10.5px;
+    font-weight: 700;
+    margin-left: 8px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-body {
+    display: flex;
+    flex: 1;
+    min-height: 0
+}
+
+/* icon rail */
+.design-v2 .section-spotlight-hero-trust .hs-rail {
+    align-items: center;
+    background: rgba(16, 2, 44, .04);
+    border-right: 1px solid rgba(16, 2, 44, .07);
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 0;
+    width: 40px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-rail i {
+    align-items: center;
+    border-radius: 7px;
+    color: rgba(16, 2, 44, .4);
+    display: flex;
+    font-size: 14px;
+    height: 24px;
+    justify-content: center;
+    width: 24px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-rail-on {
+    background: #1d6fff;
+    color: #fff
+}
+
+/* the nav that opens itself */
+.design-v2 .section-spotlight-hero-trust .hs-nav {
+    border-right: 1px solid rgba(16, 2, 44, .07);
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 8px;
+    width: 148px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-nav-item {
+    align-items: center;
+    border-radius: 7px;
+    color: rgba(16, 2, 44, .6);
+    display: flex;
+    font-size: 11px;
+    font-weight: 500;
+    gap: 7px;
+    padding: 7px 8px;
+    white-space: nowrap
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-nav-item i { font-size: 13px; opacity: .7 }
+
+.design-v2 .section-spotlight-hero-trust .hs-nav-item--ai {
+    animation: hsNavOpen 16s ease both infinite;
+    position: relative
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-nav-item--ai em {
+    animation: hsCaret 16s ease both infinite;
+    font-style: normal;
+    margin-left: auto
+}
+
+/* the submenu, closed until the cursor gets there */
+.design-v2 .section-spotlight-hero-trust .hs-sub {
+    animation: hsSubOpen 16s ease both infinite;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-sub-item {
+    align-items: center;
+    border-radius: 7px;
+    color: rgba(16, 2, 44, .55);
+    display: flex;
+    font-size: 10.5px;
+    gap: 7px;
+    padding: 6px 8px 6px 20px;
+    white-space: nowrap
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-sub-item i { font-size: 12px; opacity: .7 }
+
+.design-v2 .section-spotlight-hero-trust .hs-sub-item--target {
+    animation: hsTarget 16s ease both infinite
+}
+
+/* the destination */
+.design-v2 .section-spotlight-hero-trust .hs-main {
+    animation: hsMain 16s ease both infinite;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    padding: 12px 14px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-crumb {
+    color: rgba(16, 2, 44, .45);
+    font-size: 10.5px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-crumb i { font-style: normal; padding: 0 4px }
+
+.design-v2 .section-spotlight-hero-trust .hs-crumb b { color: #10022c; font-weight: 700 }
+
+.design-v2 .section-spotlight-hero-trust .hs-stats {
+    display: grid;
+    gap: 6px;
+    grid-template-columns: repeat(3, 1fr)
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-stat {
+    background: hsla(0, 0%, 100%, .6);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 7px 9px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-stat em {
+    color: rgba(16, 2, 44, .48);
+    font-size: 8.5px;
+    font-style: normal
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-stat b {
+    color: #10022c;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -.02em
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-agent {
+    align-items: center;
+    animation: hsAgent 16s ease both infinite;
+    background: hsla(0, 0%, 100%, .6);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    border-radius: 9px;
+    display: flex;
+    flex: 1;
+    gap: 9px;
+    min-height: 0;
+    padding: 0 10px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-2 { animation-name: hsAgent2 }
+.design-v2 .section-spotlight-hero-trust .hs-agent-3 { animation-name: hsAgent3 }
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-av {
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    flex: none;
+    font-size: 9px;
+    font-weight: 700;
+    height: 26px;
+    justify-content: center;
+    position: relative;
+    width: 26px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-av i {
+    background: #16a34a;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    bottom: -1px;
+    height: 9px;
+    position: absolute;
+    right: -1px;
+    width: 9px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-av--zi { background: #1d6fff }
+.design-v2 .section-spotlight-hero-trust .hs-agent-av--nd { background: #8b5cf6 }
+.design-v2 .section-spotlight-hero-trust .hs-agent-av--bk { background: #0d9488 }
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-txt {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-txt b {
+    color: #1d6fff;
+    font-size: 11px;
+    font-weight: 700
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-txt em {
+    color: rgba(16, 2, 44, .45);
+    font-size: 9px;
+    font-style: normal
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-agent-state {
+    align-items: center;
+    background: rgba(22, 163, 74, .14);
+    border-radius: 999px;
+    color: #15803d;
+    display: inline-flex;
+    flex: none;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 9px
+}
+
+/* ══ the pointer ════════════════════════════════════════════════════════════ */
+.design-v2 .section-spotlight-hero-trust .hs-cursor {
+    animation: hsCursor 16s ease-in-out both infinite;
+    background: #10022c;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+    height: 13px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 13px;
+    z-index: 5
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-click {
+    animation: hsClick 16s ease-out both infinite;
+    border: 2px solid rgba(29, 111, 255, .9);
+    border-radius: 50%;
+    height: 26px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 26px;
+    z-index: 4
+}
+
+/* ══ the loop ═══════════════════════════════════════════════════════════════
+   16s. Cursor to AI Agent, click, submenu opens, cursor to AI Receptionists,
+   click, destination loads, agents deal in, the call runs alongside. */
+@keyframes hsCursor {
+    0%      { transform: translate(300px, 300px) }
+    9%      { transform: translate(96px, 168px) }
+    14%     { transform: translate(96px, 168px) }
+    24%     { transform: translate(112px, 206px) }
+    30%     { transform: translate(112px, 206px) }
+    46%     { transform: translate(300px, 250px) }
+    92%     { transform: translate(320px, 262px) }
+    to      { transform: translate(300px, 300px) }
+}
+
+@keyframes hsClick {
+    0%, 12%   { opacity: 0; transform: translate(90px, 162px) scale(.4) }
+    14%       { opacity: 1; transform: translate(90px, 162px) scale(.5) }
+    18%       { opacity: 0; transform: translate(90px, 162px) scale(1.5) }
+    27%       { opacity: 0; transform: translate(106px, 200px) scale(.4) }
+    29%       { opacity: 1; transform: translate(106px, 200px) scale(.5) }
+    33%, to   { opacity: 0; transform: translate(106px, 200px) scale(1.5) }
+}
+
+/* AI Agent highlights when it is clicked */
+@keyframes hsNavOpen {
+    0%, 13%   { background: transparent; color: rgba(16, 2, 44, .6) }
+    16%, 94%  { background: rgba(29, 111, 255, .1); color: #1d6fff }
+    to        { background: transparent; color: rgba(16, 2, 44, .6) }
+}
+
+@keyframes hsCaret {
+    0%, 13%  { transform: rotate(0) }
+    17%, 94% { transform: rotate(180deg) }
+    to       { transform: rotate(0) }
+}
+
+/* the submenu unrolls */
+@keyframes hsSubOpen {
+    0%, 14%   { max-height: 0; opacity: 0 }
+    22%, 94%  { max-height: 140px; opacity: 1 }
+    to        { max-height: 0; opacity: 0 }
+}
+
+/* AI Receptionists is the one that gets picked */
+@keyframes hsTarget {
+    0%, 28%   { background: transparent; color: rgba(16, 2, 44, .55); font-weight: 400 }
+    32%, 94%  { background: rgba(29, 111, 255, .12); color: #1d6fff; font-weight: 700 }
+    to        { background: transparent; color: rgba(16, 2, 44, .55); font-weight: 400 }
+}
+
+/* the destination loads in */
+@keyframes hsMain {
+    0%, 31%   { opacity: 0; transform: translate3d(10px, 0, 0) }
+    38%, 94%  { opacity: 1; transform: none }
+    to        { opacity: 0; transform: translate3d(10px, 0, 0) }
+}
+
+@keyframes hsAgent {
+    0%, 38%   { opacity: 0; transform: translate3d(0, 10px, 0) }
+    44%, 94%  { opacity: 1; transform: none }
+    to        { opacity: 0; transform: translate3d(0, 10px, 0) }
+}
+
+@keyframes hsAgent2 {
+    0%, 42%   { opacity: 0; transform: translate3d(0, 10px, 0) }
+    48%, 94%  { opacity: 1; transform: none }
+    to        { opacity: 0; transform: translate3d(0, 10px, 0) }
+}
+
+@keyframes hsAgent3 {
+    0%, 46%   { opacity: 0; transform: translate3d(0, 10px, 0) }
+    52%, 94%  { opacity: 1; transform: none }
+    to        { opacity: 0; transform: translate3d(0, 10px, 0) }
+}
+
+/* the call, running through the same loop */
+.design-v2 .section-spotlight-hero-trust .hs-st-1 { animation: hsSt1 16s linear both infinite }
+.design-v2 .section-spotlight-hero-trust .hs-st-2 { animation: hsSt2 16s linear both infinite }
+.design-v2 .section-spotlight-hero-trust .hs-st-3 { animation: hsSt3 16s linear both infinite }
+.design-v2 .section-spotlight-hero-trust .hs-st-4 { animation: hsSt4 16s linear both infinite }
+
+/* Overlapping crossfades — the previous set left ~1s gaps where the pill was
+   blank between one status and the next. */
+@keyframes hsSt1 { 0%, 10% { opacity: 1 } 14%, to { opacity: 0 } }
+@keyframes hsSt2 { 0%, 11% { opacity: 0 } 15%, 46% { opacity: 1 } 50%, to { opacity: 0 } }
+@keyframes hsSt3 { 0%, 47% { opacity: 0 } 51%, 68% { opacity: 1 } 72%, to { opacity: 0 } }
+@keyframes hsSt4 { 0%, 69% { opacity: 0 } 73%, 97% { opacity: 1 } 100% { opacity: 0 } }
+
+@keyframes hsRise {
+    from { opacity: 0; transform: translate3d(0, 22px, 0) scale(.96) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes hsRing {
+    from { opacity: .6; transform: scale(1) }
+    to   { opacity: 0; transform: scale(1.9) }
+}
+
+@keyframes hsPulse {
+    0%, to { opacity: 1; transform: scale(1) }
+    50%    { opacity: .4; transform: scale(.86) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-spotlight-hero-trust .hs-phone,
+    .design-v2 .section-spotlight-hero-trust .hs-app,
+    .design-v2 .section-spotlight-hero-trust .hs-cursor,
+    .design-v2 .section-spotlight-hero-trust .hs-click,
+    .design-v2 .section-spotlight-hero-trust .hs-nav-item--ai,
+    .design-v2 .section-spotlight-hero-trust .hs-nav-item--ai em,
+    .design-v2 .section-spotlight-hero-trust .hs-sub,
+    .design-v2 .section-spotlight-hero-trust .hs-sub-item--target,
+    .design-v2 .section-spotlight-hero-trust .hs-main,
+    .design-v2 .section-spotlight-hero-trust .hs-agent,
+    .design-v2 .section-spotlight-hero-trust .hs-ph-ring,
+    .design-v2 .section-spotlight-hero-trust .hs-ph-btn--go,
+    .design-v2 .section-spotlight-hero-trust .hs-ph-status b { animation: none }
+    .design-v2 .section-spotlight-hero-trust .hs-sub { max-height: 140px; opacity: 1 }
+    .design-v2 .section-spotlight-hero-trust .hs-cursor,
+    .design-v2 .section-spotlight-hero-trust .hs-click { opacity: 0 }
+    .design-v2 .section-spotlight-hero-trust .hs-st-4 { opacity: 1 }
+}
+
+/* Not enough width to sit beside the copy below this. */
+@media (max-width: 1180px) {
+    .design-v2 .section-spotlight-hero-trust .hs { display: none }
+}
+
+@media (max-width: 1440px) and (min-width: 1181px) {
+    .design-v2 .section-spotlight-hero-trust .hs {
+        transform: scale(.86);
+        transform-origin: top right
+    }
+}
+
+/* The headline shares the card with the showcase now. Narrowing it alone pushed
+   "Less Busywork. More Impact." onto three lines, so it comes down a size too
+   and keeps its two-line break in the narrower column. */
+@media (min-width: 1181px) {
+    .design-v2 .section-spotlight-hero-trust .spotlight-hero-trust-headline {
+        font-size: 72px;
+        max-width: 500px
+    }
+
+    .design-v2 .section-spotlight-hero-trust .spotlight-hero-trust-subhead {
+        max-width: 470px
+    }
+}
+
+/* ══ Artwork pushed back ════════════════════════════════════════════════════
+   The scrim only darkened the left, for the copy. The right half — where the
+   phone and the app now sit — was left at full strength, so a busy starfield
+   was competing with the thing it is meant to sit behind. The veil now covers
+   the whole card, and a light blur plus a drop in saturation turns the artwork
+   into texture rather than subject. The image itself is untouched. */
+.design-v2 .spotlight-hero-trust-overlay {
+    -webkit-backdrop-filter: blur(3px) saturate(.72);
+    backdrop-filter: blur(3px) saturate(.72);
+    background: linear-gradient(90deg, rgba(6, 18, 44, .78) 0, rgba(6, 18, 44, .68) 45%, rgba(6, 18, 44, .62) 100%)
+}
+
+/* ══ Right-hand mocks, strengthened ═════════════════════════════════════════
+   Frosted glass was losing the fight with the artwork behind it. Both surfaces
+   are now effectively solid — the way a real product screenshot would be — with
+   crisper edges and deeper shadows, so they sit on the scene instead of
+   dissolving into it. */
+.design-v2 .section-spotlight-hero-trust .hs-app {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .1);
+    box-shadow: 0 50px 100px -30px rgba(2, 12, 34, .78), 0 8px 24px -8px rgba(2, 12, 34, .45)
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-phone {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .1);
+    box-shadow: 0 40px 80px -24px rgba(2, 12, 34, .8), 0 6px 20px -6px rgba(2, 12, 34, .45)
+}
+
+/* the inner surfaces go opaque to match */
+.design-v2 .section-spotlight-hero-trust .hs-stat,
+.design-v2 .section-spotlight-hero-trust .hs-agent {
+    background: #fff;
+    border-color: rgba(16, 2, 44, .1)
+}
+
+/* ── the toolbar, lifted from the real screen ───────────────────────────── */
+.design-v2 .section-spotlight-hero-trust .hs-head {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-new {
+    align-items: center;
+    background: #1d6fff;
+    border-radius: 6px;
+    color: #fff;
+    display: inline-flex;
+    flex: none;
+    font-size: 9px;
+    font-weight: 700;
+    gap: 3px;
+    padding: 4px 8px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-tools {
+    align-items: center;
+    display: flex;
+    gap: 6px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-search {
+    align-items: center;
+    background: rgba(16, 2, 44, .04);
+    border: 1px solid rgba(16, 2, 44, .09);
+    border-radius: 7px;
+    color: rgba(16, 2, 44, .42);
+    display: flex;
+    flex: 1;
+    font-size: 9.5px;
+    gap: 5px;
+    min-width: 0;
+    padding: 6px 8px;
+    white-space: nowrap
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-chip {
+    background: rgba(16, 2, 44, .05);
+    border-radius: 999px;
+    color: rgba(16, 2, 44, .55);
+    flex: none;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 5px 10px
+}
+
+.design-v2 .section-spotlight-hero-trust .hs-chip--on {
+    background: #1d6fff;
+    color: #fff
+}
+
+/* a little more room now that there are two more rows */
+.design-v2 .section-spotlight-hero-trust .hs-main { gap: 8px }
+
+.design-v2 .section-spotlight-hero-trust .hs-app { height: 384px }
+
+.design-v2 .section-spotlight-hero-trust .hs-phone { top: 96px }
+
+/* ══ Glass AI-receptionist mocks — phone + desktop over the night sky ═══════
+   Replaces the old .hs phone/admin-hub pair, which was rejected as cramped.
+   Both panes use the hero cloud-phone glass recipe: frosted low-opacity
+   white, blur + saturate, thin light border, one-pixel inner highlight, so
+   the starfield glows through the surface. The insides are drawn as a real
+   product would be — phone status bar, live waveform, labelled dashboard
+   sections, stat trends and status chips — and the AI receptionist itself is
+   the visual anchor: brand-gradient AI marks on both panes, mint "live"
+   accents everywhere the AI is acting. */
+.design-v2 .agx {
+    align-items: center;
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    padding: 64px 40px;
+    position: relative;
+    z-index: 2
+}
+
+.design-v2 .agx-phone,
+.design-v2 .agx-desk {
+    /* Prefixed and standard values differ on purpose: identical pairs get
+       merged by the CSS compiler into the -webkit- form alone, which some
+       Chromium builds ignore — distinct values force both to be emitted. */
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(159%);
+    background: hsla(0, 0%, 100%, .13);
+    border: 1px solid hsla(0, 0%, 100%, .28);
+    box-shadow: 0 24px 70px -18px rgba(0, 0, 0, .5), inset 0 1px 0 hsla(0, 0%, 100%, .32);
+    color: #fff;
+    font-family: var(--font-body)
+}
+
+/* ── Phone ── */
+
+.design-v2 .agx-phone {
+    align-items: center;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 18px 26px;
+    width: 250px
+}
+
+.design-v2 .agx-ph-top {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+}
+
+.design-v2 .agx-ph-top > em {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600
+}
+
+.design-v2 .agx-ph-island {
+    background: rgba(8, 16, 24, .85);
+    border-radius: 100px;
+    height: 16px;
+    width: 54px
+}
+
+.design-v2 .agx-ph-sig {
+    display: inline-flex;
+    gap: 2.5px
+}
+
+.design-v2 .agx-ph-sig b {
+    background: hsla(0, 0%, 100%, .85);
+    border-radius: 1px;
+    width: 3px
+}
+
+.design-v2 .agx-ph-sig b:first-child { height: 5px; margin-top: 5px }
+.design-v2 .agx-ph-sig b:nth-child(2) { height: 7px; margin-top: 3px }
+.design-v2 .agx-ph-sig b:nth-child(3) { height: 10px }
+
+/* The AI badge is the one saturated element on the pane — brand gradient,
+   soft glow, so "AI RECEPTIONIST" is what the eye lands on first. */
+.design-v2 .agx-pill {
+    align-items: center;
+    background: linear-gradient(120deg, rgba(249, 119, 94, .85), rgba(245, 189, 129, .85));
+    border: 1px solid hsla(0, 0%, 100%, .38);
+    border-radius: 100px;
+    box-shadow: 0 4px 18px rgba(249, 119, 94, .35);
+    color: #10141c;
+    display: inline-flex;
+    font-size: 10px;
+    font-weight: 700;
+    gap: 6px;
+    letter-spacing: .12em;
+    margin-top: 16px;
+    padding: 6px 12px
+}
+
+.design-v2 .agx-ph-label {
+    color: hsla(0, 0%, 100%, .55);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    margin-top: 20px;
+    text-transform: uppercase
+}
+
+.design-v2 .agx-avatar {
+    align-items: center;
+    background: linear-gradient(135deg, #f9775e, #f5bd81);
+    border-radius: 50%;
+    color: #08131c;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    height: 66px;
+    justify-content: center;
+    margin-top: 14px;
+    position: relative;
+    width: 66px
+}
+
+.design-v2 .agx-avatar-ring {
+    animation: agxRing 2.4s ease-out infinite;
+    border: 1px solid hsla(0, 0%, 100%, .45);
+    border-radius: 50%;
+    inset: -8px;
+    position: absolute
+}
+
+@keyframes agxRing {
+    0% { opacity: .9; transform: scale(.92) }
+    70% { opacity: 0; transform: scale(1.25) }
+    to { opacity: 0; transform: scale(1.25) }
+}
+
+.design-v2 .agx-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 14px
+}
+
+.design-v2 .agx-num {
+    color: hsla(0, 0%, 100%, .72);
+    font-size: 12.5px;
+    margin-top: 3px
+}
+
+/* Live-audio waveform — shared by the phone and the desk live-call row. */
+.design-v2 .agx-wave {
+    align-items: center;
+    display: inline-flex;
+    gap: 3px;
+    height: 22px;
+    margin-top: 18px
+}
+
+.design-v2 .agx-wave i {
+    animation: agxWave 1s ease-in-out infinite alternate;
+    background: #9fe8c3;
+    border-radius: 2px;
+    width: 3px
+}
+
+.design-v2 .agx-wave i:first-child { animation-delay: 0s; height: 8px }
+.design-v2 .agx-wave i:nth-child(2) { animation-delay: .12s; height: 15px }
+.design-v2 .agx-wave i:nth-child(3) { animation-delay: .24s; height: 20px }
+.design-v2 .agx-wave i:nth-child(4) { animation-delay: .06s; height: 12px }
+.design-v2 .agx-wave i:nth-child(5) { animation-delay: .3s; height: 18px }
+.design-v2 .agx-wave i:nth-child(6) { animation-delay: .18s; height: 10px }
+.design-v2 .agx-wave i:nth-child(7) { animation-delay: .36s; height: 14px }
+.design-v2 .agx-wave i:nth-child(8) { animation-delay: .09s; height: 17px }
+.design-v2 .agx-wave i:nth-child(9) { animation-delay: .27s; height: 9px }
+
+@keyframes agxWave {
+    0% { transform: scaleY(.35) }
+    to { transform: scaleY(1) }
+}
+
+.design-v2 .agx-status {
+    align-items: center;
+    background: rgba(64, 150, 110, .28);
+    border: 1px solid rgba(120, 220, 170, .4);
+    border-radius: 100px;
+    color: #c9f0dc;
+    display: inline-flex;
+    font-size: 11.5px;
+    gap: 7px;
+    margin-top: 16px;
+    padding: 7px 13px
+}
+
+.design-v2 .agx-status:before {
+    animation: agxPulse 1.6s ease-in-out infinite;
+    background: #6fe3a5;
+    border-radius: 50%;
+    content: "";
+    height: 7px;
+    width: 7px
+}
+
+@keyframes agxPulse {
+    0%, to { opacity: 1 }
+    50% { opacity: .35 }
+}
+
+.design-v2 .agx-btns {
+    display: flex;
+    gap: 26px;
+    margin-top: 22px
+}
+
+.design-v2 .agx-btn {
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    font-size: 19px;
+    height: 50px;
+    justify-content: center;
+    width: 50px
+}
+
+.design-v2 .agx-btn--end {
+    background: #e05c4f;
+    box-shadow: 0 8px 20px rgba(224, 92, 79, .35);
+    transform: rotate(135deg)
+}
+
+.design-v2 .agx-btn--go {
+    background: #37b26f;
+    box-shadow: 0 8px 20px rgba(55, 178, 111, .35)
+}
+
+/* ── Desktop ── */
+
+.design-v2 .agx-desk {
+    border-radius: 20px;
+    padding: 18px 22px 22px;
+    width: 560px
+}
+
+.design-v2 .agx-bar {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .18);
+    display: flex;
+    gap: 7px;
+    padding-bottom: 14px
+}
+
+.design-v2 .agx-bar i {
+    background: hsla(0, 0%, 100%, .35);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px
+}
+
+/* Brand-gradient AI mark in front of the app title — same one the phone
+   pill wears, so both panes read as the same product. */
+.design-v2 .agx-bar i:nth-child(3) {
+    background: hsla(0, 0%, 100%, .35)
+}
+
+.design-v2 .agx-bar b {
+    align-items: center;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 8px;
+    margin-left: 10px
+}
+
+.design-v2 .agx-bar b:before {
+    background: linear-gradient(135deg, #f9775e, #f5bd81);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(249, 119, 94, .4);
+    content: "";
+    height: 16px;
+    width: 16px
+}
+
+.design-v2 .agx-bar em {
+    align-items: center;
+    background: rgba(64, 150, 110, .28);
+    border: 1px solid rgba(120, 220, 170, .4);
+    border-radius: 100px;
+    color: #c9f0dc;
+    display: inline-flex;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    gap: 6px;
+    letter-spacing: .06em;
+    margin-left: auto;
+    padding: 4px 10px
+}
+
+.design-v2 .agx-bar em:before {
+    animation: agxPulse 1.6s ease-in-out infinite;
+    background: #6fe3a5;
+    border-radius: 50%;
+    content: "";
+    height: 6px;
+    width: 6px
+}
+
+/* Featured live-call row — proof the AI is working right now. */
+.design-v2 .agx-live {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .1);
+    border: 1px solid rgba(120, 220, 170, .32);
+    border-radius: 14px;
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 12px 14px
+}
+
+.design-v2 .agx-live-av {
+    align-items: center;
+    background: linear-gradient(135deg, #f9775e, #f5bd81);
+    border-radius: 50%;
+    color: #08131c;
+    display: flex;
+    flex: none;
+    font-size: 13px;
+    font-weight: 700;
+    height: 36px;
+    justify-content: center;
+    width: 36px
+}
+
+.design-v2 .agx-live-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.design-v2 .agx-live-txt b {
+    font-size: 13.5px;
+    font-weight: 600
+}
+
+.design-v2 .agx-live-txt em {
+    color: hsla(0, 0%, 100%, .65);
+    font-size: 11.5px;
+    font-style: normal
+}
+
+.design-v2 .agx-wave--desk {
+    margin-left: auto;
+    margin-top: 0
+}
+
+.design-v2 .agx-chip {
+    background: hsla(0, 0%, 100%, .1);
+    border: 1px solid hsla(0, 0%, 100%, .2);
+    border-radius: 100px;
+    color: hsla(0, 0%, 100%, .8);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: .04em;
+    padding: 3px 9px;
+    white-space: nowrap
+}
+
+.design-v2 .agx-chip--live,
+.design-v2 .agx-chip--ok {
+    background: rgba(64, 150, 110, .28);
+    border-color: rgba(120, 220, 170, .4);
+    color: #c9f0dc
+}
+
+/* Section micro-labels give the panel real dashboard structure. */
+.design-v2 .agx-sec {
+    color: hsla(0, 0%, 100%, .5);
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    margin: 18px 2px 10px;
+    text-transform: uppercase
+}
+
+.design-v2 .agx-stats {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr)
+}
+
+.design-v2 .agx-stats > span {
+    background: hsla(0, 0%, 100%, .1);
+    border: 1px solid hsla(0, 0%, 100%, .18);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 13px 15px
+}
+
+.design-v2 .agx-stats b {
+    font-size: 23px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700
+}
+
+.design-v2 .agx-stats em {
+    color: hsla(0, 0%, 100%, .68);
+    font-size: 11px;
+    font-style: normal
+}
+
+.design-v2 .agx-stats u {
+    color: #9fe8c3;
+    font-size: 10.5px;
+    font-weight: 600;
+    margin-top: 4px;
+    text-decoration: none
+}
+
+.design-v2 .agx-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.design-v2 .agx-rows > span {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .08);
+    border: 1px solid hsla(0, 0%, 100%, .14);
+    border-radius: 12px;
+    display: flex;
+    font-size: 12.5px;
+    gap: 11px;
+    padding: 10px 13px
+}
+
+.design-v2 .agx-rows > span > i {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .1);
+    border-radius: 8px;
+    color: #f5bd81;
+    display: flex;
+    flex: none;
+    font-size: 14px;
+    height: 26px;
+    justify-content: center;
+    width: 26px
+}
+
+.design-v2 .agx-rows .agx-chip {
+    margin-left: auto
+}
+
+.design-v2 .agx-rows > span > em {
+    color: hsla(0, 0%, 100%, .55);
+    font-size: 11px;
+    font-style: normal;
+    font-variant-numeric: tabular-nums
+}
+
+@media (max-width: 1024px) {
+    .design-v2 .agx { gap: 32px }
+    .design-v2 .agx-desk { width: 480px }
+}
+
+@media (max-width: 900px) {
+    .design-v2 .agx { flex-direction: column; padding: 48px 24px }
+    .design-v2 .agx-desk { max-width: 560px; width: 100% }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .agx-avatar-ring,
+    .design-v2 .agx-status:before,
+    .design-v2 .agx-bar em:before,
+    .design-v2 .agx-wave i { animation: none }
+}
+
+/* ══ Section header above the receptionist card ═════════════════════════════
+   Uses the capture's own .platform-showcase-header / .showcase-section-title
+   classes, which were styled for this section but never rendered. Only the
+   rhythm is adjusted here: the base rule sets a 40px gap under the title,
+   which was drawn for a title used alone — with a description under it that
+   reads as a break rather than a pair. */
+.design-v2 .section-spotlight-hero-trust .platform-showcase-header {
+    margin-bottom: 44px;
+    max-width: 780px
+}
+
+.design-v2 .section-spotlight-hero-trust .platform-badge {
+    margin-bottom: 20px
+}
+
+.design-v2 .section-spotlight-hero-trust .showcase-section-title {
+    margin: 0 0 18px
+}
+
+@media (max-width: 900px) {
+    .design-v2 .section-spotlight-hero-trust .platform-showcase-header {
+        margin-bottom: 32px
+    }
+}
+
+/* ══ Feature cards, lifted ══════════════════════════════════════════════════
+   The cards sat as white boxes on the white panel — hairline border only, no
+   depth, and copy of three different lengths left the three mini-UIs starting
+   at three different heights. Copy is trimmed to two/three lines in the
+   markup; here the surfaces do the rest: a faint warm wash and a resting
+   shadow lift each card off the panel, and the mini-UI drops to an inset
+   tinted well so it reads as a screen within the card, not more white. */
+.design-v2 .section-spotlight-hero-trust .arf-card {
+    background: linear-gradient(180deg, #fffefc 0%, #fdfaf6 100%);
+    border-color: rgba(16, 2, 44, .1);
+    box-shadow: 0 14px 34px -24px rgba(2, 14, 40, .18);
+    padding: 28px 26px 26px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-card:hover {
+    box-shadow: 0 26px 54px -24px rgba(2, 14, 40, .28)
+}
+
+/* Never more than three lines, whatever the copy does later. The mini-UI
+   slices that used to close each card are gone — they kept reading as
+   clutter however they were surfaced, and the glass panes above already
+   show the product — so the description is the card's last element and
+   carries no trailing margin. */
+.design-v2 .section-spotlight-hero-trust .arf-desc {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    margin: 0;
+    overflow: hidden
+}
+
+/* ══ Mock polish ════════════════════════════════════════════════════════════
+   Three measured faults, not taste calls:
+   1. The status chip was wrapping to two lines (38px tall against an 11.5px
+      line) which turned a pill into a rounded box. Copy is shortened in the
+      markup and nowrap makes it structural, so no future string can wrap it.
+   2. The phone waveform measured 39px wide under a 250px handset — small
+      enough to read as a stray mark rather than live audio. Wider bars, two
+      more of them.
+   3. The panels' right edge sits at 85% across the artwork, which is exactly
+      where the milky-way glow is brightest, so white text on 13%-white glass
+      lost contrast there. Lifting the glass to 16% restores it everywhere
+      without putting a scrim back over the picture. */
+.design-v2 .agx-phone,
+.design-v2 .agx-desk {
+    background: hsla(0, 0%, 100%, .16)
+}
+
+.design-v2 .agx-status {
+    white-space: nowrap
+}
+
+.design-v2 .agx-phone .agx-wave {
+    gap: 4px;
+    height: 26px
+}
+
+.design-v2 .agx-phone .agx-wave i {
+    width: 4px
+}
+
+/* ══ Snow over the night ridge ══════════════════════════════════════════════
+   The card already ran a particle field, but `floatingField` spawns roughly
+   seven in ten motes deep blue (rgb 0-20, 90-120, 230-255) — drawn for a pale
+   backdrop, and effectively invisible against this artwork. The field is
+   switched to snow via `.particles--snow`; the flake styling below is the
+   hero's, restated for this section because the hero's rule is scoped to
+   `.section-hero`. Flakes sit under the glass panes, never over them. */
+.design-v2 .section-spotlight-hero-trust .snowflake {
+    background: #fff;
+    border-radius: 50%;
+    filter: blur(.3px);
+    pointer-events: none;
+    position: absolute;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    z-index: 1
+}
+
+/* The container sits at z-index 2 alongside the mocks, which would let flakes
+   fall in front of the glass. Dropped behind them. */
+.design-v2 .section-spotlight-hero-trust .floating-particles {
+    z-index: 1
+}
+
+/* ══ Round two of polish: glass avatars + ambient motion on the desk ════════
+   The coral PS avatar was the loudest element on the phone and pulled focus
+   from the AI badge, which is the thing being sold. Both avatars go glass:
+   translucent white on a light border, white initials. No backdrop-filter
+   here - they already sit on a blurred pane, and nesting filters is flaky.
+   The coral accent survives where it belongs: the AI badge and the app mark.
+
+   The desk pane gets ambient, loop-based motion so it reads as a product
+   that is running rather than a screenshot: a sheen sweeps each stat tile in
+   turn, the live-call row breathes mint, and the activity icons ping in
+   sequence as if events keep arriving. All decorative, all disabled under
+   reduced motion. */
+.design-v2 .agx-avatar,
+.design-v2 .agx-live-av {
+    background: hsla(0, 0%, 100%, .16);
+    border: 1px solid hsla(0, 0%, 100%, .42);
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .35), 0 6px 18px rgba(0, 0, 0, .22);
+    color: #fff
+}
+
+/* sheen sweep, one tile after another.
+   `> span` matters: a bare `.agx-stats span` also matches the sparkline
+   nested inside each tile, which gave every chart its own sheen sweep and
+   its own overflow clip. */
+.design-v2 .agx-stats > span {
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .agx-stats > span:after {
+    animation: agxSheen 6s ease-in-out infinite;
+    background: linear-gradient(105deg, transparent 40%, hsla(0, 0%, 100%, .16) 50%, transparent 60%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(-110%)
+}
+
+.design-v2 .agx-stats > span:nth-child(2):after { animation-delay: .8s }
+.design-v2 .agx-stats > span:nth-child(3):after { animation-delay: 1.6s }
+
+@keyframes agxSheen {
+    0% { transform: translateX(-110%) }
+    45%, to { transform: translateX(110%) }
+}
+
+/* the live row breathes */
+.design-v2 .agx-live {
+    animation: agxBreathe 3.2s ease-in-out infinite
+}
+
+@keyframes agxBreathe {
+    0%, to { border-color: rgba(120, 220, 170, .32); box-shadow: 0 0 0 0 rgba(111, 227, 165, 0) }
+    50% { border-color: rgba(120, 220, 170, .55); box-shadow: 0 0 18px -2px rgba(111, 227, 165, .25) }
+}
+
+/* activity icons ping in sequence - events keep arriving */
+.design-v2 .agx-rows > span > i {
+    animation: agxRowPing 9s ease-in-out infinite
+}
+
+.design-v2 .agx-rows > span:nth-child(2) > i { animation-delay: 3s }
+.design-v2 .agx-rows > span:nth-child(3) > i { animation-delay: 6s }
+
+@keyframes agxRowPing {
+    0%, 8%, to { background: hsla(0, 0%, 100%, .1); box-shadow: 0 0 0 0 rgba(245, 189, 129, 0); color: #f5bd81 }
+    3% { background: rgba(245, 189, 129, .3); box-shadow: 0 0 12px rgba(245, 189, 129, .45); color: #ffd9ae }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .agx-stats span:after,
+    .design-v2 .agx-live,
+    .design-v2 .agx-rows > span > i { animation: none }
+}
+
+/* ══ Runtime states for the live desk (hooks/useAgxLive.js) ═════════════════
+   The hook ticks the call timer, counts the stats up and rotates the feed;
+   these are the transitions it reaches for. Inserted feed rows must match
+   the styling of the server-rendered ones, so the .agx-rows child selectors
+   above are written against ">" and pick these up automatically. */
+.design-v2 .agx-rows > .agx-row-in {
+    animation: agxRowIn .5s cubic-bezier(.22, .61, .36, 1)
+}
+
+@keyframes agxRowIn {
+    0% { opacity: 0; transform: translateY(-10px) }
+    to { opacity: 1; transform: none }
+}
+
+.design-v2 .agx-stats b.agx-pop {
+    animation: agxPop .5s cubic-bezier(.22, .61, .36, 1)
+}
+
+@keyframes agxPop {
+    0% { transform: scale(1) }
+    35% { color: #9fe8c3; transform: scale(1.16) }
+    to { transform: scale(1) }
+}
+
+/* ══ Continuous motion layer ════════════════════════════════════════════════
+   The first pass of motion was all event-driven - a tick every few seconds -
+   and between ticks the card sat perfectly still, which kept reading as a
+   screenshot. This layer never rests: both panes float slowly (out of phase,
+   so they read as two objects in space rather than one texture), and an
+   indeterminate mint scan line runs under the live call the whole time the
+   AI is on it. The phone status pill also cross-fades through call stages,
+   driven from hooks/useAgxLive.js. */
+.design-v2 .agx-phone {
+    animation: agxFloat 7s ease-in-out infinite alternate
+}
+
+.design-v2 .agx-desk {
+    animation: agxFloat 8.5s ease-in-out infinite alternate-reverse
+}
+
+@keyframes agxFloat {
+    0% { transform: translateY(5px) }
+    to { transform: translateY(-7px) }
+}
+
+.design-v2 .agx-live {
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .agx-live:after {
+    animation: agxScan 2.4s cubic-bezier(.4, 0, .2, 1) infinite;
+    background: linear-gradient(90deg, transparent, #6fe3a5, transparent);
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 40%
+}
+
+@keyframes agxScan {
+    0% { transform: translateX(-110%) }
+    to { transform: translateX(360%) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .agx-phone,
+    .design-v2 .agx-desk,
+    .design-v2 .agx-live:after { animation: none }
+}
+
+/* ══ Composition: desktop left, phone right, both cropped at the bottom ═════
+   Previously the two panes sat side by side, centred, with air under them —
+   a diagram of two devices rather than a product shot. Now:
+
+     · the desktop leads on the left,
+     · the phone sits over its right edge, overlapping rather than beside it,
+     · and both run past the bottom of the card, which crops them.
+
+   The bleed is what sells it: a pane that ends inside the frame reads as a
+   picture of a screenshot, while one that runs out of the frame reads as a
+   window you are looking through. `overflow: hidden` on the card does the
+   cutting — it is already there for the background artwork.
+
+   Absolute positioning, not flex: the two panes have to overlap, and the
+   phone has to be free to sit past the desktop's right edge. */
+.design-v2 .section-spotlight-hero-trust .agx {
+    align-items: flex-start;
+    display: block;
+    height: 100%;
+    justify-content: initial;
+    min-height: 420px;
+    padding: 0;
+    position: relative;
+}
+
+/* One inset for left, top and right, so the frame reads as an even margin on
+   three sides with the composition running out of the fourth. Held in a
+   variable because the three values have to stay identical — as percentages
+   they drifted apart at every width (right 86px against left 43px).
+
+   The height follows from it: after the declutter the desktop pane is 386px
+   tall and the phone 435 — the card is sized so the phone still runs off the
+   bottom while the shorter desktop sits just inside it. The card is sized to leave a ~40px slice cropped rather than the ~90px
+   chunk it was cutting before. */
+.design-v2 .section-spotlight-hero-trust .agx {
+    --agx-inset: 86px;
+}
+
+.design-v2 .section-spotlight-hero-trust .spotlight-hero-trust-card {
+    min-height: 500px;
+}
+
+/* Desktop: left, and wide. At 560px it left a third of the card empty on the
+   right; the pair has to span the frame for the composition to sit in it
+   rather than float in one corner. */
+.design-v2 .section-spotlight-hero-trust .agx-desk {
+    left: var(--agx-inset);
+    position: absolute;
+    top: var(--agx-inset);
+    /* 62%, not 64%: at the wider value the context column's right edge ran
+       under the phone and its right-aligned values were clipped. The pane
+       and the phone still overlap — just not over live content. */
+    width: min(720px, 62%);
+}
+
+/* Phone: anchored to the RIGHT edge rather than positioned from the left —
+   that is what keeps the right side of the card occupied at any width, and
+   the widened desktop is what lets it still overlap. Slightly lower, so the
+   two bottom edges leave the frame at different points instead of lining up
+   into a ruled crop line. `z-index` puts it in front; the desktop's own blur
+   would otherwise sit over it. */
+.design-v2 .section-spotlight-hero-trust .agx-phone {
+    position: absolute;
+    right: var(--agx-inset);
+    /* Lower than the desktop on purpose — the two bottom edges then leave the
+       frame at different points instead of lining up into a ruled crop. */
+    top: calc(var(--agx-inset) + 20px);
+    z-index: 3;
+}
+
+/* Narrow: stop overlapping, since at this width the phone would cover most
+   of the desktop rather than a slice of its edge. */
+@media (max-width: 900px) {
+    .design-v2 .section-spotlight-hero-trust .agx-desk {
+        left: 5%;
+        top: 44px;
+        width: 76%;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-phone {
+        left: auto;
+        right: 4%;
+        top: 150px;
+        transform: scale(.86);
+        transform-origin: top right;
+    }
+}
+
+/* ══ Desktop interior: app chrome, sparklines, two-line rows ════════════════
+   The pane was a title bar over three text blocks and three one-line rows —
+   readable, but it looked like a widget rather than software. What it was
+   missing was the furniture real applications have: somewhere to navigate,
+   somewhere to search, and data that is drawn rather than only stated. */
+
+/* Search field in the title bar. Purely a shape — it is what a user reads as
+   "this is an app window" faster than any other single element. */
+.design-v2 .agx-search {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .08);
+    border: 1px solid hsla(0, 0%, 100%, .14);
+    border-radius: 8px;
+    color: hsla(0, 0%, 100%, .45);
+    display: inline-flex;
+    font-size: 11.5px;
+    gap: 7px;
+    margin-left: 18px;
+    max-width: 230px;
+    overflow: hidden;
+    padding: 5px 11px;
+    white-space: nowrap;
+}
+
+.design-v2 .agx-search i {
+    background: none;
+    border-radius: 0;
+    color: hsla(0, 0%, 100%, .5);
+    font-size: 13px;
+    height: auto;
+    width: auto;
+}
+
+.design-v2 .agx-body {
+    display: flex;
+    gap: 18px;
+    margin-top: 14px;
+}
+
+/* ── Nav rail ── */
+/* Flush to the window edge, not floating in it. As an inset rounded box with
+   margin on every side it read as a stray pill of icons; real sidebars are
+   part of the window frame — they run from under the title bar to the bottom
+   edge, and are separated by a divider rather than by air.
+
+   The negative margins cancel the pane's own padding so the rail can reach
+   those edges; `overflow: hidden` on .agx-desk is what then clips it back to
+   the window's rounded corner. */
+.design-v2 .agx-desk {
+    /* Tall enough to run past the card's bottom edge again. The declutter
+       took the pane from 556px to 386 — shorter than the frame — so the crop
+       that sells "window continuing past the frame" disappeared with the
+       clutter. The depth comes back as breathing room, not content: the
+       transcript and booking spread out, and the min-height puts the pane's
+       bottom back under the cut. */
+    display: flex;
+    flex-direction: column;
+    min-height: 452px;
+    overflow: hidden;
+}
+
+.design-v2 .agx-body .agx-live {
+    margin-top: 4px;
+}
+
+.design-v2 .agx-cols {
+    margin-top: 18px;
+}
+
+.design-v2 .agx-cols .agx-tr {
+    gap: 12px;
+    padding: 14px 16px 16px;
+}
+
+.design-v2 .agx-col-main .agx-act {
+    margin-top: 16px;
+}
+
+.design-v2 .agx-rail {
+    align-items: center;
+    background: rgba(3, 18, 26, .32);
+    border-radius: 0;
+    border-right: 1px solid hsla(0, 0%, 100%, .1);
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: 4px;
+    align-self: stretch;
+    margin: 0 0 -22px -22px;
+    padding: 14px 11px;
+}
+
+.design-v2 .agx-body {
+    align-items: stretch;
+    flex: 1;
+}
+
+.design-v2 .agx-rail i {
+    align-items: center;
+    border-radius: 10px;
+    color: hsla(0, 0%, 100%, .5);
+    display: flex;
+    font-size: 15px;
+    height: 32px;
+    justify-content: center;
+    position: relative;
+    width: 32px;
+}
+
+/* One item lit, the rest dim — a rail with every icon at the same weight
+   reads as decoration; one active state reads as a place you are in. The
+   accent bar on the window edge is the other half of that: it ties the
+   selection to the frame, the way a real sidebar marks its current view. */
+.design-v2 .agx-rail i.is-on {
+    background: hsla(0, 0%, 100%, .12);
+    color: #f9a184;
+}
+
+/* ::after, not ::before — Remix icons draw their glyph in ::before. */
+.design-v2 .agx-rail i.is-on:after {
+    background: linear-gradient(180deg, #f9775e, #f5bd81);
+    border-radius: 0 3px 3px 0;
+    content: "";
+    height: 18px;
+    left: -11px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+}
+
+.design-v2 .agx-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* The live row is the first thing in the main column now, so it no longer
+   needs the top margin it carried when it followed the title bar. */
+.design-v2 .agx-body .agx-live {
+    margin-top: 0;
+}
+
+/* ── Section headers ── */
+.design-v2 .agx-sec {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+}
+
+.design-v2 .agx-sec u {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-transform: none;
+}
+
+/* ── Stat sparklines ── */
+/* A filled area, clipped to the data by an inline `clip-path` polygon. This
+   started as seven flex bars, which at tile width came out ~14px wide each
+   and read as grey blocks rather than a chart. Twelve points and a fill
+   reads as a trend at any size, and costs one element.
+
+   Mint, matching every other "live" accent in the pane, brightest at the
+   curve and fading to nothing at the baseline. */
+.design-v2 .agx-spark {
+    background:
+        linear-gradient(180deg,
+            rgba(127, 224, 174, .85) 0,
+            rgba(127, 224, 174, .38) 45%,
+            rgba(127, 224, 174, .04) 100%);
+    display: block;
+    height: 30px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* ── Activity rows: two lines ── */
+.design-v2 .agx-row-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.design-v2 .agx-row-txt b {
+    font-size: 12.5px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.design-v2 .agx-row-txt u {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: 10.5px;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.design-v2 .agx-rows > span {
+    align-items: center;
+    padding: 9px 13px;
+}
+
+/* Rows fade toward the bottom of the pane, where the card crops them — the
+   cut then reads as the window continuing past the frame rather than as
+   content stopping dead. */
+.design-v2 .agx-rows > span:nth-child(3) {
+    opacity: .72;
+}
+
+/* ══ Live-call screen ═══════════════════════════════════════════════════════
+   Replaces the stat tiles and sparklines. Those were generic — any SaaS
+   product could show three figures and three trend lines, which is exactly
+   why the pane read as a mockup. A call in progress, its transcript running
+   underneath, and the booking the AI is completing are specific to this
+   product, and specificity is what makes a mock look real. */
+
+.design-v2 .agx-live-timer {
+    color: hsla(0, 0%, 100%, .82);
+    font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.design-v2 .agx-wave--desk {
+    margin-left: 14px;
+}
+
+/* ── Transcript ── */
+.design-v2 .agx-tr {
+    background: hsla(0, 0%, 100%, .05);
+    border: 1px solid hsla(0, 0%, 100%, .12);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 12px;
+    padding: 12px 14px 14px;
+}
+
+.design-v2 .agx-tr-head {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .5);
+    display: flex;
+    font-size: 10px;
+    font-weight: 700;
+    justify-content: space-between;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.design-v2 .agx-tr-head u {
+    color: rgba(127, 224, 174, .85);
+    font-size: 9.5px;
+    letter-spacing: .06em;
+    text-decoration: none;
+}
+
+/* Speaker label, line, timecode. The grid keeps every timecode on the same
+   right edge and every line starting at the same left edge — a transcript
+   whose columns wander reads as decoration, not a record. */
+.design-v2 .agx-tr-line {
+    align-items: baseline;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 34px 1fr auto;
+}
+
+.design-v2 .agx-tr-line b {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: 10.5px;
+    font-weight: 700;
+}
+
+.design-v2 .agx-tr-line em {
+    color: hsla(0, 0%, 100%, .88);
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1.45;
+}
+
+.design-v2 .agx-tr-line u {
+    color: hsla(0, 0%, 100%, .35);
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+}
+
+/* The AI's own turns are tinted, so the alternation is legible at a glance
+   without bubbles — a transcript is a document, not a chat. */
+.design-v2 .agx-tr-line--ai b {
+    color: #f5bd81;
+}
+
+.design-v2 .agx-tr-line--ai em {
+    color: #fff;
+}
+
+/* Still talking. */
+.design-v2 .agx-tr-typing {
+    display: flex;
+    gap: 4px;
+    margin-left: 44px;
+}
+
+.design-v2 .agx-tr-typing i {
+    animation: agxPulse 1.4s ease-in-out infinite;
+    background: hsla(0, 0%, 100%, .55);
+    border-radius: 50%;
+    height: 5px;
+    width: 5px;
+}
+
+.design-v2 .agx-tr-typing i:nth-child(2) { animation-delay: .18s }
+.design-v2 .agx-tr-typing i:nth-child(3) { animation-delay: .36s }
+
+/* ── Current action ── */
+.design-v2 .agx-act {
+    align-items: center;
+    background: rgba(64, 150, 110, .16);
+    border: 1px solid rgba(120, 220, 170, .3);
+    border-radius: 13px;
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 11px 14px;
+}
+
+.design-v2 .agx-act > i {
+    align-items: center;
+    background: rgba(127, 224, 174, .22);
+    border-radius: 9px;
+    color: #9fe8c3;
+    display: flex;
+    flex: none;
+    font-size: 15px;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.design-v2 .agx-act-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.design-v2 .agx-act-txt b {
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.design-v2 .agx-act-txt u {
+    color: hsla(0, 0%, 100%, .55);
+    font-size: 10.5px;
+    text-decoration: none;
+}
+
+.design-v2 .agx-act-bar {
+    background: hsla(0, 0%, 100%, .16);
+    border-radius: 100px;
+    flex: none;
+    height: 4px;
+    margin-left: auto;
+    overflow: hidden;
+    width: 90px;
+}
+
+/* Creeps forward rather than sitting still — a progress bar frozen at 68%
+   is the tell that a screenshot is a screenshot. */
+.design-v2 .agx-act-bar i {
+    animation: agxActFill 5.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #7fe0ae, #c9f0dc);
+    border-radius: 100px;
+    display: block;
+    height: 100%;
+    width: 40%;
+}
+
+@keyframes agxActFill {
+    0% { width: 34% }
+    70%, to { width: 82% }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .agx-act-bar i,
+    .design-v2 .agx-tr-typing i { animation: none }
+}
+
+/* ══ Two-column call screen ═════════════════════════════════════════════════
+   The transcript alone left the right half of a 680px pane empty — lines of
+   dialogue are short, so a single column cannot fill it. The second column
+   is not filler: every real call screen puts the caller's record beside the
+   conversation, because that is the half that makes the call actionable. */
+.design-v2 .agx-cols {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) 186px;
+    margin-top: 12px;
+}
+
+.design-v2 .agx-col-main {
+    min-width: 0;
+}
+
+/* The transcript already carries its own top margin from when it followed
+   the live row directly. */
+.design-v2 .agx-cols .agx-tr {
+    margin-top: 0;
+}
+
+/* ── Context column ── */
+.design-v2 .agx-ctx {
+    background: hsla(0, 0%, 100%, .05);
+    border: 1px solid hsla(0, 0%, 100%, .12);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 12px 13px;
+}
+
+.design-v2 .agx-ctx-head {
+    color: hsla(0, 0%, 100%, .45);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.design-v2 .agx-ctx-head ~ .agx-ctx-head {
+    margin-top: 5px;
+}
+
+.design-v2 .agx-ctx-who {
+    align-items: center;
+    display: flex;
+    gap: 9px;
+}
+
+.design-v2 .agx-ctx-who > b {
+    align-items: center;
+    background: linear-gradient(135deg, #f9775e, #f5bd81);
+    border-radius: 50%;
+    color: #10222c;
+    display: flex;
+    flex: none;
+    font-size: 11px;
+    font-weight: 700;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.design-v2 .agx-ctx-who > u {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 600;
+    gap: 1px;
+    min-width: 0;
+    text-decoration: none;
+}
+
+.design-v2 .agx-ctx-who em {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: 10.5px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* Label left, value right — a record reads as data when its values line up,
+   and as prose when they do not. */
+.design-v2 .agx-ctx-row {
+    display: flex;
+    font-size: 11px;
+    justify-content: space-between;
+}
+
+.design-v2 .agx-ctx-row i {
+    color: hsla(0, 0%, 100%, .48);
+    font-style: normal;
+}
+
+.design-v2 .agx-ctx-row b {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.design-v2 .agx-ctx-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.design-v2 .agx-ctx-tags em {
+    background: hsla(0, 0%, 100%, .1);
+    border: 1px solid hsla(0, 0%, 100%, .16);
+    border-radius: 100px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    padding: 3px 8px;
+}
+
+.design-v2 .agx-ctx-tags em.is-good {
+    background: rgba(64, 150, 110, .26);
+    border-color: rgba(120, 220, 170, .35);
+    color: #c9f0dc;
+}
+
+.design-v2 .agx-ctx-next {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .08);
+    border: 1px dashed hsla(0, 0%, 100%, .22);
+    border-radius: 9px;
+    display: flex;
+    font-size: 11px;
+    font-weight: 600;
+    gap: 7px;
+    padding: 7px 9px;
+}
+
+.design-v2 .agx-ctx-next i {
+    color: #f5bd81;
+    font-size: 13px;
+}
+
+/* Under the phone's overlap there is no room for two columns. */
+@media (max-width: 1024px) {
+    .design-v2 .agx-cols {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .design-v2 .agx-ctx {
+        display: none;
+    }
+}
+
+/* ══ Phone: live caption ════════════════════════════════════════════════════
+   The phone showed a name, a waveform and two buttons — an incoming-call
+   screen with nothing happening on it. It is now the other end of the call
+   the desktop is showing: a caption card carries the sentence the AI is
+   saying (the same one as the desktop transcript's second turn), so the two
+   mocks read as one live conversation instead of two unrelated screens. */
+.design-v2 .agx-cap {
+    background: hsla(0, 0%, 100%, .1);
+    border: 1px solid hsla(0, 0%, 100%, .18);
+    border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 16px;
+    padding: 10px 13px 12px;
+    width: 100%;
+}
+
+.design-v2 .agx-cap-head {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.design-v2 .agx-cap-head b {
+    align-items: center;
+    color: #f5bd81;
+    display: inline-flex;
+    font-size: 9.5px;
+    font-weight: 700;
+    gap: 5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.design-v2 .agx-cap-head b i {
+    font-size: 11px;
+}
+
+.design-v2 .agx-cap em {
+    color: hsla(0, 0%, 100%, .92);
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* The waveform lives in the caption header now — beside the words being
+   spoken, where the audio actually is — so the compact variant drops the
+   free-floating version's top margin and height. */
+.design-v2 .agx-wave--cap {
+    height: 14px;
+    margin-top: 0;
+}
+
+.design-v2 .agx-wave--cap i {
+    width: 2.5px;
+}
+
+/* Secondary in-call controls flanking the answer/decline pair — mute and
+   message, smaller and quiet, the way a real call screen arranges them. */
+.design-v2 .agx-btns {
+    align-items: center;
+}
+
+.design-v2 .agx-btn--sub {
+    background: hsla(0, 0%, 100%, .12);
+    border: 1px solid hsla(0, 0%, 100%, .2);
+    color: hsla(0, 0%, 100%, .75);
+    font-size: 15px;
+    height: 38px;
+    width: 38px;
+}
+
+/* ══ Feature cards: one baseline across the row ═════════════════════════════
+   Card 1's title fitted on one line while the other two wrapped to two, so
+   its paragraph started 29px higher than its neighbours' and the row read as
+   misaligned. The title block now always reserves two lines, so every
+   paragraph in the row starts at the same height whatever the title does.
+
+   The bodies were also being clamped: two of the three ran past three lines
+   and were cut mid-sentence with an ellipsis. That is a copy length problem,
+   not a layout one — the text is trimmed to fit rather than the clamp being
+   widened, so all three cards say a complete thing. */
+/* 2.6em = two lines at the 1.3 line-height the shared h3 rule sets — and it
+   has to be derived that way, not written as a pixel value. The type scale in
+   39-typography-unified.css sets this heading's size and line-height with
+   `!important`, so a local `line-height` here is ignored and any px figure
+   computed from the old one silently misses. An em multiple tracks whatever
+   the scale resolves to at any width. */
+.design-v2 .section-spotlight-hero-trust .arf-title {
+    min-height: 2.6em;
+}
+
+/* The context column no longer opens with an avatar, so its first heading
+   carries the company name and wants a little more presence than the small
+   caps labels below it. */
+.design-v2 .agx-ctx > .agx-ctx-head:first-child {
+    color: hsla(0, 0%, 100%, .9);
+    font-size: 12.5px;
+    letter-spacing: -.01em;
+    margin-bottom: 3px;
+    text-transform: none;
+}
+
+/* ══ Live bar: room between the name and the number ═════════════════════════
+   The two lines sat 2px apart, which is close enough that they read as one
+   block of text rather than a name with a detail under it. A name and its
+   metadata need a visible step between them — and the row itself needs a
+   little more padding, since the avatar's 36px was setting the height and
+   leaving the text tight against the edges. */
+.design-v2 .agx-live {
+    gap: 13px;
+    padding: 14px 16px;
+}
+
+.design-v2 .agx-live-txt {
+    gap: 5px;
+}
+
+.design-v2 .agx-live-txt b {
+    line-height: 1.2;
+}
+
+.design-v2 .agx-live-txt em {
+    line-height: 1.25;
+}
+
+/* ══ Desktop interior: depth and finish pass ════════════════════════════════
+   Structure was right after the declutter; what remained flat was the
+   surfaces. Every inner panel sat at the same brightness on the same glass,
+   so the pane read as one sheet with lines on it. This pass separates the
+   layers — panels get their own ground and a top highlight, the transcript
+   gets scannable speaker chips and a scroll fade, and the live bar gets the
+   in-call controls a real screen would have. */
+
+/* Panels: a hair darker than the pane, lit along the top edge. The inset
+   highlight is what makes a translucent surface read as raised. */
+.design-v2 .agx-tr,
+.design-v2 .agx-ctx {
+    background: rgba(4, 20, 28, .25);
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .12);
+}
+
+/* Live bar carries the most important thing on screen, so it is the one
+   surface lit brighter than the pane, not darker. */
+.design-v2 .agx-live {
+    background: linear-gradient(120deg, hsla(0, 0%, 100%, .14), hsla(0, 0%, 100%, .08));
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .22);
+}
+
+/* ── Speaker chips ── */
+/* The speaker column was two bare words in different colours. As fixed-width
+   chips the turns become scannable down the left edge, the way call software
+   actually labels channels. */
+.design-v2 .agx-tr-line b {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .08);
+    border: 1px solid hsla(0, 0%, 100%, .12);
+    border-radius: 6px;
+    display: inline-flex;
+    font-size: 9px;
+    height: 18px;
+    justify-content: center;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.design-v2 .agx-tr-line--ai b {
+    background: rgba(249, 119, 94, .16);
+    border-color: rgba(249, 119, 94, .3);
+}
+
+/* Chips are boxes, not text, so they align to the line's top rather than its
+   baseline. */
+.design-v2 .agx-tr-line {
+    align-items: start;
+}
+
+.design-v2 .agx-tr-line u {
+    padding-top: 3px;
+}
+
+/* The transcript fades at its bottom edge — there is more conversation below
+   the fold, and a fade says that without a scrollbar. */
+.design-v2 .agx-tr {
+    -webkit-mask-image: linear-gradient(180deg, #000 78%, rgba(0, 0, 0, .25));
+    mask-image: linear-gradient(180deg, #000 78%, rgba(0, 0, 0, .25));
+}
+
+/* ── Live-bar controls ── */
+.design-v2 .agx-live-ctrls {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 14px;
+}
+
+.design-v2 .agx-live-ctrls i {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .09);
+    border: 1px solid hsla(0, 0%, 100%, .16);
+    border-radius: 8px;
+    color: hsla(0, 0%, 100%, .7);
+    display: flex;
+    font-size: 12px;
+    height: 26px;
+    justify-content: center;
+    width: 26px;
+}
+
+.design-v2 .agx-live-ctrls .agx-ctrl-end {
+    background: rgba(224, 92, 79, .22);
+    border-color: rgba(224, 92, 79, .4);
+    color: #ff9d92;
+    transform: rotate(135deg);
+}
+
+/* Rotating the tile rotated its rounded square too — visible at this size —
+   so the glyph alone spins back. */
+.design-v2 .agx-live-ctrls .agx-ctrl-end:before {
+    display: inline-block;
+    transform: rotate(0deg);
+}
+
+/* ── Context column dividers ── */
+/* Hairlines between the record rows: a record reads as a table, and tables
+   have rules. Skipped under the last row before the DETECTED header. */
+.design-v2 .agx-ctx-row {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .07);
+    padding-bottom: 7px;
+}
+
+.design-v2 .agx-ctx-row:has(+ .agx-ctx-head) {
+    border-bottom: none;
+}
+
+/* ── Rail active tile: readable glyph ── */
+/* The soft white tile washed the amber glyph out to near-invisible — it
+   showed as an empty square. Back to the filled brand tile with a dark
+   glyph, which survives on top of any backdrop. */
+.design-v2 .agx-rail i.is-on {
+    background: linear-gradient(135deg, rgba(249, 119, 94, .95), rgba(245, 189, 129, .9));
+    box-shadow: 0 4px 14px rgba(249, 119, 94, .35);
+    color: #fff;
+}
+
+/* ══ Booking bar: same breathing room as the live bar ═══════════════════════
+   Identical fault, identical fix: title and detail sat 2px apart and read as
+   one block, and the row's padding was set by its icon rather than its text.
+   The detail line also holds a single line now — three steps wrapped with
+   "sending" stranded on its own line, and the creeping progress bar already
+   says that much. */
+.design-v2 .agx-act {
+    gap: 13px;
+    padding: 13px 16px;
+}
+
+.design-v2 .agx-act-txt {
+    gap: 5px;
+}
+
+.design-v2 .agx-act-txt b {
+    line-height: 1.2;
+}
+
+.design-v2 .agx-act-txt u {
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ══ Caller panel: card, not spreadsheet ════════════════════════════════════
+   The label/value rows ("Account  #4471") read as a form. Rebuilt: a company
+   header with a mark, the two numbers that matter as small tiles, and the
+   account ID demoted to the header line where reference numbers belong. */
+.design-v2 .agx-co {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+/* Square mark, not a circle — circles are people here (PS on the live bar);
+   the square is how the pane distinguishes a company from a person. */
+.design-v2 .agx-co > b {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .12);
+    border: 1px solid hsla(0, 0%, 100%, .2);
+    border-radius: 9px;
+    display: flex;
+    flex: none;
+    font-size: 11px;
+    font-weight: 700;
+    height: 32px;
+    justify-content: center;
+    letter-spacing: .04em;
+    width: 32px;
+}
+
+.design-v2 .agx-co > u {
+    display: flex;
+    flex-direction: column;
+    font-size: 12.5px;
+    font-weight: 700;
+    gap: 3px;
+    line-height: 1.2;
+    min-width: 0;
+    text-decoration: none;
+}
+
+.design-v2 .agx-co em {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: 10.5px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.design-v2 .agx-ctx-tiles {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    margin: 4px 0 6px;
+}
+
+.design-v2 .agx-ctx-tiles > span {
+    background: hsla(0, 0%, 100%, .07);
+    border: 1px solid hsla(0, 0%, 100%, .12);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 9px 11px;
+}
+
+.design-v2 .agx-ctx-tiles b {
+    font-size: 14.5px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.design-v2 .agx-ctx-tiles em {
+    color: hsla(0, 0%, 100%, .52);
+    font-size: 10px;
+    font-style: normal;
+}
+
+/* ══ AI notes panel ═════════════════════════════════════════════════════════
+   Replaces the caller record entirely. The pairing is the point: the left
+   column is what was said, this one is what the AI made of it — notes
+   accumulating while the call runs, ending in the meeting it produced. */
+.design-v2 .agx-notes {
+    gap: 9px;
+}
+
+.design-v2 .agx-notes-head {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.design-v2 .agx-notes-head b {
+    align-items: center;
+    color: #f5bd81;
+    display: inline-flex;
+    font-size: 10px;
+    font-weight: 700;
+    gap: 6px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.design-v2 .agx-notes-head b i {
+    font-size: 12px;
+}
+
+/* "writing…" pulses — the notes are being taken now, not read back later. */
+.design-v2 .agx-notes-head em {
+    animation: agxPulse 1.8s ease-in-out infinite;
+    color: hsla(0, 0%, 100%, .5);
+    font-size: 10px;
+    font-style: normal;
+}
+
+.design-v2 .agx-note {
+    color: hsla(0, 0%, 100%, .85);
+    display: flex;
+    font-size: 11.5px;
+    gap: 9px;
+    line-height: 1.45;
+}
+
+.design-v2 .agx-note i {
+    background: hsla(0, 0%, 100%, .35);
+    border-radius: 50%;
+    flex: none;
+    height: 5px;
+    margin-top: 5px;
+    width: 5px;
+}
+
+/* The newest note is the bright one — the list reads as growing downward. */
+.design-v2 .agx-note--new {
+    color: #fff;
+    font-weight: 600;
+}
+
+.design-v2 .agx-note--new i {
+    background: #7fe0ae;
+}
+
+/* The outcome, pinned at the foot: the call turned into a meeting. */
+.design-v2 .agx-next {
+    align-items: center;
+    background: rgba(64, 150, 110, .16);
+    border: 1px solid rgba(120, 220, 170, .3);
+    border-radius: 11px;
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding: 10px 12px;
+}
+
+.design-v2 .agx-next > i {
+    align-items: center;
+    background: rgba(127, 224, 174, .2);
+    border-radius: 8px;
+    color: #9fe8c3;
+    display: flex;
+    flex: none;
+    font-size: 13px;
+    height: 28px;
+    justify-content: center;
+    width: 28px;
+}
+
+.design-v2 .agx-next u {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-decoration: none;
+}
+
+.design-v2 .agx-next b {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.design-v2 .agx-next em {
+    color: hsla(0, 0%, 100%, .55);
+    font-size: 10px;
+    font-style: normal;
+}
+
+/* ══ Phones: stacked, nothing cropped or covered ════════════════════════════
+   The ≤900 layout positions both panes absolutely inside a fixed 500px card.
+   On a phone that cut off the handset's caption and call buttons, and any
+   overlap left the desktop pane half hidden — its nav rail sliced at the
+   card edge and its contents running under the handset.
+
+   Here the two panes stop overlapping and stack in normal flow, each one
+   whole: the desktop pane shrinks to a compact status window (title bar and
+   the live-call row — the part that says "AI is handling this call"), and the
+   handset sits beneath it, centred, with the card growing to fit both. The
+   transcript, notes and nav rail are dropped at this size rather than shown
+   in slices. */
+@media (max-width: 640px) {
+    .design-v2 .section-spotlight-hero-trust .spotlight-hero-trust-card {
+        height: auto;
+        min-height: 0;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 18px 14px 26px;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-desk {
+        animation: none;
+        border-radius: 16px;
+        height: auto;
+        left: auto;
+        max-width: 420px;
+        min-height: 0;
+        /* The handset comes first in the markup; the status window reads
+           better above it, as the screen the call is being watched from. */
+        order: -1;
+        padding: 12px;
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-search,
+    .design-v2 .section-spotlight-hero-trust .agx-rail,
+    .design-v2 .section-spotlight-hero-trust .agx-cols,
+    .design-v2 .section-spotlight-hero-trust .agx-live-ctrls,
+    .design-v2 .section-spotlight-hero-trust .agx-wave--desk {
+        display: none;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-body {
+        margin-top: 10px;
+    }
+
+    /* Live row as a tidy grid: avatar | name + number | timer, with the
+       "AI handling" chip on its own line beneath so nothing truncates. */
+    .design-v2 .section-spotlight-hero-trust .agx-live {
+        display: grid;
+        gap: 4px 10px;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        margin-top: 0;
+        padding: 11px 12px;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-live-av {
+        grid-row: span 2;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-live-txt {
+        min-width: 0;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-live-txt b,
+    .design-v2 .section-spotlight-hero-trust .agx-live-txt em {
+        overflow-wrap: anywhere;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-live .agx-chip {
+        grid-column: 2 / -1;
+        justify-self: start;
+    }
+
+    .design-v2 .section-spotlight-hero-trust .agx-phone {
+        box-shadow: 0 30px 60px -20px rgba(0, 8, 20, .6);
+        left: auto;
+        margin: 0;
+        position: relative;
+        right: auto;
+        top: auto;
+        z-index: 3;
+    }
+}
+
+/* Small phones: the 250px handset is drawn a touch smaller so it keeps a
+   clear margin inside the card. `scale` rather than `transform` leaves the
+   agxFloat bob (which animates transform) intact; the negative margin
+   returns the layout space the scaled-down box no longer uses. */
+@media (max-width: 360px) {
+    .design-v2 .section-spotlight-hero-trust .agx-phone {
+        margin-bottom: -44px;
+        scale: .9;
+        transform-origin: top center;
+    }
+}
+
+/* ══ Composition, fitted (tablet and desktop) ═══════════════════════════════
+   The overlapping, bottom-cropped layout looked different at every width and
+   zoom: at 100% the handset covered the desktop's notes and both panes were
+   cut off; at 80% the crop moved and the gaps changed. Now the two panes sit
+   side by side at one fixed design size, the stage is scaled to the card's
+   width (hooks/useAgxFit.js sets --agx-scale and the drawn --agx-h) and the
+   card wraps it with an even margin, so the composition is identical — and
+   whole — at 80%, 90%, 100% or any viewport above a phone. */
+@media (min-width: 641px) {
+    .design-v2 .section-spotlight-hero-trust .spotlight-hero-trust-card {
+        height: calc(var(--agx-h, 470px) + var(--agx-pad-top, 56px) + var(--agx-pad-bottom, 56px));
+        min-height: 0
+    }
+    .design-v2 .section-spotlight-hero-trust .agx {
+        --agx-inset: 0px;
+        align-items: center;
+        display: flex;
+        gap: 44px;
+        height: auto;
+        left: 50%;
+        min-height: 0;
+        padding: 0;
+        position: absolute;
+        top: var(--agx-pad-top, 56px);
+        transform: translateX(-50%) scale(var(--agx-scale, 1));
+        transform-origin: top center;
+        width: max-content
+    }
+    .design-v2 .section-spotlight-hero-trust .agx-desk,
+    .design-v2 .section-spotlight-hero-trust .agx-phone {
+        left: auto;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none
+    }
+    .design-v2 .section-spotlight-hero-trust .agx-desk { flex: none; width: 720px }
+    .design-v2 .section-spotlight-hero-trust .agx-phone { flex: none; order: 2 }
+}
+/* Tablets stack the two panes (the ≤900px rule above). Keep the desktop pane
+   at its full design width there too, so its live-call row doesn't squeeze —
+   the fit hook scales the stacked stage to the card instead. */
+@media (min-width: 641px) and (max-width: 900px) {
+    .design-v2 .section-spotlight-hero-trust .agx { flex-direction: column; gap: 28px }
+    .design-v2 .section-spotlight-hero-trust .agx-desk { max-width: none; width: 720px }
+}
+
+/* ══ Phones: one composed device shot ════════════════════════════════════════
+   Stacked as two separate boxes of different widths (a 343px status window
+   over a 250px handset) the pair read as leftovers. Now the handset is the
+   centrepiece and the "AI Receptionist · Live" window floats over its top
+   edge as a notification card, the two sharing one centre line, with an even
+   margin inside the card on every side. */
+@media (max-width: 640px) {
+    .design-v2 .section-spotlight-hero-trust .agx {
+        gap: 0;
+        padding: 26px 16px 30px
+    }
+    .design-v2 .section-spotlight-hero-trust .agx-desk {
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        backdrop-filter: blur(18px) saturate(159%);
+        background: rgba(18, 52, 58, .72);
+        border-color: hsla(0, 0%, 100%, .3);
+        box-shadow: 0 22px 44px -18px rgba(0, 8, 20, .7), inset 0 1px 0 hsla(0, 0%, 100%, .28);
+        margin-bottom: -34px;
+        max-width: none;
+        padding: 10px 12px 12px;
+        position: relative;
+        width: min(296px, 100%);
+        z-index: 4
+    }
+    .design-v2 .section-spotlight-hero-trust .agx-bar { gap: 6px; padding-bottom: 9px }
+    .design-v2 .section-spotlight-hero-trust .agx-bar i { height: 8px; width: 8px }
+    .design-v2 .section-spotlight-hero-trust .agx-body { margin-top: 9px }
+    .design-v2 .section-spotlight-hero-trust .agx-live { padding: 9px 10px }
+    .design-v2 .section-spotlight-hero-trust .agx-phone {
+        padding-top: 52px;
+        width: min(264px, 92%)
+    }
+}
+@media (max-width: 360px) {
+    .design-v2 .section-spotlight-hero-trust .agx-phone { margin-bottom: 0; scale: 1; width: 100% }
+}
+
+/* ══ Feature cards in one row (phones only) ══════════════════════════════════
+   All three side by side and visible at once — no sliding. At ~110px a
+   column the cards go compact: tighter padding, a smaller icon, the step
+   number tucked into the corner and smaller type (the shared type scale sets
+   these with !important, so they are overridden the same way). */
+@media (max-width: 720px) {
+    .design-v2 .section-spotlight-hero-trust .arf-grid {
+        gap: 8px;
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+    .design-v2 .section-spotlight-hero-trust .arf-card {
+        border-radius: 14px;
+        min-width: 0;
+        padding: 12px 10px 14px
+    }
+    .design-v2 .section-spotlight-hero-trust .arf-num { font-size: 10px; right: 9px; top: 9px }
+    .design-v2 .section-spotlight-hero-trust .arf-icon { border-radius: 9px; font-size: 15px; height: 30px; margin-bottom: 10px; width: 30px }
+    body.design-v2 .section-spotlight-hero-trust .arf-card .arf-title {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+        margin: 0 0 6px;
+        min-height: 0
+    }
+    body.design-v2 .section-spotlight-hero-trust .arf-card .arf-desc {
+        display: block;
+        font-size: 11.5px !important;
+        -webkit-line-clamp: unset;
+        line-height: 1.45 !important;
+        overflow: visible
+    }
+}
+
+/* Phones: the device shot, shorter. Same content, tighter rhythm — less air
+   between the handset's rows, a smaller avatar and call buttons, and a
+   slimmer card margin — so the whole card is ~70px shorter. */
+@media (max-width: 640px) {
+    .design-v2 .section-spotlight-hero-trust .agx { padding: 20px 16px 22px }
+    .design-v2 .section-spotlight-hero-trust .agx-desk { margin-bottom: -30px }
+    .design-v2 .section-spotlight-hero-trust .agx-phone { padding: 44px 16px 18px }
+    .design-v2 .section-spotlight-hero-trust .agx-pill { margin-top: 10px }
+    .design-v2 .section-spotlight-hero-trust .agx-ph-label { margin-top: 12px }
+    .design-v2 .section-spotlight-hero-trust .agx-avatar { height: 54px; margin-top: 10px; width: 54px }
+    .design-v2 .section-spotlight-hero-trust .agx-name { margin-top: 9px }
+    .design-v2 .section-spotlight-hero-trust .agx-cap { margin-top: 12px; padding-bottom: 12px; padding-top: 12px }
+    .design-v2 .section-spotlight-hero-trust .agx-btns { margin-top: 14px }
+    .design-v2 .section-spotlight-hero-trust .agx-btn { height: 44px; width: 44px }
+}
+
+/* Desktop: the handset rests on the dashboard's right edge instead of beside
+   it, so the two read as one composed product shot. It overlaps by 72px, sits
+   a little lower than the window (the bottom edges stagger) and carries a
+   deeper shadow so it clearly reads as the front layer. */
+@media (min-width: 901px) {
+    .design-v2 .section-spotlight-hero-trust .agx { align-items: flex-start; gap: 0 }
+    .design-v2 .section-spotlight-hero-trust .agx-phone {
+        box-shadow: 0 40px 80px -24px rgba(0, 8, 20, .75), 0 0 0 1px rgba(255, 255, 255, .08), inset 0 1px 0 hsla(0, 0%, 100%, .32);
+        margin-left: -72px;
+        margin-top: 22px;
+        z-index: 3
+    }
+    .design-v2 .section-spotlight-hero-trust .agx-desk { z-index: 1 }
+}
+@media (min-width: 901px) {
+    /* the window's content stops short of the strip the handset covers, so
+       nothing in AI Notes is hidden behind it */
+    .design-v2 .section-spotlight-hero-trust .agx-desk { padding-right: 92px }
+}
+
+/* The handset mock holds still: no floating bob and no pulsing ring around
+   the caller's avatar (all screen sizes). */
+.design-v2 .section-spotlight-hero-trust .agx-phone { animation: none }
+.design-v2 .section-spotlight-hero-trust .agx-avatar-ring { animation: none; display: none }
+
+/* The dashboard pane holds still too — no floating bob (all screen sizes). */
+.design-v2 .section-spotlight-hero-trust .agx-desk { animation: none; transform: none }
+

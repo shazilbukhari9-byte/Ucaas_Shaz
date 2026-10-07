@@ -1,0 +1,22 @@
+.design-v2 .section-hero--stacked .hero-container {
+            padding: 160px 60px 80px
+        }
+
+        .design-v2 .section-hero .hero-eyebrow {
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .design-v2 .section-hero--stacked .hero-container {
+                padding: 100px 20px 40px;
+            }
+        }
+
+        .design-v2 .section-hero .trust-badge-light:first-child {
+            filter: brightness(0) invert(1);
+            margin-bottom: 1px;
+        }
+
+        .design-v2 .section-hero .trust-badge {
+            height: 32px;
+        }

@@ -1,0 +1,17 @@
+{
+  "name": "nextiva-home",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "generate": "node tools/generate.mjs"
+  },
+  "dependencies": {
+    "locomotive-scroll": "^5.0.1",
+    "next": "^16.3.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  }
+}

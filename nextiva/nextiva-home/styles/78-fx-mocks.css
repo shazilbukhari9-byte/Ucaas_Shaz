@@ -1,0 +1,404 @@
+/* Feature explorer with product shots (FeatureExplorer + FxMocks.jsx,
+   Hosted Phone System). The detail panel splits into a stage that reads like
+   a product screenshot — a soft sage-to-peach wash with the admin console
+   running off the right and bottom edges, plus one crisp overlay card — and
+   a compact copy block below. */
+
+.lp-fx-detail.lp-fx-detail--mock {
+    background: #fff;
+    justify-content: flex-start;
+    padding: 0
+}
+.lp-fx-detail--mock .lp-fx-stage {
+    background:
+        radial-gradient(70% 80% at 0% 0%, rgba(255, 255, 255, .7), transparent 60%),
+        radial-gradient(60% 70% at 100% 100%, rgba(249, 115, 22, .28), transparent 70%),
+        linear-gradient(165deg, #dfe6e1 0%, #ece6dc 45%, #f5d9bf 100%);
+    border-bottom: 1px solid rgba(16, 2, 44, .06);
+    flex: 1;
+    min-height: 330px;
+    overflow: hidden;
+    position: relative
+}
+.lp-fx-detail--mock .lp-fx-count {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, .6);
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: 999px;
+    color: #6b6862;
+    padding: 4px 10px;
+    right: 16px;
+    top: 9px;
+    z-index: 3
+}
+
+.lp-fx-detail--mock .lp-fx-copy { padding: 22px 30px 24px }
+body.design-v2 .lp .lp-fx-detail--mock .lp-fx-title {
+    align-items: center;
+    display: flex;
+    font-size: clamp(21px, 1.9vw, 25px) !important;
+    gap: 12px;
+    margin: 0 0 6px
+}
+.lp-fx .lp-fx-detail--mock .lp-fx-ic { border-radius: 10px; flex: none; font-size: 17px; height: 36px; width: 36px }
+body.design-v2 .lp .lp-fx-detail--mock .lp-fx-text { font-size: 14.5px !important; line-height: 1.55 !important; max-width: none }
+.lp-fx-ticks { display: flex; flex-wrap: wrap; gap: 8px 18px; list-style: none; margin: 14px 0 0; padding: 0 }
+.lp-fx-ticks li { align-items: center; color: #2b2a28; display: inline-flex; font-size: 13px; font-weight: 500; gap: 7px }
+.lp-fx-ticks i {
+    align-items: center;
+    background: #1a1a1a;
+    border-radius: 50%;
+    color: #fdba74;
+    display: inline-flex;
+    flex: none;
+    font-size: 11px;
+    height: 18px;
+    justify-content: center;
+    width: 18px
+}
+.lp-fx-panel .lp-fx-ticks li { animation: lp-fx-in .4s cubic-bezier(.2, .8, .2, 1) both }
+.lp-fx-panel .lp-fx-ticks li:nth-child(2) { animation-delay: .08s }
+.lp-fx-panel .lp-fx-ticks li:nth-child(3) { animation-delay: .16s }
+
+/* ── Console window ───────────────────────────────────────────────────── */
+.pxm {
+    color: #18181b;
+    font-size: 11.5px;
+    inset: 40px -1px auto 40px;
+    line-height: 1.3;
+    position: absolute;
+    z-index: 1
+}
+.pxm-app {
+    animation: pxm-in .6s cubic-bezier(.2, .8, .2, 1) both;
+    background: #fff;
+    border: 1px solid rgba(24, 24, 27, .08);
+    border-radius: 12px 0 0 0;
+    border-right: 0;
+    box-shadow: 0 40px 80px -40px rgba(68, 40, 20, .45), 0 2px 6px rgba(24, 24, 27, .04);
+    display: flex;
+    min-height: 330px;
+    overflow: hidden
+}
+
+/* Sidebar */
+.pxm-side {
+    align-items: center;
+    background: #fafaf9;
+    border-right: 1px solid #f0efed;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 0;
+    width: 46px
+}
+.pxm-logo {
+    align-items: center;
+    background: #18181b;
+    border-radius: 8px;
+    color: #fdba74;
+    display: inline-flex;
+    font-size: 13px;
+    height: 26px;
+    justify-content: center;
+    margin-bottom: 8px;
+    width: 26px
+}
+.pxm-nav { align-items: center; border-radius: 7px; color: #a8a29e; display: inline-flex; font-size: 13px; height: 26px; justify-content: center; width: 26px }
+.pxm-nav.on { background: #fff; box-shadow: 0 1px 2px rgba(24, 24, 27, .08), 0 0 0 1px rgba(24, 24, 27, .06); color: #ea580c }
+
+/* Top bar + page head */
+.pxm-main { display: flex; flex: 1; flex-direction: column; min-width: 0 }
+.pxm-top { align-items: center; border-bottom: 1px solid #f0efed; display: flex; gap: 10px; height: 38px; padding: 0 16px 0 14px }
+.pxm-crumb { align-items: center; color: #a8a29e; display: inline-flex; flex: 1; font-size: 11px; gap: 2px; min-width: 0; white-space: nowrap }
+.pxm-crumb b { color: #18181b; font-weight: 600 }
+.pxm-find { align-items: center; background: #fafaf9; border: 1px solid #f0efed; border-radius: 7px; color: #a8a29e; display: inline-flex; font-size: 10.5px; gap: 5px; height: 24px; padding: 0 6px 0 8px; width: 132px }
+.pxm-find kbd { background: #fff; border: 1px solid #ebe9e6; border-radius: 4px; font: inherit; font-size: 9px; margin-left: auto; padding: 0 4px }
+.pxm-me { align-items: center; background: linear-gradient(135deg, #fdba74, #ea580c); border-radius: 50%; color: #fff; display: inline-flex; font-size: 9px; font-weight: 700; height: 24px; justify-content: center; width: 24px }
+.pxm-head { align-items: center; display: flex; gap: 10px; justify-content: space-between; padding: 12px 16px 10px 14px }
+.pxm-head > b { font-size: 14px; letter-spacing: -.01em }
+.pxm-content { display: flex; flex-direction: column; gap: 10px; padding: 0 16px 14px 14px }
+
+/* Controls */
+.pxm-btn { align-items: center; background: #18181b; border-radius: 7px; color: #fff; display: inline-flex; font-size: 10.5px; font-weight: 600; gap: 4px; height: 26px; padding: 0 9px; white-space: nowrap }
+.pxm-btn i { font-size: 12px }
+.pxm-btn--ghost { background: #fff; box-shadow: inset 0 0 0 1px #e7e5e4; color: #18181b }
+.pxm-actions { display: inline-flex; gap: 6px }
+.pxm-select { align-items: center; border: 1px solid #e7e5e4; border-radius: 7px; display: inline-flex; font-size: 10.5px; font-weight: 600; gap: 4px; height: 26px; padding: 0 6px 0 9px }
+.pxm-tabs { background: #f5f5f4; border-radius: 7px; display: inline-flex; gap: 2px; padding: 2px }
+.pxm-tabs span { border-radius: 5px; color: #78716c; font-size: 10.5px; font-weight: 600; padding: 4px 9px }
+.pxm-tabs span.on { background: #fff; box-shadow: 0 1px 2px rgba(24, 24, 27, .1); color: #18181b }
+
+/* Table */
+.pxm-table { border: 1px solid #f0efed; border-radius: 9px; overflow: hidden }
+.pxm-tr { align-items: center; border-top: 1px solid #f5f5f4; display: grid; gap: 10px; min-height: 40px; padding: 6px 12px }
+.pxm-tr:first-child { border-top: 0 }
+.pxm-th { background: #fafaf9; color: #a8a29e; font-size: 9.5px; font-weight: 600; letter-spacing: .06em; min-height: 28px; text-transform: uppercase }
+.pxm-tr.is-hot { background: linear-gradient(90deg, #fff7ed, #fff) }
+.pxm-cols-ext { grid-template-columns: minmax(0, 1.8fr) 48px 66px minmax(0, 1.1fr) }
+.pxm-cols-ring { grid-template-columns: 22px minmax(0, 1fr) 96px }
+.pxm-cols-park { grid-template-columns: 44px minmax(0, 1fr) auto }
+.pxm-cols-dir { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 56px }
+.pxm-cols-zone { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 82px }
+.pxm-cols-site { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.3fr) 44px 56px }
+.pxm-cols-health { grid-template-columns: minmax(0, 1fr) auto }
+
+.pxm-who { align-items: center; display: flex; gap: 8px; min-width: 0 }
+.pxm-who > span:last-child, .pxm-who-t { display: flex; flex-direction: column; min-width: 0 }
+.pxm b { font-weight: 600 }
+.pxm-who b, .pxm-who-t b { font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.pxm em { color: #a8a29e; font-size: 10px; font-style: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.pxm-mono { font-size: 11px; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap }
+.pxm-dim { color: #a8a29e; font-size: 10.5px }
+.pxm-devs { color: #a8a29e; display: inline-flex; font-size: 12px; gap: 5px }
+
+.pxm-av { align-items: center; border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 9px; font-weight: 700; height: 24px; justify-content: center; width: 24px }
+.pxm-av--a { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.pxm-av--b { background: linear-gradient(135deg, #57534e, #1c1917) }
+.pxm-av--c { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.pxm-av--d { background: linear-gradient(135deg, #a8a29e, #57534e) }
+
+.pxm-pill { align-items: center; border-radius: 999px; display: inline-flex; font-size: 10px; font-weight: 600; gap: 5px; padding: 3px 8px; white-space: nowrap }
+.pxm-pill i { border-radius: 50%; height: 6px; width: 6px }
+.pxm-pill--ok { background: #f0fdf4; color: #15803d }
+.pxm-pill--ok i { background: #22c55e }
+.pxm-pill--busy { background: #fff7ed; color: #c2410c }
+.pxm-pill--busy i { background: #f97316 }
+.pxm-pill--dnd { background: #fef2f2; color: #b91c1c }
+.pxm-pill--dnd i { background: #ef4444 }
+.pxm-pill--idle { background: #f5f5f4; color: #78716c }
+.pxm-pill--idle i { background: #d6d3d1 }
+.pxm-pill--ring { background: #18181b; color: #fff }
+.pxm-pill--ring i { animation: pxm-ping 1.4s ease-out infinite; background: #fb923c }
+
+.pxm-rule { align-items: center; background: #fafaf9; border: 1px dashed #e7e5e4; border-radius: 8px; color: #57534e; display: flex; font-size: 10.5px; gap: 6px; padding: 8px 10px }
+.pxm-rule i { color: #ea580c; font-size: 13px }
+
+/* IVR canvas */
+.pxm-canvas {
+    background: #fafaf9 radial-gradient(#e7e5e4 1px, transparent 1px) 0 0 / 14px 14px;
+    border: 1px solid #f0efed;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 14px 18px
+}
+.pxm-node { align-items: center; background: #fff; border: 1px solid #e7e5e4; border-radius: 8px; box-shadow: 0 1px 2px rgba(24, 24, 27, .05); display: flex; flex-direction: column; gap: 2px; padding: 8px 4px; text-align: center }
+.pxm-node--root { align-self: center; flex-direction: row; gap: 8px; padding: 7px 12px 7px 7px; text-align: left }
+.pxm-node--root > i { align-items: center; background: #18181b; border-radius: 6px; color: #fdba74; display: inline-flex; font-size: 12px; height: 24px; justify-content: center; width: 24px }
+.pxm-node--root span { display: flex; flex-direction: column }
+.pxm-node kbd { align-items: center; background: #f5f5f4; border-radius: 5px; display: inline-flex; font: inherit; font-size: 10px; font-weight: 700; height: 20px; justify-content: center; margin-bottom: 2px; width: 20px }
+.pxm-node b { font-size: 11px }
+.pxm-node.on { border-color: #18181b; box-shadow: 0 8px 16px -10px rgba(24, 24, 27, .5) }
+.pxm-node.on kbd { background: #ea580c; color: #fff }
+.pxm-wires { display: block; height: 22px; width: 100% }
+.pxm-wires path { fill: none; stroke: #d6d3d1; stroke-width: 1.2; vector-effect: non-scaling-stroke }
+.pxm-branches { display: grid; gap: 8px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+
+/* Schedule */
+.pxm-sched { border: 1px solid #f0efed; border-radius: 9px; display: grid; gap: 6px; padding: 10px 12px 12px }
+.pxm-sched-ax, .pxm-sched-row { align-items: center; display: grid; gap: 10px; grid-template-columns: 28px 1fr }
+.pxm-sched-ax { color: #a8a29e; font-size: 9px; font-weight: 600; grid-template-columns: 28px repeat(5, 1fr) }
+.pxm-sched-row > span { color: #57534e; font-size: 10.5px; font-weight: 600 }
+.pxm-sched-track { background: #fafaf9; border-radius: 5px; height: 18px; position: relative }
+.pxm-sched-track i { align-items: center; background: #18181b; border-radius: 5px; color: #fff; display: flex; font-size: 9.5px; font-style: normal; font-weight: 600; inset: 0 auto 0 0; padding-left: 6px; position: absolute }
+.pxm-sched-row:nth-child(7) .pxm-sched-track i { background: #ea580c }
+.pxm-sched-track em { left: 6px; position: absolute; top: 3px }
+
+/* Call card */
+.pxm-callcard { border: 1px solid #f0efed; border-radius: 10px; padding: 10px 12px 12px }
+.pxm-callcard-top { align-items: center; display: flex; gap: 10px; margin-bottom: 10px }
+.pxm-callcard-top .pxm-av { font-size: 11px; height: 32px; width: 32px }
+.pxm-callcard-top .pxm-who-t { flex: 1 }
+.pxm-callcard-top .pxm-who-t b { font-size: 12.5px }
+.pxm-rec { align-items: center; color: #b91c1c; display: inline-flex; font-size: 11px; font-variant-numeric: tabular-nums; font-weight: 700; gap: 5px }
+.pxm-rec i { animation: pxm-blink 1.2s ease-in-out infinite; background: #ef4444; border-radius: 50%; height: 7px; width: 7px }
+.pxm-acts { display: grid; gap: 6px; grid-template-columns: repeat(5, 1fr) }
+.pxm-act { align-items: center; background: #fafaf9; border: 1px solid #f0efed; border-radius: 8px; color: #44403c; display: flex; flex-direction: column; font-size: 10px; font-weight: 600; gap: 3px; padding: 7px 2px }
+.pxm-act i { font-size: 14px }
+.pxm-act.on { background: #18181b; border-color: #18181b; color: #fff }
+.pxm-act.on i { color: #fdba74 }
+.pxm-slot { background: #18181b; border-radius: 6px; color: #fdba74; font-size: 11px; font-weight: 700; padding: 4px 0; text-align: center }
+
+/* Directory */
+.pxm-pres { flex: none; position: relative }
+.pxm-pres::after { border: 2px solid #fff; border-radius: 50%; bottom: -1px; content: ""; height: 9px; position: absolute; right: -2px; width: 9px }
+.pxm-pres--ok::after { background: #22c55e }
+.pxm-pres--busy::after { background: #f97316 }
+.pxm-pres--dnd::after { background: #ef4444 }
+.pxm-pres--away::after { background: #eab308 }
+.pxm-state { font-size: 10.5px; font-weight: 600 }
+.pxm-state--ok { color: #15803d }
+.pxm-state--busy { color: #c2410c }
+.pxm-state--dnd { color: #b91c1c }
+.pxm-state--away { color: #a16207 }
+.pxm-iconbtns { color: #78716c; display: inline-flex; font-size: 12px; gap: 6px; justify-content: flex-end }
+.pxm-iconbtns i { align-items: center; background: #f5f5f4; border-radius: 6px; display: inline-flex; height: 22px; justify-content: center; width: 22px }
+
+/* Paging / health / sites */
+.pxm-tile { align-items: center; background: #f5f5f4; border-radius: 7px; color: #44403c; display: inline-flex; flex: none; font-size: 13px; height: 26px; justify-content: center; width: 26px }
+.pxm-tr.is-hot .pxm-tile { background: #18181b; color: #fdba74 }
+.pxm-wave { align-items: center; display: inline-flex; gap: 2px; height: 16px }
+.pxm-wave i { animation: pxm-wave 1s ease-in-out infinite; background: #ea580c; border-radius: 2px; height: 100%; width: 3px }
+.pxm-wave i:nth-child(2) { animation-delay: -.2s }
+.pxm-wave i:nth-child(3) { animation-delay: -.4s }
+.pxm-wave i:nth-child(4) { animation-delay: -.6s }
+.pxm-wave i:nth-child(5) { animation-delay: -.8s }
+.pxm-code { align-items: center; background: #f5f5f4; border-radius: 6px; display: inline-flex; flex: none; font-size: 9.5px; font-weight: 700; height: 24px; justify-content: center; width: 26px }
+.pxm-cols-site:nth-child(2) .pxm-code { background: #18181b; color: #fdba74 }
+
+/* Floating overlay card, lower left over the window's edge. */
+.pxm-float {
+    align-items: center;
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    animation: pxm-float-in .7s .2s cubic-bezier(.2, .9, .3, 1.15) both;
+    background: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(255, 255, 255, .9);
+    border-radius: 12px;
+    box-shadow: 0 24px 44px -20px rgba(24, 24, 27, .45), 0 0 0 1px rgba(24, 24, 27, .05);
+    display: flex;
+    gap: 10px;
+    left: -22px;
+    padding: 10px 14px 10px 10px;
+    position: absolute;
+    top: 222px;
+    z-index: 2
+}
+.pxm-float-ic { align-items: center; background: #18181b; border-radius: 9px; color: #fdba74; display: inline-flex; flex: none; font-size: 15px; height: 32px; justify-content: center; position: relative; width: 32px }
+.pxm-float-ic--red { background: #fef2f2; color: #dc2626 }
+.pxm-float-ic.is-ring::after { animation: pxm-ring 1.6s ease-out infinite; border: 2px solid #fb923c; border-radius: 12px; content: ""; inset: -4px; position: absolute }
+.pxm-float-t { display: flex; flex-direction: column }
+.pxm-float-t b { font-size: 12px; white-space: nowrap }
+.pxm-float--dial { align-items: flex-start; flex-direction: column; gap: 2px; padding: 8px 14px 10px; top: 236px }
+.pxm-float-k { color: #a8a29e; font-size: 9.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase }
+.pxm .pxm-big { font-family: var(--font-display, Georgia, serif); font-size: 26px; font-weight: 500; letter-spacing: .06em; line-height: 1.1 }
+.pxm-float-s { align-items: center; color: #44403c; display: inline-flex; font-size: 10.5px; font-weight: 600; gap: 6px }
+.pxm-float-s .pxm-av { font-size: 7.5px; height: 18px; width: 18px }
+.pxm-cal { background: #fff; border: 1px solid #fed7aa; border-radius: 8px; display: inline-flex; flex-direction: column; line-height: 1; overflow: hidden; text-align: center; width: 34px }
+.pxm .pxm-cal em { background: #ea580c; color: #fff; font-size: 8px; font-weight: 700; padding: 2px 0; text-transform: uppercase }
+.pxm-cal b { font-size: 14px; padding: 3px 0 4px }
+.pxm-flip { align-items: center; color: #18181b; display: inline-flex; font-size: 16px; gap: 5px }
+.pxm-flip b { background: repeating-linear-gradient(90deg, #ea580c 0 4px, transparent 4px 7px); height: 2px; width: 20px }
+
+@keyframes pxm-in { from { opacity: 0; transform: translate(16px, 16px) } to { opacity: 1; transform: none } }
+@keyframes pxm-float-in { from { opacity: 0; transform: translateY(12px) scale(.96) } to { opacity: 1; transform: none } }
+@keyframes pxm-ping { 0% { box-shadow: 0 0 0 0 rgba(251, 146, 60, .6) } 100% { box-shadow: 0 0 0 5px rgba(251, 146, 60, 0) } }
+@keyframes pxm-ring { 0% { opacity: .9; transform: scale(.9) } 100% { opacity: 0; transform: scale(1.35) } }
+@keyframes pxm-blink { 50% { opacity: .3 } }
+@keyframes pxm-wave { 0%, 100% { transform: scaleY(.3) } 50% { transform: scaleY(1) } }
+
+/* Phones: the product shot scales down as a whole. */
+@media (max-width: 760px) {
+    .lp-fx-detail.lp-fx-detail--mock { min-height: 0 }
+    .lp-fx-detail--mock .lp-fx-stage { min-height: 214px }
+    .pxm { inset: 34px -1px auto 30px; zoom: .62 }
+    .pxm-float { left: -18px }
+    .lp-fx-detail--mock .lp-fx-copy { padding: 14px 16px 16px }
+    body.design-v2 .lp .lp-fx-detail--mock .lp-fx-title { font-size: 17px !important; gap: 9px }
+    .lp-fx .lp-fx-detail--mock .lp-fx-ic { font-size: 14px; height: 28px; width: 28px }
+    body.design-v2 .lp .lp-fx-detail--mock .lp-fx-text { font-size: 13px !important }
+    .lp-fx-ticks { gap: 6px 12px; margin-top: 10px }
+    .lp-fx-ticks li { font-size: 12px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .pxm-app, .pxm-float, .pxm-pill--ring i, .pxm-float-ic.is-ring::after, .pxm-rec i, .pxm-wave i,
+    .lp-fx-panel .lp-fx-ticks li { animation: none }
+}
+
+/* ── Nature backdrop + transparent glass ───────────────────────────────────
+   Each feature's stage carries its own nature photo (FX_SCENES, inline
+   background-image); a light wash keeps it calm. The console window turns
+   to glass: mostly see-through with a strong blur, every inner surface a
+   lighter frosted layer with white hairlines. */
+.lp-fx-detail--mock .lp-fx-stage {
+    background-color: #e9e4dc;
+    background-position: center;
+    background-size: cover
+}
+.lp-fx-detail--mock .lp-fx-stage::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, 0) 45%, rgba(24, 16, 8, .12));
+    content: "";
+    display: block;
+    inset: 0;
+    pointer-events: none;
+    position: absolute
+}
+.pxm-app {
+    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    backdrop-filter: blur(22px) saturate(165%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .62), rgba(255, 255, 255, .42));
+    border-color: rgba(255, 255, 255, .7);
+    box-shadow: 0 40px 80px -36px rgba(15, 23, 42, .55), inset 0 1px 0 rgba(255, 255, 255, .85)
+}
+.pxm-side { background: rgba(255, 255, 255, .3); border-right-color: rgba(255, 255, 255, .55) }
+.pxm-nav { color: #57534e }
+.pxm-nav.on { background: rgba(255, 255, 255, .85) }
+.pxm-top { border-bottom-color: rgba(255, 255, 255, .55) }
+.pxm-crumb { color: #57534e }
+.pxm-find { background: rgba(255, 255, 255, .45); border-color: rgba(255, 255, 255, .7); color: #57534e }
+.pxm-find kbd { background: rgba(255, 255, 255, .7); border-color: rgba(255, 255, 255, .8) }
+.pxm-select, .pxm-btn--ghost { background: rgba(255, 255, 255, .55); border-color: rgba(255, 255, 255, .7); box-shadow: none }
+.pxm-tabs { background: rgba(255, 255, 255, .35) }
+
+.pxm-table { background: rgba(255, 255, 255, .5); border-color: rgba(255, 255, 255, .7) }
+.pxm-tr { border-top-color: rgba(255, 255, 255, .65) }
+.pxm-th { background: rgba(255, 255, 255, .35); color: #78716c }
+.pxm-tr.is-hot { background: linear-gradient(90deg, rgba(255, 237, 213, .8), rgba(255, 255, 255, .3)) }
+.pxm em, .pxm-dim { color: #6b6560 }
+.pxm-devs, .pxm-iconbtns { color: #57534e }
+.pxm-iconbtns i, .pxm-tile, .pxm-code, .pxm-node kbd { background: rgba(255, 255, 255, .6) }
+.pxm-pill--ok { background: rgba(240, 253, 244, .85) }
+.pxm-pill--busy { background: rgba(255, 247, 237, .85) }
+.pxm-pill--dnd { background: rgba(254, 242, 242, .85) }
+.pxm-pill--idle { background: rgba(245, 245, 244, .7) }
+.pxm-rule { background: rgba(255, 255, 255, .45); border-color: rgba(255, 255, 255, .8) }
+
+.pxm-canvas { background: rgba(255, 255, 255, .35) radial-gradient(rgba(87, 83, 78, .2) 1px, transparent 1px) 0 0 / 14px 14px; border-color: rgba(255, 255, 255, .7) }
+.pxm-node { background: rgba(255, 255, 255, .78); border-color: rgba(255, 255, 255, .9) }
+.pxm-node.on { border-color: #18181b }
+.pxm-wires path { stroke: rgba(87, 83, 78, .45) }
+.pxm-sched, .pxm-callcard { background: rgba(255, 255, 255, .45); border-color: rgba(255, 255, 255, .7) }
+.pxm-sched-track { background: rgba(255, 255, 255, .55) }
+.pxm-act { background: rgba(255, 255, 255, .55); border-color: rgba(255, 255, 255, .75) }
+.pxm-act.on { background: #18181b; border-color: #18181b }
+
+/* ── Overlay card up top ───────────────────────────────────────────────────
+   The floating card sits on the window's top-right corner, over the top
+   bar (search and avatar) only, so it never hides a table row or the page
+   content. The "01 / 09" counter moves to the top-left to make room, and
+   the dialing card turns into a compact single row. */
+.lp-fx-detail--mock .lp-fx-count { left: 16px; right: auto }
+.pxm-float { bottom: auto; left: auto; right: 18px; top: -26px }
+.pxm-float--dial { align-items: center; flex-direction: row; gap: 10px; padding: 8px 14px 8px 12px; top: -26px }
+.pxm-float--dial .pxm-float-k { display: none }
+.pxm .pxm-float--dial .pxm-big { font-size: 22px; line-height: 1 }
+.pxm-float--dial .pxm-float-s { border-left: 1px solid rgba(24, 24, 27, .1); padding-left: 10px }
+@media (max-width: 760px) {
+    .pxm-float, .pxm-float--dial { left: auto; right: 14px; top: -24px }
+}
+
+/* The card sits in the top bar's empty middle — clear of the breadcrumb on
+   the left and the search box and avatar on the right — so it covers
+   nothing in any of the nine views. */
+.pxm-float, .pxm-float--dial { right: 196px; top: -24px }
+.pxm-float { padding-bottom: 8px; padding-top: 8px }
+.pxm-float-ic { height: 30px; width: 30px }
+@media (max-width: 760px) {
+    .pxm-float, .pxm-float--dial { right: 196px; top: -24px }
+}
+/* Narrower panels: the search box makes way and the card takes its place;
+   on phones the breadcrumb keeps just the page name. */
+@media (max-width: 1180px) {
+    .pxm-find { display: none }
+    .pxm-float, .pxm-float--dial { right: 50px }
+}
+@media (max-width: 760px) {
+    .pxm-float, .pxm-float--dial { right: 46px }
+    .pxm-crumb { font-size: 0 }
+    .pxm-crumb i { display: none }
+    .pxm-crumb b { font-size: 11px }
+}
+

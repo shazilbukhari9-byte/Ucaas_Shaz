@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "nextiva-home",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "nextiva/nextiva-home", "run", "dev", "--", "-p", "3500"],
+      "port": 3500,
+      "autoPort": false
+    }
+  ]
+}

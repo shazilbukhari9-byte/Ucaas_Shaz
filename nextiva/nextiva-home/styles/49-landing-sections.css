@@ -1,0 +1,1198 @@
+/* Extra landing-page sections (components/landing): the animated migration
+   timeline (MigrationTimeline, stepsStyle: 'timeline') and the multi-site
+   hierarchy section (MultiSiteConsole, page.multiSite). Both are used on the
+   Hosted Phone System page. */
+
+/* ── Migration timeline ────────────────────────────────────────────────────
+   Day markers on a rail; the rail fills (--tl-frac, 0–1) up to the current
+   day while the timeline plays. Past days turn solid, the current one pulses
+   and its card lifts with a progress bar along its base. Vertical on phones. */
+.lp-timeline-wrap { position: relative }
+
+.lp-timeline {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative
+}
+
+/* Rail: from the first dot's centre to the last (12.5% → 87.5%). */
+.lp-tl-track {
+    background: rgba(234, 88, 12, .16);
+    border-radius: 2px;
+    height: 3px;
+    left: 12.5%;
+    position: absolute;
+    right: 12.5%;
+    top: 49px
+}
+.lp-tl-fill {
+    background: linear-gradient(90deg, #fb923c, #ea580c);
+    border-radius: inherit;
+    box-shadow: 0 0 12px rgba(234, 88, 12, .45);
+    display: block;
+    height: 100%;
+    transform: scaleX(var(--tl-frac, 0));
+    transform-origin: left;
+    transition: transform .9s cubic-bezier(.65, 0, .35, 1)
+}
+
+.lp-tl-step { display: flex; flex-direction: column; gap: 18px; outline: none; position: relative }
+.lp-tl-marker { align-items: center; display: flex; flex-direction: column; gap: 10px }
+.lp-tl-day {
+    color: #b8a49a;
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    transition: color .4s ease
+}
+.lp-tl-dot {
+    align-items: center;
+    background: #fff;
+    border: 2px solid rgba(234, 88, 12, .35);
+    border-radius: 50%;
+    box-shadow: 0 0 0 6px var(--lp-tint, #f8f8f6);
+    color: rgba(234, 88, 12, .6);
+    display: inline-flex;
+    font-size: 18px;
+    height: 40px;
+    justify-content: center;
+    position: relative;
+    transition: background .4s ease, color .4s ease, border-color .4s ease, transform .4s cubic-bezier(.2, .8, .2, 1);
+    width: 40px;
+    z-index: 1
+}
+.lp-tl-dot::after {
+    border: 2px solid #ea580c;
+    border-radius: 50%;
+    content: "";
+    inset: -6px;
+    opacity: 0;
+    position: absolute
+}
+
+.lp-tl-card {
+    background: #fff;
+    border: 1px solid var(--lp-line);
+    border-radius: 18px;
+    flex: 1;
+    overflow: hidden;
+    padding: 20px 20px 24px;
+    position: relative;
+    text-align: center;
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1), box-shadow .5s ease, border-color .5s ease, opacity .5s ease
+}
+.lp-tl-label {
+    background: #f4f1ee;
+    border-radius: 999px;
+    color: #8a7a70;
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    transition: background .4s ease, color .4s ease
+}
+.lp-tl-card .lp-card-title { margin: 0 0 6px }
+.lp-tl-progress {
+    background: linear-gradient(90deg, #fb923c, #ea580c);
+    bottom: 0;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    width: 100%
+}
+
+/* Before it plays, everything reads as "to do" but fully legible. */
+.lp-timeline-wrap.is-playing .lp-tl-step:not(.is-done):not(.is-active) .lp-tl-card { opacity: .78 }
+
+/* Done days */
+.lp-tl-step.is-done .lp-tl-day { color: #9a3412 }
+.lp-tl-step.is-done .lp-tl-dot { background: #fff7ed; border-color: #ea580c; color: #ea580c }
+.lp-tl-step.is-done .lp-tl-label { background: #fff7ed; color: #c2410c }
+
+/* Current day */
+.lp-tl-step.is-active .lp-tl-day { color: #ea580c }
+.lp-tl-step.is-active .lp-tl-dot {
+    background: #ea580c;
+    border-color: #ea580c;
+    color: #fff;
+    transform: scale(1.12)
+}
+.lp-tl-step.is-active .lp-tl-dot::after { animation: lp-tl-ping 1.6s ease-out infinite }
+.lp-tl-step.is-active .lp-tl-card {
+    border-color: rgba(234, 88, 12, .35);
+    box-shadow: 0 26px 46px -30px rgba(124, 45, 18, .5);
+    transform: translateY(-6px)
+}
+.lp-tl-step.is-active .lp-tl-label { background: #ea580c; color: #fff }
+.lp-tl-step.is-active .lp-tl-progress { animation: lp-tl-bar 1.9s linear forwards }
+.lp-tl-step:last-child.is-active .lp-tl-progress { animation-duration: 3.6s }
+.lp-tl-step:focus-visible .lp-tl-card { outline: 2px solid #ea580c; outline-offset: 3px }
+
+@keyframes lp-tl-ping { 0% { opacity: .7; transform: scale(.85) } 100% { opacity: 0; transform: scale(1.5) } }
+@keyframes lp-tl-bar { to { transform: scaleX(1) } }
+
+@media (max-width: 1024px) {
+    .lp-timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px }
+    .lp-tl-track { display: none }
+}
+@media (max-width: 640px) {
+    .lp-timeline { gap: 14px; grid-template-columns: minmax(0, 1fr) }
+    /* Vertical rail through the dot column. */
+    .lp-tl-track {
+        bottom: 40px;
+        display: block;
+        height: auto;
+        left: 19px;
+        right: auto;
+        top: 28px;
+        width: 3px
+    }
+    .lp-tl-fill { height: 100%; transform: scaleY(var(--tl-frac, 0)); transform-origin: top; width: 100% }
+    .lp-tl-step { align-items: flex-start; flex-direction: row; gap: 14px }
+    .lp-tl-marker { flex: none; gap: 6px; padding-top: 8px; width: 40px }
+    .lp-tl-day { font-size: 13px; order: 2 }
+    .lp-tl-card { padding: 16px 16px 18px; text-align: left }
+    .lp-tl-step.is-active .lp-tl-card { transform: translateX(4px) }
+}
+
+/* ── Multi-site section (page.multiSite) ───────────────────────────────────
+   A calm account hierarchy on a deep-ink ground: centred heading, the parent
+   account as a bar on top, a hairline connector bus down to one card per
+   site, and the three selling points in a row underneath. Hovering a site
+   highlights its branch. */
+.lp-section--ink {
+    background:
+        radial-gradient(70% 60% at 50% 0%, rgba(234, 88, 12, .12), transparent 70%),
+        #10022c;
+    color: #fff
+}
+body.design-v2 .lp .lp-section--ink .lp-h2 { color: #fff }
+body.design-v2 .lp .lp-section--ink .lp-intro { color: rgba(255, 255, 255, .7) }
+.lp-section--ink .lp-kicker { background: rgba(255, 255, 255, .1); color: rgba(255, 255, 255, .85) }
+
+.lp-org .lp-head { margin: 0 auto 48px; max-width: 760px; text-align: center }
+
+.lp-org-tree { --org-line: rgba(255, 255, 255, .18); --org-gap: 16px; margin: 0 auto; max-width: 1080px }
+
+/* Parent account bar */
+.lp-org-root {
+    align-items: center;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 16px;
+    display: flex;
+    gap: 16px;
+    margin: 0 auto;
+    max-width: 780px;
+    padding: 16px 20px
+}
+.lp-org-root-ic {
+    align-items: center;
+    background: #ea580c;
+    border-radius: 12px;
+    color: #fff;
+    display: inline-flex;
+    flex: none;
+    font-size: 20px;
+    height: 44px;
+    justify-content: center;
+    width: 44px
+}
+.lp-org-root-name { display: flex; flex-direction: column; min-width: 0 }
+.lp-org-root-name b { font-size: 16px; font-weight: 600 }
+.lp-org-root-name em { color: rgba(255, 255, 255, .6); font-size: 13px; font-style: normal }
+.lp-org-root-stats { display: flex; margin-left: auto }
+.lp-org-root-stats > span {
+    color: rgba(255, 255, 255, .6);
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    padding: 0 18px;
+    white-space: nowrap
+}
+.lp-org-root-stats > span + span { border-left: 1px solid rgba(255, 255, 255, .12) }
+.lp-org-root-stats > span:last-child { padding-right: 4px }
+.lp-org-root-stats b {
+    color: #fff;
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    line-height: 1.15
+}
+
+/* Connectors: stem from the bar, a bus across the column centres, and a
+   drop into each card. */
+.lp-org-sites {
+    display: grid;
+    gap: var(--org-gap);
+    grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 56px 0 0;
+    position: relative
+}
+.lp-org-sites::before {
+    background: var(--org-line);
+    content: "";
+    height: 1px;
+    left: calc((100% - (var(--n, 4) - 1) * var(--org-gap)) / (var(--n, 4) * 2));
+    position: absolute;
+    right: calc((100% - (var(--n, 4) - 1) * var(--org-gap)) / (var(--n, 4) * 2));
+    top: 28px
+}
+.lp-org-sites::after {
+    background: var(--org-line);
+    content: "";
+    height: 28px;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 1px
+}
+.lp-org-site { position: relative }
+.lp-org-site::before {
+    background: var(--org-line);
+    content: "";
+    height: 28px;
+    left: 50%;
+    position: absolute;
+    top: -28px;
+    transition: background .25s ease;
+    width: 1px
+}
+.lp-org-site::after {
+    background: #10022c;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50%;
+    content: "";
+    height: 7px;
+    left: calc(50% - 3px);
+    position: absolute;
+    top: -31px;
+    transition: background .25s ease, border-color .25s ease;
+    width: 7px
+}
+.lp-org-site:hover::before { background: #fb923c }
+.lp-org-site:hover::after { background: #fb923c; border-color: #fb923c }
+
+/* Site card */
+.lp-org-card {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 16px;
+    height: 100%;
+    padding: 18px 18px 8px;
+    transition: border-color .25s ease, background .25s ease, transform .25s ease
+}
+.lp-org-site:hover .lp-org-card {
+    background: rgba(255, 255, 255, .07);
+    border-color: rgba(251, 146, 60, .45);
+    transform: translateY(-3px)
+}
+.lp-org-card-head { align-items: center; display: flex; gap: 12px; margin-bottom: 12px }
+.lp-org-code {
+    align-items: center;
+    background: rgba(234, 88, 12, .14);
+    border: 1px solid rgba(251, 146, 60, .3);
+    border-radius: 10px;
+    color: #fdba74;
+    display: inline-flex;
+    flex: none;
+    font-size: 12px;
+    font-weight: 700;
+    height: 36px;
+    justify-content: center;
+    letter-spacing: .04em;
+    width: 36px
+}
+.lp-org-name { display: flex; flex-direction: column; min-width: 0 }
+.lp-org-name b { font-size: 15px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.lp-org-name em { color: rgba(255, 255, 255, .55); font-size: 12.5px; font-style: normal }
+
+.lp-org-facts { margin: 0 }
+.lp-org-facts > div {
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 9px 0
+}
+.lp-org-facts dt { color: rgba(255, 255, 255, .55); font-size: 12.5px }
+.lp-org-facts dd {
+    align-items: center;
+    color: #fff;
+    display: inline-flex;
+    font-size: 13.5px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    gap: 6px;
+    margin: 0;
+    white-space: nowrap
+}
+.lp-org-dot { background: #22c55e; border-radius: 50%; box-shadow: 0 0 0 3px rgba(34, 197, 94, .18); height: 6px; width: 6px }
+
+/* Selling points */
+.lp-org-points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    margin: 48px 0 0;
+    padding: 0;
+    row-gap: 12px
+}
+.lp-org-points li {
+    align-items: center;
+    color: rgba(255, 255, 255, .85);
+    display: flex;
+    font-size: 15px;
+    gap: 10px;
+    padding: 0 24px
+}
+.lp-org-points li + li { border-left: 1px solid rgba(255, 255, 255, .14) }
+.lp-org-points i { color: #fdba74; font-size: 18px }
+
+@media (max-width: 1280px) {
+    .lp-org-points li { font-size: 14px; padding: 0 16px }
+}
+@media (max-width: 1024px) {
+    .lp-org-sites { --n: 2 !important; padding-top: 24px }
+    .lp-org-sites::before, .lp-org-sites::after, .lp-org-site::before, .lp-org-site::after { display: none }
+    .lp-org-root { flex-wrap: wrap }
+    .lp-org-root-stats { margin-left: 0; width: 100% }
+    .lp-org-root-stats > span:first-child { padding-left: 0 }
+    .lp-org-points li { padding: 0 16px }
+}
+@media (max-width: 640px) {
+    .lp-org .lp-head { margin-bottom: 32px }
+    .lp-org-sites { --n: 1 !important; gap: 12px }
+    .lp-org-root { padding: 14px 16px }
+    .lp-org-root-stats > span { padding: 0 12px }
+    .lp-org-root-stats b { font-size: 19px }
+    .lp-org-points { align-items: flex-start; flex-direction: column; margin-top: 32px }
+    .lp-org-points li { padding: 0 }
+    .lp-org-points li + li { border-left: 0 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lp-tl-fill, .lp-tl-card, .lp-tl-dot, .lp-tl-day, .lp-tl-label, .lp-org-card, .lp-org-site::before, .lp-org-site::after { transition: none }
+    .lp-tl-dot::after, .lp-tl-progress { animation: none !important }
+}
+
+/* ── Multi-site section on the site theme (light) ──────────────────────────
+   Same layout as the ink version, recoloured to the home page palette: warm
+   cream ground with soft peach and sky glows, white cards, ink text and the
+   brand orange for accents. */
+.lp-section--theme {
+    background:
+        radial-gradient(55% 60% at 12% 0%, rgba(253, 186, 116, .28), transparent 70%),
+        radial-gradient(50% 55% at 92% 100%, rgba(186, 214, 236, .45), transparent 70%),
+        linear-gradient(180deg, #fbf7f3 0%, #f8f4ef 100%);
+    color: var(--lp-ink, #10022c)
+}
+.lp-section--theme .lp-org-tree { --org-line: rgba(16, 2, 44, .16) }
+
+.lp-section--theme .lp-org-root {
+    background: #fff;
+    border-color: rgba(16, 2, 44, .08);
+    box-shadow: 0 18px 40px -28px rgba(124, 45, 18, .35)
+}
+.lp-section--theme .lp-org-root-name em { color: #5b6475 }
+.lp-section--theme .lp-org-root-stats > span { color: #5b6475 }
+.lp-section--theme .lp-org-root-stats > span + span { border-left-color: rgba(16, 2, 44, .1) }
+.lp-section--theme .lp-org-root-stats b { color: #10022c }
+
+.lp-section--theme .lp-org-site::after { background: #fbf7f3; border-color: rgba(16, 2, 44, .3) }
+
+.lp-section--theme .lp-org-card {
+    background: #fff;
+    border-color: rgba(16, 2, 44, .08);
+    box-shadow: 0 1px 2px rgba(16, 2, 44, .04)
+}
+.lp-section--theme .lp-org-site:hover .lp-org-card {
+    background: #fff;
+    border-color: rgba(234, 88, 12, .4);
+    box-shadow: 0 22px 40px -28px rgba(124, 45, 18, .4)
+}
+.lp-section--theme .lp-org-code { background: #fff7ed; border-color: #fed7aa; color: #c2410c }
+.lp-section--theme .lp-org-name em { color: #5b6475 }
+.lp-section--theme .lp-org-facts > div { border-top-color: rgba(16, 2, 44, .07) }
+.lp-section--theme .lp-org-facts dt { color: #5b6475 }
+.lp-section--theme .lp-org-facts dd { color: #10022c }
+
+.lp-section--theme .lp-org-points li { color: #10022c }
+.lp-section--theme .lp-org-points li + li { border-left-color: rgba(16, 2, 44, .14) }
+.lp-section--theme .lp-org-points i { color: #ea580c }
+
+/* Screen-reader-only text (comparison table marks). */
+.sr-only {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px
+}
+
+/* ── Comparison table (page.compare) ───────────────────────────────────────
+   Three columns: the feature, the legacy PBX (muted, with a grey cross) and
+   our product (highlighted column with an orange cap and green checks). */
+.lp-cmp-wrap { max-width: 1040px }
+.lp-cmp-wrap .lp-head { margin: 0 auto 36px; max-width: 720px; text-align: center }
+
+.lp-cmp {
+    background: #fff;
+    border: 1px solid var(--lp-line, rgba(16, 2, 44, .09));
+    border-radius: 22px;
+    box-shadow: 0 30px 60px -44px rgba(16, 2, 44, .35);
+    overflow: hidden;
+    position: relative
+}
+/* Highlight behind our column, full height. */
+.lp-cmp::before {
+    background: linear-gradient(180deg, #fff7ed, #fffaf5 40%, #fffcf9);
+    border-left: 1px solid #fed7aa;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 37%
+}
+.lp-cmp::after {
+    background: linear-gradient(90deg, #fb923c, #ea580c);
+    content: "";
+    height: 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 37%
+}
+
+.lp-cmp-row {
+    align-items: center;
+    border-top: 1px solid rgba(16, 2, 44, .06);
+    display: grid;
+    grid-template-columns: 26% 37% 37%;
+    position: relative;
+    z-index: 1
+}
+.lp-cmp-row > span { align-items: center; display: flex; gap: 10px; padding: 15px 22px }
+.lp-cmp-row--head { border-top: 0 }
+.lp-cmp-row--head > span { font-size: 13px; font-weight: 700; letter-spacing: .04em; padding-bottom: 14px; padding-top: 20px; text-transform: uppercase }
+.lp-cmp-row--head .lp-cmp-legacy { color: #8a8f9c }
+.lp-cmp-row--head .lp-cmp-ours { color: #c2410c }
+.lp-cmp-row--head i { font-size: 17px }
+
+.lp-cmp-feature { color: var(--lp-ink, #10022c); font-size: 14.5px; font-weight: 600 }
+.lp-cmp-legacy { color: #7a8090; font-size: 14px }
+.lp-cmp-ours { color: var(--lp-ink, #10022c); font-size: 14px; font-weight: 500 }
+.lp-cmp-row:not(.lp-cmp-row--head):hover { background: rgba(16, 2, 44, .015) }
+
+.lp-cmp-mark {
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    flex: none;
+    font-size: 13px;
+    height: 22px;
+    justify-content: center;
+    width: 22px
+}
+.lp-cmp-mark--no { background: #f1f2f4; color: #9ca3af }
+.lp-cmp-mark--ok { background: #dcfce7; color: #16a34a }
+
+@media (max-width: 760px) {
+    /* Phones: each row becomes a small card — feature on top, the two
+       answers stacked, ours highlighted. */
+    .lp-cmp::before, .lp-cmp::after, .lp-cmp-row--head { display: none }
+    .lp-cmp { background: transparent; border: 0; box-shadow: none; display: grid; gap: 10px; overflow: visible }
+    .lp-cmp-row {
+        background: #fff;
+        border: 1px solid var(--lp-line, rgba(16, 2, 44, .09));
+        border-radius: 16px;
+        grid-template-columns: 1fr;
+        overflow: hidden
+    }
+    .lp-cmp-row > span { padding: 10px 16px }
+    .lp-cmp-feature { padding-bottom: 4px !important; padding-top: 14px !important }
+    .lp-cmp-legacy { font-size: 13.5px }
+    .lp-cmp-ours { background: #fff7ed; border-top: 1px solid #fed7aa; padding-bottom: 12px !important }
+}
+
+/* ── Pricing teaser (page.pricingTeaser) ───────────────────────────────────
+   One slim card: copy, three included points, and the two actions. */
+.lp-price {
+    align-items: center;
+    background:
+        radial-gradient(60% 120% at 0% 0%, rgba(253, 186, 116, .22), transparent 60%),
+        #fff;
+    border: 1px solid var(--lp-line, rgba(16, 2, 44, .09));
+    border-radius: 22px;
+    box-shadow: 0 24px 50px -40px rgba(124, 45, 18, .4);
+    display: grid;
+    gap: 32px;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr) auto;
+    padding: 34px 40px
+}
+.lp-price-tag {
+    align-items: center;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 999px;
+    color: #c2410c;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 600;
+    gap: 6px;
+    padding: 4px 10px
+}
+body.design-v2 .lp .lp-price-title { font-size: clamp(24px, 2.3vw, 30px) !important; line-height: 1.2 !important; margin: 12px 0 8px }
+.lp-price-text { color: var(--lp-muted, #5b6475); font-size: 15px; line-height: 1.6; margin: 0; max-width: 460px }
+.lp-price-points { display: flex; flex-direction: column; gap: 10px; list-style: none; margin: 0; padding: 0 }
+.lp-price-points li { align-items: center; color: var(--lp-ink, #10022c); display: flex; font-size: 14.5px; font-weight: 500; gap: 9px }
+.lp-price-points i { color: #16a34a; font-size: 18px }
+.lp-price-actions { display: flex; flex-direction: column; gap: 10px }
+.lp-price-actions .lp-btn { white-space: nowrap }
+
+@media (max-width: 1024px) {
+    .lp-price { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) }
+    .lp-price-actions { flex-direction: row; grid-column: 1 / -1 }
+}
+@media (max-width: 640px) {
+    .lp-price { gap: 22px; grid-template-columns: minmax(0, 1fr); padding: 26px 22px }
+    .lp-price-actions { flex-direction: column }
+    .lp-price-actions .lp-btn { width: 100% }
+}
+
+/* ── Feature explorer (capStyle: 'explorer') ───────────────────────────────
+   One card for the whole "What you get" section: the feature list on the
+   left (icon, name, one-liner), the chosen feature on the right with its
+   description, highlights and a large faded icon. Accordion on phones. */
+.lp-fx {
+    background: #fff;
+    border: 1px solid var(--lp-line, rgba(16, 2, 44, .09));
+    border-radius: 24px;
+    box-shadow: 0 34px 70px -50px rgba(16, 2, 44, .35);
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+    margin: 0 auto;
+    max-width: 1120px;
+    padding: 10px
+}
+
+.lp-fx-list { display: flex; flex-direction: column; gap: 2px; list-style: none; margin: 0; padding: 0 }
+.lp-fx-item {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 14px;
+    color: var(--lp-ink, #10022c);
+    cursor: pointer;
+    display: grid;
+    font: inherit;
+    gap: 12px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    overflow: hidden;
+    padding: 10px 12px;
+    position: relative;
+    text-align: left;
+    transition: background .2s ease;
+    width: 100%
+}
+.lp-fx-item:hover { background: #faf8f6 }
+.lp-fx-item:focus-visible { outline: 2px solid #ea580c; outline-offset: -2px }
+.lp-fx-item.is-on { background: var(--t-bg) }
+.lp-fx-item-ic {
+    align-items: center;
+    background: #f4f2ef;
+    border-radius: 10px;
+    color: #6b7280;
+    display: inline-flex;
+    font-size: 17px;
+    height: 36px;
+    justify-content: center;
+    transition: background .2s ease, color .2s ease;
+    width: 36px
+}
+.lp-fx-item.is-on .lp-fx-item-ic { background: #fff; box-shadow: 0 0 0 1px var(--t-bd); color: var(--t-fg) }
+.lp-fx-item-txt { display: flex; flex-direction: column; min-width: 0 }
+.lp-fx-item-txt b { font-size: 14.5px; font-weight: 600; line-height: 1.3 }
+.lp-fx-item-txt em { color: var(--lp-muted, #5b6475); font-size: 12.5px; font-style: normal }
+.lp-fx-chev { color: #c4bfba; font-size: 18px; transition: transform .2s ease, color .2s ease }
+.lp-fx-item.is-on .lp-fx-chev { color: var(--t-fg); transform: translateX(2px) }
+.lp-fx-progress {
+    animation: psm-progress 3s linear forwards;
+    background: var(--t-fg);
+    bottom: 0;
+    height: 2px;
+    left: 12px;
+    opacity: .55;
+    position: absolute;
+    right: 12px;
+    transform-origin: left
+}
+
+.lp-fx-panel { animation: lp-fx-in .45s cubic-bezier(.2, .8, .2, 1); display: flex }
+@keyframes lp-fx-in { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+
+.lp-fx-detail {
+    background:
+        radial-gradient(90% 80% at 100% 100%, var(--t-bg), transparent 70%),
+        linear-gradient(180deg, #fcfbfa, #fff);
+    border: 1px solid rgba(16, 2, 44, .06);
+    border-radius: 18px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 40px 44px;
+    position: relative
+}
+.lp-fx-mark {
+    bottom: -40px;
+    color: var(--t-fg);
+    font-size: 230px;
+    line-height: 1;
+    opacity: .06;
+    pointer-events: none;
+    position: absolute;
+    right: -24px;
+    z-index: -1
+}
+.lp-fx-count {
+    color: #a39e99;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    letter-spacing: .08em;
+    position: absolute;
+    right: 28px;
+    top: 26px
+}
+.lp-fx .lp-fx-ic { border-radius: 14px; font-size: 24px; height: 54px; width: 54px }
+body.design-v2 .lp .lp-fx-title {
+    color: var(--lp-ink, #10022c);
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: clamp(24px, 2.3vw, 30px) !important;
+    font-weight: 500;
+    letter-spacing: -.015em;
+    line-height: 1.2 !important;
+    margin: 22px 0 10px
+}
+.lp-fx-text { color: var(--lp-muted, #5b6475); font-size: 16px; line-height: 1.65; margin: 0; max-width: 520px }
+.lp-fx-points {
+    border-top: 1px solid rgba(16, 2, 44, .07);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin: 26px 0 0;
+    max-width: 520px;
+    padding: 22px 0 0
+}
+.lp-fx-points li { align-items: center; color: var(--lp-ink, #10022c); display: flex; font-size: 15px; font-weight: 500; gap: 12px }
+.lp-fx-points i {
+    align-items: center;
+    background: var(--t-bg);
+    border: 1px solid var(--t-bd);
+    border-radius: 50%;
+    color: var(--t-fg);
+    display: inline-flex;
+    flex: none;
+    font-size: 13px;
+    height: 24px;
+    justify-content: center;
+    width: 24px
+}
+
+@media (max-width: 1024px) {
+    .lp-fx { grid-template-columns: minmax(0, 300px) minmax(0, 1fr) }
+    .lp-fx-detail { padding: 32px 30px }
+}
+@media (max-width: 760px) {
+    /* Phones: a swipeable strip of feature tabs above one detail card. The
+       card keeps a steady height so the page never jumps as the tour moves. */
+    .lp-fx { display: flex; flex-direction: column; gap: 10px; padding: 10px }
+    .lp-fx-list {
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 24px), transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 24px), transparent 100%);
+        flex-direction: row;
+        gap: 6px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        padding: 2px 14px 4px 4px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none
+    }
+    .lp-fx-list::-webkit-scrollbar { display: none }
+    .lp-fx-list > li { flex: none; scroll-snap-align: center }
+    .lp-fx-item {
+        border: 1px solid var(--lp-line, rgba(16, 2, 44, .09));
+        border-radius: 999px;
+        gap: 8px;
+        overflow: hidden;
+        padding: 6px 14px 6px 6px;
+        white-space: nowrap
+    }
+    .lp-fx-item.is-on { border-color: var(--t-bd) }
+    .lp-fx-item-ic { border-radius: 50%; font-size: 14px; height: 28px; width: 28px }
+    .lp-fx-item-txt em, .lp-fx-chev { display: none }
+    body.design-v2 .lp .lp-fx-item-txt b { font-size: 13px !important }
+    .lp-fx-progress { left: 14px; right: 14px; width: auto }
+
+    .lp-fx-panel { display: flex }
+    .lp-fx-detail { min-height: 476px; padding: 22px 20px; width: 100% }
+    .lp-fx-count { right: 18px; top: 18px }
+    .lp-fx .lp-fx-ic { height: 44px; width: 44px; font-size: 20px }
+    body.design-v2 .lp .lp-fx-title { font-size: 22px !important; margin-top: 14px }
+    .lp-fx-text { font-size: 15px }
+    .lp-fx-points { margin-top: 18px; padding-top: 16px }
+    .lp-fx-points li { font-size: 14px }
+    .lp-fx-mark { font-size: 160px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .lp-fx-panel, .lp-fx-progress { animation: none }
+}
+
+/* The explorer section follows the logo bar directly: trim the top gap. */
+.lp-section.lp-section--fx { padding-top: 32px }
+.lp-section--fx .lp-head { margin-bottom: 28px }
+@media (max-width: 760px) {
+    .lp-section.lp-section--fx { padding-top: 24px }
+    .lp-section--fx .lp-head { margin-bottom: 20px }
+}
+
+/* Phones: the parent-account card reads as a proper card — icon beside the
+   title, and the three totals as equal tiles spanning the full width rather
+   than a short row that left the right half of the card empty. */
+@media (max-width: 640px) {
+    .lp-org-root {
+        align-items: center;
+        display: grid;
+        gap: 12px 14px;
+        grid-template-columns: auto minmax(0, 1fr);
+        padding: 16px
+    }
+    .lp-org-root-ic { height: 42px; width: 42px; font-size: 19px }
+    .lp-org-root-name b { line-height: 1.25 }
+    .lp-org-root-name em { line-height: 1.4; margin-top: 2px }
+    .lp-org-root-stats {
+        display: grid;
+        gap: 8px;
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin: 4px 0 0;
+        width: 100%
+    }
+    .lp-org-root-stats > span,
+    .lp-org-root-stats > span:first-child,
+    .lp-org-root-stats > span:last-child {
+        align-items: center;
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .12);
+        border-radius: 12px;
+        gap: 2px;
+        min-width: 0;
+        padding: 10px 6px;
+        text-align: center
+    }
+    .lp-org-root-stats > span + span { border-left: 1px solid rgba(255, 255, 255, .12) }
+    .lp-section--theme .lp-org-root-stats > span,
+    .lp-section--theme .lp-org-root-stats > span + span {
+        background: #fbf7f3;
+        border: 1px solid rgba(234, 88, 12, .14)
+    }
+    .lp-org-root-stats b { font-size: 20px }
+}
+
+/* Phones: the four site cards sit two by two. At half width each fact
+   stacks its label over its value (a side-by-side row would squeeze the
+   caller ID), and the head tightens to fit the narrower card. */
+@media (max-width: 640px) {
+    .lp-org-sites { --n: 2 !important; gap: 10px }
+    .lp-org .lp-org-card { padding: 12px 12px 6px; border-radius: 14px }
+    .lp-org .lp-org-card-head { gap: 8px; margin-bottom: 8px }
+    .lp-org .lp-org-code { border-radius: 8px; font-size: 10.5px; height: 30px; width: 30px }
+    .lp-org .lp-org-name b { font-size: 13.5px; line-height: 1.25 }
+    .lp-org .lp-org-name em { font-size: 11.5px; line-height: 1.3 }
+    .lp-org .lp-org-facts > div {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1px;
+        padding: 7px 0
+    }
+    .lp-org .lp-org-facts dt { font-size: 10.5px; letter-spacing: .02em; line-height: 1.3; text-transform: uppercase }
+    .lp-org .lp-org-facts dd { font-size: 12.5px; gap: 5px; line-height: 1.35; white-space: nowrap }
+}
+
+/* Phones: one comparison table, not a stack of cards. The two answers sit
+   side by side under each feature name, with the column headers on top and
+   our column tinted the full height of the table — so it reads at a glance
+   which side wins on every row. */
+@media (max-width: 640px) {
+    .lp-cmp {
+        background: #fff;
+        border: 1px solid var(--lp-line, rgba(16, 2, 44, .09));
+        border-radius: 18px;
+        box-shadow: 0 24px 48px -36px rgba(16, 2, 44, .35);
+        display: block;
+        overflow: hidden
+    }
+    .lp-cmp::before, .lp-cmp::after { display: block; width: 50% }
+    .lp-cmp-row,
+    .lp-cmp .lp-cmp-row--head {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        border-top: 1px solid rgba(16, 2, 44, .07);
+        column-gap: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow: visible
+    }
+    .lp-cmp-row { align-items: start }
+    .lp-cmp .lp-cmp-row--head { align-items: center; border-top: 0 }
+    .lp-cmp .lp-cmp-row--head .lp-cmp-feature { display: none }
+    .lp-cmp .lp-cmp-row--head > span {
+        align-items: center;
+        background: none;
+        border: 0;
+        font-size: 10.5px;
+        gap: 6px;
+        letter-spacing: .05em;
+        line-height: 1.25;
+        padding: 14px 12px 12px
+    }
+    .lp-cmp .lp-cmp-row--head i { font-size: 14px }
+    .lp-cmp-row:not(.lp-cmp-row--head):hover { background: transparent }
+
+    .lp-cmp-row > span { align-items: flex-start; gap: 7px; padding: 0 12px 12px }
+    .lp-cmp-row > .lp-cmp-feature {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding: 12px 12px 6px !important;
+        text-align: left
+    }
+    body.design-v2 .lp .lp-cmp-row > .lp-cmp-feature {
+        color: #8a7a70;
+        font-size: 10.5px !important;
+        font-weight: 700;
+        letter-spacing: .06em;
+        line-height: 1.3;
+        text-transform: uppercase
+    }
+    body.design-v2 .lp .lp-cmp-row > .lp-cmp-legacy { color: #7a8090; font-size: 12.5px !important; line-height: 1.4 }
+    body.design-v2 .lp .lp-cmp-row > .lp-cmp-ours {
+        background: none;
+        border: 0;
+        color: var(--lp-ink, #10022c);
+        font-size: 12.5px !important;
+        font-weight: 600;
+        line-height: 1.4;
+        padding: 0 12px 12px !important
+    }
+    .lp-cmp-mark { font-size: 11px; height: 18px; margin-top: 0; width: 18px }
+}
+
+/* Phones: the four days as a 2×2 zig-zag. Even days drop half a step, each
+   day's marker sits above its card, and a dashed path snakes from dot to dot
+   (right, down, back left, down, right), turning solid orange as the days
+   play through. Day names sit on the outer side of each dot, clear of the
+   path. */
+@media (max-width: 640px) {
+    .lp-timeline-wrap { --tl-gap: 12px; --tl-off: 32px; --tl-path: rgba(234, 88, 12, .32); --tl-style: dashed }
+    .lp-timeline-wrap .lp-tl-track { display: none }
+    .lp-timeline {
+        column-gap: var(--tl-gap);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-bottom: var(--tl-off);
+        row-gap: 48px
+    }
+    .lp-tl-step { display: block; padding-top: 46px }
+    .lp-tl-step:nth-child(even) { transform: translateY(var(--tl-off)) }
+
+    .lp-tl-marker {
+        display: block;
+        left: 50%;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        transform: translateX(-50%);
+        width: 34px;
+        z-index: 2
+    }
+    .lp-tl-dot { font-size: 15px; height: 34px; width: 34px }
+    .lp-tl-day {
+        font-size: 12.5px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap
+    }
+    .lp-tl-step:nth-child(odd) .lp-tl-day { right: calc(100% + 8px) }
+    .lp-tl-step:nth-child(even) .lp-tl-day { left: calc(100% + 8px) }
+
+    .lp-tl-card { border-radius: 14px; height: 100%; padding: 14px 12px 16px; text-align: center }
+    .lp-tl-label { font-size: 10px; margin-bottom: 8px; padding: 3px 8px }
+    body.design-v2 .lp .lp-tl-card .lp-card-title { font-size: 14.5px !important; line-height: 1.3 !important; margin-bottom: 5px }
+    body.design-v2 .lp .lp-tl-card .lp-card-text { font-size: 12px !important; line-height: 1.45 !important }
+    .lp-tl-step.is-active .lp-tl-card { transform: translateY(-3px) }
+
+    /* Path pieces. Odd day → next: across from its dot, then down into the
+       dropped dot beside it. */
+    .lp-tl-step:nth-child(odd):not(:last-child)::after {
+        border-right: 2px var(--tl-style) var(--tl-path);
+        border-top: 2px var(--tl-style) var(--tl-path);
+        border-top-right-radius: 12px;
+        content: "";
+        height: var(--tl-off);
+        left: calc(50% + 17px);
+        position: absolute;
+        top: 16px;
+        width: calc(100% + var(--tl-gap) - 17px - 1px)
+    }
+    /* Even day → next row: a short drop from its card... */
+    .lp-tl-step:nth-child(even):not(:last-child)::after {
+        border-left: 2px var(--tl-style) var(--tl-path);
+        content: "";
+        height: 4px;
+        left: calc(50% - 1px);
+        position: absolute;
+        top: 100%
+    }
+    /* ...then back across and down into the next row's first dot. */
+    .lp-tl-step:nth-child(even) + .lp-tl-step::before {
+        border-left: 2px var(--tl-style) var(--tl-path);
+        border-top: 2px var(--tl-style) var(--tl-path);
+        border-top-left-radius: 12px;
+        content: "";
+        height: 12px;
+        left: calc(50% - 1px);
+        position: absolute;
+        top: -12px;
+        width: calc(100% + var(--tl-gap))
+    }
+    .lp-tl-step.is-done::after,
+    .lp-tl-step.is-done + .lp-tl-step::before { --tl-path: #ea580c; --tl-style: solid }
+}
+
+/* Feature explorer: each feature arrives in sequence — icon pops, title and
+   text rise, the highlights follow one by one and the big faded mark drifts
+   in — all inside the first second of its 3s turn. */
+.lp-fx-panel .lp-fx-ic { animation: lp-fx-pop .5s cubic-bezier(.2, .9, .3, 1.3) both }
+.lp-fx-panel .lp-fx-title { animation: lp-fx-in .45s cubic-bezier(.2, .8, .2, 1) .08s both }
+.lp-fx-panel .lp-fx-text { animation: lp-fx-in .45s cubic-bezier(.2, .8, .2, 1) .16s both }
+.lp-fx-panel .lp-fx-points li { animation: lp-fx-in .4s cubic-bezier(.2, .8, .2, 1) both }
+.lp-fx-panel .lp-fx-points li:nth-child(1) { animation-delay: .26s }
+.lp-fx-panel .lp-fx-points li:nth-child(2) { animation-delay: .36s }
+.lp-fx-panel .lp-fx-points li:nth-child(3) { animation-delay: .46s }
+.lp-fx-panel .lp-fx-points li:nth-child(n+4) { animation-delay: .56s }
+.lp-fx-panel .lp-fx-mark { animation: lp-fx-mark .9s cubic-bezier(.2, .8, .2, 1) both }
+@keyframes lp-fx-pop { from { opacity: 0; transform: scale(.6) rotate(-8deg) } to { opacity: 1; transform: none } }
+@keyframes lp-fx-mark { from { opacity: 0; translate: 24px 24px; rotate: -6deg } }
+@media (prefers-reduced-motion: reduce) {
+    .lp-fx-panel .lp-fx-ic, .lp-fx-panel .lp-fx-title, .lp-fx-panel .lp-fx-text,
+    .lp-fx-panel .lp-fx-points li, .lp-fx-panel .lp-fx-mark { animation: none }
+}
+
+/* Feature explorer tab strip arrows: phones only. */
+.lp-fx-nav { display: contents }
+.lp-fx-arrow { display: none }
+@media (max-width: 760px) {
+    .lp-fx-nav { align-items: center; display: flex; gap: 6px; min-width: 0; width: 100% }
+    .lp-fx-nav .lp-fx-list { flex: 1; min-width: 0 }
+    .lp-fx-arrow {
+        align-items: center;
+        background: #fff;
+        border: 1px solid var(--lp-line, rgba(16, 2, 44, .1));
+        border-radius: 50%;
+        box-shadow: 0 6px 14px -10px rgba(16, 2, 44, .45);
+        color: var(--lp-ink, #10022c);
+        cursor: pointer;
+        display: inline-flex;
+        flex: none;
+        font-size: 18px;
+        height: 32px;
+        justify-content: center;
+        padding: 0;
+        transition: background .2s ease, color .2s ease, border-color .2s ease;
+        width: 32px
+    }
+    .lp-fx-arrow:hover, .lp-fx-arrow:focus-visible { background: #fff7ed; border-color: #fed7aa; color: #ea580c }
+    /* Room either side so the first and last tabs can sit in the middle too;
+       the active tab is always centred. */
+    .lp-fx .lp-fx-list {
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+        padding: 2px 0 4px
+    }
+    .lp-fx .lp-fx-list::before,
+    .lp-fx .lp-fx-list::after { content: ""; flex: 0 0 calc(50% - 30px) }
+    /* A tab never outgrows the strip; long names end in an ellipsis (the
+       full title is right below in the card). */
+    .lp-fx .lp-fx-item { max-width: 216px }
+    .lp-fx .lp-fx-item-txt { overflow: hidden }
+    .lp-fx .lp-fx-item-txt b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+}
+
+/* Phones: a more compact feature card — same content, tighter type and
+   spacing, so the whole card sits comfortably in one screen. */
+@media (max-width: 760px) {
+    .lp-fx { gap: 8px; padding: 8px }
+    .lp-fx-detail { min-height: 322px; padding: 16px 16px 18px }
+    .lp-fx-count { font-size: 11px; right: 14px; top: 14px }
+    .lp-fx .lp-fx-ic { border-radius: 10px; font-size: 17px; height: 36px; width: 36px }
+    body.design-v2 .lp .lp-fx-title { font-size: 18px !important; line-height: 1.25 !important; margin-top: 10px }
+    body.design-v2 .lp .lp-fx-text { font-size: 13.5px !important; line-height: 1.5 !important; margin-top: 6px }
+    .lp-fx-points { gap: 8px; margin-top: 12px; padding-top: 12px }
+    body.design-v2 .lp .lp-fx-points li { font-size: 12.5px !important; gap: 8px; line-height: 1.35 }
+    .lp-fx-points i { flex: none; font-size: 12px; height: 20px; width: 20px }
+    .lp-fx-mark { font-size: 110px }
+    .lp-fx-item { padding: 4px 12px 4px 4px }
+    .lp-fx-item-ic { font-size: 12px; height: 24px; width: 24px }
+    body.design-v2 .lp .lp-fx-item-txt b { font-size: 12px !important }
+    .lp-fx-arrow { font-size: 16px; height: 28px; width: 28px }
+}
+
+/* ── Feature explorer, brand pass ──────────────────────────────────────────
+   No autoplay progress line. One palette instead of a colour per feature:
+   the chosen row in near-black (as the header's "Sign up" button), dark
+   icons on cream tiles, and the site's orange as the only accent. The
+   detail panel centres its content and lays the highlights out as three
+   tidy cards, so it never reads as half empty. */
+.lp-fx-progress { display: none !important }
+@media (min-width: 761px) {
+    .lp-fx { padding: 12px }
+    .lp-fx-list { gap: 4px }
+    .lp-fx-item { padding: 10px 14px 10px 10px; transition: background .25s ease, color .25s ease }
+    .lp-fx-item-ic { background: #f6f1ea; color: #1a1a1a }
+    .lp-fx-item.is-on { background: #1a1a1a; color: #fff }
+    .lp-fx-item.is-on .lp-fx-item-ic { background: rgba(255, 255, 255, .12); box-shadow: none; color: #fdba74 }
+    .lp-fx-item.is-on .lp-fx-item-txt em { color: rgba(255, 255, 255, .62) }
+    .lp-fx-item.is-on .lp-fx-chev { color: #fdba74 }
+    .lp-fx-item:not(.is-on):hover { background: #f8f4ef }
+
+    .lp-fx-detail {
+        background:
+            radial-gradient(80% 70% at 100% 100%, rgba(253, 186, 116, .16), transparent 70%),
+            linear-gradient(180deg, #fdfbf8, #fff);
+        justify-content: center;
+        padding: 44px 48px
+    }
+    .lp-fx-mark { color: #1a1a1a; opacity: .04 }
+    .lp-fx .lp-fx-ic { background: #fff7ed; box-shadow: inset 0 0 0 1px #fed7aa; color: #ea580c }
+    body.design-v2 .lp .lp-fx-title { margin-top: 20px }
+    .lp-fx-text { max-width: 620px }
+    .lp-fx-points {
+        border-top: 0;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 30px;
+        max-width: none;
+        padding: 0
+    }
+    .lp-fx-points li {
+        align-items: flex-start;
+        background: #fff;
+        border: 1px solid rgba(16, 2, 44, .08);
+        border-radius: 16px;
+        box-shadow: 0 14px 28px -24px rgba(16, 2, 44, .45);
+        flex-direction: column;
+        font-size: 14.5px;
+        gap: 12px;
+        line-height: 1.45;
+        padding: 16px 16px 18px
+    }
+    .lp-fx-points i { background: #fff7ed; border-color: #fed7aa; color: #ea580c; height: 28px; width: 28px }
+}
+@media (min-width: 761px) and (max-width: 1024px) {
+    .lp-fx-points { grid-template-columns: minmax(0, 1fr) }
+    .lp-fx-points li { align-items: center; flex-direction: row }
+}
+
+/* ── Multi-site section, brand pass ────────────────────────────────────────
+   Calmer, on-brand: the parent-account mark in near-black, site codes as
+   neutral cream badges, the point icons dark, and the connector + hover in
+   a quiet neutral with just a hint of the site's orange on hover. The green
+   "live" dots stay — they carry meaning. */
+.lp-org-root-ic { background: #1a1a1a; box-shadow: 0 10px 22px -12px rgba(16, 2, 44, .55) }
+.lp-section--theme .lp-org-code { background: #f6f1ea; border-color: rgba(16, 2, 44, .1); color: #1a1a1a }
+.lp-org-site:hover::before { background: rgba(16, 2, 44, .35) }
+.lp-org-site:hover::after { background: #1a1a1a; border-color: #1a1a1a }
+.lp-section--theme .lp-org-site:hover .lp-org-card { border-color: #fed7aa; box-shadow: 0 22px 40px -30px rgba(16, 2, 44, .4) }
+.lp-section--theme .lp-org-points i, .lp-org-points i { color: #1a1a1a }
+.lp-section--theme .lp-org-points li + li { border-left-color: rgba(16, 2, 44, .12) }
+
+/* ── Migration timeline, brand pass ────────────────────────────────────────
+   No progress bar along the active card. Near-black for the current day
+   (dot, badge, rail fill), cream for days done, neutral names — the site's
+   orange kept to a hint (the active card's rim). */
+.lp-tl-progress { display: none !important }
+.lp-tl-fill { background: #1a1a1a; box-shadow: none }
+.lp-tl-track { background: rgba(16, 2, 44, .1) }
+.lp-tl-day { color: #b5aea6 }
+.lp-tl-dot { border-color: rgba(16, 2, 44, .18); color: #8a8f9c }
+.lp-tl-step.is-done .lp-tl-day { color: #3b4356 }
+.lp-tl-step.is-done .lp-tl-dot { background: #f6f1ea; border-color: #1a1a1a; color: #1a1a1a }
+.lp-tl-step.is-done .lp-tl-label { background: #f6f1ea; color: #1a1a1a }
+.lp-tl-step.is-active .lp-tl-day { color: #1a1a1a }
+.lp-tl-step.is-active .lp-tl-dot { background: #1a1a1a; border-color: #1a1a1a; color: #fff }
+.lp-tl-step.is-active .lp-tl-dot::after { border-color: rgba(16, 2, 44, .35) }
+.lp-tl-step.is-active .lp-tl-label { background: #1a1a1a; color: #fff }
+.lp-tl-step.is-active .lp-tl-card { border-color: #fed7aa; box-shadow: 0 24px 44px -30px rgba(16, 2, 44, .45) }
+.lp-tl-step:focus-visible .lp-tl-card { outline-color: #1a1a1a }
+/* Phones: the zig-zag path in the same neutral, solid dark once passed. */
+@media (max-width: 640px) {
+    .lp-timeline-wrap { --tl-path: rgba(16, 2, 44, .22) }
+    .lp-tl-step.is-done::after,
+    .lp-tl-step.is-done + .lp-tl-step::before { --tl-path: #1a1a1a }
+}
+
+/* ── Comparison table, brand pass ──────────────────────────────────────────
+   Our column reads as the answer through weight, not colour: a warm cream
+   tint with a near-black top rule, a dark header, and near-black ticks —
+   no green, and orange only as a fine accent on the header icon. */
+.lp-cmp::before { background: linear-gradient(180deg, #fbf6ef, #fdfaf6 40%, #fefcfa); border-left-color: rgba(16, 2, 44, .08) }
+.lp-cmp::after { background: #1a1a1a; height: 3px }
+.lp-cmp-row--head .lp-cmp-ours { color: #1a1a1a }
+.lp-cmp-row--head .lp-cmp-ours i { color: #ea580c }
+.lp-cmp-mark--ok { background: #1a1a1a; color: #fff }
+.lp-cmp-mark--no { background: #f1ede8; color: #a39e99 }
+@media (max-width: 640px) {
+    .lp-cmp-mark--ok { background: #1a1a1a; color: #fff }
+}
+@media (min-width: 761px) {
+    /* The feature's large background mark, clearly visible but still soft:
+       a warm orange gradient glyph in the lower-right corner. */
+    .lp-fx-detail .lp-fx-mark {
+        -webkit-background-clip: text;
+        background-clip: text;
+        background-image: linear-gradient(150deg, #fdba74, #ea580c);
+        bottom: -34px;
+        color: transparent;
+        font-size: 260px;
+        opacity: .18;
+        right: -18px;
+        -webkit-text-fill-color: transparent;
+        transition: opacity .4s ease
+    }
+}

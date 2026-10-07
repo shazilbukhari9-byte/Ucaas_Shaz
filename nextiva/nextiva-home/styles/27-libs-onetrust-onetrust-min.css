@@ -1,0 +1,414 @@
+body #onetrust-consent-sdk #onetrust-banner-sdk {
+    border-radius: 0px !important;
+    padding: 32px 16px 16px;
+    max-width: 390px;
+    background: #FFF;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 10px;
+    border: none;
+    overflow: initial;
+    box-shadow: 0 14px 24px 0 rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 768px) {
+    body #onetrust-consent-sdk #onetrust-banner-sdk {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+#onetrust-consent-sdk #onetrust-banner-sdk *:focus,
+#onetrust-consent-sdk #onetrust-banner-sdk:focus {
+    outline: none;
+    /* box-shadow: none; */
+}
+
+body #onetrust-banner-sdk #onetrust-close-btn-container {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    transform: none;
+}
+
+body #onetrust-banner-sdk .onetrust-close-btn-ui {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #F3F4F6;
+    border: none;
+    background-position: center;
+    background-size: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M8.99978 7.93987L12.7121 4.22754L13.7728 5.2882L10.0604 9.00052L13.7728 12.7128L12.7121 13.7734L8.99978 10.0612L5.28747 13.7734L4.22681 12.7128L7.93913 9.00052L4.22681 5.2882L5.28747 4.22754L8.99978 7.93987Z' fill='%23000209'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat;
+    position: static !important;
+}
+
+body #onetrust-banner-sdk .ot-sdk-container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body #onetrust-banner-sdk .ot-sdk-row {
+    display: flex;
+    flex-direction: column;
+    /* gap: 12px; */
+}
+
+@media screen and (max-width: 768px) {
+    body #onetrust-banner-sdk .ot-sdk-row {
+        gap: 0px;
+    }
+}
+
+body #onetrust-banner-sdk #onetrust-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100% !important;
+}
+
+/* === Align buttons side-by-side === */
+
+@media screen and (max-width: 1199px) {
+    body #onetrust-banner-sdk #onetrust-button-group {
+        flex-direction: row;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler,
+    body #onetrust-consent-sdk #onetrust-button-group #onetrust-reject-all-handler,
+    body #onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler {
+        /* padding: 8px; */
+    }
+    body #onetrust-banner-sdk #onetrust-reject-all-handler,
+    body #onetrust-banner-sdk #onetrust-pc-btn-handler,
+    body #onetrust-banner-sdk #onetrust-accept-btn-handler {
+        margin: 0;
+    }
+}
+
+body #onetrust-banner-sdk #onetrust-policy {
+    padding: 0;
+    margin: 0;
+}
+
+body #onetrust-consent-sdk #onetrust-button-group-parent {
+    flex: 1;
+}
+
+body #onetrust-consent-sdk #onetrust-policy-text {
+    font-family: Space Grotesk, sans-serif;
+    color: #000209;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+    text-align: left;
+    margin-bottom: 12px;
+    letter-spacing: -0.32px;
+}
+
+body #onetrust-consent-sdk #onetrust-banner-sdk #onetrust-policy-text .ot-cookie-policy-link {
+    color: #000209;
+}
+
+body #onetrust-consent-sdk #onetrust-banner-sdk a[href] {
+    color: inherit;
+    text-decoration: underline !important;
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+body #onetrust-pc-sdk .ot-pc-footer button,
+body #onetrust-pc-sdk #accept-recommended-btn-handler {
+    background: #3758f9 !important;
+    border: 1px solid #3758f9;
+    border-color: #3758f9;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08) !important;
+    color: #fff !important;
+    border-radius: 58px !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    flex-basis: 100%;
+}
+
+body #onetrust-pc-sdk .ot-pc-footer button:hover,
+body #onetrust-pc-sdk #accept-recommended-btn-handler {
+    border: 1px solid #FFFFFF;
+    opacity: 1 !important;
+}
+
+body #onetrust-pc-sdk #accept-recommended-btn-handler {
+    margin-bottom: 25px;
+}
+
+body #onetrust-banner-sdk #onetrust-button-group button,
+body #onetrust-pc-sdk .ot-pc-footer button {
+    border-radius: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4;
+    background: #fff;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
+    padding: 8px;
+    border: none;
+}
+
+body #onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler,
+body #onetrust-consent-sdk #onetrust-button-group #onetrust-reject-all-handler {
+    color: #ffffff;
+    border-radius: 58px;
+    background: transparent;
+    border: 1px solid white;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-width: 93px;
+    /* Layout */
+    flex: 1;
+    /* Appearance */
+    border: none;
+    color: #AEB1CA;
+    text-decoration: underline;
+    box-shadow: none;
+    /* New  */
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 12px;
+    letter-spacing: -0.32px;
+    color: #000209;
+}
+
+body #onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler:hover,
+body #onetrust-consent-sdk #onetrust-button-group #onetrust-reject-all-handler:hover {
+    /* background: #FFFFFF24;
+    border: 1px solid #FFFFFF; */
+    opacity: 1;
+}
+
+@media screen and (min-width: 768px) {
+    body #onetrust-banner-sdk #onetrust-button-group-parent {
+        position: static !important;
+        transform: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    body #onetrust-banner-sdk #onetrust-button-group {
+        flex-direction: row;
+        margin: 0;
+    }
+    body #onetrust-banner-sdk #onetrust-button-group button {
+        margin: 0;
+    }
+    body #onetrust-consent-sdk .ot-sdk-columns {
+        width: 100% !important;
+        margin: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    body #onetrust-consent-sdk #onetrust-banner-sdk {
+        margin: 0 0 50px 60px;
+    }
+    body #onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler,
+    body #onetrust-consent-sdk #onetrust-button-group #onetrust-reject-all-handler {
+        flex: none;
+    }
+    body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler,
+    body #onetrust-pc-sdk .ot-pc-footer button,
+    body #onetrust-pc-sdk #accept-recommended-btn-handler {
+        flex: auto;
+    }
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk.otPcPanel.ot-animated {
+    -webkit-animation-duration: 0.2s !important;
+    animation-duration: 0.2s !important;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk .ot-always-active,
+body #onetrust-consent-sdk {
+    color: #3758f9;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk .ot-tgl input:checked+.ot-switch .ot-switch-nob {
+    background-color: #3758f9;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk .ot-pc-footer-logo {
+    display: none;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-title,
+body #onetrust-consent-sdk #onetrust-pc-sdk #ot-category-title,
+body #onetrust-consent-sdk #onetrust-pc-sdk .ot-vs-config .ot-acc-hdr .ot-cat-header,
+body #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-desc,
+body #onetrust-consent-sdk #onetrust-pc-sdk #ot-category-desc {
+    color: #0B1029;
+}
+
+body #onetrust-pc-sdk .ot-accordion-layout.ot-cat-item .ot-acc-grpdesc {
+    padding: 16px;
+}
+
+body #onetrust-pc-sdk .ot-pc-footer {
+    padding: 24px 0;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk button.ot-pc-refuse-all-handler {
+    border: 1px solid #3758f9 !important;
+    background-color: #FFF !important;
+    color: #3758f9 !important;
+}
+
+#onetrust-consent-sdk #onetrust-pc-sdk button:not(#clear-filters-handler):not(.ot-close-icon):not(#filter-btn-handler):not(.ot-remove-objection-handler):not(.ot-obj-leg-btn-handler):not([aria-expanded]):not(.ot-link-btn),
+#onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-active-leg-btn {
+    border-color: #3758f9 !important;
+}
+
+#onetrust-consent-sdk #onetrust-pc-sdk button:not(#clear-filters-handler):not(.ot-close-icon):not(#filter-btn-handler):not(.ot-remove-objection-handler):not(.ot-obj-leg-btn-handler):not([aria-expanded]):not(.ot-link-btn):hover,
+#onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-active-leg-btn:hover {
+    border-color: #3758f9 !important;
+}
+
+body #onetrust-pc-sdk .ot-pc-footer button.save-preference-btn-handler.onetrust-close-btn-handler:hover {
+    border: none;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk .privacy-notice-link {
+    color: #3758f9;
+    text-decoration: underline;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-sdk .ot-sdk-row.ot-cat-grp {
+    padding-bottom: 16px;
+}
+
+@media screen and (max-width: 443px) {
+    body #onetrust-pc-sdk .ot-btn-container button+button {
+        margin-top: 16px;
+    }
+}
+
+/* === Accept button - v2 btn-primary design === */
+
+body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler {
+    background: #0066FF !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08) !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    letter-spacing: -0.32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 0.625rem 0.625rem 0.625rem 1.25rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between;
+    gap: 1.5rem;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 395px) {
+    body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler {
+        padding-left: 10px;
+        font-size: 85%;
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler {
+        font-size: 80%;
+        white-space: normal;
+    }
+}
+
+body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='7' width='10' height='2' rx='1'/%3E%3Cpath d='M9.5 3.5L14 8l-4.5 4.5V3.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+}
+
+body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler:hover {
+    background: #0052CC !important;
+    border-color: #0052CC !important;
+    opacity: 1 !important;
+}
+
+body #onetrust-banner-sdk #onetrust-button-group #onetrust-accept-btn-handler:hover::after {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* === OneTrust Banner Style Overrides === */
+
+#onetrust-banner-sdk.ot-buttons-fw:not(.ot-iab-2) #onetrust-button-group {
+    margin: 0
+}
+
+/* New CSS for button group layout for v2 */
+
+body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group {
+    display: grid;
+    grid-template-columns: auto minmax(100px, 232px);
+    gap: 14px;
+    align-items: stretch;
+}
+
+@media screen and (max-width: 768px) {
+    body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group {
+        gap: 12px;
+    }
+}
+
+body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group #onetrust-pc-btn-handler,
+body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group #onetrust-reject-all-handler {
+    grid-column: 1;
+}
+
+body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group #onetrust-accept-btn-handler {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group button {
+    text-align: left;
+}
+
+@media (min-width: 2560px) {
+    body #onetrust-consent-sdk #onetrust-banner-sdk {
+        max-width: 700px;
+    }
+    body #onetrust-banner-sdk #onetrust-button-group button,
+    body #onetrust-pc-sdk .ot-pc-footer button {
+        font-size: 24px;
+    }
+    body #onetrust-consent-sdk #onetrust-policy-text {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+    }
+    body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group button {
+        font-size: 1.375rem;
+        justify-content: center;
+    }
+    body #onetrust-banner-sdk #onetrust-button-group-parent #onetrust-button-group {
+        grid-template-columns: auto minmax(100px, 50%);
+    }
+    body #onetrust-consent-sdk #onetrust-banner-sdk {
+        padding: 32px;
+    }
+}

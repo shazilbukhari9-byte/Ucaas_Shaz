@@ -1,0 +1,779 @@
+/* ============================
+   Base Top Bar Styles
+   ============================ */
+
+.megamenubox {
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+.megamenubox.banner-visible {
+  transform: translateY(var(--banner-height));
+}
+
+
+.ntb-banner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1100;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: var(--ntb-bg-color, #101a3b);
+	background-image: var(--ntb-bg-image, none);
+	background-size: cover;
+	background-position: center;
+	color: #ffffff;
+	font-family: "Sohne", system-ui, -apple-system, BlinkMacSystemFont,
+		"SF Pro Text", "Segoe UI", sans-serif;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ntb-banner.ntb-banner--scroll-hidden,
+.ntb-banner[data-ntb-closed="1"] {
+	opacity: 0;
+	transform: translateY(-100%);
+	pointer-events: none;
+}
+
+/* Sync header movement with banner animation */
+body:has(.ntb-banner) .nb20-header,
+body:has(.ntb-banner) [data-nb20-header] {
+	transition: top 0.3s ease;
+}
+
+@media (max-width: 768px) {
+	.ntb-banner {
+		background-image: var(--ntb-bg-image-mobile, var(--ntb-bg-image, none));
+	}
+}
+
+.ntb-banner[data-ntb-clickable="1"] {
+	cursor: pointer;
+}
+
+.ntb-banner[data-ntb-clickable="1"] .ntb-banner__cta {
+	cursor: pointer; 
+}
+
+
+.ntb-banner__inner {
+	max-width: 90%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+	padding: 16px 16px;
+	box-sizing: border-box;
+}
+
+.ntb-banner__main {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+.ntb-banner__meta-row {
+	display: contents;
+}
+
+.ntb-no-wrap .ntb-banner__main {
+	white-space: nowrap;
+}
+
+.ntb-banner__icon {
+	width: 24px;
+	height: 24px;
+	display: block;
+	align-self: center;
+}
+
+.ntb-banner__text {
+	display: flex;
+	flex-direction: row;
+	padding: 18px 0;
+	margin-right: 40px;
+	font-size: 20px;
+	line-height: 1.3;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+}
+
+.ntb-banner__message {
+	padding-left: 10px;
+	white-space: pre-wrap;
+}
+
+.ntb-countdown {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 16px;
+	color: #ffffff;
+}
+
+
+.ntb-countdown__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.ntb-countdown__digits,
+.ntb-countdown__label {
+	font-weight: 500;
+	text-transform: uppercase;
+	color: #ffffff;
+}
+
+.ntb-countdown__label {
+	font-size: 11px;
+	line-height: 1.2;
+}
+
+.ntb-countdown__sep {
+	width: 1px;
+	height: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ntb-countdown__digits {
+	font-size: 1.5rem;
+	line-height: 1.2;
+	font-variant-numeric: tabular-nums;
+}
+
+.ntb-banner__date {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 15px;
+	font-size: 16px;
+	line-height: 1.3;
+	background: linear-gradient(
+		100deg,
+		rgba(255, 255, 255, 0.1) 47.8%,
+		rgba(255, 255, 255, 0) 100.09%
+	);
+	border-radius: 16px;
+	white-space: nowrap;
+}
+
+.ntb-banner__date::before {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-image: url("/media/calendar-4cf8c4aa.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.ntb-banner__actions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ntb-banner__cta {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 22px;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 400;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.ntb-banner__cta--underline::after {
+	content: "";
+	position: absolute;
+	left: 20px;
+	right: 15px;
+	bottom: 0;
+	height: 1px;
+	background-color: currentColor;
+}
+
+.ntb-banner__cta-icon,
+.ntb-banner__cta-default-icon {
+	width: 16px;
+	height: 16px;
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.32s ease-out;
+}
+
+.ntb-banner__cta:hover .ntb-banner__cta-default-icon,
+.ntb-banner__cta:focus-visible .ntb-banner__cta-default-icon,
+.ntb-banner__cta:hover .ntb-banner__cta-icon,
+.ntb-banner__cta:focus-visible .ntb-banner__cta-icon {
+	transform: translateX(3px);
+}
+
+.ntb-banner__close {
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%);
+	width: 32px;
+	height: 32px;
+	border-radius: 999px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background: transparent;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 0;
+}
+
+.ntb-banner__close span {
+	position: absolute;
+	width: 12px;
+	height: 1.5px;
+	background-color: #ffffff;
+	border-radius: 999px;
+}
+
+.ntb-banner__close span:first-child {
+	transform: rotate(45deg);
+}
+
+.ntb-banner__close span:last-child {
+	transform: rotate(-45deg);
+}
+
+.ntb-banner__close:hover {
+	background-color: rgba(15, 23, 42, 0.35);
+}
+
+@media (min-width: 2560px) {
+	.ntb-banner__inner {
+		padding: 15px 16px;
+	}
+
+	.ntb-banner__text {
+		margin-right: 50px;
+		font-size: 28px;
+	}
+
+	.ntb-banner__date {
+		font-size: 18px;
+	}
+
+	.ntb-banner__cta {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 1440px) and (min-width: 769px) {
+	.ntb-banner__inner {
+		padding-inline: 4px;
+		gap: 16px;
+
+	}
+
+	.ntb-banner__text {
+		font-size: 18px;
+		margin-right: 32px;
+	}
+
+	.ntb-banner__date {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 768px) {
+	.ntb-banner__inner {
+		padding: 10px 12px 16px 12px;
+	}
+
+	.ntb-banner__main {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0;
+	}
+
+	.ntb-banner__message {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.ntb-banner__text {
+		margin-right: 0;
+		padding: 0;
+		font-size: 15px;
+	}
+
+	.ntb-banner__meta-row {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-top: 4px;
+		gap: 8px;
+	}
+
+	.ntb-banner__date {
+		font-size: 14px;
+	}
+
+	.ntb-banner__actions {
+		justify-content: flex-start;
+	}
+	.ntb-countdown__label {
+		font-weight: 400;
+	}
+	
+	.ntb-banner__close {
+		width: 24px;
+		height: 24px;
+	}
+}
+@media (max-width: 1440px) {
+	.ntb-banner__close {
+		top: 8px;
+		right: 8px;
+		transform: none;
+	}
+}
+
+/* CYBER WEEK VARIANT */
+.ntb-style-cyber-week .ntb-banner__inner {
+	max-width: 90%;
+	justify-content: center;
+	gap: 16px;
+}
+
+.ntb-style-cyber-week .ntb-banner__main {
+	gap: 24px;
+}
+
+.ntb-style-cyber-week .ntb-banner__text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 18px 0;
+	margin-right: 0;
+}
+
+.ntb-style-cyber-week .ntb-banner__message {
+	margin-right: 0;
+	display: block;
+	align-items: center;
+	font-weight: 500;
+	font-size: 28px;
+	line-height: 1.3;
+}
+
+.ntb-style-cyber-week .ntb-banner__actions {
+	min-width: 170px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.ntb-style-cyber-week .ntb-banner__cta {
+	padding: 12px 24px;
+	border-radius: 200px;
+	background-color: #ffffff;
+	color: #3758f9;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 1.3;
+	text-decoration: none;
+}
+
+.ntb-style-cyber-week .ntb-banner__cta svg,
+.ntb-style-cyber-week .ntb-banner__cta-icon,
+.ntb-style-cyber-week .ntb-banner__cta-default-icon svg {
+	width: 16px;
+	height: 16px;
+	stroke: #3758f9;
+	fill: #3758f9;
+}
+
+.ntb-style-cyber-week .ntb-banner__cta-default-icon svg path {
+	stroke: #3758f9;
+	fill: #3758f9;
+}
+
+@media (max-width: 768px) {
+	.ntb-style-cyber-week .ntb-banner__inner {
+		max-width: 100%;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.ntb-style-cyber-week .ntb-banner__main {
+		gap: 8px;
+	}
+
+	.ntb-style-cyber-week .ntb-banner__actions {
+		min-width: 0;
+		justify-content: center;
+	}
+}
+
+/* BOOK-NOW STYLE */
+.ntb-style-book-now .ntb-banner__icon {
+    width: 110px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.ntb-style-book-now .ntb-banner__text {
+    padding: 18px 0 0 0;
+}
+
+.ntb-style-book-now .ntb-banner__inner {
+    padding: 0;
+}
+
+.ntb-style-book-now .ntb-banner__message{
+	align-self: center;
+}
+
+@media (max-width: 768px) {
+	.ntb-style-book-now .ntb-banner__icon {
+		width: 90px;
+		height: -webkit-fill-available;
+		margin-right: 12px;
+		margin-left: -12px;
+	}
+}
+
+@media (max-width: 1440px) and (min-width: 768px) {
+	.ntb-style-book-now {
+		padding-inline: 24px;
+	}
+	.ntb-style-book-now .ntb-banner__message {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	.ntb-style-book-now .ntb-banner__inner {
+		max-width: 90%;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.ntb-style-book-now .ntb-banner__text {
+		margin-right: 0;
+	}
+
+	.ntb-style-book-now .ntb-banner__message {
+		font-size: 18px;
+		line-height: 1.3;
+		padding-left: 5px;
+	}
+
+	.ntb-style-book-now .ntb-banner__cta {
+		display: none;
+	}
+}
+
+@media (min-width: 2560px) {
+	.ntb-style-book-now .ntb-banner__inner {
+		max-width: 1720px;
+	}
+
+	.ntb-style-book-now .ntb-banner__message {
+		font-size: 32px;
+	}
+
+	.ntb-style-book-now .ntb-banner__cta {
+		font-size: 20px;
+	}
+}
+
+/* NEXTIVA 2.0 STYLE */
+.ntb-style-nextiva-2-0 {
+	font-family: "Space Grotesk", sans-serif;
+	padding: 10px max(100px, calc((100% - 1600px) / 2)) 8px;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__inner {
+	position: relative;
+	max-width: 100%;
+	gap: 16px;
+	padding: 10px 48px 10px 24px;
+	min-height: 40px;
+	border-radius: 100px;
+	background: rgba(0, 0, 0, 0.04);
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__main {
+	gap: 16px;
+	justify-content: center;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__meta-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-left: 12px;
+	margin-left: 4px;
+	border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__text {
+	margin-right: 0;
+	padding: 0;
+	font-size: 14px;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__text:hover {
+	transform: none;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__message {
+	padding-left: 0;
+	font-size: 13px;
+	line-height: 1.4;
+	font-weight: 500;
+	text-align: center;
+	color: #4b5563;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__message strong {
+	color: #1a1a1a;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__date {
+	order: 2;
+	padding: 0;
+	margin-right: 6px;
+	background: none;
+	border-radius: 0;
+	font-size: 11px;
+	line-height: 1;
+	font-weight: 500;
+	color: #6C6967;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__date::before {
+	display: none;
+}
+
+.ntb-style-nextiva-2-0 .ntb-countdown {
+	order: 3;
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	padding: 0;
+	color: #4A4B46;
+}
+
+.ntb-style-nextiva-2-0 .ntb-countdown__item {
+	display: inline-flex;
+	align-items: baseline;
+	flex-direction: row;
+	gap: 2px;
+}
+
+.ntb-style-nextiva-2-0 .ntb-countdown__digits {
+	display: inline-block;
+	min-width: 20px;
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+	font-size: 12px;
+	line-height: 1;
+	color: #4A4B46;
+	font-weight: 600;
+}
+
+.ntb-style-nextiva-2-0 .ntb-countdown__label {
+	font-size: 10px;
+	line-height: 1;
+	color: #6C6967;
+	font-weight: 500;
+}
+
+.ntb-style-nextiva-2-0 .ntb-countdown__sep {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 10px;
+	line-height: 1;
+	color: #4b5563;
+	margin: 0 2px;
+	transform: translateY(-1px);
+	width: auto;
+	height: auto;
+	border: none;
+	background: transparent;
+}
+
+.ntb-style-nextiva-2-0 .ntb-countdown__sep::before {
+	content: ":";
+	color: inherit;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__cta {
+	padding: 4px 14px;
+	border-radius: 100px;
+	font-size: 13px;
+	font-weight: 600;
+	background: #0f172a;
+	color: #ffffff;
+}
+
+
+.ntb-style-nextiva-2-0 .ntb-banner__actions {
+	order: 1;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__cta:hover {
+	background: #020617;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__cta-default-icon svg path {
+	fill: #ffffff;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__cta-icon,
+.ntb-style-nextiva-2-0 .ntb-banner__cta-default-icon {
+	display: none;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__close {
+	width: 24px;
+	height: 24px;
+	right: 14px;
+	top: 50%;
+	transform: translateY(-50%);
+	border: none;
+	color: #6b7280;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__close span {
+	background-color: currentColor;
+}
+
+.ntb-style-nextiva-2-0 .ntb-banner__close:hover {
+	background: rgba(0, 0, 0, 0.06);
+	color: #0f172a;
+}
+
+@media (max-width: 768px) {
+	.ntb-style-nextiva-2-0 {
+		padding: 8px 1.5rem;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__inner {
+		padding: 8px 40px 8px 16px;
+		gap: 10px;
+		min-height: 36px;
+		border-radius: 16px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__cta {
+		flex-shrink: 0;
+		font-size: 11px;
+		padding: 3px 10px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__date {
+		font-size: 10px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-countdown__digits {
+		font-size: 10px;
+		min-width: 14px;
+		text-align: center;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-countdown__label {
+		font-size: 9px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__main {
+		align-items: center;
+		gap: 8px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__message {
+		font-size: 12px;
+		text-align: center;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__meta-row {
+		justify-content: center;
+		border-left: none;
+		flex-wrap: wrap;
+		gap: 8px;
+		padding: 0;
+		margin: 0;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__meta-row .ntb-banner__actions {
+		flex: 0 0 100%;
+		order: -1;
+		display: flex;
+		justify-content: center;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__cta {
+		font-size: 12px;
+		padding: 3px 10px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-countdown__digits {
+		font-size: 11px;
+	}
+}
+
+@media (max-width: 480px) {
+	.ntb-style-nextiva-2-0 {
+		padding: 6px 1.5rem;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__inner {
+		padding: 10px 25px 10px 25px;
+		gap: 8px;
+		flex-wrap: wrap;
+		justify-content: center;
+		border-radius: 14px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__close {
+		right: 8px;
+		width: 20px;
+		height: 20px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__message {
+		font-size: 10px;
+		line-height: 1.3;
+		margin: 0 10px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__cta {
+		font-size: 10px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-banner__date {
+		font-size: 9px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-countdown__digits {
+		font-size: 9px;
+		min-width: 12px;
+	}
+
+	.ntb-style-nextiva-2-0 .ntb-countdown__label {
+		font-size: 8px;
+	}
+}

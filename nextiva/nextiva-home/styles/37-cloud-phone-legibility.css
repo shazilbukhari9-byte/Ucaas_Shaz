@@ -1,0 +1,549 @@
+/* Cloud Phone dashboard: legibility pass + the arriving-message animation.
+   ---------------------------------------------------------------------------
+   The capture set this whole panel in 7–10px type at 40–60% opacity over a
+   warm photographic backdrop. At the size the panel is actually drawn that is
+   below the point where the words resolve — it reads as grey texture rather
+   than an interface. Everything here raises weight, size and contrast; nothing
+   changes layout, so the panel keeps its proportions.
+
+   Loaded after 06-…-features-tabs-view.css, so equal-specificity rules win. */
+
+/* --- phone panel ---------------------------------------------------------- */
+
+.design-v2 .section-tabbed-trust-showcase .dialer-name {
+    font-size: 12px;
+    font-weight: 800
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-number {
+    color: rgba(16, 2, 44, .8);
+    font-size: 10px;
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-tag {
+    font-size: 8.5px;
+    font-weight: 800
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-status {
+    background: hsla(0, 0%, 100%, .88);
+    font-size: 9px;
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-status i {
+    font-size: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-timer {
+    font-size: 11px;
+    font-weight: 800
+}
+
+/* Hold / Mute / Speaker / Transfer / … — the worst offenders at 7.5px. */
+.design-v2 .section-tabbed-trust-showcase .dialer-key-label {
+    color: rgba(16, 2, 44, .92);
+    font-size: 9px;
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-sentiment-title {
+    color: rgba(16, 2, 44, .82);
+    font-size: 8.5px
+}
+
+/* The sentiment panel is glass over a bright photo; without a denser ground
+   the gauge percentages sit on whatever happens to be behind them. */
+.design-v2 .section-tabbed-trust-showcase .dialer-sentiment {
+    background: hsla(0, 0%, 100%, .42);
+    border-color: hsla(0, 0%, 100%, .55)
+}
+
+/* --- conversation list ---------------------------------------------------- */
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-name {
+    color: #10022c;
+    font-size: var(--text-caption);
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-preview {
+    color: rgba(16, 2, 44, .72);
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-time {
+    color: rgba(16, 2, 44, .6);
+    font-weight: 600
+}
+
+/* --- chat panel ----------------------------------------------------------- */
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-name {
+    color: #10022c;
+    font-size: var(--text-body);
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-msg {
+    font-size: var(--text-caption);
+    font-weight: 600;
+    line-height: 1.45
+}
+
+/* Bubble fills and ink are left exactly as the theme has them. Making them
+   opaque did read more clearly, but it changed the panel's colour, and the
+   weight and size increases above carry the legibility on their own. */
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-typed {
+    color: rgba(16, 2, 44, .78);
+    font-weight: 600
+}
+
+/* --- the short chatting animation ----------------------------------------- */
+
+/* Every bubble arrives, cascading down the thread, then the dots answer and
+   the run holds briefly before repeating.
+
+   Paced deliberately slowly. The section this lives in is tall, and the
+   page-wide `animations-paused` observer unpauses it as soon as the section's
+   TOP edge enters view — which is while this panel is still below the fold.
+   A quick cascade therefore played to nobody and left an eight-second dead
+   hold for whoever then scrolled down to it. Stretching the arrival across
+   ~5s and trimming the hold means something is in motion for roughly half the
+   cycle, so the panel is nearly always caught mid-conversation.
+
+   One shared keyframe with a per-bubble delay rather than eight keyframes:
+   the delay is what staggers them. */
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg {
+    /* One pass per play — the replay loop lives in useFeatureTabs, which
+       rewinds and re-runs the whole cascade every few seconds while the
+       panel is on screen. An `infinite` cycle here could not do that: each
+       bubble looped on its own clock, so the thread never restarted as one
+       and bubbles blinked out individually mid-read. */
+    animation: tabMsgArrive 1s ease-out both;
+    transform-origin: bottom left
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg.sent {
+    transform-origin: bottom right
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(1) { animation-delay: 0s }
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(2) { animation-delay: .6s }
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(3) { animation-delay: 1.2s }
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(4) { animation-delay: 1.8s }
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(5) { animation-delay: 2.4s }
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(6) { animation-delay: 3s }
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(7) { animation-delay: 3.6s }
+/* The typing dots, last in the thread. */
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages .tab-msg:nth-child(8) { animation-delay: 4.2s }
+
+@keyframes tabMsgArrive {
+    0% { opacity: 0; transform: translateY(12px) scale(.965) }
+    to { opacity: 1; transform: none }
+}
+
+/* The replay rewind: while this class is on, every bubble's animation is
+   detached entirely — the next frame removes the class and the cascade runs
+   again from zero, delays and all. Toggling play-state cannot do this; a
+   paused animation resumes, it does not restart. */
+.design-v2 .section-tabbed-trust-showcase .tab-app-chat.chat-rewind .tab-msg {
+    animation: none !important
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .tab-msg,
+    .design-v2 .section-tabbed-trust-showcase .tab-msg--typing {
+        animation: none
+    }
+}
+
+/* --- sentiment gauges ------------------------------------------------------ */
+
+/* 7.5px inside a 40px ring, over glass, over a photograph — the percentages
+   were not readable at all.
+
+   The theme centres the value with a magic `top: 16px`, which only holds at
+   the original font size; enlarging the text alone would drop it off-centre in
+   the ring. So it is centred properly instead — pinned to the full height of
+   the svg and flex-centred — which stays true at any size. */
+.design-v2 .section-tabbed-trust-showcase .dialer-gauge-value {
+    align-items: center;
+    display: flex;
+    font-size: 10.5px;
+    font-weight: 800;
+    height: 40px;
+    justify-content: center;
+    top: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-gauge-label {
+    color: rgba(16, 2, 44, .88);
+    font-size: 8.5px;
+    font-weight: 700
+}
+
+/* The track was 14% ink, which read as nothing behind the fills. */
+.design-v2 .section-tabbed-trust-showcase .gauge-track {
+    stroke: rgba(16, 2, 44, .22)
+}
+
+/* NOTE ON SPECIFICITY: each target class is written twice. The theme styles
+   this panel through `.accordion-visual-placeholder--light .ci-…`, four
+   classes deep, which silently outranks a normal three-class override — the
+   font-weights below landed but every colour was discarded until this was
+   fixed. Doubling the class matches that weight without hard-coding the
+   variant, so it holds for both the light and dark placeholders. */
+
+/* --- Call Intelligence: second legibility pass ----------------------------- */
+
+/* An earlier pass raised the SIZES here. What it left alone was weight and
+   ink, and that is what was still failing: most of this panel was 400-weight
+   text at 40–62% opacity over a photographic backdrop. Size alone does not
+   rescue thin, pale type on a busy ground — so this pass is almost entirely
+   weight and contrast, with size raised only where it was still under 12px. */
+
+/* Column headings and section labels — 58% ink, set in caps and letterspaced,
+   which is the least legible combination in the panel. */
+.design-v2 .section-tabbed-trust-showcase .ci-col-title.ci-col-title,
+.design-v2 .section-tabbed-trust-showcase .ci-section-label.ci-section-label,
+.design-v2 .section-tabbed-trust-showcase .ci-card-title.ci-card-title {
+    color: rgba(16, 2, 44, .82);
+    font-weight: 800
+}
+
+/* Transcript: speaker, timestamp, and the words themselves. */
+.design-v2 .section-tabbed-trust-showcase .ci-line-meta.ci-line-meta {
+    color: rgba(16, 2, 44, .82);
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line-time.ci-line-time {
+    color: rgba(16, 2, 44, .62);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-bubble.ci-bubble {
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-card--summary.ci-card--summary {
+    color: rgba(16, 2, 44, .95);
+    font-weight: 500
+}
+
+/* Sentiment legend: the names were 12px/400 at 62% — the faintest text on the
+   panel, and the one carrying the actual numbers' meaning. */
+.design-v2 .section-tabbed-trust-showcase .ci-leg-name.ci-leg-name {
+    color: rgba(16, 2, 44, .85);
+    font-size: 12.5px;
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg-val.ci-leg-val {
+    font-size: 12.5px;
+    font-weight: 700
+}
+
+/* Dial centre: "62%" over "Positive". */
+.design-v2 .section-tabbed-trust-showcase .ci-dial-mid em {
+    color: rgba(16, 2, 44, .78);
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-topic.ci-topic {
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-name.ci-ratio-name {
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-val.ci-ratio-val {
+    color: rgba(16, 2, 44, .78);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-footer-text.ci-footer-text {
+    color: rgba(16, 2, 44, .8);
+    font-weight: 500
+}
+
+/* Left-hand status cards: Appointment Booked / Call Routed / FAQ Answered. */
+.design-v2 .section-tabbed-trust-showcase .tab-toast-title.tab-toast-title {
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-desc.tab-toast-desc {
+    color: rgba(43, 38, 32, .82);
+    font-weight: 500
+}
+
+/* --- Auto Dialer: soften the selected mode card ---------------------------- */
+
+/* The active card ("Predictive") was outlined with a 1.5px ring at 50% ink and
+   filled its meter with solid #10022c. Against the pale card and the warm
+   backdrop both read as hard black rules — the ring looked like a heavy border
+   and the meter like a bar drawn under the text rather than a value.
+
+   Both are dialled back rather than removed: the card still has to read as the
+   selected one of three. */
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on {
+    box-shadow: 0 14px 32px -14px rgba(60, 40, 30, .38), 0 0 0 1px rgba(16, 2, 44, .2)
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-bar-fill {
+    background: rgba(16, 2, 44, .5)
+}
+
+/* The track under it was nearly the same value as the fill at low widths. */
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-bar {
+    background: rgba(16, 2, 44, .1)
+}
+
+/* --- Auto Dialer: legibility pass ------------------------------------------ */
+
+/* Same failure as the Call Intelligence panel: twelve of the twenty-one text
+   styles in here were under 12px, under 500 weight, or below 70% ink — often
+   all three — over a warm photographic backdrop. Weight and ink first, size
+   only where it was genuinely too small to resolve. */
+
+/* Mode cards. */
+.design-v2 .section-tabbed-trust-showcase .dz-mode-desc,
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-mode-desc {
+    color: rgba(16, 2, 44, .8);
+    font-size: 12.5px;
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-meter-head,
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-mode-meter-head {
+    color: rgba(16, 2, 44, .78);
+    font-size: 11.5px;
+    font-weight: 600
+}
+
+/* Live call card. */
+.design-v2 .section-tabbed-trust-showcase .dz-call-tag {
+    color: rgba(16, 2, 44, .75);
+    font-size: 11.5px;
+    font-weight: 600
+}
+
+/* Avatars — initials in a coloured chip, so they carry the identity. */
+.design-v2 .section-tabbed-trust-showcase .dz-agent,
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar {
+    font-size: 12px;
+    font-weight: 800
+}
+
+/* Queue. */
+.design-v2 .section-tabbed-trust-showcase .dz-queue-head,
+.design-v2 .section-tabbed-trust-showcase .dz-feed-head {
+    color: rgba(16, 2, 44, .8);
+    font-size: 12px;
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-tag {
+    color: rgba(16, 2, 44, .75);
+    font-size: 11.5px;
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-queue-foot {
+    color: rgba(16, 2, 44, .7);
+    font-size: 11.5px;
+    font-weight: 500
+}
+
+/* Recent activity feed: outcome, then who and how long. */
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info b {
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info em {
+    color: rgba(16, 2, 44, .75);
+    font-style: normal;
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-time {
+    color: rgba(16, 2, 44, .62);
+    font-size: 11.5px;
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-stat-text {
+    color: rgba(16, 2, 44, .78);
+    font-size: 12.5px;
+    font-weight: 600
+}
+
+/* The two secondary lines the first pass missed: the number and account under
+   the live caller, and the company under each queued lead. Both were 400
+   weight at 55% ink — the faintest text left in the panel, and the part that
+   actually identifies who is being called. */
+.design-v2 .section-tabbed-trust-showcase .dz-call-who em,
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info em {
+    color: rgba(16, 2, 44, .78);
+    font-style: normal;
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info em {
+    font-size: 11.5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info em {
+    font-size: 11.5px
+}
+
+/* --- Integration Hub: legibility pass -------------------------------------- */
+
+/* Half the text styles in this panel were failing, and the worst of them is
+   the one repeated twelve times: the "Connected" status at 9px. */
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-title {
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-section-label {
+    color: rgba(16, 2, 44, .82);
+    font-size: 11.5px;
+    font-weight: 800
+}
+
+/* The app names are the labels on the tiles — they should read first, not sit
+   at the same weight as the status beneath them. */
+.design-v2 .section-tabbed-trust-showcase .integ-app-name {
+    font-size: 12.5px;
+    font-weight: 700
+}
+
+/* 9px is below the point where a word resolves at all at this scale. Raised,
+   but kept smaller than the app name so the tile still has a hierarchy — and
+   the green is left alone, since it is doing the real signalling here. */
+.design-v2 .section-tabbed-trust-showcase .integ-app-status {
+    font-size: 11px;
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-text {
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-meta {
+    color: rgba(16, 2, 44, .75);
+    font-size: 11.5px;
+    font-weight: 500
+}
+
+/* These two are styled through `#visual-connected-tools .integ-…` in the
+   theme. An ID outranks any number of classes, so unlike the Call
+   Intelligence panel — where doubling the class was enough — the override has
+   to carry the ID too. Without it the font sizes below landed and the colours
+   were silently dropped. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-section-label {
+    color: rgba(16, 2, 44, .82)
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-meta {
+    color: rgba(16, 2, 44, .75);
+    font-size: 11.5px
+}
+
+/* --- Integration Hub: real glass on the tiles ------------------------------ */
+
+/* These already carried `background: hsla(0,0%,100%,.62)` and a 6px blur, but
+   they sit INSIDE a window that is itself .55 white over blur(16px). Two
+   translucent whites compose rather than average — .55 then .62 lands at
+   ~.83 effective — so the tiles read as flat white and the blur had almost
+   nothing left to work on. The fix is to thin the tile, not to add more
+   effect on top.
+
+   The fill is a gradient rather than a flat alpha: real glass is brighter
+   where light catches its top edge, and that gradient plus the inset highlight
+   is what separates "translucent" from "glass".
+
+   NOTE: the two backdrop-filters carry deliberately different saturate()
+   values. Given identical declarations the CSS pipeline collapses them to the
+   -webkit- form alone, which Chromium then ignores — the blur silently
+   disappears. Keeping them distinct prevents that merge. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card,
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    -webkit-backdrop-filter: blur(14px) saturate(159%);
+    backdrop-filter: blur(14px) saturate(160%);
+    background: linear-gradient(155deg, hsla(0, 0%, 100%, .34), hsla(0, 0%, 100%, .08));
+    border: 1px solid hsla(0, 0%, 100%, .85);
+    box-shadow:
+        0 10px 24px -14px rgba(60, 40, 30, .5),
+        inset 0 1px 0 hsla(0, 0%, 100%, .95),
+        inset 0 -1px 0 hsla(0, 0%, 100%, .35)
+}
+
+/* The activity rows are a list, so they read better slightly quieter than the
+   app tiles — otherwise ten equally bright panes fight each other. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    background: linear-gradient(155deg, hsla(0, 0%, 100%, .26), hsla(0, 0%, 100%, .06));
+    border-color: hsla(0, 0%, 100%, .7)
+}
+
+/* The tiles above were already transparent, and it still read as a white
+   panel. The reason is one level up: `.tab-app-window` paints a flat 55% white
+   sheet, so the tiles were showing through to white, and their blur had a
+   uniform fill to work on — nothing to frost.
+
+   Glass needs something behind it. Thinning the window lets the pastel
+   mountain artwork through, which is what the tiles' blur and saturation then
+   act on. The window keeps a stronger blur than the tiles so the artwork
+   reads as diffused light rather than a legible photograph behind the text.
+
+   -webkit- first and different saturate() values, deliberately: identical
+   adjacent declarations get collapsed to the -webkit- form alone, which
+   Chromium ignores, and the blur silently vanishes. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-window {
+    -webkit-backdrop-filter: blur(26px) saturate(159%);
+    backdrop-filter: blur(26px) saturate(160%);
+    background: hsla(0, 0%, 100%, .18)
+}
+
+/* Hold the cascade until the chat panel itself is on screen.
+   `has-chat-reveal` is added by useFeatureTabs, so without JS this whole block
+   is inert and the animation plays as it otherwise would — it can never leave
+   the messages stuck invisible. The section-level `.visual-paused` rule still
+   overrides both with !important while the section is offscreen, which is the
+   behaviour we want. */
+.design-v2 .section-tabbed-trust-showcase .tab-app-chat.has-chat-reveal .tab-msg {
+    animation-play-state: paused
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-chat.has-chat-reveal.chat-live .tab-msg {
+    animation-play-state: running
+}
+
+/* One treatment for every dashboard window title.
+   ---------------------------------------------------------------------------
+   The theme already unified these four in a single rule at 12.5px/700 —
+   Call Intelligence, Integration Hub, Cloud Phone's MESSAGES, and Auto
+   Dialer. Enlarging Auto Dialer on its own (after its subtitle was removed
+   and the title was left stranded in a row sized by the buttons opposite)
+   fixed that panel and broke the set.
+
+   So the whole set moves together instead. The selector list is copied
+   verbatim from that rule: two of those selectors carry an ID or a fourth
+   class, which a plain three-class override cannot outrank — matching them
+   exactly and loading later is what makes this stick. Getting this wrong is
+   silent: the sizes simply do not apply and the panels stay mismatched. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-titlebar,
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-title,
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-sidebar-title,
+.design-v2 .section-tabbed-trust-showcase .dz-brand-text b {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -.01em
+}

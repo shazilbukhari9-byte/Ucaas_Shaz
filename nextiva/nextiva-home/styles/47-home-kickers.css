@@ -1,0 +1,38 @@
+/* ── Home: one kicker style ──────────────────────────────────────────────── */
+/* The "Features that answer for you" block opened with an orange icon pill
+   (.arf-eyebrow, "AI RECEPTIONIST") while every other section on the page
+   uses the grey square badge (.platform-badge, "NEW FROM UCAAS"). It now
+   wears the same badge, so the page reads as one system. The icon stays,
+   in the badge's own grey. */
+.design-v2 .section-spotlight-hero-trust .arf-eyebrow {
+    background: rgba(0, 0, 0, .06);
+    border: 0;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    gap: 8px;
+    letter-spacing: .08em;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-eyebrow i {
+    color: var(--text-secondary);
+    font-size: 14px
+}
+
+/* Logo trust bar: a larger shield badge, centred on the two-line statement. */
+body.design-v2 .section-logo-trust-bar .logo-trust-bar-text p {
+    align-items: center;
+    gap: 14px
+}
+body.design-v2 .section-logo-trust-bar .logo-trust-bar-text p i {
+    font-size: 38px !important;
+    line-height: 1
+}
+/* Room for the larger badge so the statement still sets on two lines. */
+@media (min-width: 1025px) {
+    body.design-v2 .section-logo-trust-bar .logo-trust-bar-text { max-width: 500px; width: 500px }
+}

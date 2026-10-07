@@ -1,0 +1,35 @@
+@font-face {
+            font-family: "Space Grotesk";
+            font-style: normal;
+            font-weight: 300 700;
+            font-display: fallback;
+            src: url('https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2') format('woff2');
+            font-stretch: normal;
+        }
+
+        @font-face {
+            font-family: Solitreo;
+            font-style: normal;
+            font-weight: 400;
+            font-display: fallback;
+            src: url('/media/Solitreo-Regular-95e60aaa.ttf') format('truetype');
+            font-stretch: normal;
+        }
+
+        @font-face {
+            font-family: Silkscreen;
+            font-style: normal;
+            font-weight: 400;
+            font-display: fallback;
+            src: url('/media/Silkscreen-Regular-082c70b7.ttf') format('truetype');
+            font-stretch: normal;
+        }
+
+        @font-face {
+            font-family: JustAnotherHand;
+            font-style: normal;
+            font-weight: 400;
+            font-display: fallback;
+            src: url('/media/JustAnotherHand-Regular-0a92fe41.ttf') format('truetype');
+            font-stretch: normal;
+        }

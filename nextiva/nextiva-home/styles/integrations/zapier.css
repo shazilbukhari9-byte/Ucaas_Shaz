@@ -1,0 +1,355 @@
+/* ══ Zapier integration page ════════════════════════════════════════════════
+   Own namespace (zp-*) so none of the captured section sheets reach it. Type
+   sizes come from the shared scale in 39-typography-unified.css; only what is
+   specific to this page lives here. */
+
+.zp {
+    background: var(--brand-white, #fff);
+    color: var(--text-primary, #10022c);
+    font-family: var(--font-body);
+}
+
+/* ── Hero ── */
+.zp-hero {
+    background:
+        radial-gradient(ellipse 70% 90% at 12% 0, rgba(255, 190, 120, .22), transparent 60%),
+        radial-gradient(ellipse 60% 80% at 88% 10%, rgba(140, 170, 255, .18), transparent 62%),
+        linear-gradient(180deg, #fbf7f2, #fff);
+    border-bottom: 1px solid rgba(16, 2, 44, .07);
+    padding: 118px max(24px, (100% - 1140px) / 2) 78px;
+}
+
+.zp-hero-inner {
+    max-width: 720px;
+}
+
+.zp-eyebrow {
+    align-items: center;
+    background: rgba(249, 115, 22, .1);
+    border: 1px solid rgba(249, 115, 22, .22);
+    border-radius: 100px;
+    color: #b8430c;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 700;
+    gap: 7px;
+    letter-spacing: .1em;
+    padding: 7px 14px;
+    text-transform: uppercase;
+}
+
+.zp-title {
+    margin: 22px 0 0;
+}
+
+/* The count is the claim — set in the accent so it carries on its own. */
+.zp-title em {
+    color: #e2620f;
+    font-style: normal;
+}
+
+.zp-lede {
+    color: rgba(16, 2, 44, .66);
+    margin: 18px 0 0;
+    max-width: 620px;
+}
+
+.zp-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.zp-btn {
+    align-items: center;
+    border-radius: 10px;
+    display: inline-flex;
+    font-size: 15px;
+    font-weight: 600;
+    gap: 9px;
+    padding: 13px 22px;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.zp-btn--primary {
+    background: #16121f;
+    box-shadow: 0 12px 28px -12px rgba(16, 2, 44, .55);
+    color: #fff;
+}
+
+.zp-btn--primary:hover {
+    box-shadow: 0 18px 34px -14px rgba(16, 2, 44, .6);
+    transform: translateY(-2px);
+}
+
+.zp-btn--ghost {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .14);
+    color: var(--text-primary, #10022c);
+}
+
+.zp-btn--ghost:hover {
+    border-color: rgba(16, 2, 44, .3);
+}
+
+.zp-meta {
+    color: rgba(16, 2, 44, .48);
+    font-size: 13px;
+    margin: 18px 0 0;
+}
+
+/* ── The Zap, drawn ── */
+/* A trigger and two actions on one line. It is the page's whole argument in
+   one glance, which no amount of hero copy achieves. */
+.zp-flow {
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 52px;
+}
+
+.zp-node {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .1);
+    border-radius: 14px;
+    box-shadow: 0 14px 34px -22px rgba(16, 2, 44, .45);
+    display: flex;
+    flex: 1 1 210px;
+    gap: 12px;
+    padding: 14px 16px;
+}
+
+.zp-node > b,
+.zp-mark {
+    align-items: center;
+    background: rgba(16, 2, 44, .06);
+    border-radius: 10px;
+    display: flex;
+    flex: none;
+    font-size: 15px;
+    font-weight: 700;
+    height: 38px;
+    justify-content: center;
+    width: 38px;
+}
+
+/* Trigger is the one filled node — a Zap has exactly one, and the colour
+   says which. */
+.zp-node--trigger {
+    border-color: rgba(249, 115, 22, .35);
+}
+
+.zp-node--trigger > b {
+    background: linear-gradient(140deg, #f97316, #fbbf24);
+    color: #fff;
+}
+
+.zp-mark--sf { background: rgba(0, 161, 224, .14); color: #0a7ea8 }
+.zp-mark--sl { background: rgba(74, 21, 75, .12); color: #4a154b }
+
+.zp-node > u {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    text-decoration: none;
+}
+
+.zp-node u span {
+    color: rgba(16, 2, 44, .45);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.zp-node u em {
+    font-size: 13.5px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Dotted connector. Dashes drift along the line so the flow reads as
+   directional rather than as three boxes in a row. */
+.zp-arrow {
+    align-items: center;
+    display: flex;
+    flex: none;
+    gap: 5px;
+}
+
+.zp-arrow i {
+    animation: zpFlow 1.6s ease-in-out infinite;
+    background: rgba(16, 2, 44, .25);
+    border-radius: 50%;
+    height: 5px;
+    width: 5px;
+}
+
+.zp-arrow i:nth-child(2) { animation-delay: .18s }
+.zp-arrow i:nth-child(3) { animation-delay: .36s }
+
+@keyframes zpFlow {
+    0%, to { opacity: .25; transform: translateX(0) }
+    50% { opacity: 1; transform: translateX(2px) }
+}
+
+/* ── Sections ── */
+.zp-section {
+    padding: 84px max(24px, (100% - 1140px) / 2);
+}
+
+.zp-section--alt {
+    background: #faf8f5;
+    border-block: 1px solid rgba(16, 2, 44, .06);
+}
+
+.zp-h2 {
+    margin: 0;
+    max-width: 760px;
+}
+
+.zp-sub {
+    color: rgba(16, 2, 44, .6);
+    margin: 14px 0 0;
+    max-width: 640px;
+}
+
+/* ── Trigger / action cards ── */
+.zp-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 42px;
+}
+
+.zp-grid--four {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.zp-card {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .09);
+    border-radius: 16px;
+    padding: 24px 22px 26px;
+    transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+
+.zp-card:hover {
+    border-color: rgba(249, 115, 22, .32);
+    box-shadow: 0 22px 44px -26px rgba(16, 2, 44, .4);
+    transform: translateY(-3px);
+}
+
+.zp-card-icon {
+    align-items: center;
+    background: linear-gradient(150deg, rgba(249, 115, 22, .14), rgba(251, 191, 36, .16));
+    border: 1px solid rgba(249, 115, 22, .2);
+    border-radius: 12px;
+    color: #c2410c;
+    display: flex;
+    font-size: 19px;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+}
+
+/* Actions get the cool half of the palette, so the two grids are not the
+   same grid twice — trigger and action are opposite ends of a Zap. */
+.zp-card-icon--action {
+    background: linear-gradient(150deg, rgba(59, 130, 246, .12), rgba(139, 92, 246, .14));
+    border-color: rgba(59, 130, 246, .22);
+    color: #2563a8;
+}
+
+.zp-card-title {
+    margin: 18px 0 8px;
+}
+
+.zp-card-desc {
+    color: rgba(16, 2, 44, .62);
+    margin: 0;
+}
+
+/* ── Recipes ── */
+.zp-recipes {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 42px;
+}
+
+.zp-recipe {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .09);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 24px 24px;
+}
+
+.zp-recipe-apps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.zp-recipe-apps em {
+    background: rgba(16, 2, 44, .05);
+    border: 1px solid rgba(16, 2, 44, .09);
+    border-radius: 100px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    padding: 4px 10px;
+}
+
+/* When/Then as a two-line sentence — the keywords are what make it scan as
+   a rule rather than as a paragraph. */
+.zp-recipe-line {
+    display: grid;
+    gap: 6px 10px;
+    grid-template-columns: auto 1fr;
+    margin: 16px 0 0;
+}
+
+.zp-kw {
+    color: #b8430c;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding-top: 5px;
+    text-transform: uppercase;
+}
+
+.zp-kw--then {
+    color: #2563a8;
+}
+
+.zp-recipe-note {
+    border-top: 1px solid rgba(16, 2, 44, .07);
+    color: rgba(16, 2, 44, .5);
+    margin: 18px 0 0;
+    padding-top: 14px;
+}
+
+@media (max-width: 1000px) {
+    .zp-grid,
+    .zp-grid--four { grid-template-columns: repeat(2, 1fr) }
+    .zp-recipes { grid-template-columns: 1fr }
+    .zp-arrow { display: none }
+}
+
+@media (max-width: 620px) {
+    .zp-grid,
+    .zp-grid--four { grid-template-columns: 1fr }
+    .zp-hero { padding-top: 92px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zp-arrow i { animation: none }
+}

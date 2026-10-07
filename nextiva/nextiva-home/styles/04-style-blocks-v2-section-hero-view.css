@@ -1,0 +1,5675 @@
+.design-v2 .section-hero {
+    background-color: var(--brand-navy);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .section-hero .hero-bg {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0
+}
+
+.design-v2 .section-hero .hero-overlay {
+    background: linear-gradient(180deg, rgba(10, 15, 30, .4), rgba(10, 15, 30, .2) 40%, rgba(10, 15, 30, .1) 70%, transparent);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1
+}
+
+.design-v2 .section-hero .hero-overlay--none {
+    display: none
+}
+
+.design-v2 .section-hero .hero-overlay--tint {
+    background: rgba(0, 0, 0, .18)
+}
+
+.design-v2 .section-hero .hero-overlay--dark {
+    background: linear-gradient(180deg, rgba(10, 15, 30, .65), rgba(10, 15, 30, .45) 50%, rgba(10, 15, 30, .55))
+}
+
+.design-v2 .section-hero .hero-particles {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2
+}
+
+.design-v2 .section-hero .hero-particles--snow .snowflake {
+    background: #fff;
+    border-radius: 50%;
+    filter: blur(.3px);
+    pointer-events: none;
+    position: absolute;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    z-index: 1
+}
+
+.design-v2 .section-hero .dust-particles {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2
+}
+
+.design-v2 .section-hero .dust-particle {
+    animation: dustFloat var(--duration) linear forwards;
+    border-radius: 50%;
+    pointer-events: none;
+    position: absolute;
+    will-change: transform, opacity
+}
+
+@keyframes dustFloat {
+    0% {
+        opacity: 0;
+        transform: translateZ(0) scale(1)
+    }
+    15% {
+        opacity: var(--max-opacity)
+    }
+    85% {
+        opacity: calc(var(--max-opacity)*.5)
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(var(--drift-x), var(--drift-y), 0) scale(.4)
+    }
+}
+
+.design-v2 .section-hero .hero-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+    width: 100%;
+    z-index: 2
+}
+
+.design-v2 .section-hero .hero-content {
+    color: #fff;
+    text-align: center
+}
+
+.design-v2 .section-hero .hero-eyebrow {
+    color: hsla(0, 0%, 100%, .9);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-body-xs);
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 3rem
+}
+
+.design-v2 .section-hero .hero-eyebrow--rating {
+    display: block
+}
+
+.design-v2 .section-hero .hero-eyebrow--icon {
+    align-items: center;
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 120px
+}
+
+.design-v2 .section-hero .hero-eyebrow--pill {
+    background: hsla(0, 0%, 100%, .12);
+    border-radius: 4px;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 1.5rem;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .hero-eyebrow--multi {
+    align-content: center;
+    align-items: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0 18px;
+    justify-content: center
+}
+
+.design-v2 .section-hero .hero-rating {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+    position: relative
+}
+
+.design-v2 .section-hero .hero-rating .stars-container {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0
+}
+
+.design-v2 .section-hero .hero-rating .star {
+    color: #fff;
+    display: inline-block;
+    font-size: var(--text-body-xs);
+    line-height: 1
+}
+
+.design-v2 .section-hero .hero-rating .star.half {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: .4375rem
+}
+
+.design-v2 .section-hero .hero-rating .rating-badge {
+    background-color: hsla(0, 0%, 100%, .2);
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    font-size: var(--text-caption);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    padding: .125rem .375rem
+}
+
+.design-v2 .section-hero .hero-rating .rating-text {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .9);
+    display: flex;
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-body-xs);
+    font-weight: 400;
+    margin-left: .25rem
+}
+
+.design-v2 .section-hero .hero-rating .rating-number {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    width: 50px
+}
+
+.design-v2 .section-hero .hero-rating .rating-suffix {
+    display: inline-block;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero .trust-badges {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    gap: .5rem;
+    margin-left: .75rem
+}
+
+.design-v2 .section-hero .trust-badge {
+    height: 18px;
+    object-fit: contain;
+    opacity: .9;
+    transition: opacity .3s ease;
+    width: auto
+}
+
+.design-v2 .section-hero .trust-badge:nth-child(2) {
+    height: 30px
+}
+
+.design-v2 .section-hero .trust-badge:hover {
+    opacity: 1
+}
+
+.design-v2 .section-hero .trust-badge-light {
+    filter: brightness(0) invert(1);
+    opacity: .8
+}
+
+.design-v2 .section-hero .trust-badge-light:hover {
+    opacity: 1
+}
+
+.design-v2 .section-hero .trust-badge-light:first-child {
+    filter: none;
+    opacity: .95
+}
+
+.design-v2 .section-hero .hero-title {
+    color: #fff;
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-size: var(--text-display);
+    font-weight: var(--arizona-hero-weight);
+    letter-spacing: var(--arizona-hero-letter-spacing);
+    line-height: 1.1;
+    margin-bottom: 2.5rem
+}
+
+.design-v2 .section-hero .hero-description {
+    color: hsla(0, 0%, 100%, .75);
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    font-weight: 400;
+    line-height: 1.7;
+    margin: 0 auto 3.5rem;
+    max-width: 750px
+}
+
+.design-v2 .section-hero .hero-description strong {
+    color: #fff
+}
+
+/* Rotating headline — see HERO-rotating-headline-GUIDE.md */
+.design-v2 .section-hero .hero-title--rotating {
+    min-height: 1.15em
+}
+
+@media (max-width: 768px) {
+    .design-v2 .section-hero .hero-title--rotating {
+        min-height: 2.3em
+    }
+}
+
+.design-v2 .section-hero .hero-rotor {
+    display: inline-block;
+    animation: heroRotorIn .34s cubic-bezier(.2, .7, .3, 1) both
+}
+
+/* Never fades fully out — the phrase re-mounts every 1.7s, and starting from
+   opacity 0 left the headline looking half-empty for a quarter of each cycle. */
+@keyframes heroRotorIn {
+    from { opacity: .55; transform: translateY(9px) }
+    to { opacity: 1; transform: none }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-hero .hero-rotor { animation: none !important }
+}
+
+.design-v2 .section-hero .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center
+}
+
+/* Hero CTAs: white primary so it reads against the sky, with the brand blue
+   kept as the arrow accent. Scoped to the hero — other sections keep the
+   standard blue-filled primary. */
+.design-v2 .section-hero .btn-primary {
+    background-color: #fff;
+    color: #0b1220
+}
+
+.design-v2 .section-hero .btn-primary .btn-text {
+    color: #0b1220
+}
+
+.design-v2 .section-hero .btn-primary .btn-arrow {
+    background-color: var(--cta-blue);
+    color: #fff
+}
+
+.design-v2 .section-hero .btn-primary:hover {
+    background-color: hsla(0, 0%, 100%, .9)
+}
+
+.design-v2 .section-hero .btn-ghost {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: hsla(0, 0%, 100%, .14);
+    border: none;
+    box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, .45);
+    color: #fff
+}
+
+.design-v2 .section-hero .btn-ghost .btn-text {
+    color: #fff
+}
+
+.design-v2 .section-hero .btn-ghost .btn-arrow {
+    background-color: hsla(0, 0%, 100%, .15);
+    color: #fff
+}
+
+.design-v2 .section-hero .btn-ghost:hover {
+    background-color: hsla(0, 0%, 100%, .24);
+    box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, .7)
+}
+
+.design-v2 .section-hero .btn-secondary {
+    border-color: hsla(0, 0%, 100%, .4);
+    color: #fff
+}
+
+.design-v2 .section-hero .btn-secondary .btn-text {
+    color: #fff
+}
+
+.design-v2 .section-hero .btn-secondary .btn-arrow {
+    background-color: hsla(0, 0%, 100%, .1);
+    color: #fff
+}
+
+.design-v2 .section-hero .btn-secondary:hover {
+    background-color: hsla(0, 0%, 100%, .1);
+    border-color: hsla(0, 0%, 100%, .6)
+}
+
+.design-v2 .section-hero--cta-arrow-down .btn-secondary .btn-arrow {
+    transform: rotate(90deg)
+}
+
+.design-v2 .section-hero--centered .hero-container {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+    padding: 120px 60px
+}
+
+.design-v2 .section-hero--centered .hero-content {
+    max-width: 1000px
+}
+
+.design-v2 .section-hero--centered .hero-content--wide {
+    max-width: 1280px
+}
+
+.design-v2 .section-hero--stacked .hero-container {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 100%;
+    padding: 220px 60px 80px
+}
+
+.design-v2 .section-hero--stacked .hero-content {
+    max-width: 1200px
+}
+
+.design-v2 .section-hero--stacked .hero-title {
+    text-shadow: 0 2px 40px rgba(0, 0, 0, .3)
+}
+
+.design-v2 .section-hero--stacked .hero-description {
+    color: hsla(0, 0%, 100%, .9);
+    font-size: var(--text-body-xl);
+    text-shadow: 0 1px 20px rgba(0, 0, 0, .2)
+}
+
+.design-v2 .section-hero .hero-title--lg,
+.design-v2 .section-hero--title-lg .hero-title {
+    font-size: var(--text-display-lg)
+}
+
+.design-v2 .section-hero .hero-title--metric {
+    font-size: var(--text-metric-lg)
+}
+
+.design-v2 .section-hero .hero-title--section {
+    font-size: clamp(48px, 7vw, 88px)
+}
+
+.design-v2 .section-hero--tight-title .hero-title {
+    line-height: .98
+}
+
+.design-v2 .section-hero .hero-showcase {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    margin: 80px auto 0;
+    max-width: 1400px;
+    padding-bottom: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
+    position: relative;
+    width: 100%;
+    z-index: 3
+}
+
+.design-v2 .section-hero .hero-showcase .desktop-app-bg {
+    animation: sectionHeroAppSlideIn .6s cubic-bezier(.25, .46, .45, .94) forwards;
+    animation-delay: .2s;
+    margin-left: 0;
+    margin-right: auto;
+    margin-top: 0;
+    pointer-events: auto;
+    position: relative;
+    right: -18%;
+    top: auto;
+    translate: 25% 0
+}
+
+.design-v2 .reveal:not(.revealed) .desktop-app-bg,
+.design-v2 .reveal:not(.revealed) .ui-showcase {
+    animation-play-state: paused;
+    opacity: 0
+}
+
+.design-v2 .section-hero .hero-showcase--animate-none .desktop-app-bg {
+    animation: none
+}
+
+.design-v2 .section-hero .hero-showcase--animate-fade .desktop-app-bg {
+    animation: sectionHeroAppFade .6s cubic-bezier(.25, .46, .45, .94) forwards;
+    animation-delay: .2s
+}
+
+.design-v2 .section-hero .hero-showcase--animate-fade-up .desktop-app-bg {
+    animation: sectionHeroAppFadeUp .6s cubic-bezier(.25, .46, .45, .94) forwards;
+    animation-delay: .2s
+}
+
+.design-v2 .section-hero .hero-showcase .desktop-app-window {
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    background: hsla(0, 0%, 100%, .5);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px -12px rgba(100, 116, 139, .15), 0 0 0 1px hsla(0, 0%, 100%, .4), inset 0 1px 0 hsla(0, 0%, 100%, .5), 0 25px 80px -20px rgba(0, 0, 0, .4), 0 10px 30px -10px rgba(0, 0, 0, .3);
+    display: flex;
+    flex-direction: column;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    width: 1080px
+}
+
+.design-v2 .section-hero .hero-showcase .app-header {
+    align-items: center;
+    background: transparent;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .25);
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 20px
+}
+
+.design-v2 .section-hero .hero-showcase .app-header-left {
+    align-items: center;
+    display: flex;
+    gap: 14px
+}
+
+.design-v2 .section-hero .hero-showcase .app-title {
+    color: rgba(0, 0, 0, .5);
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    font-weight: 500;
+    letter-spacing: -.02em
+}
+
+.design-v2 .section-hero .hero-showcase .app-header-right {
+    display: flex;
+    gap: 4px
+}
+
+.design-v2 .section-hero .hero-showcase .header-icon {
+    align-items: center;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, .5);
+    display: flex;
+    font-size: var(--text-body-sm);
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+
+.design-v2 .section-hero .hero-showcase .app-body {
+    background: transparent;
+    display: flex;
+    flex: 1;
+    overflow: hidden
+}
+
+.design-v2 .section-hero .hero-showcase .app-sidebar {
+    border-right: 1px solid hsla(0, 0%, 100%, .2);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 320px
+}
+
+.design-v2 .section-hero .hero-showcase .sidebar-header {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 18px
+}
+
+.design-v2 .section-hero .hero-showcase .sidebar-title {
+    color: rgba(0, 0, 0, .85);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: -.02em
+}
+
+.design-v2 .section-hero .hero-showcase .sidebar-action {
+    align-items: center;
+    color: rgba(0, 0, 0, .5);
+    display: flex;
+    font-size: var(--text-body-sm);
+    height: 24px;
+    justify-content: center;
+    width: 24px
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-list {
+    flex: 1;
+    overflow: hidden;
+    padding: 8px 0
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-item {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    padding: 10px 18px;
+    transition: background .2s ease
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-item.active {
+    background: hsla(0, 0%, 100%, .25);
+    border-left: 2px solid hsla(0, 0%, 100%, .6);
+    padding-left: 16px
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-avatar {
+    align-items: center;
+    background: #1a1a1a;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    height: 36px;
+    justify-content: center;
+    position: relative;
+    width: 36px
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-avatar.team {
+    background: var(--brand-blue);
+    font-size: var(--text-body-sm)
+}
+
+.design-v2 .section-hero .hero-showcase .status-dot {
+    border: 2px solid var(--brand-cream);
+    border-radius: 50%;
+    bottom: 0;
+    height: 10px;
+    position: absolute;
+    right: 0;
+    width: 10px
+}
+
+.design-v2 .section-hero .hero-showcase .status-dot.online {
+    background: #22c55e
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-name {
+    color: rgba(0, 0, 0, .9);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-preview {
+    color: rgba(0, 0, 0, .6);
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero .hero-showcase .conversation-time {
+    color: rgba(0, 0, 0, .5);
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-micro)
+}
+
+.design-v2 .section-hero .hero-showcase .app-chat {
+    display: flex;
+    flex: 1;
+    flex-direction: column
+}
+
+.design-v2 .section-hero .hero-showcase .chat-header {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 20px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-recipient {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600
+}
+
+.design-v2 .section-hero .hero-showcase .chat-status {
+    align-items: center;
+    color: rgba(0, 0, 0, .6);
+    display: flex;
+    font-family: var(--font-body);
+    gap: 6px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-header .status-dot {
+    background: #4ade80;
+    border: none;
+    border-radius: 50%;
+    height: 6px;
+    width: 6px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-header-actions {
+    display: flex;
+    gap: 4px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-action {
+    align-items: center;
+    background: rgba(0, 0, 0, .08);
+    border-radius: 8px;
+    color: rgba(0, 0, 0, .5);
+    display: flex;
+    font-size: var(--text-body);
+    height: 32px;
+    justify-content: center;
+    width: 32px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20px
+}
+
+.design-v2 .section-hero .hero-showcase .message {
+    border-radius: 16px;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    line-height: 1.5;
+    max-width: 75%;
+    padding: 12px 16px
+}
+
+.design-v2 .section-hero .hero-showcase .message.received {
+    align-self: flex-start;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    background: hsla(0, 0%, 100%, .35);
+    border-bottom-left-radius: 4px;
+    color: #1a1a1a
+}
+
+.design-v2 .section-hero .hero-showcase .message.sent {
+    align-self: flex-end;
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(8px);
+    background: rgba(30, 30, 30, .7);
+    border-bottom-right-radius: 4px;
+    color: #fff
+}
+
+.design-v2 .section-hero .hero-showcase .message.sent.user-sent {
+    animation: sectionHeroMessagePop .25s ease
+}
+
+@keyframes sectionHeroMessagePop {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(.95)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .chat-messages::-webkit-scrollbar {
+    width: 4px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-messages::-webkit-scrollbar-track {
+    background: transparent
+}
+
+.design-v2 .section-hero .hero-showcase .chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .15);
+    border-radius: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, .25)
+}
+
+.design-v2 .section-hero .hero-showcase .chat-input {
+    align-items: center;
+    border-top: 1px solid hsla(0, 0%, 100%, .2);
+    display: flex;
+    gap: 12px;
+    padding: 14px 20px
+}
+
+.design-v2 .section-hero .hero-showcase .input-actions {
+    align-items: center;
+    background: rgba(0, 0, 0, .08);
+    border-radius: 8px;
+    color: rgba(0, 0, 0, .5);
+    display: flex;
+    font-size: var(--text-body);
+    height: 32px;
+    justify-content: center;
+    width: 32px
+}
+
+.design-v2 .section-hero .hero-showcase .input-field {
+    background: hsla(0, 0%, 100%, .95);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #1a1a1a;
+    cursor: text;
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    outline: none;
+    padding: 10px 16px;
+    pointer-events: auto;
+    transition: all .2s ease
+}
+
+.design-v2 .section-hero .hero-showcase .input-field::placeholder {
+    color: rgba(0, 0, 0, .45)
+}
+
+.design-v2 .section-hero .hero-showcase .input-send {
+    align-items: center;
+    background: rgba(30, 30, 30, .7);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: var(--text-body-sm);
+    height: 32px;
+    justify-content: center;
+    pointer-events: auto;
+    transition: all .2s ease;
+    width: 32px
+}
+
+.design-v2 .section-hero .hero-showcase .input-send:hover {
+    background: rgba(0, 98, 184, .9);
+    transform: scale(1.05)
+}
+
+.design-v2 .section-hero .hero-showcase .app-customer-panel {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, .08);
+    border-left: 1px solid hsla(0, 0%, 100%, .15);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 220px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-panel-header {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 18px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-panel-title {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: -.02em
+}
+
+.design-v2 .section-hero .hero-showcase .customer-panel-action {
+    align-items: center;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, .5);
+    cursor: pointer;
+    display: flex;
+    font-size: var(--text-body-sm);
+    height: 24px;
+    justify-content: center;
+    width: 24px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-profile {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
+    padding: 20px 16px;
+    text-align: center
+}
+
+.design-v2 .section-hero .hero-showcase .customer-avatar,
+.design-v2 .section-hero .hero-showcase .customer-avatar-fallback {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .9);
+    border-radius: 50%;
+    color: #1a1a1a;
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    width: 48px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-avatar-img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .customer-name {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg);
+    font-weight: 600;
+    margin-bottom: 3px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-email {
+    color: rgba(0, 0, 0, .6);
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    margin-bottom: 10px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center
+}
+
+.design-v2 .section-hero .hero-showcase .customer-tag {
+    background: rgba(0, 0, 0, .08);
+    border-radius: 4px;
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 500;
+    padding: 3px 8px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-section {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+    padding: 14px 16px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-section-title {
+    align-items: center;
+    color: rgba(0, 0, 0, .7);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    gap: 6px;
+    letter-spacing: -.02em;
+    margin-bottom: 10px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .hero-showcase .customer-section-title i {
+    font-size: var(--text-caption-sm)
+}
+
+.design-v2 .section-hero .hero-showcase .customer-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.design-v2 .section-hero .hero-showcase .activity-item {
+    align-items: center;
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    gap: 8px
+}
+
+.design-v2 .section-hero .hero-showcase .activity-icon {
+    align-items: center;
+    background: rgba(0, 0, 0, .08);
+    border-radius: 6px;
+    color: rgba(0, 0, 0, .6);
+    display: flex;
+    font-size: var(--text-micro);
+    height: 22px;
+    justify-content: center;
+    width: 22px
+}
+
+.design-v2 .section-hero .hero-showcase .activity-text {
+    color: #1a1a1a;
+    flex: 1
+}
+
+.design-v2 .section-hero .hero-showcase .activity-time {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-micro-sm)
+}
+
+.design-v2 .section-hero .hero-showcase .customer-stats-grid {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr
+}
+
+.design-v2 .section-hero .hero-showcase .customer-stat {
+    background: rgba(0, 0, 0, .06);
+    border-radius: 8px;
+    padding: 10px 8px;
+    text-align: center
+}
+
+.design-v2 .section-hero .hero-showcase .customer-stat-value {
+    color: #1a1a1a;
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 700;
+    margin-bottom: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .customer-stat-label {
+    color: rgba(0, 0, 0, .6);
+    font-family: var(--font-body);
+    font-size: var(--text-micro-xs);
+    letter-spacing: -.02em;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .hero-showcase .customer-sentiment {
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
+
+.design-v2 .section-hero .hero-showcase .sentiment-bar {
+    background: rgba(0, 0, 0, .1);
+    border-radius: 3px;
+    height: 5px;
+    overflow: hidden
+}
+
+.design-v2 .section-hero .hero-showcase .sentiment-fill {
+    background: #1a1a1a;
+    border-radius: 3px;
+    height: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .sentiment-label {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 500
+}
+
+.design-v2 .section-hero .hero-showcase .ui-showcase {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    left: calc(50% - 670px);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10
+}
+
+.design-v2 .section-hero .hero-showcase .ui-call-card {
+    animation: sectionHeroCardEntranceUp .7s ease-out forwards;
+    animation-delay: .6s;
+    border-radius: 20px;
+    box-shadow: 0 25px 80px -12px rgba(100, 116, 139, .18), 0 12px 40px -8px rgba(100, 116, 139, .12), 0 0 0 1px hsla(0, 0%, 100%, .8), inset 0 1px 0 hsla(0, 0%, 100%, .9);
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    overflow: hidden;
+    padding: 20px 24px 24px;
+    position: relative
+}
+
+.design-v2 .section-hero .hero-showcase .ui-call-card,
+.design-v2 .section-hero .hero-showcase .ui-stats-card {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: hsla(0, 0%, 100%, .97);
+    opacity: 0;
+    width: 380px
+}
+
+.design-v2 .section-hero .hero-showcase .ui-stats-card {
+    animation: sectionHeroCardEntranceUp .7s ease-out forwards;
+    animation-delay: .7s;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px -10px rgba(100, 116, 139, .15), 0 8px 25px -5px rgba(100, 116, 139, .08), 0 0 0 1px hsla(0, 0%, 100%, .8);
+    padding: 16px 20px
+}
+
+@keyframes sectionHeroCardEntranceUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .call-card-header {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px
+}
+
+.design-v2 .section-hero .hero-showcase .call-header-left {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.design-v2 .section-hero .hero-showcase .call-label {
+    color: var(--neutral-700);
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: -.02em;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero .hero-showcase .call-icon {
+    color: #1a1a1a;
+    flex-shrink: 0;
+    height: 14px;
+    width: 14px
+}
+
+.design-v2 .section-hero .hero-showcase .sound-wave {
+    align-items: center;
+    display: flex;
+    gap: 2px;
+    height: 12px
+}
+
+.design-v2 .section-hero .hero-showcase .sound-wave .bar {
+    animation: sectionHeroSoundWave 1s ease-in-out infinite;
+    border-radius: 2px;
+    height: 4px;
+    width: 3px
+}
+
+.design-v2 .section-hero .hero-showcase .sound-wave .bar:first-child {
+    animation-delay: 0s;
+    background: #1e3a5f
+}
+
+.design-v2 .section-hero .hero-showcase .sound-wave .bar:nth-child(2) {
+    animation-delay: .1s;
+    background: var(--brand-blue)
+}
+
+.design-v2 .section-hero .hero-showcase .sound-wave .bar:nth-child(3) {
+    animation-delay: .2s;
+    background: #7a9e7e
+}
+
+.design-v2 .section-hero .hero-showcase .sound-wave .bar:nth-child(4) {
+    animation-delay: .3s;
+    background: var(--neutral-500)
+}
+
+.design-v2 .section-hero .hero-showcase .sound-wave .bar:nth-child(5) {
+    animation-delay: .4s;
+    background: #e87830
+}
+
+@keyframes sectionHeroSoundWave {
+    0%,
+    to {
+        height: 4px
+    }
+    50% {
+        height: 12px
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .call-time {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500
+}
+
+.design-v2 .section-hero .hero-showcase .call-main {
+    margin-bottom: 16px
+}
+
+.design-v2 .section-hero .hero-showcase .call-title-row {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start
+}
+
+.design-v2 .section-hero .hero-showcase .caller-avatar,
+.design-v2 .section-hero .hero-showcase .caller-avatar-fallback {
+    align-items: center;
+    background: rgba(0, 0, 0, .08);
+    border-radius: 12px;
+    color: #1a1a1a;
+    display: flex;
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    height: 44px;
+    justify-content: center;
+    overflow: hidden;
+    width: 44px
+}
+
+.design-v2 .section-hero .hero-showcase .caller-avatar-img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .caller-name {
+    color: #1a1a1a;
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: var(--text-body-xl);
+    font-weight: 600;
+    line-height: 1.2
+}
+
+.design-v2 .section-hero .hero-showcase .ai-badge {
+    align-items: center;
+    background: #1a1a1a;
+    border-radius: 20px;
+    display: flex;
+    flex-shrink: 0;
+    gap: 4px;
+    padding: 4px 10px
+}
+
+.design-v2 .section-hero .hero-showcase .ai-badge-icon {
+    color: var(--blue-200);
+    font-size: var(--text-micro)
+}
+
+.design-v2 .section-hero .hero-showcase .ai-badge-text {
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: -.02em
+}
+
+.design-v2 .section-hero .hero-showcase .call-conversation {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    overflow: hidden
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble-wrapper {
+    animation: sectionHeroBubbleAppear .4s ease forwards;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 90%;
+    opacity: 0;
+    transform: translateY(10px)
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble-wrapper.caller {
+    align-self: flex-start
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble-wrapper.ai {
+    align-items: flex-end;
+    align-self: flex-end
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble-label {
+    align-items: center;
+    color: var(--neutral-700);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    gap: 3px;
+    letter-spacing: -.02em;
+    padding-right: 4px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble-label .label-icon {
+    color: var(--brand-blue);
+    font-size: var(--text-micro-xs)
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble {
+    border-radius: 16px;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    line-height: 1.5;
+    padding: 10px 14px
+}
+
+@keyframes sectionHeroBubbleAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble.caller {
+    background: var(--border-subtle);
+    border-bottom-left-radius: 4px;
+    color: #1a1a1a
+}
+
+.design-v2 .section-hero .hero-showcase .chat-bubble.ai {
+    background: #1a1a1a;
+    border-bottom-right-radius: 4px;
+    color: #fff
+}
+
+.design-v2 .section-hero .hero-showcase .typing-indicator {
+    align-self: flex-end;
+    animation: sectionHeroBubbleAppear .3s ease forwards;
+    background: #1a1a1a;
+    border-radius: 16px;
+    border-bottom-right-radius: 4px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    padding: 12px 16px
+}
+
+.design-v2 .section-hero .hero-showcase .typing-indicator span {
+    animation: sectionHeroTypingBounce 1.4s ease-in-out infinite;
+    background: var(--blue-200);
+    border-radius: 50%;
+    height: 6px;
+    width: 6px
+}
+
+.design-v2 .section-hero .hero-showcase .typing-indicator span:nth-child(2) {
+    animation-delay: .2s
+}
+
+.design-v2 .section-hero .hero-showcase .typing-indicator span:nth-child(3) {
+    animation-delay: .4s
+}
+
+@keyframes sectionHeroTypingBounce {
+    0%,
+    60%,
+    to {
+        transform: translateY(0)
+    }
+    30% {
+        transform: translateY(-4px)
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card {
+    align-items: center;
+    animation: sectionHeroFadeInUp .3s ease forwards, sectionHeroSummaryCardGlow 3s ease-in-out infinite;
+    animation-delay: 0s, .3s;
+    background: radial-gradient(ellipse 120% 100% at 0 50%, rgba(0, 98, 184, .06) 0, transparent 50%), linear-gradient(135deg, #f8f9fb, #f0f2f5);
+    border: 1px solid rgba(0, 98, 184, .08);
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    padding: 10px 14px;
+    position: relative
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card:before {
+    background: radial-gradient(circle at 100% 50%, rgba(0, 98, 184, .04) 0, transparent 60%);
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card:nth-child(2) {
+    animation-delay: .1s, .4s;
+    background: radial-gradient(ellipse 120% 100% at 0 50%, rgba(0, 98, 184, .07) 0, transparent 50%), linear-gradient(135deg, #f7f8fb, #eef1f5);
+    border-color: rgba(0, 98, 184, .1);
+    opacity: 0
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card:nth-child(2):before {
+    background: radial-gradient(circle at 100% 50%, rgba(40, 121, 174, .05) 0, transparent 60%)
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card.summary-card-vibe,
+.design-v2 .section-hero .hero-showcase .summary-card:nth-child(3) {
+    animation-delay: .2s, .5s;
+    background: radial-gradient(ellipse 120% 100% at 0 50%, rgba(0, 98, 184, .06) 0, transparent 50%), linear-gradient(135deg, #f7f9fc, #eff2f7);
+    border-color: rgba(0, 98, 184, .08);
+    opacity: 0
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card.summary-card-vibe:before,
+.design-v2 .section-hero .hero-showcase .summary-card:nth-child(3):before {
+    background: radial-gradient(circle at 100% 50%, rgba(0, 98, 184, .04) 0, transparent 60%)
+}
+
+@keyframes sectionHeroFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(8px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes sectionHeroSummaryCardGlow {
+    0%,
+    to {
+        box-shadow: 0 2px 8px rgba(0, 98, 184, .04)
+    }
+    50% {
+        box-shadow: 0 4px 16px rgba(0, 98, 184, .08)
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card-label {
+    color: var(--neutral-700);
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    min-width: 70px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .hero-showcase .summary-card-text {
+    align-items: center;
+    color: #1a1a1a;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    gap: 6px;
+    line-height: 1
+}
+
+.design-v2 .section-hero .hero-showcase .summary-badge {
+    background: linear-gradient(135deg, rgba(0, 98, 184, .08), rgba(40, 121, 174, .04)), linear-gradient(135deg, #e8ebef, #dfe3e8);
+    border: 1px solid rgba(0, 98, 184, .08);
+    border-radius: 4px;
+    color: #374151;
+    display: inline-block;
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    padding: 3px 8px
+}
+
+.design-v2 .section-hero .hero-showcase .summary-badge.positive,
+.design-v2 .section-hero .hero-showcase .summary-badge.success {
+    background: linear-gradient(135deg, rgba(0, 98, 184, .12), rgba(0, 98, 184, .06)), linear-gradient(135deg, #e6f0ff, #dce8fa);
+    border-color: rgba(0, 98, 184, .15);
+    color: #0052cc
+}
+
+.design-v2 .section-hero .hero-showcase .summary-badge.success {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    padding: 3px 5px
+}
+
+.design-v2 .section-hero .hero-showcase .summary-badge.success svg {
+    height: 12px;
+    width: 12px
+}
+
+.design-v2 .section-hero .hero-showcase .ai-badge.summary-mode {
+    background: #1a1a1a
+}
+
+.design-v2 .section-hero .hero-showcase .ai-badge.summary-mode .ai-badge-text {
+    color: #fff
+}
+
+.design-v2 .section-hero .hero-showcase .ai-badge.summary-mode .ai-badge-icon {
+    color: var(--blue-200)
+}
+
+.design-v2 .section-hero .hero-showcase .call-action {
+    background: radial-gradient(ellipse 150% 120% at 10% 50%, rgba(0, 98, 184, .08) 0, transparent 45%), radial-gradient(ellipse 100% 100% at 90% 50%, rgba(40, 121, 174, .05) 0, transparent 50%), linear-gradient(135deg, #fafbfc, #f3f5f7);
+    border: 1px solid rgba(0, 98, 184, .12);
+    border-radius: 12px;
+    bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0, 98, 184, .06), 0 8px 24px rgba(0, 0, 0, .04);
+    left: 24px;
+    opacity: 0;
+    overflow: hidden;
+    padding: 12px;
+    pointer-events: none;
+    position: absolute;
+    right: 24px;
+    transform: translateY(20px);
+    transition: all .4s ease;
+    z-index: 10
+}
+
+.design-v2 .section-hero .hero-showcase .call-action:before {
+    animation: sectionHeroActionGlow 2s ease-in-out infinite;
+    background: radial-gradient(circle at 5% 50%, rgba(0, 98, 184, .06) 0, transparent 40%);
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+@keyframes sectionHeroActionGlow {
+    0%,
+    to {
+        opacity: .6
+    }
+    50% {
+        opacity: 1
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .call-action.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0)
+}
+
+.design-v2 .section-hero .hero-showcase .action-label {
+    color: var(--brand-blue);
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    margin-bottom: 8px
+}
+
+.design-v2 .section-hero .hero-showcase .action-title-badge {
+    align-items: center;
+    background: var(--brand-blue);
+    border-radius: 4px;
+    color: #fff;
+    display: inline-flex;
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    margin-right: 4px;
+    padding: 2px 6px;
+    vertical-align: middle
+}
+
+.design-v2 .section-hero .hero-showcase .action-content {
+    align-items: center;
+    display: flex;
+    gap: 10px
+}
+
+.design-v2 .section-hero .hero-showcase .action-icon {
+    align-items: center;
+    background: rgba(0, 98, 184, .1);
+    border-radius: 8px;
+    color: var(--brand-blue);
+    display: flex;
+    font-size: var(--text-body-xl);
+    height: 36px;
+    justify-content: center;
+    width: 36px
+}
+
+.design-v2 .section-hero .hero-showcase .action-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .action-title {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg);
+    font-weight: 600
+}
+
+.design-v2 .section-hero .hero-showcase .action-subtitle {
+    color: var(--neutral-700);
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm)
+}
+
+.design-v2 .section-hero .hero-showcase .action-progress {
+    background: var(--border-subtle);
+    border-radius: 2px;
+    height: 3px;
+    margin-top: 10px;
+    overflow: hidden
+}
+
+.design-v2 .section-hero .hero-showcase .action-progress-bar {
+    animation: sectionHeroProgressFill 1.5s ease forwards;
+    background: linear-gradient(90deg, var(--brand-blue) 0, #2563eb 100%);
+    border-radius: 2px;
+    height: 100%;
+    width: 0
+}
+
+@keyframes sectionHeroProgressFill {
+    to {
+        width: 100%
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .stats-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px
+}
+
+.design-v2 .section-hero .hero-showcase .stats-header-left {
+    align-items: center;
+    display: flex;
+    gap: 6px
+}
+
+.design-v2 .section-hero .hero-showcase .gyroscope-icon {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    height: 16px;
+    justify-content: center;
+    position: relative;
+    width: 16px
+}
+
+.design-v2 .section-hero .hero-showcase .gyro-ring {
+    border: 1.5px dashed #1a1a1a;
+    border-radius: 50%;
+    position: absolute
+}
+
+.design-v2 .section-hero .hero-showcase .gyro-ring-outer {
+    animation: sectionHeroSpinCw 4s linear infinite;
+    height: 16px;
+    width: 16px
+}
+
+.design-v2 .section-hero .hero-showcase .gyro-ring-middle {
+    animation: sectionHeroSpinCcw 3s linear infinite;
+    height: 11px;
+    width: 11px
+}
+
+.design-v2 .section-hero .hero-showcase .gyro-ring-inner {
+    animation: sectionHeroSpinCw 2s linear infinite;
+    height: 6px;
+    width: 6px
+}
+
+@keyframes sectionHeroSpinCw {
+    0% {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes sectionHeroSpinCcw {
+    0% {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(-1turn)
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .stats-label {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600
+}
+
+.design-v2 .section-hero .hero-showcase .stats-time-filter {
+    align-items: center;
+    background: var(--neutral-100);
+    border: none;
+    border-radius: 6px;
+    color: #374151;
+    cursor: pointer;
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    font-weight: 500;
+    gap: 2px;
+    padding: 5px 10px;
+    transition: all .2s ease
+}
+
+.design-v2 .section-hero .hero-showcase .stats-time-filter:hover {
+    background: var(--border-subtle)
+}
+
+.design-v2 .section-hero .hero-showcase .stats-time-filter:active {
+    transform: scale(.96)
+}
+
+.design-v2 .section-hero .hero-showcase .stats-time-filter i {
+    color: var(--neutral-700);
+    font-size: var(--text-caption);
+    transition: transform .2s ease
+}
+
+.design-v2 .section-hero .hero-showcase .stats-time-filter[data-period=monthly] i {
+    transform: rotate(180deg)
+}
+
+.design-v2 .section-hero .hero-showcase .stats-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, 1fr)
+}
+
+.design-v2 .section-hero .hero-showcase .stat-item {
+    text-align: center
+}
+
+.design-v2 .section-hero .hero-showcase .stat-value {
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-heading-sm);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    line-height: 1.2
+}
+
+.design-v2 .section-hero .hero-showcase .stat-label {
+    color: #4b5563;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    margin-top: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .stat-trend-up {
+    align-items: center;
+    color: var(--brand-blue);
+    display: flex;
+    gap: 2px;
+    justify-content: center
+}
+
+.design-v2 .section-hero .hero-showcase .stat-trend-up i {
+    font-size: var(--text-body-lg)
+}
+
+@keyframes sectionHeroAppSlideIn {
+    0% {
+        translate: 25% 0;
+        visibility: visible
+    }
+    to {
+        translate: 0 0;
+        visibility: visible
+    }
+}
+
+@keyframes sectionHeroAppFade {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes sectionHeroAppFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(24px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.design-v2 .section-hero .hero-highlights {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: center;
+    margin-top: 4rem
+}
+
+.design-v2 .section-hero .hero-highlight-item {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .9);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-body-xs);
+    font-weight: 500;
+    gap: .5rem
+}
+
+.design-v2 .section-hero .hero-highlight-item i {
+    color: #fff;
+    font-size: var(--text-body)
+}
+
+.design-v2 .section-hero .hero-highlights--glass {
+    gap: 1rem
+}
+
+.design-v2 .section-hero .hero-highlights--glass .hero-highlight-item {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsla(0, 0%, 100%, .08);
+    border: 1px solid hsla(0, 0%, 100%, .12);
+    border-radius: 12px;
+    padding: .75rem 1.25rem;
+    transition: background .3s ease, border-color .3s ease
+}
+
+.design-v2 .section-hero .hero-highlights--glass .hero-highlight-item:hover {
+    background: hsla(0, 0%, 100%, .14);
+    border-color: hsla(0, 0%, 100%, .25)
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-hero .hero-highlights--glass {
+        align-items: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem !important;
+        padding: 0;
+        width: 100%
+    }
+    .design-v2 .section-hero .hero-highlights--glass .hero-highlight-item {
+        font-size: var(--text-caption);
+        justify-content: center;
+        padding: .625rem 1rem;
+        text-align: center
+    }
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-hero--stacked .hero-container {
+        padding: 120px 40px 60px
+    }
+    .design-v2 .section-hero .hero-title--lg,
+    .design-v2 .section-hero .hero-title--metric,
+    .design-v2 .section-hero--stacked .hero-title,
+    .design-v2 .section-hero--title-lg .hero-title {
+        font-size: var(--text-section)
+    }
+    .design-v2 .section-hero .hero-title--section {
+        font-size: clamp(40px, 6vw, 64px)
+    }
+    .design-v2 .section-hero--stacked .hero-description {
+        font-size: var(--text-body-md)
+    }
+    .design-v2 .section-hero .hero-showcase {
+        margin-top: 40px;
+        transform: scale(.85);
+        transform-origin: top center
+    }
+    .design-v2 .section-hero .hero-showcase .ui-showcase {
+        transform: translate(-30%, -50%) scale(.9)
+    }
+    .design-v2 .section-hero .hero-showcase .desktop-app-window {
+        transform: scale(.85)
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-hero--centered .hero-container,
+    .design-v2 .section-hero--stacked .hero-container {
+        padding: 120px 20px 50px
+    }
+    .design-v2 .section-hero--stacked .hero-container {
+        align-items: flex-start
+    }
+    .design-v2 .section-hero--centered .hero-container {
+        justify-content: flex-start
+    }
+    .design-v2 .section-hero .hero-showcase .desktop-app-bg,
+    .design-v2 .section-hero .hero-showcase .ui-showcase {
+        display: none
+    }
+    .design-v2 .section-hero .hero-showcase .ui-stats-card {
+        width: 320px
+    }
+    .design-v2 .section-hero .hero-showcase .ui-call-card {
+        height: 280px;
+        padding: 18px 20px 22px;
+        width: 320px
+    }
+    .design-v2 .section-hero .hero-content {
+        text-align: left
+    }
+    .design-v2 .section-hero .hero-rating {
+        justify-content: flex-start
+    }
+    .design-v2 .section-hero .hero-description {
+        font-size: var(--text-body)
+    }
+    .design-v2 .section-hero .hero-ctas {
+        align-items: stretch;
+        flex-direction: column
+    }
+    .design-v2 .section-hero .hero-ctas .btn {
+        justify-content: space-between;
+        width: 100%
+    }
+    .design-v2 .section-hero .hero-highlights {
+        gap: 1.5rem 2rem;
+        padding: 0 1rem
+    }
+    .design-v2 .section-hero .hero-highlight-item {
+        font-size: var(--text-caption-lg)
+    }
+}
+
+@media(max-width:480px) {
+    .design-v2 .section-hero--centered .hero-container,
+    .design-v2 .section-hero--stacked .hero-container {
+        padding: 120px 20px 40px
+    }
+    .design-v2 .section-hero .hero-title,
+    .design-v2 .section-hero .hero-title--lg,
+    .design-v2 .section-hero .hero-title--metric,
+    .design-v2 .section-hero--title-lg .hero-title {
+        font-size: clamp(52px, 15vw, 72px)
+    }
+    .design-v2 .section-hero .hero-title--section {
+        font-size: var(--text-heading-lg)
+    }
+    .design-v2 .section-hero .hero-description {
+        font-size: var(--text-body-xs)
+    }
+    .design-v2 .section-hero .hero-eyebrow {
+        font-size: var(--text-caption);
+        margin-bottom: 2rem
+    }
+    .design-v2 .section-hero .hero-ctas {
+        flex-direction: column;
+        gap: .75rem
+    }
+    .design-v2 .section-hero .hero-ctas .btn {
+        justify-content: space-between;
+        width: 100%
+    }
+    .design-v2 .section-hero .hero-rating {
+        gap: .35rem
+    }
+    .design-v2 .section-hero .trust-badges {
+        display: none
+    }
+}
+
+.design-v2 .star-particle {
+    pointer-events: none;
+    position: absolute;
+    will-change: opacity, transform;
+    z-index: 1
+}
+
+.design-v2 .shooting-star {
+    animation: shootingStarArc 2.5s linear forwards;
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
+    border-radius: 1px;
+    height: 1.5px;
+    offset-path: path("M 0,0 Q 800,-200 1600,0");
+    offset-rotate: auto;
+    pointer-events: none;
+    position: absolute;
+    width: 100px;
+    z-index: 2
+}
+
+@keyframes shootingStarArc {
+    0% {
+        offset-distance: 0;
+        opacity: 0
+    }
+    5% {
+        opacity: 1
+    }
+    85% {
+        opacity: .7
+    }
+    to {
+        offset-distance: 100%;
+        opacity: 0
+    }
+}
+
+.design-v2 .hero-video-lightbox {
+    align-items: center;
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    opacity: 0;
+    position: fixed;
+    transition: opacity .3s ease;
+    z-index: 99999
+}
+
+.design-v2 .hero-video-lightbox.is-open {
+    opacity: 1
+}
+
+.design-v2 .hero-video-lightbox-backdrop {
+    background: rgba(0, 0, 0, .8);
+    cursor: pointer;
+    inset: 0;
+    position: absolute
+}
+
+.design-v2 .hero-video-lightbox-content {
+    aspect-ratio: 16/9;
+    max-width: 1280px;
+    position: relative;
+    width: 92%;
+    z-index: 1
+}
+
+.design-v2 .hero-video-lightbox-close {
+    background: none;
+    border: none;
+    color: var(--text-white, #fff);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: var(--text-heading-md, 1.5rem);
+    line-height: 1;
+    opacity: .8;
+    padding: 4px 8px;
+    position: absolute;
+    right: 0;
+    top: -40px;
+    transition: opacity .2s
+}
+
+.design-v2 .hero-video-lightbox-close:hover {
+    opacity: 1
+}
+
+.design-v2 .hero-video-lightbox-content iframe {
+    border: none;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-description>p {
+    margin: 0
+}
+
+.design-v2 .section-hero .hero-description--compact {
+    font-size: var(--text-body-lg);
+    max-width: 800px;
+    text-shadow: none
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-hero .hero-description--compact {
+        font-size: var(--text-body)
+    }
+}
+
+.design-v2 .section-hero--showcase-voip .hero-showcase {
+    font-family: "Space Grotesk", var(--font-body)
+}
+
+.design-v2 .section-hero .hero-showcase .app-body.voip-app-body {
+    background: transparent;
+    display: grid;
+    gap: 0;
+    grid-template-columns: 70px 220px 1fr 280px;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .voip-nav-sidebar {
+    background: rgba(0, 0, 0, .15);
+    border-right: 1px solid hsla(0, 0%, 100%, .15);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 8px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-nav-item {
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 8px;
+    transition: all .2s ease
+}
+
+.design-v2 .section-hero .hero-showcase .voip-nav-item i {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-body-xl)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-nav-item span {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-micro)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-nav-item:hover {
+    background: rgba(0, 0, 0, .08)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-nav-item.active {
+    background: rgba(0, 0, 0, .1)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-nav-item.active i,
+.design-v2 .section-hero .hero-showcase .voip-nav-item.active span {
+    color: var(--text-primary)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-recents {
+    background: transparent;
+    border-right: 1px solid hsla(0, 0%, 100%, .15);
+    overflow: hidden
+}
+
+.design-v2 .section-hero .hero-showcase .voip-recents-header {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .15);
+    padding: 14px 16px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-recents-title {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-list {
+    padding: 8px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-item {
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    transition: all .15s ease
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-item:hover {
+    background: rgba(0, 0, 0, .04)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-avatar {
+    align-items: center;
+    background: rgba(0, 0, 0, .06);
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: 32px;
+    justify-content: center;
+    width: 32px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-avatar span {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-micro);
+    font-weight: 600
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-name {
+    color: var(--text-primary);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero .hero-showcase .voip-call-meta {
+    color: rgba(0, 0, 0, .4);
+    font-size: var(--text-micro)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-messenger-area {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-header {
+    align-items: center;
+    background: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid hsla(0, 0%, 100%, .15);
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 16px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-contact {
+    align-items: center;
+    display: flex;
+    gap: 12px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-avatar {
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 50%;
+    height: 32px;
+    object-fit: cover;
+    width: 32px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-contact-info {
+    display: flex;
+    flex-direction: column
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-contact-name {
+    color: var(--text-primary);
+    font-size: var(--text-caption-lg);
+    font-weight: 600
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-contact-status {
+    align-items: center;
+    color: rgba(0, 0, 0, .4);
+    display: flex;
+    font-size: var(--text-micro);
+    gap: 5px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-contact-status .status-dot {
+    background: rgba(0, 0, 0, .3);
+    border: none;
+    border-radius: 50%;
+    height: 5px;
+    position: static;
+    width: 5px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-actions {
+    display: flex;
+    gap: 4px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-action-btn {
+    align-items: center;
+    background: rgba(0, 0, 0, .05);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 28px;
+    justify-content: center;
+    transition: all .15s ease;
+    width: 28px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-action-btn i {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-caption)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-action-btn:hover {
+    background: rgba(0, 0, 0, .08)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-conversation {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    padding: 14px
+}
+
+.design-v2 .section-hero .hero-showcase .message-bubble {
+    border-radius: 12px;
+    max-width: 80%;
+    padding: 8px 12px;
+    position: relative
+}
+
+.design-v2 .section-hero .hero-showcase .message-bubble p {
+    color: var(--text-primary);
+    font-size: var(--text-caption-sm);
+    line-height: 1.4;
+    margin: 0
+}
+
+.design-v2 .section-hero .hero-showcase .message-bubble .message-time {
+    color: rgba(0, 0, 0, .35);
+    display: block;
+    font-size: var(--text-micro-xs);
+    margin-top: 3px
+}
+
+.design-v2 .section-hero .hero-showcase .message-bubble.message-received {
+    align-self: flex-start;
+    background: rgba(0, 0, 0, .05);
+    border-bottom-left-radius: 4px
+}
+
+.design-v2 .section-hero .hero-showcase .message-bubble.message-sent {
+    align-self: flex-end;
+    background: hsla(0, 0%, 100%, .65)
+}
+
+.design-v2 .section-hero .hero-showcase .message-bubble.message-sent p {
+    color: var(--text-primary)
+}
+
+.design-v2 .section-hero .hero-showcase .message-bubble.message-sent .message-time {
+    color: rgba(0, 0, 0, .35);
+    text-align: right
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-input-area {
+    align-items: center;
+    background: rgba(0, 0, 0, .03);
+    border-top: 1px solid hsla(0, 0%, 100%, .15);
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-attach-btn {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 28px;
+    justify-content: center;
+    transition: all .15s ease;
+    width: 28px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-attach-btn i {
+    color: rgba(0, 0, 0, .4);
+    font-size: var(--text-body-sm)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-attach-btn:hover {
+    background: rgba(0, 0, 0, .05)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-attach-btn:hover i {
+    color: rgba(0, 0, 0, .6)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-send-btn {
+    align-items: center;
+    background: rgba(0, 0, 0, .08);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 28px;
+    justify-content: center;
+    transition: all .15s ease;
+    width: 28px
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-send-btn i {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-caption)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-send-btn:hover {
+    background: rgba(0, 0, 0, .12)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-input {
+    background: hsla(0, 0%, 100%, .5);
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 16px;
+    color: var(--text-primary);
+    flex: 1;
+    font-size: var(--text-caption-sm);
+    outline: none;
+    padding: 8px 12px;
+    transition: all .15s ease
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-input::placeholder {
+    color: rgba(0, 0, 0, .35)
+}
+
+.design-v2 .section-hero .hero-showcase .messenger-input:focus {
+    background: hsla(0, 0%, 100%, .7)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-panel {
+    background: rgba(0, 0, 0, .08);
+    border-left: 1px solid hsla(0, 0%, 100%, .15);
+    padding: 20px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-header {
+    margin-bottom: 16px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-title {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-profile {
+    margin-bottom: 16px;
+    text-align: center
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-avatar {
+    height: 72px;
+    margin: 0 auto 10px;
+    width: 72px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-img {
+    border: 2px solid rgba(0, 0, 0, .08);
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-name {
+    color: var(--text-primary);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    margin-bottom: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-company {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-caption)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-action-btn {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .6);
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    transition: all .15s ease;
+    width: 40px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-action-btn i {
+    color: var(--text-primary);
+    font-size: var(--text-body)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-action-btn:hover {
+    background: hsla(0, 0%, 100%, .8)
+}
+
+.design-v2 .section-hero .hero-showcase .voip-contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-detail-item {
+    align-items: flex-start;
+    background: hsla(0, 0%, 100%, .4);
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    padding: 10px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-detail-item i {
+    color: rgba(0, 0, 0, .5);
+    font-size: var(--text-body-sm);
+    margin-top: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-detail-content {
+    flex: 1
+}
+
+.design-v2 .section-hero .hero-showcase .voip-detail-label {
+    color: rgba(0, 0, 0, .4);
+    display: block;
+    font-size: var(--text-micro);
+    margin-bottom: 2px
+}
+
+.design-v2 .section-hero .hero-showcase .voip-detail-value {
+    color: var(--text-primary);
+    font-size: var(--text-caption)
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-modal {
+    align-items: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsla(0, 0%, 100%, .85);
+    border-radius: 12px;
+    bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    position: absolute;
+    right: 16px;
+    width: 170px;
+    z-index: 10
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-display {
+    margin-bottom: 4px;
+    text-align: center;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-number {
+    color: var(--text-primary);
+    font-size: var(--text-micro);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-grid {
+    display: grid;
+    gap: 4px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-key {
+    align-items: center;
+    background: rgba(0, 0, 0, .04);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    font-size: var(--text-body-sm);
+    font-weight: 500;
+    height: 42px;
+    justify-content: center;
+    transition: all .1s ease;
+    width: 42px
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-key:hover {
+    background: rgba(0, 0, 0, .08)
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-call-btn {
+    align-items: center;
+    background: rgba(0, 0, 0, .08);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    margin-top: 4px;
+    transition: all .15s ease;
+    width: 36px
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-call-btn i {
+    color: var(--text-primary);
+    font-size: var(--text-body-sm)
+}
+
+.design-v2 .section-hero .hero-showcase .app-dialer-call-btn:hover {
+    background: rgba(0, 0, 0, .12)
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-card {
+    animation: sectionHeroCardEntranceUp .7s ease-out forwards;
+    animation-delay: .6s;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, .35);
+    height: 580px;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    width: 280px
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-pill {
+    background: #000;
+    border-radius: 12px;
+    height: 18px;
+    left: 50%;
+    position: absolute;
+    top: 12px;
+    transform: translateX(-50%);
+    width: 90px;
+    z-index: 3
+}
+
+.design-v2 .section-hero .hero-showcase .phone-screen.phone-screen-video {
+    overflow: hidden;
+    padding: 0;
+    position: relative
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-bg {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    object-position: center top;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-overlay {
+    background: linear-gradient(180deg, rgba(0, 0, 0, .3) 0, transparent 30%, transparent 60%, rgba(0, 0, 0, .5));
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    z-index: 2
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-label {
+    color: #fff;
+    font-size: var(--text-body);
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .3)
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-duration {
+    color: hsla(0, 0%, 100%, .85);
+    font-size: var(--text-caption-lg);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .3)
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    bottom: 110px;
+    left: 12px;
+    padding: 10px 12px;
+    position: absolute;
+    right: 12px;
+    z-index: 2
+}
+
+.design-v2 .section-hero .hero-showcase .transcription-label {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    gap: 4px;
+    letter-spacing: .5px;
+    margin-bottom: 4px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .hero-showcase .transcription-label i {
+    color: #fff;
+    font-size: var(--text-micro)
+}
+
+.design-v2 .section-hero .hero-showcase .transcription-content {
+    line-height: 1.35
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .word {
+    color: transparent;
+    font-size: var(--text-micro)
+}
+
+.design-v2 .section-hero .hero-showcase .word-break {
+    display: block;
+    height: 2px
+}
+
+@keyframes revealWord {
+    0% {
+        color: transparent
+    }
+    to {
+        color: #fff
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w1 {
+    animation: revealWord 999s step-start 1.3s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w2 {
+    animation: revealWord 999s step-start 1.45s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w3 {
+    animation: revealWord 999s step-start 1.6s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w4 {
+    animation: revealWord 999s step-start 1.75s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w5 {
+    animation: revealWord 999s step-start 1.95s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w6 {
+    animation: revealWord 999s step-start 2.15s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w7 {
+    animation: revealWord 999s step-start 2.3s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w8 {
+    animation: revealWord 999s step-start 2.45s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w9 {
+    animation: revealWord 999s step-start 2.6s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w10 {
+    animation: revealWord 999s step-start 2.8s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w11 {
+    animation: revealWord 999s step-start 3.6s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w12 {
+    animation: revealWord 999s step-start 3.75s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w13 {
+    animation: revealWord 999s step-start 3.9s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w14 {
+    animation: revealWord 999s step-start 4.1s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w15 {
+    animation: revealWord 999s step-start 4.3s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w16 {
+    animation: revealWord 999s step-start 4.45s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w17 {
+    animation: revealWord 999s step-start 4.65s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w18 {
+    animation: revealWord 999s step-start 4.85s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w19 {
+    animation: revealWord 999s step-start 5.05s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w20 {
+    animation: revealWord 999s step-start 5.85s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w21 {
+    animation: revealWord 999s step-start 6.05s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w22 {
+    animation: revealWord 999s step-start 6.2s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w23 {
+    animation: revealWord 999s step-start 6.35s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w24 {
+    animation: revealWord 999s step-start 6.5s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w25 {
+    animation: revealWord 999s step-start 6.65s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .live-transcription .w26 {
+    animation: revealWord 999s step-start 6.8s forwards
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-badges {
+    bottom: 85px;
+    display: flex;
+    gap: 8px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: 3
+}
+
+.design-v2 .section-hero .hero-showcase .video-badge {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    font-size: var(--text-micro);
+    font-weight: 600;
+    gap: 5px;
+    padding: 4px 10px
+}
+
+.design-v2 .section-hero .hero-showcase .video-badge-recording {
+    background: rgba(239, 68, 68, .9);
+    color: #fff
+}
+
+.design-v2 .section-hero .hero-showcase .video-badge-recording .recording-dot {
+    animation: recordingPulse 1s ease-in-out infinite;
+    background: #fff;
+    border-radius: 50%;
+    height: 6px;
+    width: 6px
+}
+
+@keyframes recordingPulse {
+    0%,
+    to {
+        opacity: 1
+    }
+    50% {
+        opacity: .4
+    }
+}
+
+.design-v2 .section-hero .hero-showcase .video-badge-transcription {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    background: hsla(0, 0%, 100%, .2);
+    color: #fff
+}
+
+.design-v2 .section-hero .hero-showcase .video-call-controls {
+    bottom: 24px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 2
+}
+
+.design-v2 .section-hero .hero-showcase .video-control-btn {
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    background: hsla(0, 0%, 100%, .2);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: var(--text-body-lg);
+    height: 48px;
+    justify-content: center;
+    transition: all .15s ease;
+    width: 48px
+}
+
+.design-v2 .section-hero .hero-showcase .video-control-btn:hover {
+    background: hsla(0, 0%, 100%, .3)
+}
+
+.design-v2 .section-hero .hero-showcase .video-control-btn.video-control-end {
+    background: #ef4444;
+    transform: rotate(135deg)
+}
+
+.design-v2 .section-hero .hero-showcase .video-control-btn.video-control-end:hover {
+    background: #dc2626
+}
+
+.design-v2 .section-hero--showcase-voip.section-hero--stacked .hero-container {
+    padding: 160px 60px 80px
+}
+
+.design-v2 .section-hero--showcase-voip .hero-description {
+    font-size: var(--text-body-lg);
+    max-width: 800px;
+    text-shadow: none
+}
+
+.design-v2 .section-hero--showcase-voip .hero-title {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+    text-shadow: none
+}
+
+.design-v2 .section-hero--showcase-voip .hero-eyebrow {
+    margin-bottom: 2rem
+}
+
+.design-v2 .section-hero--showcase-voip .hero-showcase {
+    margin-top: 40px
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-hero--showcase-voip.section-hero--stacked .hero-container {
+        padding: 120px 40px 60px
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-hero--showcase-voip.section-hero--stacked .hero-container {
+        padding: 100px 20px 40px
+    }
+    .design-v2 .section-hero--showcase-voip .hero-description {
+        font-size: var(--text-body)
+    }
+}
+
+.design-v2 .section-hero--showcase-voip .hero-showcase .ui-showcase {
+    animation: sectionHeroPhoneSlideIn .6s cubic-bezier(.25, .46, .45, .94) forwards;
+    animation-delay: .2s;
+    opacity: 0;
+    transform: translateX(-80px) translateY(-50%)
+}
+
+@keyframes sectionHeroPhoneSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-80px) translateY(-50%)
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(-50%)
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-hero--showcase-voip .hero-content {
+        order: 1
+    }
+    .design-v2 .section-hero--showcase-voip .hero-highlights {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .625rem;
+        margin-top: 1.5rem;
+        order: 2;
+        padding: 0
+    }
+    .design-v2 .section-hero--showcase-voip .hero-showcase {
+        order: 3
+    }
+}
+
+.design-v2 .hero-toast-label {
+    align-items: center;
+    color: var(--text-primary);
+    display: flex;
+    font-size: var(--text-body-sm);
+    font-weight: 700;
+    gap: 6px;
+    line-height: 1.2
+}
+
+.design-v2 .hero-toast-label .ai-badge {
+    border-radius: 5px;
+    display: inline-flex;
+    gap: 3px;
+    padding: 3px 7px;
+    vertical-align: middle
+}
+
+.design-v2 .hero-toast-message {
+    animation: heroToastReveal 12s ease-out infinite;
+    clip-path: inset(0 100% 0 0);
+    color: var(--text-primary);
+    font-size: var(--text-body-xs);
+    line-height: 1.45;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero--showcase-wistia-video.section-hero--stacked .hero-container {
+    padding: 170px 60px 56px
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-content {
+    margin: 0 auto;
+    max-width: 760px
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-title {
+    font-size: clamp(56px, 6vw, 76px);
+    line-height: .95;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-description {
+    font-size: 18px;
+    margin-bottom: 2.25rem;
+    max-width: 520px
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-ctas {
+    margin-bottom: 18px
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-highlights {
+    justify-content: center;
+    margin-top: 36px
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-showcase {
+    margin-top: 44px;
+    max-width: 978px;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 0;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__media {
+    display: block;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    z-index: 1
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell {
+    aspect-ratio: 16/9;
+    background: rgba(0, 0, 0, .04);
+    border-radius: 32px;
+    box-shadow: 0 28px 90px rgba(4, 18, 42, .42), 0 0 0 1px hsla(0, 0%, 100%, .24);
+    overflow: hidden;
+    position: relative;
+    width: 100%
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell:before {
+    background: 50%/cover no-repeat var(--wistia-swatch);
+    content: "";
+    inset: 0;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity .2s ease;
+    z-index: 0
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-video-wistia-padding,
+.design-v2 .section-hero--showcase-wistia-video .hero-video-wistia-wrapper {
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-video-wistia-embed {
+    display: block;
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell .w-big-play-button,
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell .w-play-pause-notifier,
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell [data-handle=bigPlayButton],
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell [data-handle=playPauseNotifier],
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell [data-handle=videoThumbnail] .w-big-play-button {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-video-custom-play {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    filter: drop-shadow(0 18px 36px rgba(0, 0, 0, .18));
+    height: clamp(50px, 8vw, 98px);
+    justify-content: center;
+    left: 50%;
+    opacity: 1;
+    padding: 0;
+    pointer-events: auto;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform .2s ease, opacity .2s ease;
+    visibility: visible;
+    width: clamp(50px, 8vw, 98px);
+    z-index: 9999
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-video-custom-play svg {
+    display: block;
+    height: auto;
+    width: 100%
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell.is-playing:before {
+    opacity: 0
+}
+
+.design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell.is-playing .hero-video-custom-play {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden
+}
+
+@media(max-width:991px) {
+    .design-v2 .section-hero--showcase-wistia-video.section-hero--stacked .hero-container {
+        padding: 150px 32px 60px
+    }
+    .design-v2 .section-hero--showcase-wistia-video .hero-wistia-card {
+        padding: 0
+    }
+    .design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__media {
+        margin: 0;
+        width: 100%
+    }
+    .design-v2 .section-hero--showcase-wistia-video .hero-wistia-card__preview-shell {
+        aspect-ratio: 16/9;
+        border-radius: 24px
+    }
+    .design-v2 .section-hero--showcase-wistia-video .hero-video-custom-play {
+        width: clamp(72px, 18vw, 120px)
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-hero--showcase-wistia-video.section-hero--stacked .hero-container {
+        padding: 132px 20px 44px
+    }
+    .design-v2 .section-hero--showcase-wistia-video .hero-title {
+        font-size: clamp(42px, 12vw, 56px)
+    }
+}
+
+.design-v2 .section-hero--showcase-analytics.section-hero--stacked .hero-container {
+    padding: 160px 60px 80px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-description {
+    font-size: var(--text-body-lg);
+    max-width: 800px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase,
+.design-v2 .section-hero--showcase-wem .hero-showcase {
+    position: relative
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .desktop-app-bg,
+.design-v2 .section-hero--showcase-wem .hero-showcase .desktop-app-bg {
+    animation: none;
+    margin-left: auto;
+    margin-right: auto;
+    right: auto;
+    translate: none;
+    visibility: visible
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-card-label,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-card-label {
+    color: var(--text-primary)
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .desktop-app-window,
+.design-v2 .section-hero--showcase-wem .hero-showcase .desktop-app-window {
+    background: hsla(0, 0%, 100%, .3);
+    box-shadow: 0 25px 80px -12px rgba(100, 116, 139, .15), 0 0 0 1px hsla(0, 0%, 100%, .25), inset 0 1px 0 hsla(0, 0%, 100%, .3)
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-body,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-body {
+    display: flex;
+    min-height: 500px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-sidebar,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-sidebar {
+    flex-shrink: 0;
+    width: 180px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-sidebar .sidebar-header,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-sidebar .sidebar-header {
+    gap: 8px;
+    justify-content: flex-start
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-sidebar .sidebar-logo-icon,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-sidebar .sidebar-logo-icon {
+    height: 18px;
+    width: 18px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-sidebar .conversation-list,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-sidebar .conversation-list {
+    flex: 0 0 auto
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-sidebar .conversation-item,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-sidebar .conversation-item {
+    padding: 10px 18px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-sidebar .conversation-item i,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-sidebar .conversation-item i {
+    font-size: 14px;
+    margin-right: 8px;
+    opacity: .7
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-hero-sidebar .conversation-name,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-hero-sidebar .conversation-name {
+    font-size: var(--text-caption-lg)
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-sidebar-bottom,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-sidebar-bottom {
+    border-top: 1px solid rgba(0, 0, 0, .08);
+    margin-top: auto;
+    padding: 12px 18px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-showcase .analytics-sidebar-btn,
+.design-v2 .section-hero--showcase-wem .hero-showcase .analytics-sidebar-btn {
+    align-items: center;
+    background: rgba(0, 0, 0, .06);
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: default;
+    display: flex;
+    font-size: var(--text-caption-lg);
+    font-weight: 600;
+    gap: 8px;
+    padding: 8px 14px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-hero-main,
+.design-v2 .section-hero--showcase-wem .analytics-hero-main {
+    background: rgba(0, 0, 0, .08);
+    flex: 1;
+    padding: 28px 32px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-main-heading,
+.design-v2 .section-hero--showcase-wem .analytics-main-heading {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: var(--text-body-lg);
+    font-weight: 600;
+    margin-bottom: 14px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-row,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-card,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsla(0, 0%, 100%, .35);
+    border-radius: 12px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 100px;
+    padding: 12px 14px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-label,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-label {
+    align-items: center;
+    color: var(--text-secondary);
+    display: flex;
+    font-size: var(--text-caption);
+    font-weight: 500;
+    gap: 6px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-label i,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-label i {
+    color: var(--brand-blue);
+    font-size: 13px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-value,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-value {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: var(--text-heading-sm);
+    font-weight: 600;
+    line-height: 1.2
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-trend,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-trend {
+    font-size: var(--text-caption-sm);
+    font-weight: 500
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-trend--down,
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-trend--neutral,
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-trend--up,
+.design-v2 .section-hero--showcase-analytics .analytics-kpi-trend--warn,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-trend--down,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-trend--neutral,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-trend--up,
+.design-v2 .section-hero--showcase-wem .analytics-kpi-trend--warn {
+    color: var(--brand-blue)
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-charts-row,
+.design-v2 .section-hero--showcase-wem .analytics-charts-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-chart-card,
+.design-v2 .section-hero--showcase-wem .analytics-chart-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsla(0, 0%, 100%, .3);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .08), 0 0 0 1px hsla(0, 0%, 100%, .22), inset 0 1px 0 hsla(0, 0%, 100%, .15);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 14px 16px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-chart-card--wide,
+.design-v2 .section-hero--showcase-wem .analytics-chart-card--wide {
+    flex: 2
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-card-header,
+.design-v2 .section-hero--showcase-wem .analytics-card-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-card-label,
+.design-v2 .section-hero--showcase-wem .analytics-card-label {
+    color: var(--brand-navy);
+    font-size: var(--text-caption-lg);
+    font-weight: 600
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-chart-legend,
+.design-v2 .section-hero--showcase-wem .analytics-chart-legend {
+    display: flex;
+    flex-shrink: 0;
+    gap: 16px;
+    margin-top: 8px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-legend-item,
+.design-v2 .section-hero--showcase-wem .analytics-legend-item {
+    align-items: center;
+    color: var(--text-tertiary);
+    display: flex;
+    font-size: var(--text-caption-sm);
+    gap: 6px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-legend-dot,
+.design-v2 .section-hero--showcase-wem .analytics-legend-dot {
+    border-radius: 50%;
+    flex-shrink: 0;
+    height: 8px;
+    width: 8px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-line-chart,
+.design-v2 .section-hero--showcase-wem .analytics-line-chart {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-top: 4px;
+    min-height: 100px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-line-chart svg,
+.design-v2 .section-hero--showcase-wem .analytics-line-chart svg {
+    display: block;
+    flex: 1;
+    min-height: 0;
+    width: 100%
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-bar-chart,
+.design-v2 .section-hero--showcase-wem .analytics-bar-chart {
+    align-items: flex-end;
+    display: flex;
+    gap: 12px;
+    height: 140px;
+    padding-top: 8px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-bar-group,
+.design-v2 .section-hero--showcase-wem .analytics-bar-group {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-bar,
+.design-v2 .section-hero--showcase-wem .analytics-bar {
+    background: rgba(0, 0, 0, .08);
+    border-radius: 6px 6px 0 0;
+    transition: height .3s ease;
+    width: 100%
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-bar--highlight,
+.design-v2 .section-hero--showcase-wem .analytics-bar--highlight {
+    background: var(--brand-blue)
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-bar-label,
+.design-v2 .section-hero--showcase-wem .analytics-bar-label {
+    color: var(--text-tertiary);
+    font-size: var(--text-caption-sm);
+    font-weight: 500
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-queue-section,
+.design-v2 .section-hero--showcase-wem .analytics-queue-section {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsla(0, 0%, 100%, .3);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .08), 0 0 0 1px hsla(0, 0%, 100%, .18), inset 0 1px 0 hsla(0, 0%, 100%, .12);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-queue-header-row,
+.design-v2 .section-hero--showcase-wem .analytics-queue-header-row {
+    color: var(--neutral-600);
+    display: grid;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    grid-template-columns: 1.2fr 1fr 1.2fr .8fr;
+    letter-spacing: .03em;
+    padding: 4px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-queue-rows,
+.design-v2 .section-hero--showcase-wem .analytics-queue-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-queue-row-card,
+.design-v2 .section-hero--showcase-wem .analytics-queue-row-card {
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    background: hsla(0, 0%, 100%, .15);
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .2), inset 0 1px 0 hsla(0, 0%, 100%, .1);
+    color: var(--text-primary);
+    display: grid;
+    font-size: var(--text-caption-lg);
+    font-weight: 500;
+    grid-template-columns: 1.2fr 1fr 1.2fr .8fr;
+    padding: 10px 14px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-status,
+.design-v2 .section-hero--showcase-wem .analytics-status {
+    border-radius: 20px;
+    display: inline-block;
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    padding: 2px 10px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-status--normal,
+.design-v2 .section-hero--showcase-wem .analytics-status--normal {
+    background: rgba(0, 150, 100, .1);
+    color: #009664
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-status--moderate,
+.design-v2 .section-hero--showcase-wem .analytics-status--moderate {
+    background: rgba(255, 180, 0, .1);
+    color: #cc9500
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-status--critical,
+.design-v2 .section-hero--showcase-wem .analytics-status--critical {
+    background: rgba(220, 50, 50, .1);
+    color: #dc3232
+}
+
+.design-v2 .section-hero--showcase-analytics .queue-avatar,
+.design-v2 .section-hero--showcase-wem .queue-avatar {
+    border-radius: 50%;
+    height: 22px;
+    margin-right: 6px;
+    object-fit: cover;
+    vertical-align: middle;
+    width: 22px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-queue-row-card .ai-badge,
+.design-v2 .section-hero--showcase-wem .analytics-queue-row-card .ai-badge {
+    border-radius: 12px;
+    display: inline-flex;
+    font-size: 9px;
+    margin-left: 6px;
+    padding: 2px 7px;
+    vertical-align: middle
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-chart-axis-labels,
+.design-v2 .section-hero--showcase-wem .analytics-chart-axis-labels {
+    color: rgba(0, 0, 0, .38);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: 9px;
+    justify-content: space-between;
+    letter-spacing: .02em;
+    padding: 3px 0 0
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot {
+    position: absolute;
+    z-index: 10
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot-1,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot-1 {
+    left: 3%;
+    top: 18%
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot-2,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot-2 {
+    right: 25%;
+    top: 30%
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot-3,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot-3 {
+    bottom: 18%;
+    left: 5%
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast,
+.design-v2 .section-hero--showcase-wem .analytics-toast {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .92);
+    border: 1px solid hsla(0, 0%, 100%, .6);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .1), 0 2px 8px rgba(0, 0, 0, .04);
+    display: flex;
+    gap: 14px;
+    left: 0;
+    opacity: 0;
+    padding: 16px 22px 16px 16px;
+    position: absolute;
+    top: 0;
+    white-space: nowrap
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-icon,
+.design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-icon {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    font-size: 20px;
+    height: 44px;
+    justify-content: center;
+    width: 44px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-icon img,
+.design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-icon img {
+    height: 22px;
+    width: 22px
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-body,
+.design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-label,
+.design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-label {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-body-xs);
+    font-weight: 700
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-message,
+.design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-message {
+    animation: none;
+    clip-path: none;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg)
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-a,
+.design-v2 .section-hero--showcase-wem .analytics-toast-a {
+    animation: analyticsHeroToastCycleA 10s ease-in-out infinite
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-b,
+.design-v2 .section-hero--showcase-wem .analytics-toast-b {
+    animation: analyticsHeroToastCycleB 10s ease-in-out infinite
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot-2 .analytics-toast-a,
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot-2 .analytics-toast-b,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot-2 .analytics-toast-a,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot-2 .analytics-toast-b {
+    animation-delay: 1.5s
+}
+
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot-3 .analytics-toast-a,
+.design-v2 .section-hero--showcase-analytics .analytics-toast-slot-3 .analytics-toast-b,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot-3 .analytics-toast-a,
+.design-v2 .section-hero--showcase-wem .analytics-toast-slot-3 .analytics-toast-b {
+    animation-delay: 3s
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-birds,
+.design-v2 .section-hero--showcase-wem .hero-birds {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-bird-flock,
+.design-v2 .section-hero--showcase-wem .hero-bird-flock {
+    align-items: flex-start;
+    display: flex;
+    gap: 18px;
+    position: absolute
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-bird-flock-1,
+.design-v2 .section-hero--showcase-wem .hero-bird-flock-1 {
+    animation: birdFlockDrift 14s linear infinite;
+    left: 30%;
+    top: 11%
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-bird,
+.design-v2 .section-hero--showcase-wem .hero-bird {
+    color: rgba(25, 25, 35, .55);
+    flex-shrink: 0
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-bird-1,
+.design-v2 .section-hero--showcase-wem .hero-bird-1 {
+    animation: birdFlap1 2.4s ease-in-out infinite;
+    height: 9px;
+    margin-top: 4px;
+    width: 22px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-bird-2,
+.design-v2 .section-hero--showcase-wem .hero-bird-2 {
+    animation: birdFlap2 2.8s ease-in-out .6s infinite;
+    height: 7px;
+    margin-top: 0;
+    width: 18px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-bird-3,
+.design-v2 .section-hero--showcase-wem .hero-bird-3 {
+    animation: birdFlap3 2.2s ease-in-out 1.2s infinite;
+    height: 8px;
+    margin-top: 8px;
+    width: 20px
+}
+
+.design-v2 .section-hero--showcase-analytics .hero-bird-4,
+.design-v2 .section-hero--showcase-wem .hero-bird-4 {
+    animation: birdFlap1 2.6s ease-in-out 1.8s infinite;
+    height: 6px;
+    margin-top: 2px;
+    width: 16px
+}
+
+@keyframes analyticsHeroToastCycleA {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(.97)
+    }
+    5% {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+    }
+    42% {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+    }
+    48% {
+        opacity: 0;
+        transform: translateY(-12px) scale(.97)
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-12px) scale(.97)
+    }
+}
+
+@keyframes analyticsHeroToastCycleB {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(.97)
+    }
+    48% {
+        opacity: 0;
+        transform: translateY(12px) scale(.97)
+    }
+    53% {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+    }
+    95% {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-12px) scale(.97)
+    }
+}
+
+@keyframes birdFlap1 {
+    0% {
+        transform: scaleY(1) rotate(0deg)
+    }
+    8% {
+        transform: scaleY(.35) rotate(-2deg)
+    }
+    18% {
+        transform: scaleY(1.05) rotate(1deg)
+    }
+    28% {
+        transform: scaleY(.4) rotate(-1deg)
+    }
+    40% {
+        transform: scaleY(1) rotate(0deg)
+    }
+    to {
+        transform: scaleY(1) rotate(0deg)
+    }
+}
+
+@keyframes birdFlap2 {
+    0% {
+        transform: scaleY(1) rotate(0deg)
+    }
+    10% {
+        transform: scaleY(.3) rotate(-2deg)
+    }
+    22% {
+        transform: scaleY(1.05) rotate(1deg)
+    }
+    34% {
+        transform: scaleY(.45) rotate(-1deg)
+    }
+    46% {
+        transform: scaleY(1) rotate(.5deg)
+    }
+    55% {
+        transform: scaleY(.5) rotate(-1deg)
+    }
+    65% {
+        transform: scaleY(1) rotate(0deg)
+    }
+    to {
+        transform: scaleY(1) rotate(0deg)
+    }
+}
+
+@keyframes birdFlap3 {
+    0% {
+        transform: scaleY(1) rotate(0deg)
+    }
+    6% {
+        transform: scaleY(.35) rotate(-1.5deg)
+    }
+    14% {
+        transform: scaleY(1) rotate(1deg)
+    }
+    22% {
+        transform: scaleY(.4) rotate(-1deg)
+    }
+    32% {
+        transform: scaleY(1.05) rotate(.5deg)
+    }
+    42% {
+        transform: scaleY(.45) rotate(-1.5deg)
+    }
+    52% {
+        transform: scaleY(1) rotate(0deg)
+    }
+    to {
+        transform: scaleY(1) rotate(0deg)
+    }
+}
+
+@keyframes birdFlockDrift {
+    0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0)
+    }
+    8% {
+        opacity: 1
+    }
+    80% {
+        opacity: 1
+    }
+    to {
+        opacity: 0;
+        transform: translateX(75vw) translateY(-10px)
+    }
+}
+
+.design-v2 .section-hero--showcase-wem .analytics-status {
+    border-radius: 100px
+}
+
+.design-v2 .section-hero--showcase-wem .analytics-status--normal {
+    background: rgba(0, 98, 184, .15);
+    color: var(--brand-blue)
+}
+
+.design-v2 .section-hero--showcase-wem .analytics-status--moderate {
+    background: hsla(23, 4%, 62%, .2);
+    color: var(--neutral-500)
+}
+
+.design-v2 .section-hero--showcase-wem .analytics-status--high {
+    background: hsla(1, 27%, 60%, .2);
+    color: var(--brand-neutral)
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-hero--showcase-analytics.section-hero--stacked .hero-container,
+    .design-v2 .section-hero--showcase-wem.section-hero--stacked .hero-container {
+        padding: 120px 40px 60px
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-showcase,
+    .design-v2 .section-hero--showcase-analytics .hero-showcase .desktop-app-bg,
+    .design-v2 .section-hero--showcase-analytics .section-hero,
+    .design-v2 .section-hero--showcase-wem .hero-showcase,
+    .design-v2 .section-hero--showcase-wem .hero-showcase .desktop-app-bg,
+    .design-v2 .section-hero--showcase-wem .section-hero {
+        overflow: visible
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-kpi-row,
+    .design-v2 .section-hero--showcase-wem .analytics-kpi-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 16px
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-kpi-card,
+    .design-v2 .section-hero--showcase-wem .analytics-kpi-card {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: hsla(0, 0%, 100%, .35);
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, .08), 0 0 0 1px hsla(0, 0%, 100%, .2), inset 0 1px 0 hsla(0, 0%, 100%, .15);
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 100px;
+        padding: 14px 16px
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-kpi-value,
+    .design-v2 .section-hero--showcase-wem .analytics-kpi-value {
+        font-size: var(--text-body-xl)
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-charts-row,
+    .design-v2 .section-hero--showcase-wem .analytics-charts-row {
+        flex-direction: column
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-toast,
+    .design-v2 .section-hero--showcase-wem .analytics-toast {
+        border-radius: 14px;
+        gap: 10px;
+        padding: 12px 16px 12px 12px
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-icon,
+    .design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-icon {
+        font-size: 16px;
+        height: 36px;
+        width: 36px
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-icon img,
+    .design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-icon img {
+        height: 18px;
+        width: 18px
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-label,
+    .design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-label {
+        font-size: var(--text-caption-lg)
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-toast .hero-toast-message,
+    .design-v2 .section-hero--showcase-wem .analytics-toast .hero-toast-message {
+        font-size: var(--text-caption)
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-toast-slot-1,
+    .design-v2 .section-hero--showcase-wem .analytics-toast-slot-1 {
+        left: 1%
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-toast-slot-2,
+    .design-v2 .section-hero--showcase-wem .analytics-toast-slot-2 {
+        right: 1%
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-hero--showcase-analytics.section-hero--stacked .hero-container,
+    .design-v2 .section-hero--showcase-wem.section-hero--stacked .hero-container {
+        padding: 100px 20px 40px
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-bird-flock-1,
+    .design-v2 .section-hero--showcase-wem .hero-bird-flock-1 {
+        top: 8%
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-bird-1,
+    .design-v2 .section-hero--showcase-wem .hero-bird-1 {
+        height: 6px;
+        width: 16px
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-bird-2,
+    .design-v2 .section-hero--showcase-wem .hero-bird-2 {
+        height: 5px;
+        width: 13px
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-bird-3,
+    .design-v2 .section-hero--showcase-wem .hero-bird-3 {
+        height: 6px;
+        width: 15px
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-bird-4,
+    .design-v2 .section-hero--showcase-wem .hero-bird-4 {
+        height: 5px;
+        width: 12px
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-content,
+    .design-v2 .section-hero--showcase-wem .hero-content {
+        order: 1
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-highlights,
+    .design-v2 .section-hero--showcase-wem .hero-highlights {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .625rem;
+        margin-top: 1.5rem;
+        order: 2;
+        padding: 0
+    }
+    .design-v2 .section-hero--showcase-analytics .hero-showcase,
+    .design-v2 .section-hero--showcase-wem .hero-showcase {
+        order: 3
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-kpi-row,
+    .design-v2 .section-hero--showcase-wem .analytics-kpi-row {
+        flex-wrap: wrap
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-kpi-card,
+    .design-v2 .section-hero--showcase-wem .analytics-kpi-card {
+        flex: 1 1 calc(50% - 8px);
+        min-width: calc(50% - 8px)
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-chart-legend,
+    .design-v2 .section-hero--showcase-wem .analytics-chart-legend {
+        flex-wrap: wrap;
+        gap: 8px
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-queue-section,
+    .design-v2 .section-hero--showcase-wem .analytics-queue-section {
+        overflow-x: auto
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-hero-sidebar,
+    .design-v2 .section-hero--showcase-analytics .analytics-toast-slot,
+    .design-v2 .section-hero--showcase-wem .analytics-hero-sidebar,
+    .design-v2 .section-hero--showcase-wem .analytics-toast-slot {
+        display: none
+    }
+    .design-v2 .section-hero--showcase-analytics .analytics-hero-main,
+    .design-v2 .section-hero--showcase-wem .analytics-hero-main {
+        padding: 20px
+    }
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-form,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-form-field[style*="display: none"],
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-form-field[style*="display:none"],
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-form-required,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs_error_rollup,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field[style*="display: none"],
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field[style*="display:none"],
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-required,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs_error_rollup,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-form-field[style*="display: none"],
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-form-field[style*="display:none"],
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-form-required,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs_error_rollup {
+    display: none !important
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs_submit,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs_submit,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs_submit {
+    grid-column: 1/-1
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 fieldset,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 fieldset,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 fieldset {
+    border: 0;
+    margin: 0;
+    max-width: none;
+    padding: 0
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 fieldset.is-hidden-fieldset,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 fieldset.is-hidden-fieldset,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 fieldset.is-hidden-fieldset {
+    border: 0 !important;
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .form-columns-2,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .form-columns-2,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .form-columns-2 {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr
+}
+
+@media(max-width:767px) {
+    .design-v2 .section-form-cta .ucaas-form-v2 .form-columns-2,
+    .design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .form-columns-2,
+    .design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .form-columns-2 {
+        grid-template-columns: 1fr
+    }
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-form-field,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-form-field {
+    margin: 0;
+    position: relative
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-form-field>label,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field>label,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-form-field>label {
+    color: #1a1a1a;
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 500;
+    margin-bottom: 8px
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-input,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-input,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-input {
+    background: var(--brand-cream);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    padding: 14px 18px;
+    transition: all .2s ease;
+    width: 100%
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-input::placeholder,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-input::placeholder,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-input::placeholder {
+    color: var(--neutral-500)
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-input:focus,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-input:focus,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-input:focus {
+    background: #fff;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0, 98, 184, .1);
+    outline: none
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-form-field.hs-error .hs-input,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-input.error,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field.hs-error .hs-input,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-input.error,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-form-field.hs-error .hs-input,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-input.error {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, .08)
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-error-msgs,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-error-msgs li,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs li,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs li {
+    color: #c0392b;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg)
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 select.hs-input,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 select.hs-input,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 select.hs-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: right 16px center;
+    background-repeat: no-repeat;
+    padding-right: 44px
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 input[type=number].hs-input,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 input[type=number].hs-input,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 input[type=number].hs-input {
+    -moz-appearance: textfield
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 input[type=number].hs-input::-webkit-inner-spin-button,
+.design-v2 .section-form-cta .ucaas-form-v2 input[type=number].hs-input::-webkit-outer-spin-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 input[type=number].hs-input::-webkit-inner-spin-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 input[type=number].hs-input::-webkit-outer-spin-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 input[type=number].hs-input::-webkit-inner-spin-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 input[type=number].hs-input::-webkit-outer-spin-button {
+    -webkit-appearance: inner-spin-button;
+    height: 30px;
+    opacity: 1
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit {
+    margin: 8px 0 0
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions {
+    border-radius: 6px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions .hs-button,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions .hs-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions .hs-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: var(--cta-blue) !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+    color: #fff !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    font-family: var(--font-body) !important;
+    font-size: var(--text-body) !important;
+    font-weight: 500 !important;
+    height: auto !important;
+    line-height: 1.2 !important;
+    padding: 14px 56px 14px 20px !important;
+    position: relative !important;
+    text-shadow: none !important;
+    transition: background-color .16s ease, transform .16s ease !important;
+    z-index: 1 !important
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:after,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:after,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:after {
+    background-color: hsla(0, 0%, 100%, .2);
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    border-radius: 4px;
+    content: "";
+    height: 32px;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color .16s ease;
+    width: 32px;
+    z-index: 2
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:hover:after,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover:after,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover:after {
+    background-color: hsla(0, 0%, 100%, .3)
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:before,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:before,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:before {
+    animation: hs-shine 3s ease-in-out infinite;
+    animation-delay: 1s;
+    background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, .3) 50%, transparent);
+    border-radius: 6px;
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(-100%);
+    will-change: transform;
+    z-index: 3
+}
+
+@keyframes hs-shine {
+    0% {
+        transform: translateX(-100%)
+    }
+    20% {
+        transform: translateX(100%)
+    }
+    to {
+        transform: translateX(100%)
+    }
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:hover .hs-button,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:hover input.hs-button.primary.large,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:hover input[type=submit].hs-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover .hs-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover input.hs-button.primary.large,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover input[type=submit].hs-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover .hs-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover input.hs-button.primary.large,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:hover input[type=submit].hs-button {
+    background: #0052cc !important;
+    transform: translateY(-2px) !important
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:active .hs-button,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:active input.hs-button.primary.large,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions:active input[type=submit].hs-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:active .hs-button,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:active input.hs-button.primary.large,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:active input[type=submit].hs-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:active .hs-button,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:active input.hs-button.primary.large,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions:active input[type=submit].hs-button {
+    transform: translateY(0) !important
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions .hs-button:focus-visible,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large:focus-visible,
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button:focus-visible,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions .hs-button:focus-visible,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large:focus-visible,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button:focus-visible,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions .hs-button:focus-visible,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large:focus-visible,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button:focus-visible {
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, .22) !important;
+    outline: none !important
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions .hs-button[disabled],
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large[disabled],
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button[disabled],
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions .hs-button[disabled],
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large[disabled],
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button[disabled],
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions .hs-button[disabled],
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input.hs-button.primary.large[disabled],
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-submit .actions input[type=submit].hs-button[disabled] {
+    cursor: not-allowed !important;
+    opacity: .7 !important
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-richtext,
+.design-v2 .section-form-cta .ucaas-form-v2 .legal-consent-container,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-richtext,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .legal-consent-container,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-richtext,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .legal-consent-container {
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg);
+    line-height: 1.5
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-richtext a,
+.design-v2 .section-form-cta .ucaas-form-v2 .legal-consent-container a,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-richtext a,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .legal-consent-container a,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-richtext a,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .legal-consent-container a {
+    color: var(--text-primary);
+    text-decoration: underline
+}
+
+.design-v2 .section-form-cta .ucaas-form-v2 .hs-richtext a:hover,
+.design-v2 .section-form-cta .ucaas-form-v2 .legal-consent-container a:hover,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-richtext a:hover,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .legal-consent-container a:hover,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .hs-richtext a:hover,
+.design-v2 .section-hero--minimal--hubspot .hero-hubspot-form .ucaas-form-v2 .legal-consent-container a:hover {
+    color: var(--brand-blue)
+}
+
+.design-v2 .section-hero--hubspot-form {
+    min-height: 0
+}
+
+.design-v2 .section-hero--hubspot-form .hero-particles {
+    height: 75%;
+    opacity: .4
+}
+
+.design-v2 .section-hero--hubspot-form .hero-container {
+    align-items: stretch;
+    padding: 140px 60px 100px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-title {
+    font-size: var(--text-metric-lg);
+    max-width: 900px;
+    text-shadow: none
+}
+
+.design-v2 .section-hero--hubspot-form .hero-title.hero-title--lg,
+.design-v2 .section-hero--hubspot-form .hero-title.hero-title--metric,
+.design-v2 .section-hero--hubspot-form .hero-title.hero-title--section {
+    font-size: var(--text-metric-lg);
+    text-shadow: none
+}
+
+.design-v2 .section-hero--hubspot-form .hero-description {
+    font-size: var(--text-body-lg);
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 560px;
+    text-shadow: none
+}
+
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: clamp(24px, 4vw, 56px);
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    width: 100%
+}
+
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-content {
+    flex: 1 1 0;
+    max-width: 900px;
+    min-width: 0;
+    text-align: left
+}
+
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-description {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-ctas,
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-eyebrow--multi,
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-eyebrow--pill {
+    justify-content: flex-start
+}
+
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-eyebrow--icon {
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none
+}
+
+.design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-rating {
+    justify-content: flex-start
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-hero--hubspot-form .hero-container {
+        padding: 110px 40px 80px
+    }
+    .design-v2 .section-hero--hubspot-form .hero-title,
+    .design-v2 .section-hero--hubspot-form .hero-title.hero-title--lg,
+    .design-v2 .section-hero--hubspot-form .hero-title.hero-title--metric,
+    .design-v2 .section-hero--hubspot-form .hero-title.hero-title--section {
+        font-size: var(--text-metric);
+        text-shadow: none
+    }
+    .design-v2 .section-hero--hubspot-form .hero-main--hubspot {
+        align-items: stretch;
+        flex-direction: column
+    }
+    .design-v2 .section-hero--hubspot-form .hero-main--hubspot .hero-content {
+        max-width: none
+    }
+    .design-v2 .section-hero--hubspot-form .hero-hubspot-form {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 520px;
+        width: 100%
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-hero--hubspot-form .hero-container {
+        padding: 100px 20px 60px
+    }
+    .design-v2 .section-hero--hubspot-form .hero-title,
+    .design-v2 .section-hero--hubspot-form .hero-title.hero-title--lg,
+    .design-v2 .section-hero--hubspot-form .hero-title.hero-title--metric,
+    .design-v2 .section-hero--hubspot-form .hero-title.hero-title--section {
+        font-size: var(--text-heading-lg);
+        margin-bottom: 16px;
+        text-shadow: none
+    }
+    .design-v2 .section-hero--hubspot-form .hero-description {
+        font-size: var(--text-body);
+        margin-bottom: 0
+    }
+    .design-v2 .section-hero--hubspot-form .hero-cta-slot {
+        display: none
+    }
+    .design-v2 .section-hero--hubspot-form .hero-highlights {
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 2rem;
+        padding: 0
+    }
+    .design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-trust-line {
+        flex-direction: column;
+        gap: 8px
+    }
+}
+
+@media(max-width:480px) {
+    .design-v2 .section-hero--hubspot-form .hero-container {
+        padding: 90px 20px 40px
+    }
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex: 0 1 min(100%, 480px);
+    margin: 0;
+    max-width: 480px;
+    padding: 36px 32px 32px;
+    width: 100%;
+    z-index: 3
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form__title {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: var(--text-heading-md);
+    font-weight: var(--arizona-heading-weight);
+    line-height: var(--arizona-heading-line-height);
+    margin: 0 0 24px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-hubspot-form {
+    min-height: 80px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs.inputs-list {
+    list-style: none !important;
+    margin: 4px 0 0 !important;
+    padding: 0 !important
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field.demo-custom-error .hs-error-msgs,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field.demo-custom-error .hs-error-msgs.inputs-list {
+    display: none !important
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs .hs-error-msg,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-error-msgs li {
+    color: #c0392b;
+    display: block !important;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg);
+    letter-spacing: normal !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    white-space: normal !important;
+    width: auto !important
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field.hs-error .hs-input,
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-input.demo-field-error {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, .08)
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .demo-error-message {
+    color: #c0392b;
+    display: none;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg);
+    margin-top: 4px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .demo-error-message.is-visible {
+    display: block
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field .input {
+    position: relative
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .demo-field-check {
+    align-items: center;
+    background: var(--brand-blue, #0062b8);
+    border-radius: 50%;
+    display: flex;
+    height: 18px;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%) scale(.5);
+    transition: opacity .2s ease, transform .2s ease;
+    width: 18px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field.is-complete .demo-field-check {
+    opacity: 1;
+    transform: translateY(-50%) scale(1)
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .demo-field-check svg {
+    height: 10px;
+    width: 10px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .ucaas-form-v2 .hs-form-field.is-complete .hs-input {
+    padding-right: 40px
+}
+
+@media(min-width:991px) {
+    .design-v2 .section-hero--hubspot-form .hero-hubspot-form--two-columns .ucaas-form-v2 .hs-form {
+        flex-flow: wrap
+    }
+    .design-v2 .section-hero--hubspot-form .hero-hubspot-form--two-columns .ucaas-form-v2 .hs-form-field {
+        width: 100%
+    }
+    .design-v2 .section-hero--hubspot-form .hero-hubspot-form--two-columns .ucaas-form-v2 .hs-form-field:not(:nth-of-type(3n)) {
+        flex: 1
+    }
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-trust-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 16px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-trust-line__disclaimer {
+    color: var(--text-tertiary, #4b5563);
+    flex: 1 1 100%;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg, 13px);
+    line-height: 1.5;
+    min-width: 0;
+    width: 100%
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-trust-line__disclaimer>p:last-child {
+    margin-bottom: 0
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-trust-line__contact {
+    align-items: center;
+    color: var(--text-tertiary, #4b5563);
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg, 13px);
+    gap: 6px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-trust-line__contact svg {
+    color: inherit;
+    flex-shrink: 0
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-phone-link {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-phone-link:hover {
+    text-decoration: underline
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-privacy {
+    color: var(--text-placeholder, #7f8694);
+    font-family: var(--font-body);
+    font-size: var(--text-caption, 12px);
+    line-height: 1.5;
+    margin-top: 20px
+}
+
+.design-v2 .section-hero--hubspot-form .hero-hubspot-form .demo-modal-privacy a {
+    color: var(--text-tertiary, #4b5563);
+    text-decoration: underline
+}
+
+/* The transparent header sits over the hero; on the pale aurora background its
+   white links would be invisible, so flip them dark. Only affects pages that
+   opt in with .header--on-light. */
+.header--on-light .nb20-header .nb20-nav__link,
+.header--on-light .nb20-header .nb20-header__sales,
+.header--on-light .nb20-header .nb20-header__utility-link {
+    color: rgba(20, 18, 28, .85)
+}
+
+.header--on-light .nb20-header .nb20-nav__link:hover,
+.header--on-light .nb20-header .nb20-header__sales:hover,
+.header--on-light .nb20-header .nb20-header__utility-link:hover {
+    color: #14121c
+}
+
+.header--on-light .nb20-header .nb20-logo-lockup.nb20-logo-image--light .nb20-logo-icon {
+    filter: none
+}
+
+.header--on-light .nb20-header .nb20-logo-lockup.nb20-logo-image--light .nb20-logo-svg {
+    color: #14121c
+}
+
+/* ── Aurora hero ────────────────────────────────────────────────────────────
+   Pastel gradient (aqua → cream → peach) that slowly drifts and cross-fades,
+   with cloud photography along the base. Light background, so everything in
+   this block flips to dark text. */
+
+.design-v2 .section-hero--aurora .hero-aurora {
+    background: linear-gradient(178deg, #dfedf2 0%, #cfe6ee 12%, #e9f2f0 30%, #f7f3e8 50%, #ffead1 74%, #fbd9bd 100%);
+    inset: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 0
+}
+
+.design-v2 .section-hero--aurora .hero-aurora:after,
+.design-v2 .section-hero--aurora .hero-aurora:before {
+    content: "";
+    inset: -25%;
+    position: absolute;
+    will-change: transform, opacity
+}
+
+.design-v2 .section-hero--aurora .hero-aurora:before {
+    animation: auroraDriftA 26s ease-in-out infinite alternate;
+    background:
+        radial-gradient(40% 34% at 12% 8%, rgba(179, 216, 227, .9), transparent 70%),
+        radial-gradient(42% 34% at 88% 10%, rgba(168, 211, 226, .85), transparent 70%),
+        radial-gradient(60% 42% at 50% 104%, rgba(250, 200, 158, .9), transparent 72%)
+}
+
+.design-v2 .section-hero--aurora .hero-aurora:after {
+    animation: auroraDriftB 34s ease-in-out infinite alternate, auroraFade 13s ease-in-out infinite alternate;
+    background:
+        radial-gradient(44% 36% at 74% 26%, rgba(226, 238, 232, .85), transparent 72%),
+        radial-gradient(38% 32% at 22% 40%, rgba(255, 234, 209, .9), transparent 72%),
+        radial-gradient(52% 38% at 60% 92%, rgba(252, 219, 185, .85), transparent 72%)
+}
+
+@keyframes auroraDriftA {
+    0% { transform: translate3d(-3%, -2%, 0) scale(1) }
+    100% { transform: translate3d(4%, 3%, 0) scale(1.12) }
+}
+
+@keyframes auroraDriftB {
+    0% { transform: translate3d(3%, 2%, 0) scale(1.08) }
+    100% { transform: translate3d(-4%, -3%, 0) scale(1) }
+}
+
+@keyframes auroraFade {
+    0% { opacity: .35 }
+    100% { opacity: 1 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-hero--aurora .hero-aurora:after,
+    .design-v2 .section-hero--aurora .hero-aurora:before {
+        animation: none
+    }
+}
+
+/* Clouds crest above the app window, behind the CTA — the reference
+   composition. The asset carries its own top fade, so there is no mask seam. */
+.design-v2 .section-hero--aurora .hero-clouds {
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    /* Sized so the cloud crest lands ~62% down the *viewport*, not the hero.
+       The hero is much taller than the screen, so a plain % put the clouds
+       below the fold on shorter displays. */
+    background-size: auto max(30vh, calc((100% - 80vh) * 1.1));
+    inset: 0;
+    opacity: 1;
+    position: absolute;
+    z-index: 1
+}
+
+/* The hero has to fit a laptop viewport at 100% zoom, otherwise the clouds and
+   the app window fall below the fold. Everything vertical scales with vh. */
+.design-v2 .section-hero--aurora {
+    min-height: min(1080px, 100vh)
+}
+
+.design-v2 .section-hero--aurora .hero-container {
+    padding-bottom: clamp(32px, 5vh, 80px);
+    padding-top: clamp(88px, 13vh, 160px)
+}
+
+/* Dialpad-style peek: a large air gap after the CTAs so the dashboard only
+   crests over the fold instead of dominating it. */
+.design-v2 .section-hero--aurora .hero-showcase {
+    margin-top: clamp(64px, 13vh, 150px)
+}
+
+@media (max-width: 768px) {
+    .design-v2 .section-hero--aurora .hero-clouds {
+        background-position: 50% 100%;
+        background-size: auto 46%
+    }
+}
+
+/* Snow reads as dirt on a pale background — tint it to a soft blue-grey. */
+.design-v2 .section-hero--aurora .snowflake {
+    background: rgba(120, 152, 184, .5)
+}
+
+/* Floating speech-bubble badges */
+.design-v2 .section-hero--aurora .hero-badge {
+    animation: none !important;
+    transition: none !important;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    background: hsla(0, 0%, 100%, .72);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(90, 70, 50, .12);
+    color: #4a4640;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 4
+}
+
+.design-v2 .section-hero--aurora .hero-badge:after {
+    border: 5px solid transparent;
+    border-top-color: hsla(0, 0%, 100%, .72);
+    bottom: -9px;
+    content: "";
+    height: 0;
+    position: absolute;
+    width: 0
+}
+
+/* The content box must not shrink-wrap to the headline: each rotating phrase
+   is a different width, which would drag the edge-anchored badges with it. */
+.design-v2 .section-hero--aurora .hero-content {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 100%
+}
+
+/* Anchored to the content column, not the viewport — they hug the text at
+   every width instead of drifting into the gutters on wide screens. */
+.design-v2 .section-hero--aurora .hero-badge--left {
+    left: 72px;
+    top: .25rem;
+    transform: rotate(-7deg)
+}
+
+.design-v2 .section-hero--aurora .hero-badge--left:after {
+    left: 75px
+}
+
+/* Right badge: `top` comes from a live measurement in HeroSection so it always
+   sits in the description -> CTA gap; the inset is measured from the stable
+   1200px content box, not the variable-width description. */
+.design-v2 .section-hero--aurora .hero-badge--right {
+    right: 40px;
+    transform: rotate(6deg)
+}
+
+.design-v2 .section-hero--aurora .hero-badge--right:after {
+    right: 18px
+}
+
+@media (max-width: 1200px) {
+    .design-v2 .section-hero--aurora .hero-badge {
+        display: none
+    }
+}
+
+.design-v2 .section-hero--aurora .hero-content,
+.design-v2 .section-hero--aurora .hero-title {
+    color: #2b2b2b
+}
+
+/* Reference headline is a bold sans with the lead-in greyed back. Space Grotesk
+   is already loaded and open-licence, so the hero also stops depending on the
+   licensed display face. */
+/* Dialpad-style headline: their display face is Season VF Serif 400 in
+   near-black indigo — a commercial font, so Fraunces (OFL) stands in at the
+   same weight, line-height and colour. */
+.design-v2 .section-hero--aurora .hero-title {
+    color: #10022c;
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    letter-spacing: -.005em;
+    line-height: 1.09
+}
+
+.design-v2 .section-hero--aurora .hero-title-pre {
+    color: #10022c
+}
+
+/* Rotating word: mounts in the brand purple gradient with a light band
+   sweeping through, then the text fill fades up to the default dark — the
+   Dialpad colour-then-black mechanic. When animations are off
+   (prefers-reduced-motion), the static color keeps the word plain dark. */
+.design-v2 .section-hero--aurora .hero-rotor {
+    animation:
+        heroRotorIn .34s cubic-bezier(.2, .7, .3, 1) both,
+        heroRotorSweep 1s cubic-bezier(.3, .6, .3, 1) both,
+        heroRotorSettle .7s ease .55s both;
+    background-image: linear-gradient(100deg, #ee6730 0%, #f0813f 32%, #ffb27a 50%, #f0813f 68%, #ee6730 100%);
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #10022c;
+    /* background-clip:text only paints inside the box, so Fraunces descenders
+       (g, p, y) fell outside it and rendered cut. Pad the paint area and pull
+       it back with negative margins so layout is unchanged. */
+    padding: .12em 0 .2em;
+    margin: -.12em 0 -.2em;
+    text-shadow: none
+}
+
+@keyframes heroRotorSweep {
+    from { background-position: 130% 0 }
+    to { background-position: 0 0 }
+}
+
+@keyframes heroRotorSettle {
+    from { -webkit-text-fill-color: transparent }
+    to { -webkit-text-fill-color: #10022c }
+}
+
+.design-v2 .section-hero--aurora .hero-description {
+    color: #575450
+}
+
+.design-v2 .section-hero--aurora .hero-description strong {
+    color: #2b2b2b
+}
+
+/* Text-only eyebrow: the solid white pill read as a heavy blob against the
+   pastel gradient and competed with the serif headline. */
+.design-v2 .section-hero--aurora .hero-eyebrow--pill {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    align-items: center;
+    color: rgba(16, 2, 44, .62);
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 10px;
+    justify-content: center;
+    letter-spacing: .14em;
+    line-height: 1;
+    padding: 0;
+    text-transform: uppercase
+}
+
+/* Sparkle chip uses the same glass recipe as the app window: white 50% fill,
+   blur(24px), hairline edge + inset highlight. */
+.design-v2 .section-hero--aurora .hero-eyebrow--pill i {
+    backdrop-filter: blur(24px);
+    align-items: center;
+    background: transparent;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .4), inset 0 1px 0 hsla(0, 0%, 100%, .5), 0 4px 14px -4px rgba(100, 116, 139, .25);
+    /* White glyph needs something to sit against on a 50%-white panel, so the
+       sparkle carries a soft dark halo rather than a solid tinted chip. */
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(16, 2, 44, .55), 0 0 10px rgba(16, 2, 44, .35);
+    display: inline-flex;
+    font-size: 14px;
+    height: 26px;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    width: 26px
+}
+
+/* Both hero CTAs share a footprint — the primary carries an arrow, so without
+   this the secondary comes out 80px narrower. */
+.design-v2 .section-hero--aurora .hero-ctas .btn {
+    justify-content: center;
+    min-width: 208px
+}
+
+.design-v2 .section-hero--aurora .hero-ctas .btn-ghost {
+    padding-right: 1.25rem
+}
+
+.design-v2 .section-hero--aurora .btn-primary {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    color: #fff
+}
+
+.design-v2 .section-hero--aurora .btn-primary .btn-text {
+    color: #fff
+}
+
+.design-v2 .section-hero--aurora .btn-primary .btn-arrow {
+    background-color: hsla(0, 0%, 100%, .16);
+    color: #fff
+}
+
+.design-v2 .section-hero--aurora .btn-primary:hover {
+    background-color: #333
+}
+
+.design-v2 .section-hero--aurora .btn-ghost {
+    background-color: hsla(0, 0%, 100%, .68);
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px rgba(43, 43, 43, .18);
+    color: #2b2b2b
+}
+
+.design-v2 .section-hero--aurora .btn-ghost .btn-text {
+    color: #2b2b2b
+}
+
+.design-v2 .section-hero--aurora .btn-ghost:hover {
+    background-color: hsla(0, 0%, 100%, .9);
+    box-shadow: inset 0 0 0 1px rgba(43, 43, 43, .34)
+}
+
+@media (min-width: 1201px) {
+    .design-v2 .section-hero--aurora .hero-title--rotating {
+        min-height: 1.15em;
+        white-space: nowrap
+    }
+}
+
+/* Top padding scales with viewport height too, so the dashboard clears the
+   fold on short viewports (browser zoom / Windows display scaling). */
+.design-v2 .section-hero--aurora .hero-container {
+    padding-bottom: clamp(2rem, 6vh, 5rem);
+    padding-top: clamp(4.5rem, 12vh, 10rem)
+}
+
+/* ── Fold fit ───────────────────────────────────────────────────────────────
+   32-ucaas-page-custom-css re-hardcodes the container padding (160px) after
+   this file loads, which pushed the dashboard below the fold at 100% zoom.
+   Doubled-class selectors outrank it regardless of file order, and every
+   vertical gap scales with viewport height so short viewports compress. */
+
+.design-v2 .section-hero--aurora.section-hero--stacked .hero-container {
+    /* Clears the fixed banner (59px) + overlaid MCM nav bar (73-132px). */
+    padding: clamp(195px, 25vh, 270px) 60px clamp(32px, 5vh, 80px)
+}
+
+.design-v2 .section-hero--aurora .hero-eyebrow.hero-eyebrow--pill {
+    margin-bottom: clamp(8px, 1.6vh, 18px)
+}
+
+.design-v2 .section-hero--aurora .hero-title.hero-title--rotating {
+    margin-bottom: clamp(20px, 4.5vh, 40px)
+}
+
+.design-v2 .section-hero--aurora .hero-description.hero-description--compact {
+    margin-bottom: clamp(44px, 8vh, 84px)
+}
+
+/* ── Compact scale ──────────────────────────────────────────────────────────
+   The hero read ~10% oversized at 100% zoom (the 90%-zoom view was the look
+   that worked). Type, pill, CTAs and the dashboard all step down together. */
+
+.design-v2 .section-hero--aurora .hero-title.hero-title--rotating {
+    font-size: clamp(40px, 3.4vw, 58px)
+}
+
+.design-v2 .section-hero--aurora .hero-description.hero-description--compact {
+    font-size: clamp(15px, 1.15vw, 19px);
+    max-width: 700px
+}
+
+.design-v2 .section-hero--aurora .hero-eyebrow.hero-eyebrow--pill {
+    font-size: 14px;
+    padding: 8px 16px
+}
+
+.design-v2 .section-hero--aurora .hero-ctas .btn {
+    font-size: 15px;
+    min-width: 188px;
+    padding-bottom: .5rem;
+    padding-top: .5rem
+}
+
+/* Shrink the dashboard as one unit. A scale transform keeps the internal
+   layout (app window + floating call/stats panels) exactly as tuned for the
+   1400px design — narrowing the container had knocked them out of line. */
+.design-v2 .section-hero--aurora .hero-showcase {
+    transform: scale(.88);
+    transform-origin: 50% 0
+}
+
+/* Rotor slot: hidden copies of every phrase stack in one grid cell, sizing
+   the slot to the widest — the prefix never moves as words swap inside. */
+.design-v2 .section-hero--aurora .hero-rotor-slot {
+    display: inline-grid;
+    justify-items: start;
+    text-align: left;
+    vertical-align: baseline
+}
+
+.design-v2 .section-hero--aurora .hero-rotor-slot > * {
+    grid-area: 1 / 1
+}
+
+.design-v2 .section-hero--aurora .hero-rotor-sizer {
+    visibility: hidden
+}
+
+/* Sentence switch: the keyed line remounts and eases in, so swapping from
+   one sentence to the other reads as a soft fade instead of a snap. */
+.design-v2 .section-hero--aurora .hero-title-line {
+    animation: heroLineIn .5s cubic-bezier(.25, .6, .3, 1) both;
+    display: inline
+}
+
+@keyframes heroLineIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-hero--aurora .hero-title-line { animation: none }
+}
+
+
+
+/* ── Chat sidebar ───────────────────────────────────────────────────────────
+   Header actions, segmented tabs, search row and grouped conversations,
+   matching the reference Chat panel. */
+
+.design-v2 .section-hero .app-sidebar .sidebar-actions {
+    display: flex;
+    gap: 6px
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-icon-btn {
+    align-items: center;
+    background: rgba(15, 23, 42, .06);
+    border: none;
+    border-radius: 50%;
+    color: #334155;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    height: 26px;
+    justify-content: center;
+    width: 26px
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-tabs {
+    border-bottom: 1px solid rgba(15, 23, 42, .08);
+    display: flex;
+    gap: 14px;
+    margin: 0 14px 10px;
+    padding-bottom: 2px
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 0 0 6px
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-tab.active {
+    border-bottom-color: #2563eb;
+    color: #2563eb
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-filters {
+    display: flex;
+    gap: 8px;
+    margin: 0 14px 12px
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-search {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .55);
+    border: 1px solid rgba(15, 23, 42, .1);
+    border-radius: 8px;
+    color: #94a3b8;
+    display: flex;
+    flex: 1;
+    font-size: 11px;
+    gap: 6px;
+    padding: 7px 10px
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-select {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .55);
+    border: 1px solid rgba(15, 23, 42, .1);
+    border-radius: 8px;
+    color: #475569;
+    display: flex;
+    font-size: 11px;
+    gap: 4px;
+    padding: 7px 9px
+}
+
+.design-v2 .section-hero .app-sidebar .sidebar-group-label {
+    color: #94a3b8;
+    display: block;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    margin: 0 14px 6px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-hero .app-sidebar .conversation-name .pin {
+    color: #2563eb;
+    font-size: 11px;
+    margin-left: 4px
+}
+
+/* Distinct avatar colours per conversation, as in the reference list. */
+.design-v2 .section-hero .conversation-avatar.brand-a { background: linear-gradient(135deg, #f87171, #fbbf24) }
+.design-v2 .section-hero .conversation-avatar.brand-b { background: linear-gradient(135deg, #1f2937, #4b5563) }
+.design-v2 .section-hero .conversation-avatar.brand-c { background: #fde68a; color: #92400e }
+.design-v2 .section-hero .conversation-avatar.brand-d { background: linear-gradient(135deg, #60a5fa, #a78bfa) }
+.design-v2 .section-hero .conversation-avatar.brand-e { background: #bbf7d0; color: #166534 }
+
+/* Initials avatar for the customer record — replaces the stock portrait. */
+.design-v2 .section-hero .customer-avatar--initials {
+    align-items: center;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #fff;
+    display: flex;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    justify-content: center;
+    letter-spacing: .02em
+}
+
+/* Shared row — Media / Files / Links / Calls, using the same square icon
+   treatment as the Recent Activity list above it. */
+.design-v2 .section-hero .customer-shared-row {
+    display: flex;
+    gap: 6px;
+    justify-content: space-between
+}
+
+.design-v2 .section-hero .customer-shared-item {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px
+}
+
+.design-v2 .section-hero .customer-shared-label {
+    color: #10022c;
+    font-family: var(--font-body);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: .01em
+}
+
+/* Assignee + notes — fill the panel below the Shared row. */
+.design-v2 .section-hero .customer-assignee {
+    align-items: center;
+    display: flex;
+    gap: 9px
+}
+
+.design-v2 .section-hero .customer-assignee-avatar {
+    align-items: center;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+
+.design-v2 .section-hero .customer-assignee-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0
+}
+
+.design-v2 .section-hero .customer-assignee-name {
+    color: #10022c;
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.3
+}
+
+.design-v2 .section-hero .customer-assignee-role {
+    color: rgba(16, 2, 44, .55);
+    font-family: var(--font-body);
+    font-size: 9.5px
+}
+
+.design-v2 .section-hero .customer-assignee-status {
+    color: #16a34a;
+    font-family: var(--font-body);
+    font-size: 9.5px;
+    font-weight: 600;
+    margin-left: auto
+}
+
+.design-v2 .section-hero .customer-note {
+    color: rgba(16, 2, 44, .68);
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    line-height: 1.55;
+    margin: 0
+}
+
+/* ── Chat composer ──────────────────────────────────────────────────────────
+   Formatting toolbar, free-text field, action row — replaces the single-line
+   "Type a message" input. */
+.design-v2 .section-hero .chat-composer {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, .14);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 14px 14px;
+    overflow: hidden
+}
+
+.design-v2 .section-hero .composer-toolbar {
+    background: #f6f8fa;
+    border-bottom: 1px solid rgba(15, 23, 42, .1);
+    display: flex;
+    gap: 2px;
+    padding: 6px 8px
+}
+
+.design-v2 .section-hero .composer-toolbar button,
+.design-v2 .section-hero .composer-actions button {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    color: #64748b;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    height: 24px;
+    justify-content: center;
+    padding: 0;
+    width: 24px
+}
+
+.design-v2 .section-hero .composer-toolbar button:hover,
+.design-v2 .section-hero .composer-actions button:hover {
+    background: rgba(15, 23, 42, .06);
+    color: #1e293b
+}
+
+.design-v2 .section-hero .composer-field {
+    background: #fff;
+    border: none;
+    color: #10022c;
+    font-family: var(--font-body);
+    font-size: 12px;
+    outline: none;
+    padding: 12px 12px 6px;
+    width: 100%
+}
+
+.design-v2 .section-hero .composer-field::placeholder {
+    color: rgba(16, 2, 44, .5)
+}
+
+.design-v2 .section-hero .composer-actions {
+    display: flex;
+    gap: 2px;
+    justify-content: flex-end;
+    padding: 4px 8px 8px
+}
+
+.design-v2 .section-hero .composer-actions .composer-send {
+    background: rgba(15, 23, 42, .05);
+    color: #475569
+}
+
+.design-v2 .section-hero .composer-actions .composer-send:hover {
+    background: rgba(15, 23, 42, .1);
+    color: #1e293b
+}
+
+/* ── Hero dashboard fit ─────────────────────────────────────────────────────
+   The window is a fixed 1080px and the base rules push it further right
+   (right: -18% plus translate: 25%), so on anything narrower than a very wide
+   display the Customer Info column fell off the edge. Right-align it inside
+   the showcase instead, and scale it down when the column is narrower than the
+   window (--hero-app-scale is set from JS). */
+.design-v2 .section-hero--aurora .hero-showcase .desktop-app-bg {
+    margin-left: auto;
+    margin-right: auto;
+    right: auto;
+    translate: none
+}
+
+.design-v2 .section-hero--aurora .hero-showcase .desktop-app-window {
+    transform: scale(var(--hero-app-scale, 1));
+    transform-origin: center
+}
+
+/* The hero dashboard was dropped entirely below 768px. It is shown again and
+   scaled by --hero-app-scale, which the hero hook already sets from the column
+   width, so it fits the phone instead of disappearing. */
+@media (max-width: 768px) {
+    /* The column was left at ~225px wide with a leftover .88 scale from the
+       tablet rules, so the app fitted itself to that rather than to the phone.
+       Full width here, no extra scale — the hook measures the column, so it
+       picks up the right size on its own. */
+    .design-v2 .section-hero .hero-showcase,
+    .design-v2 .section-hero--stacked .hero-showcase,
+    .design-v2 .section-hero--aurora .hero-showcase {
+        flex: 1 1 100%;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: none;
+        transform: none;
+        width: 100%
+    }
+
+    .design-v2 .section-hero .hero-showcase .desktop-app-bg {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        width: 100%
+    }
+
+    .design-v2 .section-hero .hero-showcase .desktop-app-window {
+        transform: scale(var(--hero-app-scale, 1));
+        transform-origin: top center
+    }
+}
+
+/* 60px of side padding on a 375px screen left the content 255px wide. */
+@media (max-width: 768px) {
+    .design-v2 .section-hero .hero-container {
+        padding-left: 20px;
+        padding-right: 20px
+    }
+}
+
+/* The winning padding rule is `.section-hero--aurora.section-hero--stacked`
+   (two classes, no media query), so the mobile override has to match that
+   specificity or the 60px sides stay put. */
+@media (max-width: 768px) {
+    .design-v2 .section-hero--aurora.section-hero--stacked .hero-container {
+        padding: clamp(120px, 18vh, 170px) 20px 40px
+    }
+}
+
+/* The app window is 1080px wide in layout and only shrunk visually. Scaling it
+   about `top center` kept its centre where the full-width box sat, which on a
+   phone put the drawn result at x 452-788 — completely off a 375px screen.
+   Scaling from the top-left corner instead anchors it to the column. The
+   selector matches the --aurora rules above it, or those win on specificity. */
+@media (max-width: 768px) {
+    .design-v2 .section-hero--aurora .hero-showcase .desktop-app-bg,
+    .design-v2 .section-hero .hero-showcase .desktop-app-bg {
+        display: block;
+        height: auto;
+        margin: 0;
+        max-width: 100%;
+        min-height: 0;
+        width: 100%
+    }
+
+    .design-v2 .section-hero--aurora .hero-showcase .desktop-app-window,
+    .design-v2 .section-hero .hero-showcase .desktop-app-window {
+        transform: scale(var(--hero-app-scale, 1));
+        transform-origin: top left
+    }
+
+    /* the layout box stays 1080x720, so the column reserves the scaled size */
+    .design-v2 .section-hero--aurora .hero-showcase,
+    .design-v2 .section-hero .hero-showcase {
+        align-items: stretch;
+        /* the dashboard and the floating cards stack here rather than sitting
+           side by side, which pushed both off the right edge */
+        flex-direction: column;
+        height: auto;
+        overflow: hidden;
+        /* 60px of side padding here left the app column 215px wide inside a
+           335px showcase, pushing the scaled window off the right edge. */
+        padding-left: 0;
+        padding-right: 0
+    }
+}
+
+/* Size the column to the drawn height rather than the unscaled layout box,
+   which was leaving ~500px of empty hero under the dashboard on a phone. */
+@media (max-width: 768px) {
+    .design-v2 .section-hero--aurora .hero-showcase .desktop-app-bg,
+    .design-v2 .section-hero .hero-showcase .desktop-app-bg {
+        height: var(--hero-app-h, auto)
+    }
+}
+
+/* The floating AI Summary and AI Resolutions cards were the other half of the
+   `display: none` rule, and they are anchored at `left: calc(50% - 670px)` to
+   sit beside the dashboard on a wide screen. On a phone they come back into
+   flow and stack under it instead of hanging 670px off to the left. */
+@media (max-width: 768px) {
+    .design-v2 .section-hero .hero-showcase .ui-showcase {
+        display: flex;
+        gap: 14px;
+        left: auto;
+        margin: 18px auto 0;
+        max-width: 100%;
+        position: relative;
+        top: auto;
+        transform: none;
+        width: 100%
+    }
+
+    .design-v2 .section-hero .hero-showcase .ui-call-card,
+    .design-v2 .section-hero .hero-showcase .ui-stats-card {
+        max-width: 100%;
+        width: 100%
+    }
+}

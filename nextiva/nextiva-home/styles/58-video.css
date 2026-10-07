@@ -1,0 +1,332 @@
+/* HD Video Meetings page (components/landing/video/*). */
+
+/* ── Hero: meeting room ───────────────────────────────────────────────── */
+.vdm {
+    --vdm-ink: #10022c;
+    --vdm-muted: #5b6475;
+    --vdm-line: rgba(16, 2, 44, .08);
+    --vdm-acc: #7c3aed;
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    background: rgba(255, 252, 250, .9);
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgba(124, 58, 237, .08), 0 40px 80px -36px rgba(30, 27, 75, .5), inset 0 1px 0 rgba(255, 255, 255, .9);
+    color: var(--vdm-ink);
+    padding: 14px 16px 16px;
+    text-align: left
+}
+.vdm :where(button) { cursor: pointer; font: inherit }
+.vdm button:focus-visible { outline: 2px solid var(--vdm-acc); outline-offset: 2px }
+.vdm-head { align-items: center; display: flex; gap: 10px; padding: 0 2px 12px }
+.vdm-title { align-items: center; display: flex; font-size: 15px; font-weight: 600; gap: 10px; margin-left: 4px }
+.vdm-time { color: var(--vdm-muted); font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 600; margin-left: auto }
+.vdm-rec { align-items: center; background: #fef2f2; border-radius: 999px; color: #dc2626; display: inline-flex; font-size: 10.5px; font-weight: 800; gap: 5px; letter-spacing: .06em; padding: 3px 8px }
+.vdm-rec i { animation: vdm-blink 1.4s ease-in-out infinite; background: #ef4444; border-radius: 50%; height: 6px; width: 6px }
+@keyframes vdm-blink { 50% { opacity: .25 } }
+
+.vdm-body { display: grid; gap: 10px; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); height: 262px }
+.vdm-stage { background: #160d33; border-radius: 14px; display: flex; flex-direction: column; gap: 6px; min-height: 0; overflow: hidden; padding: 6px }
+.vdm-tiles { display: grid; flex: 1; gap: 6px; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); min-height: 0 }
+.vdm-tile { align-items: center; border: 2px solid transparent; border-radius: 10px; display: flex; justify-content: center; min-height: 0; overflow: hidden; position: relative; transition: border-color .25s ease, box-shadow .25s ease }
+.vdm-tile--violet { background: linear-gradient(135deg, #4c1d95, #2e1065) }
+.vdm-tile--blue { background: linear-gradient(135deg, #1e3a8a, #172554) }
+.vdm-tile--rose { background: linear-gradient(135deg, #9f1239, #4c0519) }
+.vdm-tile--amber { background: linear-gradient(135deg, #92400e, #451a03) }
+.vdm-tile--teal { background: linear-gradient(135deg, #115e59, #042f2e) }
+.vdm-tile--you { background: linear-gradient(135deg, #334155, #0f172a) }
+.vdm-tile.is-off { background: #1e1b2e }
+.vdm-tile.is-speaking { border-color: #a3e635; box-shadow: 0 0 0 2px rgba(163, 230, 53, .25) }
+.vdm-av { align-items: center; background: rgba(255, 255, 255, .16); border-radius: 50%; color: #fff; display: inline-flex; font-size: 12px; font-weight: 700; height: 34px; justify-content: center; width: 34px }
+.vdm-av--you { font-size: 10.5px }
+.vdm-off { color: rgba(255, 255, 255, .5); font-size: 18px }
+.vdm-tile em { background: rgba(0, 0, 0, .35); border-radius: 5px; bottom: 4px; color: #fff; font-size: 9.5px; font-style: normal; font-weight: 600; left: 4px; padding: 1px 5px; position: absolute; white-space: nowrap }
+.vdm-muted { background: #dc2626; border-radius: 50%; color: #fff; font-size: 9px; padding: 3px; position: absolute; right: 4px; top: 4px }
+
+.vdm-stage.is-share .vdm-tiles { flex: none; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: 44px }
+.vdm-stage.is-share .vdm-tile em { display: none }
+.vdm-stage.is-share .vdm-av { font-size: 9px; height: 24px; width: 24px }
+.vdm-screen { animation: psm-in .3s ease; background: #fff; border-radius: 10px; display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden }
+.vdm-screen-bar { align-items: center; background: #a3e635; color: #1a2e05; display: flex; font-size: 10px; font-weight: 700; gap: 4px; padding: 3px 8px }
+.vdm-screen-doc { display: flex; flex: 1; flex-direction: column; gap: 6px; padding: 10px 12px }
+.vdm-screen-doc b { color: var(--vdm-ink); font-size: 13px }
+.vdm-bars { align-items: flex-end; display: flex; flex: 1; gap: 8px }
+.vdm-bars i { background: linear-gradient(180deg, #a78bfa, #7c3aed); border-radius: 4px 4px 0 0; flex: 1 }
+
+.vdm-side { background: #fff; border: 1px solid var(--vdm-line); border-radius: 14px; display: flex; flex-direction: column; min-height: 0; overflow: hidden }
+.vdm-tabs { border-bottom: 1px solid var(--vdm-line); display: grid; grid-template-columns: 1fr 1fr }
+.vdm-tabs button { align-items: center; background: transparent; border: 0; border-bottom: 2px solid transparent; color: var(--vdm-muted); display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 5px; justify-content: center; padding: 8px 4px 7px }
+.vdm-tabs button.is-on { border-bottom-color: var(--vdm-acc); color: var(--vdm-ink) }
+.vdm-tabs b { background: var(--vdm-acc); border-radius: 999px; color: #fff; font-size: 9.5px; padding: 0 5px }
+.vdm-feed { display: flex; flex: 1; flex-direction: column; gap: 6px; list-style: none; margin: 0; min-height: 0; overflow: hidden; padding: 10px }
+.vdm-line { animation: psm-in .3s ease; display: flex; flex-direction: column; gap: 2px }
+.vdm-line-top { align-items: baseline; display: flex; justify-content: space-between }
+.vdm-line-top b { font-size: 11px; font-weight: 700 }
+.vdm-line-top em { color: #9a948e; font-size: 10px; font-style: normal; font-variant-numeric: tabular-nums }
+body.design-v2 .lp .vdm-line p { color: #3f4654; font-size: 11.5px !important; line-height: 1.4 !important; margin: 0 }
+.vdm-flag { align-items: center; align-self: flex-start; background: #f5f3ff; border-radius: 999px; color: #6d28d9; display: inline-flex; font-size: 9.5px; font-weight: 700; gap: 3px; margin-top: 2px; padding: 1px 7px }
+.vdm-empty { color: #9a948e; font-size: 11.5px; padding: 6px 2px }
+.vdm-note { animation: psm-in .3s ease; border-radius: 10px; display: flex; flex-direction: column; gap: 1px; padding: 6px 9px }
+.vdm-note span { font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase }
+body.design-v2 .lp .vdm-note p { color: var(--vdm-ink); font-size: 11.5px !important; font-weight: 600; line-height: 1.35 !important; margin: 0 }
+.vdm-note em { color: var(--vdm-muted); font-size: 10.5px; font-style: normal }
+.vdm-note--task { background: #f5f3ff; border: 1px solid #ddd6fe }
+.vdm-note--task span { color: #6d28d9 }
+.vdm-note--dec { background: #ecfdf5; border: 1px solid #a7f3d0 }
+.vdm-note--dec span { color: #047857 }
+
+.vdm-ctrl { align-items: center; display: flex; gap: 6px; margin-top: 10px }
+.vdm-ctrl > button:not(.vdm-leave) { align-items: center; background: #f2eff6; border: 0; border-radius: 10px; color: var(--vdm-ink); display: inline-flex; font-size: 16px; height: 36px; justify-content: center; transition: background .15s ease, color .15s ease; width: 40px }
+.vdm-ctrl > button:not(.vdm-leave):not(.is-on):not(.is-off):hover { background: #e8e3f0 }
+.vdm-ctrl > button.is-on:hover { background: #6d28d9 }
+.vdm-ctrl > button.is-off:hover { background: #fecaca }
+.vdm-leave:hover { background: #b91c1c }
+.vdm-ctrl > button.is-off { background: #fee2e2; color: #dc2626 }
+.vdm-ctrl > button.is-on { background: var(--vdm-acc); color: #fff }
+.vdm-ctrl > button.is-rec { color: #dc2626 }
+.vdm-count { align-items: center; color: var(--vdm-muted); display: inline-flex; font-size: 12px; font-weight: 600; gap: 4px; margin-left: auto }
+.vdm-leave { align-items: center; background: #dc2626; border: 0; border-radius: 10px; color: #fff; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 6px; height: 36px; padding: 0 14px }
+.vdm-leave i { transform: rotate(135deg) }
+
+.vdm-after { height: 308px }
+.vdm-writing { align-items: center; display: flex; flex-direction: column; gap: 8px; height: 100%; justify-content: center; text-align: center }
+.vdm-spin { align-items: center; animation: vdm-pulse 1.2s ease-in-out infinite; background: #f5f3ff; border-radius: 50%; color: var(--vdm-acc); display: inline-flex; font-size: 24px; height: 56px; justify-content: center; width: 56px }
+@keyframes vdm-pulse { 50% { box-shadow: 0 0 0 10px rgba(124, 58, 237, .12); transform: scale(1.05) } }
+.vdm-writing b { font-size: 15px }
+.vdm-writing em { color: #8a8f9c; font-size: 12px; font-style: normal }
+.vdm-sum { animation: psm-in .35s ease; background: #fff; border: 1px solid var(--vdm-line); border-radius: 14px; display: flex; flex-direction: column; gap: 6px; height: 100%; overflow: hidden; padding: 14px 16px }
+.vdm-sum-top { align-items: center; display: flex; justify-content: space-between }
+.vdm-sum-top span { align-items: center; color: var(--vdm-acc); display: inline-flex; font-size: 12.5px; font-weight: 700; gap: 5px }
+.vdm-sum-top em { background: #ecfdf5; border-radius: 999px; color: #047857; font-size: 10.5px; font-style: normal; font-weight: 700; padding: 2px 8px }
+body.design-v2 .lp .vdm-sum-lead { color: var(--vdm-ink); font-size: 13px !important; line-height: 1.45 !important; margin: 2px 0 4px }
+.vdm-sum-k { color: #9a948e; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase }
+.vdm-sum-list { display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0 0 4px; padding: 0 }
+.vdm-sum-list li { align-items: center; color: var(--vdm-ink); display: flex; font-size: 12.5px; gap: 6px }
+.vdm-sum-list i { color: var(--vdm-acc) }
+.vdm-sum-list b { background: #f5f3ff; border-radius: 6px; color: #6d28d9; font-size: 11px; margin-left: auto; padding: 1px 6px }
+.vdm-sum-foot { align-items: center; border-top: 1px solid var(--vdm-line); display: flex; justify-content: space-between; margin-top: auto; padding-top: 10px }
+.vdm-sum-foot span { align-items: center; color: var(--vdm-muted); display: inline-flex; font-size: 11.5px; gap: 5px }
+.vdm-sum-foot button { align-items: center; background: var(--vdm-ink); border: 0; border-radius: 9px; color: #fff; display: inline-flex; font-size: 12px; font-weight: 600; gap: 5px; margin-left: auto; padding: 7px 12px }
+
+@media (min-width: 1025px) and (max-height: 860px) { .vdm-body { height: 236px } .vdm-after { height: 282px } }
+@media (min-width: 1025px) and (max-height: 700px) { .vdm-body { height: 196px } .vdm-after { height: 242px } .vdm-head { padding-bottom: 8px } .vdm-ctrl > button:not(.vdm-leave), .vdm-leave { height: 32px } }
+@media (max-width: 560px) {
+    .vdm { border-radius: 18px; padding: 12px }
+    .vdm-head .lp-dots { display: none }
+    .vdm-title { margin-left: 0 }
+    .vdm-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: 200px 170px; height: auto }
+    .vdm-after { height: auto; min-height: 300px }
+    .vdm-ctrl > button:not(.vdm-leave) { width: 36px }
+}
+
+/* ── Shared head ──────────────────────────────────────────────────────── */
+.vm-head { margin: 0 auto 44px; max-width: 760px; text-align: center }
+.vm-head .lp-intro { margin: 14px auto 0 }
+
+/* ── After the call ───────────────────────────────────────────────────── */
+.vm-after { align-items: center; display: grid; gap: 64px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) }
+body.design-v2 .lp .vm-after-copy .lp-intro { margin: 14px 0 0 }
+.vm-clock { display: flex; flex-direction: column; list-style: none; margin: 28px 0 0; padding: 0; position: relative }
+.vm-clock::before { background: linear-gradient(180deg, #c4b5fd, #e9e5f2); bottom: 20px; content: ""; left: 79px; position: absolute; top: 20px; width: 2px }
+.vm-clock-step { align-items: center; display: grid; gap: 14px; grid-template-columns: 48px 34px minmax(0, 1fr); padding: 8px 0 }
+.vm-clock-t { color: #9a948e; font-size: 13px; font-variant-numeric: tabular-nums; font-weight: 700; text-align: right }
+.vm-clock-ic { align-items: center; background: #fff; border: 2px solid #ddd6fe; border-radius: 50%; color: #7c3aed; display: inline-flex; font-size: 15px; height: 34px; justify-content: center; position: relative; transition: all .2s ease; width: 34px; z-index: 1 }
+.vm-clock-step:hover .vm-clock-ic { background: #7c3aed; border-color: #7c3aed; color: #fff }
+.vm-clock-txt { display: flex; flex-direction: column }
+.vm-clock-txt b { color: var(--lp-ink, #10022c); font-size: 15.5px; font-weight: 600 }
+.vm-clock-txt em { color: var(--lp-muted, #5b6475); font-size: 14px; font-style: normal }
+
+.vm-recap { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 24px; box-shadow: 0 40px 80px -56px rgba(76, 29, 149, .55); overflow: hidden; transform: rotate(1deg); transition: transform .3s ease }
+.vm-recap:hover { transform: rotate(0) }
+.vm-recap-head { align-items: center; background: linear-gradient(180deg, #faf8ff, #f5f2fc); border-bottom: 1px solid rgba(16, 2, 44, .06); display: flex; gap: 12px; padding: 16px 20px }
+.vm-recap-from { align-items: center; background: linear-gradient(135deg, #a78bfa, #7c3aed); border-radius: 12px; color: #fff; display: inline-flex; font-size: 18px; height: 40px; justify-content: center; width: 40px }
+.vm-recap-meta { display: flex; flex-direction: column }
+.vm-recap-meta b { color: #10022c; font-size: 15px }
+.vm-recap-meta em { color: #8a8f9c; font-size: 12px; font-style: normal }
+.vm-recap-body { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px 20px }
+.vm-recap-k { color: #9a948e; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase }
+body.design-v2 .lp .vm-recap-body p { color: #10022c; font-size: 14.5px !important; line-height: 1.55 !important; margin: 0 0 6px }
+.vm-recap-body ul { display: flex; flex-direction: column; gap: 6px; list-style: none; margin: 0 0 6px; padding: 0 }
+.vm-recap-body li { align-items: center; background: #faf9f7; border-radius: 10px; color: #10022c; display: flex; font-size: 14px; gap: 8px; padding: 8px 10px }
+.vm-recap-body li i { color: #7c3aed; font-size: 16px }
+.vm-recap-body li b { color: #6d28d9; font-size: 12px; margin-left: auto }
+.vm-recap-att { border-top: 1px solid rgba(16, 2, 44, .06); display: flex; flex-wrap: wrap; gap: 8px; padding-top: 12px }
+.vm-recap-att span { align-items: center; background: #f5f3ff; border-radius: 999px; color: #5b21b6; display: inline-flex; font-size: 12px; font-weight: 600; gap: 4px; padding: 4px 10px }
+
+/* ── Spec cards ───────────────────────────────────────────────────────── */
+.vm-feat-sec { background: #fff }
+.vm-specs { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.vm-spec { background: linear-gradient(180deg, var(--t-bg) 0%, #fff 46%); border: 1px solid rgba(16, 2, 44, .08); border-radius: 22px; display: flex; flex-direction: column; padding: 22px 24px 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease }
+.vm-spec:hover { border-color: var(--t-bd); box-shadow: 0 26px 46px -34px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.vm-spec-top { align-items: center; display: flex; justify-content: space-between }
+.vm-spec-ic { align-items: center; background: #fff; border: 1px solid var(--t-bd); border-radius: 12px; color: var(--t-fg); display: inline-flex; font-size: 18px; height: 40px; justify-content: center; width: 40px }
+.vm-spec-n { color: #c4bfb8; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 700 }
+.vm-spec-val { align-items: baseline; display: flex; gap: 8px; margin: 22px 0 10px }
+.vm-spec-val b { color: var(--t-fg); font-size: 40px; font-weight: 700; letter-spacing: -.03em; line-height: 1 }
+.vm-spec-val em { color: #8a8f9c; font-size: 13px; font-style: normal; font-weight: 600 }
+body.design-v2 .lp .vm-spec-title { color: var(--lp-ink, #10022c); font-size: 17px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 6px }
+body.design-v2 .lp .vm-spec-text { color: var(--lp-muted, #5b6475); font-size: 14px !important; line-height: 1.55 !important; margin: 0 }
+
+/* ── Scheduling + security ────────────────────────────────────────────── */
+.vm-sch { align-items: stretch; display: grid; gap: 20px; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); margin: 0 auto; max-width: 1080px }
+.vm-sch :where(button) { cursor: pointer; font: inherit }
+.vm-inv { background: rgba(255, 255, 255, .7); border: 1px solid rgba(16, 2, 44, .08); border-radius: 24px; padding: 18px }
+.vm-inv-cals { background: #f1ede8; border-radius: 12px; display: grid; gap: 3px; grid-template-columns: repeat(3, 1fr); margin-bottom: 14px; padding: 3px }
+.vm-inv-cals button { align-items: center; background: transparent; border: 0; border-radius: 9px; color: #5b6475; display: inline-flex; font-size: 13px; font-weight: 600; gap: 6px; justify-content: center; padding: 8px }
+.vm-inv-cals button.is-on { background: #fff; box-shadow: 0 1px 3px rgba(16, 2, 44, .12); color: #10022c }
+.vm-inv-card { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 18px; display: flex; flex-direction: column; gap: 10px; padding: 18px 20px }
+.vm-inv-src { align-items: center; color: #8a8f9c; display: inline-flex; font-size: 12px; font-weight: 600; gap: 6px }
+.vm-inv-title { color: #10022c; font-size: 20px; font-weight: 700; letter-spacing: -.01em }
+.vm-inv-row { align-items: center; color: #3f4654; display: flex; flex-wrap: wrap; font-size: 14px; gap: 8px }
+.vm-inv-row > i { color: #8a8f9c; font-size: 16px }
+.vm-inv-guests em { background: #f5f2ee; border-radius: 999px; color: #10022c; font-size: 12px; font-style: normal; font-weight: 600; padding: 3px 9px }
+.vm-inv-add { align-items: center; align-self: flex-start; background: #7c3aed; border: 0; border-radius: 12px; color: #fff; display: inline-flex; font-size: 14px; font-weight: 600; gap: 6px; margin-top: 4px; padding: 10px 16px; transition: background .15s ease }
+.vm-inv-add:hover { background: #6d28d9 }
+.vm-inv-meet { animation: psm-in .3s ease; background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 14px; display: grid; gap: 4px 10px; grid-template-columns: 1fr auto; margin-top: 4px; padding: 12px 14px }
+.vm-inv-meet-top { align-items: center; color: #6d28d9; display: inline-flex; font-size: 12px; font-weight: 700; gap: 5px; grid-column: 1 }
+.vm-inv-link { color: #10022c; font-size: 15px; font-weight: 700; grid-column: 1 }
+.vm-inv-dial { align-items: center; color: #5b6475; display: inline-flex; font-size: 12.5px; gap: 5px; grid-column: 1 }
+.vm-inv-meet button { align-self: center; background: #fff; border: 1px solid rgba(16, 2, 44, .12); border-radius: 999px; color: #5b6475; font-size: 12px; font-weight: 600; grid-column: 2; grid-row: 1 / span 3; padding: 5px 12px }
+
+.vm-sec { background: #10022c; border-radius: 24px; color: #fff; display: flex; flex-direction: column; padding: 26px 26px 28px; position: relative; overflow: hidden }
+.vm-sec::after { background: radial-gradient(circle, rgba(167, 139, 250, .35), transparent 70%); content: ""; height: 260px; position: absolute; right: -90px; top: -90px; width: 260px }
+.vm-sec-ic { align-items: center; background: rgba(255, 255, 255, .1); border-radius: 14px; color: #c4b5fd; display: inline-flex; font-size: 22px; height: 46px; justify-content: center; width: 46px }
+body.design-v2 .lp .vm-sec-title { color: #fff; font-size: 22px !important; font-weight: 600; line-height: 1.25 !important; margin: 18px 0 8px }
+body.design-v2 .lp .vm-sec-text { color: rgba(255, 255, 255, .72); font-size: 14.5px !important; line-height: 1.6 !important; margin: 0 }
+.vm-sec-list { display: flex; flex-direction: column; gap: 10px; list-style: none; margin: auto 0 0; padding: 22px 0 0; position: relative; z-index: 1 }
+.vm-sec-list li { align-items: center; color: rgba(255, 255, 255, .9); display: flex; font-size: 14px; gap: 8px }
+.vm-sec-list i { color: #a3e635 }
+
+/* ── Use cases: agenda cards ──────────────────────────────────────────── */
+.vm-uc { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+.vm-uc-card { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease }
+.vm-uc-card:hover { box-shadow: 0 24px 44px -32px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.vm-uc-agenda { background: linear-gradient(180deg, var(--t-bg), #faf8f6); display: flex; flex-direction: column; gap: 6px; padding: 18px }
+.vm-uc-cal { align-items: center; color: #8a8f9c; display: inline-flex; font-size: 11.5px; font-weight: 700; gap: 5px; letter-spacing: .04em; text-transform: uppercase }
+.vm-uc-item { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 10px; color: #10022c; display: flex; font-size: 13px; font-weight: 500; gap: 8px; padding: 6px 8px }
+.vm-uc-item b { align-items: center; background: var(--t-fg); border-radius: 6px; color: #fff; display: inline-flex; font-size: 11px; height: 20px; justify-content: center; width: 20px }
+.vm-uc-ai { align-items: center; align-self: flex-start; background: #fff; border-radius: 999px; color: #6d28d9; display: inline-flex; font-size: 11px; font-weight: 700; gap: 4px; padding: 3px 9px }
+.vm-uc-body { padding: 16px 18px 20px }
+.vm-uc-ic { align-items: center; background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 10px; color: var(--t-fg); display: inline-flex; font-size: 16px; height: 34px; justify-content: center; margin-bottom: 10px; width: 34px }
+body.design-v2 .lp .vm-uc-title { color: var(--lp-ink, #10022c); font-size: 16px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 4px }
+body.design-v2 .lp .vm-uc-text { color: var(--lp-muted, #5b6475); font-size: 13.5px !important; line-height: 1.5 !important; margin: 0 }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .vm-after { gap: 36px; grid-template-columns: minmax(0, 1fr) }
+    .vm-recap { margin: 0 auto; max-width: 560px; transform: none }
+    .vm-specs { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .vm-sch { grid-template-columns: minmax(0, 1fr) }
+    .vm-uc { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 640px) {
+    .vm-specs, .vm-uc { grid-template-columns: minmax(0, 1fr) }
+    .vm-clock::before { left: 69px }
+    .vm-clock-step { gap: 10px; grid-template-columns: 44px 34px minmax(0, 1fr) }
+    .vm-inv { padding: 12px }
+    .vm-inv-meet { grid-template-columns: minmax(0, 1fr) }
+    .vm-inv-meet button { grid-column: 1; grid-row: auto; justify-self: start }
+    .vm-recap-body li { flex-wrap: wrap }
+}
+@media (prefers-reduced-motion: reduce) {
+    .vdm-rec i, .vdm-spin, .vdm-line, .vdm-note, .vdm-screen, .vdm-sum, .vm-inv-meet { animation: none }
+}
+
+/* Video hero art (wildflowers at dusk, teal sky): cream wash on the copy side. */
+.lp-hero-art[style*="desert-wildflowers-dusk"]::after {
+    background: linear-gradient(90deg, rgba(255, 248, 242, .95) 0%, rgba(255, 248, 242, .86) 36%, rgba(255, 248, 242, .38) 58%, rgba(255, 248, 242, .06) 76%)
+}
+@media (max-width: 1024px) {
+    .lp-hero-art[style*="desert-wildflowers-dusk"]::after { background: linear-gradient(180deg, rgba(255, 248, 242, .92) 0%, rgba(255, 248, 242, .72) 55%, rgba(255, 248, 242, .3) 100%) }
+}
+
+/* Calendar picker: each app as a small coloured tile with a white glyph
+   (Google red, Outlook blue, iCal near-black), so none reads as a blank
+   block; unselected tiles are softened, the chosen one at full colour. */
+.vm-cal-ic {
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 2px 5px -2px rgba(16, 2, 44, .35);
+    color: #fff;
+    display: inline-flex;
+    flex: none;
+    font-size: 12px;
+    height: 20px;
+    justify-content: center;
+    transition: opacity .2s ease, filter .2s ease;
+    width: 20px
+}
+.vm-cal-ic--google { background: linear-gradient(140deg, #f87171, #dc2626) }
+.vm-cal-ic--outlook { background: linear-gradient(140deg, #3b82f6, #0f5fc2) }
+.vm-cal-ic--ical { background: linear-gradient(140deg, #4b5563, #111827) }
+.vm-inv-cals button { gap: 8px }
+.vm-inv-cals button:not(.is-on) .vm-cal-ic { filter: saturate(.75); opacity: .8 }
+.vm-inv-src .vm-cal-ic { border-radius: 5px; font-size: 10px; height: 18px; width: 18px }
+
+/* Real brand logos on a clean white tile (replaces the coloured glyph tiles). */
+.vm-cal-ic,
+.vm-cal-ic--google, .vm-cal-ic--outlook, .vm-cal-ic--ical {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .1);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(16, 2, 44, .08);
+    height: 22px;
+    width: 22px
+}
+.vm-cal-ic svg { display: block; height: 14px; width: 14px }
+.vm-inv-cals button:not(.is-on) .vm-cal-ic { filter: none; opacity: .9 }
+.vm-inv-src .vm-cal-ic { height: 20px; width: 20px }
+.vm-inv-src .vm-cal-ic svg { height: 12px; width: 12px }
+.vm-cal-ic img { display: block; height: 15px; object-fit: contain; width: 15px }
+.vm-cal-ic--ical svg { height: 18px; width: 18px } .vm-inv-src .vm-cal-ic--ical svg { height: 16px; width: 16px }
+.vm-cal-ic--ical { overflow: hidden; padding: 0 } .vm-cal-ic--ical img { border-radius: 5px; height: 100%; width: 100% } .vm-inv-src .vm-cal-ic--ical img { border-radius: 4px }
+
+/* ── Hero mock as transparent glass, brand palette (as on the other product
+   heroes) ──────────────────────────────────────────────────────────────────
+   See-through shell with a strong blur; the transcript side and controls
+   are lighter frosted layers. Video tiles move from rainbow to warm
+   stone/near-black tones, the speaker ring and accents to the brand
+   orange. */
+.lp-hero--video .vdm {
+    --vdm-acc: #ea580c;
+    --vdm-line: rgba(255, 255, 255, .55);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    backdrop-filter: blur(24px) saturate(165%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, .16));
+    border: 1px solid rgba(255, 255, 255, .55);
+    box-shadow: 0 44px 90px -40px rgba(15, 23, 42, .6), inset 0 1px 0 rgba(255, 255, 255, .8), inset 0 0 0 1px rgba(255, 255, 255, .12);
+    position: relative
+}
+.lp-hero--video .vdm::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), transparent);
+    content: "";
+    height: 1px;
+    left: 12%;
+    pointer-events: none;
+    position: absolute;
+    right: 12%;
+    top: 0
+}
+.lp-hero--video .vdm-rec { background: rgba(254, 242, 242, .7); border: 1px solid rgba(255, 255, 255, .6) }
+.lp-hero--video .vdm-stage { background: rgba(26, 26, 26, .88) }
+.lp-hero--video .vdm-tile--violet { background: linear-gradient(135deg, #57534e, #292524) }
+.lp-hero--video .vdm-tile--blue { background: linear-gradient(135deg, #44403c, #1c1917) }
+.lp-hero--video .vdm-tile--rose { background: linear-gradient(135deg, #9a3412, #431407) }
+.lp-hero--video .vdm-tile--amber { background: linear-gradient(135deg, #78716c, #3f3a36) }
+.lp-hero--video .vdm-tile--teal { background: linear-gradient(135deg, #a8a29e, #57534e) }
+.lp-hero--video .vdm-tile--you { background: linear-gradient(135deg, #3f3f46, #18181b) }
+.lp-hero--video .vdm-tile.is-off { background: #262626 }
+.lp-hero--video .vdm-tile.is-speaking { border-color: #fb923c; box-shadow: 0 0 0 2px rgba(251, 146, 60, .3) }
+.lp-hero--video .vdm-screen-bar { background: #fdba74; color: #431407 }
+.lp-hero--video .vdm-bars i { background: linear-gradient(180deg, #fdba74, #ea580c) }
+.lp-hero--video .vdm-side, .lp-hero--video .vdm-sum {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .62);
+    border-color: rgba(255, 255, 255, .75)
+}
+.lp-hero--video .vdm-flag, .lp-hero--video .vdm-note--task, .lp-hero--video .vdm-sum-list b { background: rgba(255, 247, 237, .85); border-color: #fed7aa; color: #c2410c }
+.lp-hero--video .vdm-ctrl > button:not(.vdm-leave):not(.is-on):not(.is-off) { background: rgba(255, 255, 255, .55) }
+.lp-hero--video .vdm-ctrl > button:not(.vdm-leave):not(.is-on):not(.is-off):hover { background: rgba(255, 255, 255, .8) }
+.lp-hero--video .vdm-ctrl > button.is-on:hover { background: #c2410c }
+.lp-hero--video .vdm-sum-foot button { background: #1a1a1a }

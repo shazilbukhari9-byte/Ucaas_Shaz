@@ -1,0 +1,166 @@
+/* ── Product cards: hover-to-expand on desktop ──────────────────────────── */
+/* Desktop shows the two cards at 2 : 1, Business Phone wide by default.
+   Hovering (or tabbing into) the Contact Center card swaps the ratio, so the
+   card being looked at always gets the wide slot; leaving the row returns it
+   to the default. The row is a flex line rather than a grid so the swap can
+   animate smoothly — flex-grow interpolates in every browser, where
+   grid-template-columns transitions are still uneven. */
+
+/* ── Card edge (all widths) ───────────────────────────────────────────────
+   The cards carried a 1px dark-purple border (rgba(16,2,44,.12)). Over the
+   dark forest along the sides and bottom it vanished, but along the top it
+   ran over pale sky and read as a hard dark rule across both cards. It is
+   replaced by a faint white inner edge, which follows the radius cleanly and
+   suits the light artwork instead of cutting across it. */
+.design-v2 .section-product-anchor .feature-card-image,
+.design-v2 .section-product-anchor .feature-card-image--light {
+    border: 0;
+    box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, .14), 0 1px 2px rgba(6, 10, 26, .06);
+}
+
+/* Key-point chips exist only in the desktop layout. */
+.design-v2 .section-product-anchor .feature-card-points {
+    display: none;
+}
+
+@media (min-width: 901px) {
+    .design-v2 .section-product-anchor .feature-cards-row {
+        /* Lets the copy size itself against the row (cqw), not the card. */
+        container-type: inline-size;
+        display: flex;
+        gap: 24px;
+    }
+
+    .design-v2 .section-product-anchor .feature-card-image {
+        flex: 1 1 0;
+        min-width: 0;
+        transition: flex-grow .6s cubic-bezier(.22, .8, .24, 1), box-shadow .4s ease;
+    }
+
+    /* Default: the first card is the wide one. */
+    .design-v2 .section-product-anchor .feature-card-image:first-child {
+        flex-grow: 2;
+    }
+
+    /* Hover or keyboard focus on the second card hands it the wide slot. */
+    .design-v2 .section-product-anchor .feature-cards-row:has(.feature-card-image:nth-child(2):is(:hover, :focus-within)) .feature-card-image:first-child {
+        flex-grow: 1;
+    }
+
+    .design-v2 .section-product-anchor .feature-cards-row:has(.feature-card-image:nth-child(2):is(:hover, :focus-within)) .feature-card-image:nth-child(2) {
+        flex-grow: 2;
+    }
+
+    .design-v2 .section-product-anchor .feature-card-image:hover {
+        box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, .14), 0 24px 48px -24px rgba(6, 10, 26, .45);
+    }
+
+    /* ── Copy block ──────────────────────────────────────────────────────
+       The card lays out as a column with `align-items: flex-end`, so a
+       capped copy block was pushed to the card's RIGHT edge — in the wide
+       card the text floated mid-card. It is pinned bottom-left here, and
+       held at exactly the narrow card's width (a third of the row, less the
+       gap) in both cards. The text therefore never reflows as the cards
+       swap: the wide card simply shows more artwork beside the same block,
+       and both cards' copy lines up line for line. */
+    .design-v2 .section-product-anchor .feature-card-image--light .feature-card-overlay {
+        align-self: flex-start;
+        box-sizing: border-box;
+        flex: none;
+        max-width: none;
+        padding: 32px 32px 40px;
+        width: calc((100cqw - 24px) / 3);
+    }
+
+    .design-v2 .section-product-anchor .feature-card-image--light .feature-card-title {
+        margin: 0 0 12px;
+    }
+
+    .design-v2 .section-product-anchor .feature-card-image--light .feature-card-desc {
+        margin: 0;
+    }
+
+    /* ── Key points ──────────────────────────────────────────────────────
+       Four short chips that open under the description of whichever card
+       holds the wide slot, so expanding a card reveals something rather
+       than only stretching the picture. Height animates with the
+       0fr → 1fr grid-row trick; the narrow card's chips collapse to zero
+       height so its copy is untouched. */
+    .design-v2 .section-product-anchor .feature-card-points {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition: grid-template-rows .5s cubic-bezier(.22, .8, .24, 1), opacity .3s ease;
+    }
+
+    .design-v2 .section-product-anchor .feature-card-points ul {
+        column-gap: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        min-height: 0;
+        overflow: hidden;
+        padding: 0;
+    }
+
+    /* Vertical spacing lives on the items, not the list (padding would
+       survive the collapse): each chip's 12px top margin is both the space
+       under the description and the gap between wrapped rows, and it folds
+       away with the list, so a collapsed list is truly zero height. */
+    .design-v2 .section-product-anchor .feature-card-points li {
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        background: hsla(0, 0%, 100%, .12);
+        border: 1px solid hsla(0, 0%, 100%, .24);
+        border-radius: 999px;
+        color: #fff;
+        font-size: 12.5px;
+        font-weight: 500;
+        line-height: 1;
+        margin-top: 12px;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+
+    .design-v2 .section-product-anchor .feature-card-image:first-child .feature-card-points,
+    .design-v2 .section-product-anchor .feature-cards-row:has(.feature-card-image:nth-child(2):is(:hover, :focus-within)) .feature-card-image:nth-child(2) .feature-card-points {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        transition-delay: .12s;
+    }
+
+    .design-v2 .section-product-anchor .feature-cards-row:has(.feature-card-image:nth-child(2):is(:hover, :focus-within)) .feature-card-image:first-child .feature-card-points {
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition-delay: 0s;
+    }
+
+    /* ── Link ────────────────────────────────────────────────────────────
+       Separated from the copy by a hairline, with the arrow nudging forward
+       on hover. */
+    .design-v2 .section-product-anchor .feature-card-image--light .feature-card-link {
+        border-top: 1px solid hsla(0, 0%, 100%, .18);
+        display: flex;
+        gap: 8px;
+        margin-top: 22px;
+        padding-top: 16px;
+    }
+
+    .design-v2 .section-product-anchor .feature-card-link-arrow {
+        transition: transform .25s ease;
+    }
+
+    .design-v2 .section-product-anchor .feature-card-link:hover .feature-card-link-arrow {
+        transform: translateX(4px);
+    }
+}
+
+@media (min-width: 901px) and (prefers-reduced-motion: reduce) {
+    .design-v2 .section-product-anchor .feature-card-image,
+    .design-v2 .section-product-anchor .feature-card-image--light,
+    .design-v2 .section-product-anchor .feature-card-points,
+    .design-v2 .section-product-anchor .feature-card-link-arrow {
+        transition: none;
+    }
+}

@@ -1,0 +1,9 @@
+.wp-block-group {
+            box-sizing: border-box
+        }
+
+        :where(.wp-block-group.wp-block-group-is-layout-constrained) {
+            position: relative
+        }
+
+        /*# sourceURL=https://www.ucaas.com/wp-includes/blocks/group/style.min.css */

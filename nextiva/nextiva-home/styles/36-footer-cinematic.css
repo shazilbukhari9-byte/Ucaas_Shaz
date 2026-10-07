@@ -1,0 +1,931 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   Footer layout — modelled on the AutomateX reference.
+
+   Structure, measured off that page at 1440 and re-expressed in this site's
+   own colours:
+
+     · one dark panel, ~150px of top padding, content capped at 1260px
+     · a two-column top row — brand lockup + subscribe on the left, the link
+       columns on the right
+     · a hairline rule, then a centre row: copyright and legal left,
+       social right
+     · an oversized wordmark under that, cropped by the panel's overflow
+     · a vertical stripe pattern and a soft glow behind everything
+
+   The reference is near-black with a violet glow; this is the site's navy
+   with the coral→apricot pair from the logo arc, so it reads as the same
+   composition in our palette rather than a transplant.
+
+   Replaces an earlier curtain-reveal treatment (fixed panel + clipped
+   spacer). That is why this file is still numbered 36 and why the utility
+   footer above is styled in 35 — the two stages there collapsed into the one
+   panel described here. */
+
+/* ── Panel ────────────────────────────────────────────────────────────── */
+
+/* The panel is a card, not a full-bleed band: it is inset from the page on
+   three sides with the page's own white showing around it, so the footer
+   reads as the last object on the page rather than the page running out.
+   The gutter lives on the section so the card's own radius stays clean. */
+.footer-section {
+    background: var(--bg-white, #fff);
+    padding: 18px
+}
+
+.ucaas-footer-shell {
+    background: var(--brand-navy, #02122c);
+    border-radius: 28px;
+    /* Already required for the wordmark crop; it also clips every decorative
+       layer to the rounded corners. */
+    overflow: hidden;
+    position: relative
+}
+
+/* Glow behind everything. Cool, not coral: the artwork below is the same
+   teal night as the AI Receptionist banner, and a warm glow over it was the
+   other half of the colour clash — orange light on a teal landscape. A
+   faint apricot trace survives at the very centre so the brand accent is
+   still present without warming the whole panel. */
+.ucaas-footer-shell:before {
+    background: radial-gradient(60% 55% at 50% 0%,
+        rgba(96, 178, 190, .16) 0%,
+        rgba(245, 189, 129, .05) 45%,
+        transparent 72%);
+    content: "";
+    height: 60%;
+    left: 0;
+    opacity: .85;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0
+}
+
+/* No backdrop layer on the shell.
+   ---------------------------------------------------------------------------
+   This slot held, in turn: the reference's fluted stripe, a dusk ridge
+   photograph, and an abstract aurora render. All three were rejected — the
+   stripe banded the wordmark, the ridge brought mountains and pines that
+   were not wanted, and the aurora washed the lower half of the card pale.
+
+   The footer is stronger without one. The card is flat brand navy, and the
+   only light in it is the glow behind the wordmark, which is what the eye
+   should be going to anyway. `footer-aurora-v1.webp` is still in
+   public/media if a dimmer version is ever wanted. */
+/* Glow rising from the floor behind the wordmark. Teal to sit with the
+   artwork rather than the blue it used to be. */
+.ucaas-footer-wordmark:before {
+    background: radial-gradient(70% 100% at 50% 100%,
+        rgba(58, 132, 146, .30) 0%,
+        rgba(34, 82, 96, .16) 45%,
+        transparent 76%);
+    content: "";
+    height: 190%;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    top: -40%;
+    transform: translateX(-50%);
+    width: 110%;
+    z-index: -1
+}
+
+.ucaas-footer-utility {
+    background: transparent;
+    position: relative;
+    z-index: 1
+}
+
+/* The captured theme puts `padding: 0 100px` on `.ucaas-footer` itself. The
+   top row lives inside that element while the legal row is a sibling of it,
+   so the two were indented differently — the logo started 98px further in
+   than the copyright beneath it, and the top row was ~200px narrower. Zeroing
+   it lets both rows take their margin from the same 1260px container. */
+.ucaas-footer-utility .ucaas-footer,
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0
+}
+
+/* ── Top row: lockup + subscribe | link columns ───────────────────────── */
+
+/* Both the grid and the width live in one block, and it has to carry the
+   theme's own three-class selector: 18-style-blocks-footer-view.css sets
+   `grid-template-columns: 280px minmax(0,1fr)` and `max-width: none
+   !important` at that weight, which outranks a two-class rule however late
+   it loads. Hence the !important on max-width — nothing else beats theirs. */
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer__wrapper,
+.ucaas-footer-utility .ucaas-footer__wrapper {
+    align-items: start;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    margin: 0 auto;
+    /* No width cap, and the side gutter is the header's own
+       `clamp(24px, 7vw, 138px)` less the 18px the card is already inset by —
+       so the footer logo lines up under the header logo at every width. A
+       fixed 40px inside a 1260px cap put them 32px apart at 1280 and drifted
+       further as the viewport grew, because the header has no cap either. */
+    max-width: none !important;
+    /* 118px at the top was the reference's proportion for a footer carrying
+       three long columns. With four links a column the panel is far shorter,
+       and that much lead-in left it looking top-heavy. */
+    padding: 68px calc(clamp(24px, 7vw, 138px) - 18px) 0;
+    width: 100%
+}
+
+.ucaas-footer-utility .ucaas-footer-logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    max-width: 420px
+}
+
+.ucaas-footer-utility .ucaas-footer-logo__sub-heading {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 14px;
+    max-width: 340px
+}
+
+/* ── Subscribe ────────────────────────────────────────────────────────── */
+
+.ucaas-subscribe {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 400px
+}
+
+.ucaas-subscribe__row {
+    display: flex;
+    gap: 10px
+}
+
+.ucaas-subscribe__input {
+    background: hsla(0, 0%, 100%, .05);
+    border: 1px solid hsla(0, 0%, 100%, .1);
+    border-radius: 10px;
+    color: #fff;
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 14px;
+    height: 54px;
+    min-width: 0;
+    padding: 0 18px;
+    transition: border-color .25s ease, background .25s ease
+}
+
+.ucaas-subscribe__input::placeholder {
+    color: hsla(0, 0%, 100%, .42)
+}
+
+.ucaas-subscribe__input:focus {
+    background: hsla(0, 0%, 100%, .08);
+    border-color: rgba(245, 189, 129, .55);
+    outline: none
+}
+
+/* Solid white with a dark glyph — the highest-contrast element in the panel,
+   which is what a submit control should be. It sat on the coral gradient
+   first; that read as a second brand mark competing with the logo rather
+   than as a button. */
+.ucaas-subscribe__send {
+    align-items: center;
+    background: #fff;
+    border: 0;
+    border-radius: 10px;
+    color: #02122c;
+    cursor: pointer;
+    display: flex;
+    flex: none;
+    height: 54px;
+    justify-content: center;
+    transition: background .25s ease, box-shadow .25s ease, transform .25s ease;
+    width: 54px
+}
+
+.ucaas-subscribe__send:hover {
+    background: #fff;
+    box-shadow: 0 8px 22px -8px hsla(0, 0%, 100%, .55);
+    transform: translateY(-1px)
+}
+
+.ucaas-subscribe__consent {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .55);
+    cursor: pointer;
+    display: flex;
+    font-size: 13px;
+    gap: 9px
+}
+
+.ucaas-subscribe__consent input {
+    accent-color: #f9775e;
+    height: 15px;
+    width: 15px
+}
+
+/* ── Link columns ─────────────────────────────────────────────────────── */
+
+.ucaas-footer-utility .ucaas-footer-links {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+
+/* The captured theme underlines these headings; the reference does not, and
+   the rule read as a divider between unrelated columns. */
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__heading,
+.ucaas-footer-utility .ucaas-footer-links__heading {
+    border-bottom: 0;
+    color: #fff;
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin-bottom: 18px;
+    padding-bottom: 0
+}
+
+.ucaas-footer-utility .ucaas-footer-links__list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list a,
+.ucaas-footer-utility .ucaas-footer-links__item a {
+    color: hsla(0, 0%, 100%, .6) !important;
+    font-size: 14.5px;
+    line-height: 1.45;
+    text-decoration: none;
+    transition: color .2s ease
+}
+
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list a:hover,
+.ucaas-footer-utility .ucaas-footer-links__item a:hover {
+    color: #fff !important
+}
+
+/* ── Centre row ───────────────────────────────────────────────────────── */
+
+.ucaas-footer-centre {
+    align-items: center;
+    border-top: 1px solid hsla(0, 0%, 100%, .1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    /* Sits under the wordmark now, so it carries the card's bottom padding
+       itself; the rule above it separates it from the wordmark rather than
+       from the link columns. */
+    margin: 8px auto 0;
+    /* Same gutter as the top row so both share one content column. */
+    max-width: none;
+    /* As thin as the row can go: the 40px social tiles are the floor, and
+       the padding is just clearance off the rule above and the card edge. */
+    padding: 8px calc(clamp(24px, 7vw, 138px) - 18px) 10px;
+    position: relative;
+    width: 100%;
+    z-index: 1
+}
+
+.ucaas-footer-centre__left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px
+}
+
+.ucaas-footer-shell .footer-copyright {
+    color: hsla(0, 0%, 100%, .55);
+    font-size: 13.5px
+}
+
+.ucaas-footer-shell .footer-legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px
+}
+
+.ucaas-footer-shell .footer-legal-links a {
+    color: hsla(0, 0%, 100%, .55);
+    font-size: 13.5px;
+    /* Matches the copyright's 1.4. Both sit in flex boxes stretched to the
+       same height, but the links were inheriting a 1.0 line-height, so their
+       line box started at the top of that box and the text rode 2.7px above
+       the copyright beside it — the boxes lined up, the words did not. */
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color .2s ease
+}
+
+.ucaas-footer-shell .footer-legal-links a:hover {
+    color: #fff
+}
+
+/* Social marks become bordered tiles, as in the reference. The source images
+   are dark-on-transparent artwork drawn for a light panel, so they need the
+   brightness(0) invert(1) pair to read as white here — the same treatment the
+   header lockup uses. */
+.ucaas-footer-shell .ucaas-footer-socialicons {
+    display: flex;
+    gap: 10px
+}
+
+.ucaas-footer-shell .ucaas-footer-socialicons a {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .1);
+    border: 1px solid hsla(0, 0%, 100%, .24);
+    border-radius: 11px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s cubic-bezier(.34, 1.2, .48, 1);
+    width: 40px
+}
+
+.ucaas-footer-shell .ucaas-footer-socialicons a:hover {
+    background: hsla(0, 0%, 100%, .18);
+    border-color: rgba(245, 189, 129, .7);
+    box-shadow: 0 6px 18px -6px rgba(249, 119, 94, .45);
+    transform: translateY(-2px)
+}
+
+/* Slot-reel hover. Two copies of the mark stack inside a clipped box: the
+   first at 0, the second directly beneath at 100%. On hover both shift
+   -100%, so copy one leaves through the top exactly as copy two arrives from
+   below — the window always holds part of an icon.
+
+   The reference offsets its second copy by 200%, and copying that verbatim
+   was a mistake: with a full icon-height gap between the copies, the midpoint
+   of the throw leaves the window empty. At their 14px it passes; at our 18px
+   over half a second it read as a blank flicker rather than a roll. */
+.ucaas-social-reel {
+    display: block;
+    height: 18px;
+    overflow: hidden;
+    position: relative;
+    width: 18px
+}
+
+.ucaas-footer-shell .ucaas-footer-socialicons img {
+    filter: brightness(0) invert(1);
+    height: 18px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    /* Snappier than the half-second first pass, and eased so it leaves
+       quickly and lands softly — a reel settling, not a linear slide. */
+    transition: transform .38s cubic-bezier(.34, 1.2, .48, 1), opacity .25s ease;
+    width: 18px
+}
+
+.ucaas-footer-shell .ucaas-footer-socialicons img + img {
+    top: 100%
+}
+
+/* The incoming copy lands in the logo's apricot rather than white. Both
+   copies are the same file, so without this the reel spins an icon out and
+   an identical one in — mechanically correct, but it settles looking
+   untouched and reads as nothing having happened. Recolouring the arriving
+   copy is what makes the swap legible.
+   sepia+saturate+hue-rotate rather than a flat tint: these are opaque raster
+   marks, so brightness(0) crushes them to a black silhouette first and the
+   rest of the chain lifts that to the target hue. */
+.ucaas-footer-shell .ucaas-footer-socialicons img + img {
+    filter: brightness(0) saturate(100%) invert(78%) sepia(38%) saturate(680%) hue-rotate(324deg) brightness(101%) contrast(94%)
+}
+
+.ucaas-footer-shell .ucaas-footer-socialicons a:hover img {
+    opacity: 1;
+    transform: translateY(-100%)
+}
+
+/* ── Oversized wordmark ───────────────────────────────────────────────── */
+
+/* Deliberately taller than the space left for it: the panel's overflow
+   crops the lower third, which is what gives the reference its cut-off
+   look. `.ucaas-footer-shell` owns that overflow. */
+.ucaas-footer-wordmark {
+    /* Runs full-bleed and oversized so the outer letters crop against the
+       panel edges the way the reference's "X" does; hence no max-width, no
+       padding, and nowrap. Wider and fainter than the first pass: the word
+       is a ground texture, not a headline, so it spreads to the edges and
+       sits well back. */
+    /* Still a watermark, but it has to out-read the artwork behind it. It sat
+       at .085 when the panel behind was nearly empty; against the ridge
+       painting at .26 opacity that left the picture three times stronger than
+       the word, so the word looked like it was underneath. These values keep
+       it quiet while clearly sitting on top. */
+    background: linear-gradient(180deg,
+        rgba(206, 226, 250, .24) 0%,
+        rgba(160, 194, 234, .16) 44%,
+        rgba(104, 146, 200, .07) 78%,
+        transparent 97%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-body);
+    /* 26vw with positive tracking: UCAAS is only five characters, so it needs
+       both a larger size and letters pushed apart to reach the edges the way
+       a nine-character word does at the same width. */
+    font-size: clamp(112px, 23vw, 380px);
+    font-weight: 900;
+    letter-spacing: .012em;
+    line-height: .8;
+    /* Not cropped — the whole word shows, which is what lets it read as a
+       watermark rather than as text running off the edge. An earlier -.24em
+       sliced through the middle of the glyphs.
+       It now sits between the link columns and the legal row, so the space
+       beneath it is the legal row's own margin rather than a gap here. */
+    margin: 30px 0 0;
+    /* Purely decorative, and its box is far taller than the glyphs look —
+       line-height .8 plus the negative bottom margin push it up over the
+       social row, where it was swallowing the hover on every icon except the
+       rightmost. It must never take pointer input. */
+    pointer-events: none;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 1
+}
+
+/* ── Narrow screens ───────────────────────────────────────────────────── */
+
+/* These carry the same three-class selector as the desktop grid above. With
+   only two classes they lost to it at every width, so phones kept the
+   two-column desktop grid: the lockup and subscribe form were squeezed into a
+   134px column and ran off the card's left edge. The theme's own ≤768 block
+   (18-style-blocks-footer-view.css) also centres everything; the panel reads
+   better left-aligned like the desktop layout, so that is undone here. */
+@media (max-width: 1024px) {
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer__wrapper,
+    .ucaas-footer-utility .ucaas-footer__wrapper {
+        gap: 44px;
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 72px;
+        text-align: left
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-logo-section,
+    .ucaas-footer-utility .ucaas-footer-logo-section {
+        align-items: flex-start;
+        max-width: none
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-logo,
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__wrapper {
+        text-align: left
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list li {
+        justify-content: flex-start;
+        line-height: 1.45
+    }
+
+    .ucaas-footer-utility .ucaas-subscribe {
+        max-width: 460px;
+        width: 100%
+    }
+
+    /* Stacked layout has the full card width, so the tagline runs on one
+       line instead of breaking at the desktop column's 340px cap. */
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-logo__sub-heading {
+        max-width: none;
+        white-space: nowrap
+    }
+
+    /* The theme drops to two columns at ≤1200; keep all three on one row. */
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+}
+
+/* Phones: lockup + subscribe stacked full width, then all three link columns
+   on a single row so the panel stays short and even, rather than two abreast
+   with a lone third column hanging beneath. */
+@media (max-width: 760px) {
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links,
+    .ucaas-footer-utility .ucaas-footer-links {
+        gap: 24px 20px;
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__heading,
+    .ucaas-footer-utility .ucaas-footer-links__heading {
+        font-size: 15.5px;
+        margin-bottom: 14px
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list a,
+    .ucaas-footer-utility .ucaas-footer-links__item a {
+        font-size: 14px
+    }
+
+    .ucaas-footer-utility .ucaas-footer-links__list {
+        gap: 10px
+    }
+
+    .ucaas-footer-wordmark {
+        margin-top: 36px
+    }
+
+    /* Bottom row, centred and stacked: social tiles first as the visual
+       anchor, then the legal links, then the copyright as the quiet last
+       line. Source order is untouched (copyright first for desktop), so the
+       stacking is done with `order`. */
+    .ucaas-footer-centre {
+        align-items: center;
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 12px;
+        text-align: center
+    }
+
+    .ucaas-footer-shell .ucaas-footer-socialicons {
+        gap: 12px;
+        justify-content: center;
+        order: -1
+    }
+
+    .ucaas-footer-centre__left {
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%
+    }
+
+    .ucaas-footer-shell .footer-copyright {
+        order: 2
+    }
+
+    /* A thin dot between the two links instead of a wide blank gap. */
+    .ucaas-footer-shell .footer-legal-links {
+        align-items: center;
+        flex-direction: row;
+        gap: 0;
+        justify-content: center
+    }
+
+    .ucaas-footer-shell .footer-legal-links a + a::before {
+        color: hsla(0, 0%, 100%, .3);
+        content: "\2022";
+        margin: 0 12px
+    }
+}
+
+@media (max-width: 520px) {
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer__wrapper,
+    .ucaas-footer-utility .ucaas-footer__wrapper {
+        gap: 40px;
+        padding: 56px 22px 0
+    }
+
+    .ucaas-footer-utility .ucaas-footer-logo-section {
+        gap: 22px
+    }
+
+    /* Tagline held to a single line under the lockup. The size tracks the
+       viewport so the full phrase fits the card's content width from 320px
+       phones up; nowrap stops a lone "Platform" dropping to a second line.
+       The phrase measures ~24.7× its font size and the content box is the
+       viewport less 64px, hence 4vw − 2.8px. Three classes to outrank the
+       theme's 15px in 18-style-blocks-footer-view.css. */
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-logo__sub-heading {
+        font-size: clamp(10px, calc(4vw - 2.8px), 14.5px);
+        letter-spacing: -.01em;
+        line-height: 1.4;
+        margin-top: 12px;
+        max-width: none;
+        white-space: nowrap
+    }
+
+    .ucaas-subscribe__input,
+    .ucaas-subscribe__send {
+        height: 50px
+    }
+
+    .ucaas-subscribe__send {
+        width: 50px
+    }
+
+    .ucaas-footer-centre {
+        /* Bottom padding must be carried here too: this row is now the last
+           thing in the card, so without it the legal text runs into the
+           clipped bottom edge. */
+        padding: 18px 22px 24px
+    }
+
+    .ucaas-footer-shell .footer-copyright,
+    .ucaas-footer-shell .footer-legal-links a {
+        font-size: 13px
+    }
+
+    /* Three columns in ~310px leaves each about 95px, so the type steps down
+       to keep most links on one or two lines. */
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links,
+    .ucaas-footer-utility .ucaas-footer-links {
+        column-gap: 14px
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__heading,
+    .ucaas-footer-utility .ucaas-footer-links__heading {
+        font-size: 13px;
+        line-height: 1.3;
+        margin-bottom: 12px
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list a,
+    .ucaas-footer-utility .ucaas-footer-links__item a {
+        font-size: 12.5px;
+        line-height: 1.4
+    }
+
+    /* The theme gives each <li> a 10px bottom margin and a 20px line box on
+       top of the list's own gap, which spread the links ~20px apart. The gap
+       alone sets the rhythm now, and the link is a block so a wrapped label's
+       lines sit at its own 1.4 leading rather than the li's taller strut. */
+    .ucaas-footer-utility .ucaas-footer-links__list {
+        gap: 7px
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list li.ucaas-footer-links__item {
+        line-height: 1.4;
+        margin: 0
+    }
+
+    .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list a {
+        display: block
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ucaas-subscribe__send,
+    .ucaas-footer-shell .ucaas-footer-socialicons a,
+    .ucaas-footer-shell .ucaas-footer-socialicons img {
+        transition: none
+    }
+
+    /* No reel spin and no lift — the duplicate never moves, so the first copy
+       simply stays put rather than snapping out of view. */
+    .ucaas-footer-shell .ucaas-footer-socialicons a:hover img,
+    .ucaas-footer-shell .ucaas-footer-socialicons a:hover {
+        transform: none
+    }
+}
+
+/* ══ First-visit entrance ═══════════════════════════════════════════════════
+   `.is-revealed` is added once by hooks/useFooterBrand.js when the panel
+   first scrolls into view, then unobserved — the entrance plays on arrival
+   and never replays.
+
+   The hidden pre-state is gated behind BOTH `.has-reveal` (added by the hook
+   the moment it mounts) and the absence of `.is-revealed`. That double gate
+   is deliberate: `:not(.is-revealed)` on its own would leave the footer at
+   opacity 0 forever if the hook never ran — JS disabled, IntersectionObserver
+   unsupported, or an error thrown higher in the tree. Because only JS ever
+   adds `.has-reveal`, the no-JS path falls through to the resting state and
+   the footer is simply visible. */
+
+.ucaas-footer-shell .ucaas-footer-logo-section,
+.ucaas-footer-shell .ucaas-footer-links__column,
+.ucaas-footer-shell .ucaas-footer-centre,
+.ucaas-footer-wordmark {
+    transition:
+        opacity .85s cubic-bezier(.22, .61, .36, 1),
+        transform .85s cubic-bezier(.22, .61, .36, 1)
+}
+
+.ucaas-footer-shell.has-reveal:not(.is-revealed) .ucaas-footer-logo-section,
+.ucaas-footer-shell.has-reveal:not(.is-revealed) .ucaas-footer-links__column,
+.ucaas-footer-shell.has-reveal:not(.is-revealed) .ucaas-footer-centre {
+    opacity: 0;
+    transform: translateY(26px)
+}
+
+/* The wordmark rises further and scales up a touch — it is the thing the
+   entrance resolves onto, so it moves last and travels furthest. */
+.ucaas-footer-shell.has-reveal:not(.is-revealed) .ucaas-footer-wordmark {
+    opacity: 0;
+    transform: translateY(60px) scale(.94)
+}
+
+/* Stagger. The brand column leads, the three link columns follow left to
+   right, then the legal row, then the wordmark. */
+.ucaas-footer-shell .ucaas-footer-logo-section { transition-delay: .05s }
+.ucaas-footer-shell .ucaas-footer-links__column:nth-child(1) { transition-delay: .16s }
+.ucaas-footer-shell .ucaas-footer-links__column:nth-child(2) { transition-delay: .24s }
+.ucaas-footer-shell .ucaas-footer-links__column:nth-child(3) { transition-delay: .32s }
+.ucaas-footer-shell .ucaas-footer-centre { transition-delay: .42s }
+.ucaas-footer-wordmark { transition-delay: .52s }
+
+/* A single sheen crosses the wordmark once the entrance settles. `mask` on a
+   pseudo-element rather than a moving gradient background, so it rides over
+   the letterforms without disturbing the background-clip that colours them. */
+/* A single light travelling along the letter edges.
+
+   This is a bright outline of the same word laid exactly over the filled one,
+   then revealed through a narrow moving window. Only the sliver of outline
+   inside that window is visible at any moment, so the highlight reads as one
+   light crossing the whole wordmark.
+
+   Worth recording why it is a moving mask and not stroke-dashoffset on SVG
+   text, which is the usual way to draw a light along a letterform: with SVG
+   text every glyph is its own subpath and the dash pattern restarts on each
+   one, so you get a separate light per letter — the many-segment look in the
+   reference, and precisely what was not wanted here. Masking is indifferent
+   to glyph boundaries: one window, one light, however many letters. */
+.ucaas-footer-wordmark:after {
+    animation: ucaasTrace 20s linear infinite;
+    content: "UCAAS";
+    inset: 0;
+    letter-spacing: inherit;
+    pointer-events: none;
+    position: absolute;
+    color: transparent;
+    /* Hairline. At a ~330px face this is about half a percent of the cap
+       height, so it reads as a drawn line rather than a lit slab. Held at
+       partial alpha so it glows without becoming the brightest thing in the
+       footer — the wordmark under it is nearly a watermark now, and a fully
+       opaque stroke overpowered it. */
+    -webkit-text-stroke: 1.25px rgba(198, 226, 255, .62);
+    /* Tight glow only — a wide one bleeds across the counters and makes the
+       letter look filled, which is exactly the "goes through the inside"
+       problem. It must be a filter, not text-shadow: the fill is transparent,
+       so a text-shadow would be clipped away with it. */
+    filter: drop-shadow(0 0 3px rgba(165, 210, 255, .55));
+    text-align: center;
+
+    /* A small round window, not a full-height band. This is the difference
+       between "a short line of light on the border" and "this whole letter
+       lights up": a band spanning the full height exposes every bit of
+       outline it crosses at once, top to bottom.
+
+       A narrow vertical capsule, and the width is the whole trick.
+       `-webkit-text-stroke` outlines the glyph, so one stem carries TWO
+       contour lines — its left edge and its right edge. Any window wide
+       enough to span the stem lights both and you get parallel segments;
+       that was the doubling, and shrinking the dot to a letter's width did
+       not fix it because a letter is far wider than a stem. A stem here is
+       roughly .16em, so at .085em the window physically cannot reach both
+       edges — it can only ever sit on one side of a stroke.
+
+       Tall but narrow, so the light runs *along* an edge rather than
+       pinpointing it: a short crawling segment instead of a dot. em units
+       hold both ratios as the wordmark scales from 112px to 380px, which a
+       fixed pixel size could not. */
+    -webkit-mask-image: radial-gradient(ellipse closest-side, #000 0%, #000 38%, transparent 80%);
+    mask-image: radial-gradient(ellipse closest-side, #000 0%, #000 38%, transparent 80%);
+    -webkit-mask-size: .085em .5em;
+    mask-size: .085em .5em;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat
+}
+
+/* Hold it off until the entrance has landed. */
+.ucaas-footer-shell.has-reveal:not(.is-revealed) .ucaas-footer-wordmark:after {
+    animation: none;
+    opacity: 0
+}
+
+/* Left to right across the word, rising and falling as it goes. The vertical
+   drift is what lets a single dot meet the tops and bottoms of the letters
+   instead of only ever crossing their waistlines — without it the light
+   tracks one flat line and never touches a cap or a baseline. Both axes are
+   set in every step so they interpolate together rather than stepping. */
+@keyframes ucaasTrace {
+    0% { -webkit-mask-position: -5% 50%; mask-position: -5% 50%; opacity: 0 }
+    8% { -webkit-mask-position: 9% 26%; mask-position: 9% 26%; opacity: 1 }
+    28% { -webkit-mask-position: 28% 74%; mask-position: 28% 74%; opacity: 1 }
+    50% { -webkit-mask-position: 50% 22%; mask-position: 50% 22%; opacity: 1 }
+    72% { -webkit-mask-position: 72% 76%; mask-position: 72% 76%; opacity: 1 }
+    92% { -webkit-mask-position: 91% 30%; mask-position: 91% 30%; opacity: 1 }
+    to { -webkit-mask-position: 105% 50%; mask-position: 105% 50%; opacity: 0 }
+}
+
+/* Reduced motion: no travel, no sheen — the panel is simply present. */
+@media (prefers-reduced-motion: reduce) {
+    .ucaas-footer-shell .ucaas-footer-logo-section,
+    .ucaas-footer-shell .ucaas-footer-links__column,
+    .ucaas-footer-shell .ucaas-footer-centre,
+    .ucaas-footer-wordmark {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none
+    }
+
+    .ucaas-footer-wordmark:after { animation: none }
+}
+
+/* Card gutter and radius scale down with the viewport — an 18px inset and a
+   28px radius are generous on a phone, where the card should sit closer to
+   full-bleed. */
+@media (max-width: 640px) {
+    .footer-section {
+        padding: 10px
+    }
+
+    .ucaas-footer-shell {
+        border-radius: 20px
+    }
+}
+
+/* ══ AI Receptionist banner: close the card ═════════════════════════════════
+   08-style-blocks-v2-section-spotlight-hero-trust-view.css joins this banner
+   to the features panel beneath it as a single object — dark half on top with
+   `border-radius: 24px 24px 0 0`, white half below with `0 0 24px 24px`.
+
+   That only works when the page behind it is not white. It is: the panel and
+   the section share `#fff`, so the panel's rounded bottom is white-on-white
+   and invisible, and the dark half just stops in a hard flat line. Round top,
+   sharp bottom.
+
+   So the banner closes itself instead, and the features sit below as their own
+   block with real space between them. */
+.design-v2 .spotlight-hero-trust-card {
+    border-radius: 24px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-panel {
+    border-radius: 24px;
+    margin-top: 26px
+}
+
+/* ══ Hero chat: message entry + typing dots ═════════════════════════════════
+   The thread is interactive — visitors type and Rohit answers — but every
+   bubble used to pop in fully formed, which read as a list rebuilding rather
+   than a conversation. Each message now rises and fades as it lands, and his
+   reply is preceded by the same three-dot tell the Cloud Phone dashboard
+   uses, so the pause before it reads as him writing.
+
+   Keyed off the animation rather than a class React has to add and remove:
+   a CSS animation runs once when the element is inserted, which is exactly
+   the lifecycle wanted, and it cannot get stuck on if a re-render interrupts. */
+.design-v2 .section-hero .hero-showcase .message {
+    animation: heroMsgIn .3s cubic-bezier(.22, .61, .36, 1) both
+}
+
+/* Deliberately small. The bubbles used to rise 10px and scale up from .97,
+   which on a thread that keeps adding lines read as constant movement. A 5px
+   rise and no scale still marks the arrival without the panel appearing to
+   churn. */
+@keyframes heroMsgIn {
+    0% { opacity: 0; transform: translateY(5px) }
+    to { opacity: 1; transform: none }
+}
+
+/* Sent bubbles arrive from the right, received from the left — a small thing,
+   but it makes the direction of each message legible before it is read. */
+.design-v2 .section-hero .hero-showcase .message.sent {
+    animation-name: heroMsgInSent
+}
+
+@keyframes heroMsgInSent {
+    0% { opacity: 0; transform: translate(6px, 4px) }
+    to { opacity: 1; transform: none }
+}
+
+/* ── Typing bubble ──────────────────────────────────────────────────────── */
+
+.design-v2 .section-hero .hero-showcase .message--typing {
+    align-items: center;
+    display: inline-flex;
+    gap: 5px;
+    min-height: 0;
+    padding: 14px 16px;
+    width: auto
+}
+
+.design-v2 .section-hero .hero-showcase .chat-typing-dot {
+    animation: heroTypingDot 1.25s ease-in-out infinite;
+    background: rgba(16, 2, 44, .45);
+    border-radius: 50%;
+    display: block;
+    height: 6px;
+    width: 6px
+}
+
+.design-v2 .section-hero .hero-showcase .chat-typing-dot:nth-child(2) { animation-delay: .16s }
+.design-v2 .section-hero .hero-showcase .chat-typing-dot:nth-child(3) { animation-delay: .32s }
+
+@keyframes heroTypingDot {
+    0%, to { opacity: .45; transform: translateY(0) }
+    50% { opacity: 1; transform: translateY(-4px) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-hero .hero-showcase .message,
+    .design-v2 .section-hero .hero-showcase .chat-typing-dot {
+        animation: none
+    }
+}
+

@@ -1,0 +1,175 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   Footer, in two stages.
+
+   1. .ucaas-footer-utility  — the working footer: logo, nav columns, legal
+      row. Solid deep teal, quiet, dense with links. Styled here.
+   2. The closing stage — now the curtain reveal in 36-footer-cinematic.css.
+      This file previously owned that stage too (`.footer-brand`: an oversized
+      wordmark fading in on an IntersectionObserver); those rules are gone,
+      and only the chrome-hiding block at the foot of this file survives from
+      it, because the replacement is a full-screen fixed panel with exactly
+      the same problem to solve.
+
+   Worth keeping from the old stage's history, since it is the obvious thing
+   to reach for again: an `animation-timeline: view()` version of the reveal
+   came first and was abandoned. It reported perfectly correct progress under
+   scripted inspection the whole way through, and still never painted for the
+   person actually using the site — a real, known failure mode (a clip-path
+   animation and a background-clip:text descendant crossing a compositing
+   layer boundary), not a tuning problem. It cost several rounds of "the
+   numbers say this works" before the mismatch was believable. Observers plus
+   plain CSS have no equivalent gap between what the API reports and what the
+   screen shows, which is why both the old stage and the new one use them. */
+
+.ucaas-footer-shell {
+    background: #174b88
+}
+
+/* ── 1. Utility footer ────────────────────────────────────────────────── */
+
+.ucaas-footer-utility {
+    background: #174b88
+}
+
+.ucaas-footer-utility .ucaas-footer,
+.home .ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 {
+    background: transparent !important;
+    border-top: 0 !important
+}
+
+/* Compact: a utility footer, not a section pretending to be a hero. The
+   artwork this used to sit on forced ~200px of top padding just to clear the
+   image; a solid ground needs none of that. */
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer__wrapper,
+.ucaas-footer-utility .ucaas-footer__wrapper {
+    padding-bottom: 40px;
+    padding-top: 64px
+}
+
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__heading,
+.ucaas-footer-utility .ucaas-footer-links__heading {
+    border-bottom-color: hsla(0, 0%, 100%, .16);
+    color: #f3f4f1;
+    font-weight: 700;
+    letter-spacing: -.005em
+}
+
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list a,
+.ucaas-footer-utility .ucaas-footer-links__item a {
+    color: #b8c7c7 !important;
+    font-size: 14px
+}
+
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-links__list a:hover,
+.ucaas-footer-utility .ucaas-footer-links__item a:hover {
+    color: #f3f4f1 !important
+}
+
+.ucaas-footer-utility .ucaas-footer-description,
+.ucaas-footer-utility .ucaas-footer__tagline,
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-logo__sub-heading,
+.ucaas-footer-utility .ucaas-footer-logo__sub-heading {
+    color: #b8c7c7
+}
+
+/* Logo and social glyphs are raster art drawn for a light panel (near-black
+   wordmark, orange cloud) — brightness(0) crushes them to solid black and
+   invert(1) lifts that to white, the only way to recolour a bitmap in CSS.
+   Sized to match the header lockup: .mcm-logo-img is 50px tall, which is
+   98px wide from this same file; the source markup ships it at 172x88. */
+.ucaas-footer-utility #ucaas-logo-img {
+    filter: brightness(0) invert(1);
+    height: 44px;
+    width: auto
+}
+
+.ucaas-footer-utility .ucaas-footer.is-style-ucaas-footer-light-v2 .ucaas-footer-socialicons img,
+.ucaas-footer-utility .ucaas-footer-socialicons img {
+    filter: brightness(0) invert(1);
+    opacity: .8
+}
+
+.ucaas-footer-utility .ucaas-footer-socialicons a:hover img {
+    opacity: 1
+}
+
+/* Divider before the legal row — a border on the row itself, not the
+   full-bleed wrapper, so it starts and ends on the content column instead of
+   running edge to edge past the logo and the last nav column. */
+.ucaas-footer-utility .footer-giant-brand,
+.ucaas-footer-utility .footer-bottom-ucaas {
+    background: transparent !important;
+    position: relative;
+    z-index: 2
+}
+
+.ucaas-footer-utility .footer-bottom-ucaas {
+    border-top: 1px solid hsla(0, 0%, 100%, .12);
+    /* Margin, not padding: a border draws on the element's own box, so
+       padding would inset the text but leave the line running full-bleed. */
+    margin: 0 100px;
+    padding: 26px 0
+}
+
+.ucaas-footer-utility .footer-slogan {
+    color: #f3f4f1;
+    font-weight: 600
+}
+
+.ucaas-footer-utility .footer-copyright,
+.ucaas-footer-utility .footer-legal-links a {
+    color: #b8c7c7
+}
+
+.ucaas-footer-utility .footer-legal-links a:hover {
+    color: #f3f4f1
+}
+
+.ucaas-footer-utility .footer-badge {
+    background: hsla(0, 0%, 100%, .06);
+    border-color: hsla(0, 0%, 100%, .22);
+    color: #f3f4f1
+}
+
+@media (max-width: 900px) {
+    .ucaas-footer-utility .ucaas-footer__wrapper {
+        padding-top: 48px
+    }
+    .ucaas-footer-utility .footer-bottom-ucaas {
+        margin: 0 20px
+    }
+}
+
+/* ── Fixed header chrome, hidden while the brand stage is in view ───────
+   .ntb-banner (promo bar) and .mcm-wrap (main nav) are both position:fixed,
+   top:0 — pinned to the viewport everywhere on the page, which is correct
+   everywhere except here: scrolled to the very bottom they sit drawn on top
+   of the giant word instead of a page section passing underneath them. The
+   bottom sticky CTA pill is worse — position:fixed, bottom:24px, centered,
+   which is the same screen position the word occupies, and its rounded edge
+   was cutting through the last letter.
+   body.footer-finale-active is toggled by hooks/useFooterCinematic.js as the
+   curtain stage enters and leaves view, so all of this tracks that section's
+   visibility exactly, in both directions. */
+body.footer-finale-active .ntb-banner,
+body.footer-finale-active .mcm-wrap {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%)
+}
+
+/* mcm-wrap's own stylesheet only transitions background/box-shadow/border —
+   repeating the full list here (rather than just adding to it) because
+   `transition` isn't additive across rules; the last one to set it wins
+   wholesale. Declared unconditionally, not scoped to the active state, so the
+   fade back in when scrolling away is just as smooth as the fade out. */
+.mcm-wrap {
+    transition: background-color .25s ease, box-shadow .25s ease, border-color .25s ease, opacity .3s ease, transform .3s ease
+}
+
+body.footer-finale-active .ucaas-sticky-cta-banner-block .sticky-cta-banner {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important
+}
+

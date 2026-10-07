@@ -1,0 +1,253 @@
+/* Supervisor Tools page (components/landing/supervisor/*). */
+
+/* ── Hero: supervisor floor ───────────────────────────────────────────── */
+.svm {
+    --svm-ink: #10022c;
+    --svm-muted: #5b6475;
+    --svm-line: rgba(16, 2, 44, .08);
+    --svm-acc: #0d9488;
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    background: rgba(255, 253, 250, .92);
+    border: 1px solid rgba(255, 255, 255, .9);
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgba(13, 148, 136, .08), 0 40px 80px -36px rgba(30, 27, 75, .55), inset 0 1px 0 rgba(255, 255, 255, .9);
+    color: var(--svm-ink);
+    padding: 14px 16px 14px;
+    text-align: left
+}
+.svm :where(button) { cursor: pointer; font: inherit }
+.svm button:focus-visible { outline: 2px solid var(--svm-acc); outline-offset: 2px }
+.svm-head { align-items: center; display: flex; gap: 10px; padding: 0 2px 10px }
+.svm-title { align-items: center; display: flex; font-size: 15px; font-weight: 600; gap: 10px; margin-left: 4px }
+.svm-meta { background: #f0fdfa; border-radius: 999px; color: #0f766e; font-size: 11px; font-weight: 700; margin-left: auto; padding: 4px 10px; white-space: nowrap }
+
+.svm-calls { display: flex; flex-direction: column; gap: 5px; list-style: none; margin: 0; padding: 0 }
+.svm-call {
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--svm-line);
+    border-radius: 12px;
+    color: inherit;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 22px 30px minmax(0, 1fr) 70px auto 40px;
+    padding: 7px 10px;
+    text-align: left;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    width: 100%
+}
+.svm-call:hover { border-color: rgba(16, 2, 44, .16) }
+.svm-call.is-on { border-color: rgba(13, 148, 136, .5); box-shadow: 0 0 0 3px rgba(13, 148, 136, .1) }
+.svm-rank { color: #9a948e; font-size: 11px; font-weight: 800 }
+.svm-av { align-items: center; background: #f1f5f9; border-radius: 50%; color: #334155; display: inline-flex; font-size: 10.5px; font-weight: 700; height: 30px; justify-content: center; width: 30px }
+.svm-txt { display: flex; flex-direction: column; line-height: 1.2; min-width: 0 }
+.svm-txt b { font-size: 12.5px; font-weight: 600 }
+.svm-txt em { color: #8a8f9c; font-size: 10.5px; font-style: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.svm-sent { align-items: center; display: flex; gap: 5px }
+.svm-sent-bar { background: #eef0f3; border-radius: 999px; flex: 1; height: 5px; overflow: hidden }
+.svm-sent-bar i { border-radius: inherit; display: block; height: 100%; transition: width .6s ease }
+.svm-sent em { font-size: 10.5px; font-style: normal; font-variant-numeric: tabular-nums; font-weight: 700; min-width: 16px; text-align: right }
+.svm-tag { border-radius: 999px; font-size: 10px; font-weight: 700; padding: 2px 7px; white-space: nowrap }
+.svm-dur { color: #8a8f9c; font-size: 10.5px; font-variant-numeric: tabular-nums; text-align: right }
+.svm-call--rose .svm-sent-bar i { background: #f43f5e } .svm-call--rose .svm-sent em { color: #e11d48 } .svm-call--rose .svm-tag { background: #fff1f2; color: #be123c }
+.svm-call--amber .svm-sent-bar i { background: #f59e0b } .svm-call--amber .svm-sent em { color: #d97706 } .svm-call--amber .svm-tag { background: #fffbeb; color: #b45309 }
+.svm-call--green .svm-sent-bar i { background: #22c55e } .svm-call--green .svm-sent em { color: #16a34a } .svm-call--green .svm-tag { background: #f0fdf4; color: #15803d }
+
+.svm-ctrl { background: #fff; border: 1px solid var(--svm-line); border-radius: 14px; display: flex; flex-direction: column; gap: 7px; margin-top: 8px; padding: 9px 10px }
+.svm-state { align-items: center; color: var(--svm-muted); display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 6px }
+.svm-state i { background: #cbd5e1; border-radius: 50%; height: 7px; width: 7px }
+.svm-state--monitor i { background: #0d9488 }
+.svm-state--whisper i { background: #7c3aed }
+.svm-state--barge i { animation: vdm-blink 1.2s ease-in-out infinite; background: #dc2626 }
+.svm-modes { display: grid; gap: 5px; grid-template-columns: repeat(3, minmax(0, 1fr)) 36px }
+.svm-modes button { align-items: center; background: #f5f3f0; border: 1px solid transparent; border-radius: 9px; color: var(--svm-ink); display: inline-flex; font-size: 12px; font-weight: 600; gap: 5px; justify-content: center; padding: 7px 4px; transition: all .15s ease }
+/* Hover only lifts the inactive modes; the active one keeps its dark fill
+   (the old rule out-ranked .is-on and turned it light grey with white text). */
+.svm-modes button:not(.is-on):not(:disabled):hover { background: #ebe6e0; border-color: rgba(16, 2, 44, .12); transform: translateY(-1px) }
+.svm-modes button.is-on { background: #10022c; color: #fff }
+.svm-modes button.is-on:hover { background: #241448; box-shadow: 0 6px 14px -8px rgba(16, 2, 44, .6) }
+.svm-modes button.svm-leave:not(:disabled):hover { background: #fee2e2; border-color: #fecaca; color: #b91c1c }
+.svm-modes .svm-leave { background: #fef2f2; color: #dc2626; font-size: 15px }
+.svm-modes .svm-leave:disabled { cursor: default; opacity: .4 }
+.svm-prompts { animation: psm-in .25s ease; display: flex; flex-wrap: wrap; gap: 5px }
+.svm-prompts button { background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 999px; color: #5b21b6; font-size: 11px; font-weight: 600; padding: 3px 9px }
+.svm-notice { align-items: center; animation: psm-in .25s ease; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 9px; color: #9a3412; display: flex; font-size: 11px; font-weight: 600; gap: 6px; padding: 5px 9px }
+
+.svm-log { background: #10022c; border-radius: 12px; color: #e2e8f0; display: flex; flex-direction: column; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; gap: 3px; height: 96px; list-style: none; margin: 8px 0 0; overflow: hidden; padding: 8px 10px }
+.svm-log-k { color: rgba(255, 255, 255, .45); font-family: inherit; font-size: 9.5px; font-weight: 700; letter-spacing: .08em; margin-bottom: 2px; text-transform: uppercase }
+.svm-log-row { animation: psm-in .25s ease; display: flex; font-size: 10.5px; gap: 8px; white-space: nowrap }
+.svm-log-row em { color: rgba(255, 255, 255, .45); font-style: normal }
+.svm-log-row b { font-weight: 700 }
+.svm-log-row span { color: rgba(255, 255, 255, .7); overflow: hidden; text-overflow: ellipsis }
+.svm-log-row--silent b { color: #5eead4 }
+.svm-log-row--agent b { color: #c4b5fd }
+.svm-log-row--all b { color: #fca5a5 }
+.svm-log-row--sup b, .svm-log-row--ai b { color: #93c5fd }
+
+@media (min-width: 1025px) and (max-height: 860px) { .svm-log { height: 82px } .svm-call { padding: 5px 10px } }
+@media (min-width: 1025px) and (max-height: 700px) { .svm-log { height: 62px } .svm-head { padding-bottom: 6px } .svm-txt em { display: none } }
+@media (max-width: 560px) {
+    .svm { border-radius: 18px; padding: 12px }
+    .svm-head .lp-dots { display: none }
+    .svm-title { margin-left: 0 }
+    .svm-call { grid-template-columns: 30px minmax(0, 1fr) 54px 36px }
+    .svm-rank, .svm-tag { display: none }
+}
+
+/* ── Shared head ──────────────────────────────────────────────────────── */
+.sv-head { margin: 0 auto 40px; max-width: 760px; text-align: center }
+.sv-head .lp-intro { margin: 14px auto 0 }
+
+/* ── Statement ────────────────────────────────────────────────────────── */
+.sv-st-sec { padding: 64px 0 24px }
+body.design-v2 .lp .sv-st { color: var(--lp-ink, #10022c); font-size: clamp(22px, 2.2vw, 30px) !important; font-weight: 500; letter-spacing: -.01em; line-height: 1.4 !important; margin: 0 auto; max-width: 900px; position: relative; text-align: center }
+.sv-st i { color: #14b8a6; display: block; font-size: 34px; margin-bottom: 8px }
+
+/* ── Three modes ──────────────────────────────────────────────────────── */
+.sv-mode { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 26px; box-shadow: 0 30px 60px -50px rgba(30, 27, 75, .5); margin: 0 auto; max-width: 1040px; overflow: hidden }
+.sv-mode :where(button) { cursor: pointer; font: inherit }
+.sv-mode-tabs { border-bottom: 1px solid rgba(16, 2, 44, .07); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.sv-mode-tab { align-items: center; background: #fbfaf9; border: 0; border-bottom: 3px solid transparent; color: inherit; display: flex; gap: 12px; padding: 16px 20px; text-align: left; transition: background .15s ease, border-color .15s ease }
+.sv-mode-tab + .sv-mode-tab { border-left: 1px solid rgba(16, 2, 44, .07) }
+.sv-mode-tab.is-on { background: #fff; border-bottom-color: #0d9488 }
+.sv-mode-tab:focus-visible { outline: 2px solid #0d9488; outline-offset: -2px }
+.sv-mode-ic { align-items: center; background: #f1f5f9; border-radius: 12px; color: #475569; display: inline-flex; flex: none; font-size: 18px; height: 40px; justify-content: center; transition: all .15s ease; width: 40px }
+.sv-mode-tab.is-on .sv-mode-ic { background: #0d9488; color: #fff }
+.sv-mode-txt { display: flex; flex-direction: column; line-height: 1.25 }
+.sv-mode-txt em { color: #9a948e; font-size: 11px; font-style: normal; font-weight: 800; letter-spacing: .08em; text-transform: uppercase }
+.sv-mode-txt b { color: #10022c; font-size: 15px; font-weight: 600 }
+
+.sv-mode-body { align-items: center; display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 28px 32px }
+.sv-path { max-width: 380px; width: 100% }
+.sv-path marker path { fill: #94a3b8 }
+.sv-ln { stroke-linecap: round; stroke-width: 3; transition: stroke .25s ease, opacity .25s ease }
+.sv-ln--base { stroke: #94a3b8 }
+.sv-ln--listen { opacity: .55; stroke: #14b8a6; stroke-dasharray: 4 6 }
+.sv-ln--talk { opacity: .18; stroke: #cbd5e1; stroke-dasharray: 6 6 }
+.sv-ln--talk.is-on { animation: sv-flow 1s linear infinite; opacity: 1; stroke: #7c3aed }
+.sv-path--barge .sv-ln--talk.is-on { stroke: #dc2626 }
+@keyframes sv-flow { to { stroke-dashoffset: -12 } }
+.sv-node circle { fill: #fff; stroke: #cbd5e1; stroke-width: 2 }
+.sv-node text { fill: #334155; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-anchor: middle }
+.sv-node--sup circle { fill: #10022c; stroke: #10022c }
+.sv-node--sup text { fill: #fff }
+.sv-mode-info { animation: psm-in .3s ease }
+body.design-v2 .lp .sv-mode-title { color: var(--lp-ink, #10022c); font-size: 22px !important; font-weight: 600; line-height: 1.25 !important; margin: 0 0 8px }
+body.design-v2 .lp .sv-mode-text { color: var(--lp-muted, #5b6475); font-size: 15px !important; line-height: 1.6 !important; margin: 0 0 16px }
+.sv-hears { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 0; padding: 0 }
+.sv-hears li { align-items: center; background: #faf9f7; border-radius: 10px; color: #9a948e; display: flex; font-size: 14px; font-weight: 500; gap: 8px; padding: 8px 12px; transition: all .2s ease }
+.sv-hears li.is-on { background: #f0fdfa; color: #10022c }
+.sv-hears li.is-on i { color: #0d9488 }
+
+.sv-states { align-items: center; background: #fbfaf9; border-top: 1px solid rgba(16, 2, 44, .07); display: grid; gap: 10px 16px; grid-template-columns: auto minmax(0, 1fr); padding: 16px 24px }
+.sv-states-k { align-items: center; color: #10022c; display: inline-flex; font-size: 13.5px; font-weight: 600; gap: 6px }
+.sv-states-k i { color: #d97706 }
+.sv-states-tabs { display: flex; flex-wrap: wrap; gap: 6px }
+.sv-states-tabs button { background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 999px; color: #5b6475; font-size: 12.5px; font-weight: 600; padding: 5px 12px }
+.sv-states-tabs button.is-on { background: #fff7ed; border-color: #fdba74; color: #c2410c }
+body.design-v2 .lp .sv-states-out { color: #5b6475; font-size: 13.5px !important; grid-column: 1 / -1; line-height: 1.5 !important; margin: 0 }
+.sv-states-out b { color: #10022c }
+
+/* ── Attention radar ──────────────────────────────────────────────────── */
+.sv-rad { align-items: center; display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin: 0 auto; max-width: 1040px }
+.sv-rad :where(button) { cursor: pointer; font: inherit }
+.sv-rad-plot { align-items: center; background: #10022c; border-radius: 26px; display: flex; flex-direction: column; gap: 8px; padding: 22px }
+.sv-rad-plot svg { max-width: 380px; width: 100% }
+.sv-ring { fill: none; stroke: rgba(94, 234, 212, .18); stroke-width: 1 }
+.sv-axis { stroke: rgba(94, 234, 212, .1) }
+.sv-sweep { animation: sv-spin 6s linear infinite; transform-box: view-box; transform-origin: 140px 140px }
+.sv-sweep path { fill: rgba(45, 212, 191, .1) }
+@keyframes sv-spin { to { transform: rotate(360deg) } }
+.sv-core { fill: #5eead4 }
+.sv-dot { cursor: pointer; transition: opacity .2s ease }
+.sv-dot circle { stroke: #10022c; stroke-width: 2; transition: r .2s ease }
+.sv-dot text { fill: #10022c; font-size: 8px; font-weight: 800; pointer-events: none; text-anchor: middle }
+.sv-dot--rose circle { fill: #fb7185 }
+.sv-dot--amber circle { fill: #fbbf24 }
+.sv-dot--blue circle { fill: #60a5fa }
+.sv-dot--green circle { fill: #4ade80 }
+.sv-dot.is-sel circle { stroke: #fff }
+.sv-dot.is-dim { opacity: .18 }
+.sv-dot:focus-visible { outline: none }
+.sv-dot:focus-visible circle { stroke: #fff; stroke-width: 3 }
+.sv-rad-k { align-items: center; color: rgba(255, 255, 255, .6); display: inline-flex; font-size: 12px; gap: 6px }
+.sv-rad-k i { background: #5eead4; border-radius: 50%; height: 7px; width: 7px }
+
+.sv-rad-side { display: flex; flex-direction: column; gap: 12px }
+.sv-sigs { display: flex; flex-wrap: wrap; gap: 6px }
+.sv-sigs button { background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 999px; color: #5b6475; font-size: 12.5px; font-weight: 600; padding: 5px 12px; transition: all .15s ease }
+.sv-sigs button.is-on { background: #10022c; border-color: #10022c; color: #fff }
+.sv-rad-card { align-items: center; animation: psm-in .25s ease; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-left: 4px solid; border-radius: 14px; display: flex; gap: 12px; padding: 12px 14px }
+.sv-rad-card--rose { border-left-color: #f43f5e }
+.sv-rad-card--amber { border-left-color: #f59e0b }
+.sv-rad-card--blue { border-left-color: #3b82f6 }
+.sv-rad-card--green { border-left-color: #22c55e }
+.sv-rad-rank { color: #9a948e; font-size: 13px; font-weight: 800 }
+.sv-rad-who { display: flex; flex: 1; flex-direction: column }
+.sv-rad-who b { color: #10022c; font-size: 15px }
+.sv-rad-who em { color: #8a8f9c; font-size: 12.5px; font-style: normal }
+.sv-rad-sig { background: #f5f3f0; border-radius: 999px; color: #10022c; font-size: 12px; font-weight: 600; padding: 4px 10px }
+.sv-tick { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 16px; padding: 12px 14px }
+.sv-tick-k { align-items: center; color: #9a948e; display: inline-flex; font-size: 11px; font-weight: 800; gap: 6px; letter-spacing: .08em; margin-bottom: 8px; text-transform: uppercase }
+.sv-tick-k i { animation: vdm-blink 1.4s ease-in-out infinite; background: #22c55e; border-radius: 50%; height: 7px; width: 7px }
+.sv-tick ol { display: flex; flex-direction: column; gap: 6px; list-style: none; margin: 0; padding: 0 }
+.sv-tick li { align-items: center; color: #5b6475; display: flex; font-size: 13px; gap: 8px; justify-content: space-between }
+.sv-tick li.is-new { animation: psm-in .3s ease; color: #10022c; font-weight: 600 }
+.sv-tick-tag { border-radius: 999px; flex: none; font-size: 10.5px; font-style: normal; font-weight: 800; padding: 2px 8px; text-transform: uppercase }
+.sv-tick-tag--rose { background: #fff1f2; color: #be123c }
+.sv-tick-tag--green { background: #f0fdf4; color: #15803d }
+.sv-tick-tag--amber { background: #fffbeb; color: #b45309 }
+.sv-tick-tag--blue { background: #eff6ff; color: #1d4ed8 }
+
+/* ── Feature shortcut cards ───────────────────────────────────────────── */
+.sv-feat-sec { background: #fff }
+.sv-keys { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.sv-key { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 20px; display: flex; flex-direction: column; padding: 22px 22px 20px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease }
+.sv-key:hover { border-color: var(--t-bd); box-shadow: 0 24px 44px -32px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.sv-key-top { align-items: center; display: flex; justify-content: space-between; margin-bottom: 16px }
+.sv-key-ic { align-items: center; background: var(--t-bg); border-radius: 12px; color: var(--t-fg); display: inline-flex; font-size: 19px; height: 42px; justify-content: center; width: 42px }
+.sv-kbd { background: linear-gradient(180deg, #fff, #f3f1ee); border: 1px solid rgba(16, 2, 44, .14); border-bottom-width: 3px; border-radius: 8px; color: #10022c; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; font-weight: 700; min-width: 34px; padding: 4px 10px; text-align: center; transition: transform .1s ease }
+.sv-key:hover .sv-kbd { border-bottom-width: 1px; transform: translateY(2px) }
+body.design-v2 .lp .sv-key-title { color: var(--lp-ink, #10022c); font-size: 17px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 6px }
+body.design-v2 .lp .sv-key-text { color: var(--lp-muted, #5b6475); font-size: 14px !important; line-height: 1.55 !important; margin: 0 0 14px }
+.sv-key-short { align-self: flex-start; background: var(--t-bg); border-radius: 999px; color: var(--t-fg); font-size: 12px; font-weight: 700; margin-top: auto; padding: 3px 10px }
+
+/* ── Roles ────────────────────────────────────────────────────────────── */
+.sv-roles { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+.sv-role { background: linear-gradient(180deg, var(--t-bg), #fff 55%); border: 1px solid rgba(16, 2, 44, .08); border-radius: 20px; display: flex; flex-direction: column; padding: 20px; transition: transform .25s ease, box-shadow .25s ease }
+.sv-role:hover { box-shadow: 0 24px 44px -32px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.sv-role-ic { align-items: center; background: #fff; border: 1px solid var(--t-bd); border-radius: 12px; color: var(--t-fg); display: inline-flex; font-size: 18px; height: 40px; justify-content: center; margin-bottom: 14px; width: 40px }
+body.design-v2 .lp .sv-role-title { color: var(--lp-ink, #10022c); font-size: 16px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 4px }
+body.design-v2 .lp .sv-role-text { color: var(--lp-muted, #5b6475); font-size: 13.5px !important; line-height: 1.5 !important; margin: 0 0 14px }
+.sv-role-view { align-items: center; align-self: flex-start; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 999px; color: #10022c; display: inline-flex; font-size: 12px; font-weight: 600; gap: 5px; margin-top: auto; padding: 4px 10px }
+.sv-role-view i { color: var(--t-fg) }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .sv-mode-body { gap: 20px; grid-template-columns: minmax(0, 1fr); justify-items: center }
+    .sv-mode-info { width: 100% }
+    .sv-rad { grid-template-columns: minmax(0, 1fr) }
+    .sv-keys { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .sv-roles { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 640px) {
+    .sv-mode-tabs { grid-template-columns: minmax(0, 1fr) }
+    .sv-mode-tab + .sv-mode-tab { border-left: 0; border-top: 1px solid rgba(16, 2, 44, .07) }
+    .sv-mode-body { padding: 20px 16px }
+    .sv-states { grid-template-columns: minmax(0, 1fr); padding: 14px 16px }
+    .sv-rad-plot { padding: 14px }
+    .sv-keys, .sv-roles { grid-template-columns: minmax(0, 1fr) }
+}
+@media (prefers-reduced-motion: reduce) {
+    .svm-prompts, .svm-notice, .svm-log-row, .svm-state--barge i, .sv-ln--talk.is-on, .sv-sweep, .sv-mode-info, .sv-rad-card, .sv-tick li.is-new, .sv-tick-k i { animation: none }
+}
+
+/* Supervisor hero art (indigo dusk over a lone butte): cream wash on the copy side. */
+.lp-hero-art[style*="desert-butte-mesa"] { background-position: 50% 70% }
+.lp-hero-art[style*="desert-butte-mesa"]::after {
+    background: linear-gradient(90deg, rgba(255, 248, 242, .96) 0%, rgba(255, 248, 242, .9) 36%, rgba(255, 248, 242, .46) 56%, rgba(255, 248, 242, .1) 74%, rgba(255, 248, 242, 0) 100%)
+}
+@media (max-width: 1024px) {
+    .lp-hero-art[style*="desert-butte-mesa"]::after { background: linear-gradient(180deg, rgba(255, 248, 242, .94) 0%, rgba(255, 248, 242, .8) 55%, rgba(255, 248, 242, .45) 100%) }
+}

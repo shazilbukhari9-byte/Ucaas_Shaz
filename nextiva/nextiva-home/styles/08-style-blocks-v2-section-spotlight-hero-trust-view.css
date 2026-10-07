@@ -1,0 +1,1133 @@
+.design-v2 .section-spotlight-hero-trust {
+    background: var(--brand-white);
+    padding: 100px max(100px, (100% - var(--content-max-width))/2)
+}
+
+.design-v2 .spotlight-hero-trust-container {
+    width: 100%
+}
+
+.design-v2 .spotlight-hero-trust-card {
+    /* Anchored to the top. The artwork is 2:1 but the card gets wider than that
+       on large screens and when the page is zoomed out, so `cover` has to crop
+       vertically — centring it took the deep blue off the top. Cropping from the
+       bottom loses tree line instead, which nothing depends on. */
+    background-position: 50% 0;
+    background-size: cover;
+    border: 1px solid var(--text-primary);
+    border-radius: 24px;
+    /* 650px was sized to hold the headline, subhead, CTA and the two product
+       mockups. Those are gone — this is a plain decorative band now, so it is
+       sized as one. The artwork is cropped to match this ratio exactly, so
+       `cover` has nothing to trim. */
+    min-height: 420px;
+    overflow: hidden;
+    position: relative
+}
+
+/* The artwork carries its own colour now — a warm horizon under a starfield —
+   so the overlay is a neutral scrim that only buys contrast for the copy on the
+   left, instead of the blue multiply that used to tint the whole card. */
+.design-v2 .spotlight-hero-trust-overlay {
+    background: linear-gradient(90deg, rgba(6, 18, 44, .48), rgba(6, 18, 44, .28) 42%, rgba(6, 18, 44, .07) 72%, rgba(6, 18, 44, 0));
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .floating-particles {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2
+}
+
+.design-v2 .spotlight-hero-trust-content {
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    justify-content: space-between;
+    padding: 48px 80px 72px;
+    position: absolute;
+    z-index: 3
+}
+
+.design-v2 .spotlight-hero-trust-content--centered {
+    justify-content: center
+}
+
+.design-v2 .spotlight-hero-trust-top {
+    flex-shrink: 0
+}
+
+.design-v2 .spotlight-hero-trust-bottom {
+    margin-top: auto
+}
+
+.design-v2 .spotlight-hero-trust-logo-row {
+    align-items: center;
+    display: flex;
+    gap: 12px
+}
+
+.design-v2 .section-spotlight-hero-trust .new-pill {
+    background: var(--brand-blue);
+    border-radius: 100px;
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-left: 0;
+    padding: 4px 8px 3px;
+    text-transform: uppercase;
+    white-space: nowrap
+}
+
+.design-v2 .section-spotlight-hero-trust .new-pill-white {
+    background: var(--brand-white);
+    color: var(--text-primary)
+}
+
+.design-v2 .spotlight-hero-trust-logo {
+    display: block;
+    height: auto;
+    margin-bottom: 8px;
+    max-width: 120px;
+    width: 120px;
+    fill: var(--text-white)
+}
+
+.design-v2 .spotlight-hero-trust-logo path,
+.design-v2 .spotlight-hero-trust-logo polygon {
+    fill: var(--text-white)
+}
+
+.design-v2 .spotlight-hero-trust-logo-large {
+    margin-bottom: 24px;
+    max-width: 160px;
+    width: 160px
+}
+
+.design-v2 .spotlight-hero-trust-name {
+    color: var(--text-white);
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    text-transform: uppercase
+}
+
+.design-v2 .spotlight-hero-trust-headline {
+    color: var(--text-white);
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-size: var(--text-display-sm);
+    font-weight: var(--arizona-hero-weight);
+    letter-spacing: var(--arizona-hero-letter-spacing);
+    line-height: var(--arizona-hero-line-height);
+    margin: 0 0 40px;
+    max-width: 680px
+}
+
+.design-v2 .spotlight-hero-trust-subhead {
+    color: hsla(0, 0%, 100%, .9);
+    font-family: var(--font-body);
+    font-size: var(--text-body-md);
+    font-weight: 400;
+    line-height: 1.7;
+    margin: 0 0 36px;
+    max-width: 480px
+}
+
+.design-v2 .spotlight-hero-trust-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem
+}
+
+.design-v2 .spotlight-hero-trust-card .btn-secondary {
+    border-color: hsla(0, 0%, 100%, .4);
+    color: var(--text-white)
+}
+
+.design-v2 .spotlight-hero-trust-card .btn-secondary .btn-arrow {
+    background-color: hsla(0, 0%, 100%, .1);
+    color: var(--text-white)
+}
+
+.design-v2 .spotlight-hero-trust-card .btn-secondary:hover {
+    background-color: hsla(0, 0%, 100%, .1);
+    border-color: hsla(0, 0%, 100%, .6)
+}
+
+.design-v2 .section-spotlight-hero-trust .platform-showcase-header {
+    margin-bottom: 60px;
+    max-width: 800px
+}
+
+.design-v2 .section-spotlight-hero-trust .platform-showcase-header .platform-badge {
+    background: rgba(0, 0, 0, .06);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 24px;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-spotlight-hero-trust .showcase-section-title {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-size: var(--text-section-sm);
+    font-weight: var(--arizona-heading-weight);
+    letter-spacing: var(--arizona-heading-letter-spacing);
+    line-height: var(--arizona-heading-line-height);
+    margin: 0 0 40px
+}
+
+.design-v2 .section-spotlight-hero-trust .showcase-section-description {
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 640px
+}
+
+.design-v2 .spotlight-hero-trust-gravity {
+    height: 420px;
+    pointer-events: none;
+    position: absolute;
+    right: 36px;
+    top: 50%;
+    transform: translateY(-42%);
+    width: min(52vw, 560px);
+    z-index: 2
+}
+
+.design-v2 .spotlight-hero-trust-gravity .platform-gravity-visual {
+    height: 100%;
+    position: relative;
+    width: 100%
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-icons-container,
+.design-v2 .spotlight-hero-trust-gravity .gravity-particles {
+    inset: 0;
+    position: absolute
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-atom {
+    height: 390px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 390px
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus {
+    align-items: center;
+    animation: spotlightNucleusBreath 5s ease-in-out infinite;
+    background: hsla(0, 0%, 100%, .96);
+    border-radius: 50%;
+    color: #00214a;
+    display: flex;
+    height: 56px;
+    justify-content: center;
+    left: 50%;
+    overflow: visible;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    z-index: 100
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus:after,
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus:before {
+    border-radius: 50%;
+    content: "";
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus:before {
+    background: radial-gradient(circle, hsla(0, 0%, 100%, .72) 0, hsla(0, 0%, 100%, .34) 56%, hsla(0, 0%, 100%, 0) 100%);
+    filter: blur(1px);
+    height: 132px;
+    width: 132px;
+    z-index: -1
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus:after {
+    background: radial-gradient(circle, hsla(0, 0%, 100%, .34) 22%, hsla(0, 0%, 100%, .14) 58%, hsla(0, 0%, 100%, .04) 76%, hsla(0, 0%, 100%, 0) 100%);
+    filter: blur(2px);
+    height: 188px;
+    width: 188px;
+    z-index: -2
+}
+
+.design-v2 .spotlight-hero-trust-gravity .nucleus-icon {
+    height: 24px;
+    width: 24px
+}
+
+.design-v2 .spotlight-hero-trust-gravity .nucleus-logo-image {
+    display: block;
+    height: 24px;
+    object-fit: contain;
+    width: 24px
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus--image {
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: none;
+    height: 96px;
+    width: 96px
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus--image:after,
+.design-v2 .spotlight-hero-trust-gravity .gravity-nucleus--image:before {
+    display: none
+}
+
+.design-v2 .spotlight-hero-trust-gravity .nucleus-full-image {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    width: 100%
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-orbit {
+    border: 1px solid hsla(0, 0%, 100%, .34);
+    border-radius: 50%;
+    height: 100px;
+    left: 50%;
+    margin-left: -140px;
+    margin-top: -50px;
+    position: absolute;
+    top: 50%;
+    width: 280px
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-orbit-1 {
+    animation: gravityOrbit1 14s linear infinite
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-orbit-2 {
+    animation: gravityOrbit2 14s linear infinite
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-orbit-3 {
+    animation: gravityOrbit3 14s linear infinite
+}
+
+.design-v2 .spotlight-hero-trust-gravity .orbit-dot {
+    background: hsla(0, 0%, 100%, .95);
+    border-radius: 50%;
+    height: 8px;
+    position: absolute;
+    width: 8px
+}
+
+.design-v2 .spotlight-hero-trust-gravity .orbit-dot-2 {
+    animation: orbitDotLight2 14s linear infinite
+}
+
+.design-v2 .spotlight-hero-trust-gravity .orbit-dot-3 {
+    animation: orbitDotLight3 14s linear infinite
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-connection-line {
+    background: repeating-linear-gradient(90deg, hsla(0, 0%, 100%, .35), hsla(0, 0%, 100%, .35) 3px, transparent 0, transparent 6px);
+    height: 1px;
+    position: absolute;
+    transform-origin: left center
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-icon {
+    align-items: center;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    background: hsla(0, 0%, 100%, .14);
+    border: 1px solid hsla(0, 0%, 100%, .32);
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    font-size: var(--text-body-xl);
+    height: 44px;
+    justify-content: center;
+    position: absolute;
+    width: 44px
+}
+
+.design-v2 .spotlight-hero-trust-gravity .gravity-pill {
+    background: hsla(0, 0%, 100%, .95);
+    border-radius: 24px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, .12);
+    color: #0b1b36;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 7px 12px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    white-space: nowrap
+}
+
+.design-v2 .spotlight-hero-trust-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 16px
+}
+
+.design-v2 .spotlight-hero-trust-trustcard {
+    background: var(--brand-white);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0
+}
+
+.design-v2 .spotlight-hero-trust-icon {
+    align-items: center;
+    background: var(--text-primary);
+    border-radius: 8px;
+    color: var(--text-white);
+    display: flex;
+    flex-shrink: 0;
+    font-size: var(--text-body-lg);
+    height: 36px;
+    justify-content: center;
+    margin: 64px 64px 20px;
+    width: 36px
+}
+
+.design-v2 .spotlight-hero-trust-icon-img {
+    filter: brightness(0) invert(1);
+    height: 20px;
+    object-fit: contain;
+    transform: translateY(-1px);
+    width: 20px
+}
+
+.design-v2 .spotlight-hero-trust-body {
+    flex: 1
+}
+
+.design-v2 .spotlight-hero-trust-body h3 {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-heading-md);
+    font-weight: 600;
+    line-height: 1;
+    margin: 0 64px 20px
+}
+
+.design-v2 .spotlight-hero-trust-body p {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0 64px 20px
+}
+
+.design-v2 .spotlight-hero-trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 64px 64px
+}
+
+.design-v2 .spotlight-hero-trust-badge {
+    align-items: center;
+    background: var(--neutral-100);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    color: var(--text-primary);
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    justify-content: center;
+    letter-spacing: .04em;
+    padding: 6px 10px;
+    text-transform: uppercase;
+    white-space: nowrap
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-spotlight-hero-trust {
+        padding: 60px 40px
+    }
+    .design-v2 .spotlight-hero-trust-content {
+        padding: 40px
+    }
+    .design-v2 .section-spotlight-hero-trust .platform-showcase-header {
+        margin-bottom: 40px
+    }
+    .design-v2 .spotlight-hero-trust-grid {
+        grid-template-columns: 1fr
+    }
+    .design-v2 .spotlight-hero-trust-gravity {
+        height: 340px;
+        right: 10px;
+        width: min(58vw, 460px)
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-spotlight-hero-trust {
+        padding: 60px 20px
+    }
+    .design-v2 .spotlight-hero-trust-card {
+        min-height: auto
+    }
+    .design-v2 .spotlight-hero-trust-content {
+        inset: auto;
+        padding: 32px 24px 40px;
+        position: relative
+    }
+    .design-v2 .spotlight-hero-trust-cta .btn {
+        justify-content: space-between;
+        width: 100%
+    }
+    .design-v2 .spotlight-hero-trust-name {
+        font-size: var(--text-caption-sm)
+    }
+    .design-v2 .spotlight-hero-trust-headline {
+        margin-top: 24px
+    }
+    .design-v2 .spotlight-hero-trust-logo {
+        width: 100px
+    }
+    .design-v2 .spotlight-hero-trust-logo-large {
+        margin-bottom: 16px;
+        width: 120px
+    }
+    .design-v2 .spotlight-hero-trust-trustcard {
+        border-radius: 16px
+    }
+    .design-v2 .spotlight-hero-trust-icon {
+        margin: 24px 24px 16px
+    }
+    .design-v2 .spotlight-hero-trust-body h3 {
+        margin: 0 24px 12px
+    }
+    .design-v2 .spotlight-hero-trust-body p {
+        margin: 0 24px 20px
+    }
+    .design-v2 .spotlight-hero-trust-badges {
+        margin: 0 24px 24px
+    }
+    .design-v2 .spotlight-hero-trust-grid {
+        grid-template-columns: 1fr
+    }
+    .design-v2 .spotlight-hero-trust-gravity {
+        display: none
+    }
+}
+
+@keyframes spotlightNucleusBreath {
+    0%,
+    to {
+        transform: translate(-50%, -50%) scale(1)
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.08)
+    }
+}
+
+@keyframes gravityOrbit1 {
+    0% {
+        transform: rotate(60deg) rotateX(70deg) rotate(0deg)
+    }
+    to {
+        transform: rotate(60deg) rotateX(70deg) rotate(1turn)
+    }
+}
+
+@keyframes gravityOrbit2 {
+    0% {
+        transform: rotate(-60deg) rotateX(70deg) rotate(0deg)
+    }
+    to {
+        transform: rotate(-60deg) rotateX(70deg) rotate(1turn)
+    }
+}
+
+@keyframes gravityOrbit3 {
+    0% {
+        transform: rotate(0deg) rotateX(70deg) rotate(0deg)
+    }
+    to {
+        transform: rotate(0deg) rotateX(70deg) rotate(1turn)
+    }
+}
+
+@keyframes orbitDotLight2 {
+    0% {
+        transform: rotate(-60deg) rotateX(70deg) rotate(120deg) translateX(140px) rotate(-120deg) rotateX(-70deg) rotate(60deg)
+    }
+    to {
+        transform: rotate(-60deg) rotateX(70deg) rotate(480deg) translateX(140px) rotate(-480deg) rotateX(-70deg) rotate(60deg)
+    }
+}
+
+@keyframes orbitDotLight3 {
+    0% {
+        transform: rotate(0deg) rotateX(70deg) rotate(60deg) translateX(140px) rotate(-60deg) rotateX(-70deg) rotate(0deg)
+    }
+    to {
+        transform: rotate(0deg) rotateX(70deg) rotate(420deg) translateX(140px) rotate(-420deg) rotateX(-70deg) rotate(0deg)
+    }
+}
+
+@keyframes lineRetract {
+    0% {
+        opacity: 0;
+        width: var(--line-length)
+    }
+    10% {
+        opacity: 1
+    }
+    80% {
+        opacity: .4
+    }
+    to {
+        opacity: 0;
+        width: 0
+    }
+}
+
+@keyframes lineExtend {
+    0% {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0
+    }
+    15% {
+        opacity: 1
+    }
+    85% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+        opacity: 0
+    }
+}
+
+@keyframes gravityPull {
+    0% {
+        opacity: 0;
+        transform: translate(var(--start-x), var(--start-y)) scale(1)
+    }
+    10% {
+        opacity: 1
+    }
+    80% {
+        opacity: .8
+    }
+    to {
+        opacity: 0;
+        transform: translate(0) scale(.3)
+    }
+}
+
+@keyframes pillPull {
+    0% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--start-x)), calc(-50% + var(--start-y))) scale(1)
+    }
+    10% {
+        opacity: 1
+    }
+    85% {
+        opacity: 1
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.3)
+    }
+}
+
+@keyframes pillPush {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.3)
+    }
+    15% {
+        opacity: 1
+    }
+    85% {
+        opacity: 1
+    }
+    to {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(1)
+    }
+}
+
+.design-v2 .section-spotlight-hero-trust--badge-subtle .spotlight-hero-trust-badge {
+    border-radius: 4px;
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase
+}
+
+.design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-card {
+    background-position: center 70%
+}
+
+.design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-headline {
+    font-size: var(--text-section-sm);
+    max-width: 780px
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-grid {
+        grid-template-columns: 1fr
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-icon {
+        margin: 32px 32px 16px
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-body h3 {
+        margin: 0 32px 12px
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-body p {
+        margin: 0 32px 16px
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-badges {
+        margin: 0 32px 32px
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-trustcard {
+        border-radius: 12px
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-icon {
+        margin: 20px 20px 12px
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-body h3 {
+        margin: 0 20px 8px
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-body p {
+        margin: 0 20px 16px
+    }
+    .design-v2 .section-spotlight-hero-trust--content-compact .spotlight-hero-trust-badges {
+        margin: 0 20px 20px
+    }
+}
+
+.design-v2 .section-spotlight-hero-trust--hero-badge-subtle .new-pill,
+.design-v2 .section-spotlight-hero-trust--hero-badge-subtle .new-pill-white {
+    background: hsla(0, 0%, 100%, .15);
+    border: 1px solid hsla(0, 0%, 100%, .25);
+    border-radius: 4px;
+    color: var(--text-white);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-spotlight-hero-trust--overlay-dark .spotlight-hero-trust-overlay {
+    background: linear-gradient(90deg, rgba(0, 0, 0, .8), rgba(0, 0, 0, .55) 40%, rgba(0, 0, 0, .2))
+}
+
+/* White type, carried by a soft dark halo as well as the overlay, so it stays
+   readable where the artwork runs pale or the clouds turn warm. */
+.design-v2 .section-spotlight-hero-trust .spotlight-hero-trust-headline {
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(4, 12, 32, .5)
+}
+
+.design-v2 .section-spotlight-hero-trust .spotlight-hero-trust-subhead {
+    color: hsla(0, 0%, 100%, .95);
+    text-shadow: 0 1px 8px rgba(4, 12, 32, .5)
+}
+
+/* ══ AI Receptionist features ═══════════════════════════════════════════════
+   Replaces the inherited card pattern — black square icon, paragraph, two grey
+   pills — which was the captured layout and read as somebody else's design.
+   This one is numbered, warm-accented and check-listed, and it carries its own
+   section header so the block announces what it is. */
+.design-v2 .section-spotlight-hero-trust .arf-header {
+    /* Ranged left, and indented by the cards' own padding so the heading lines
+       up with the card titles rather than with the card borders — the border
+       edge is not what the eye reads as the left margin. */
+    /* No width cap: capping at 1320 and centring pushed the block right of the
+       section's own left margin on wide screens. Padded so the text lands on the
+       same line as the headline in the card above. */
+    margin: 88px auto 44px;
+    max-width: none;
+    /* Flush to the panel edge. */
+    padding: 0;
+    text-align: left
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-eyebrow {
+    align-items: center;
+    background: rgba(249, 115, 22, .1);
+    border: 1px solid rgba(249, 115, 22, .22);
+    border-radius: 999px;
+    color: #c2410c;
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 700;
+    gap: 7px;
+    letter-spacing: .06em;
+    padding: 7px 15px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-heading {
+    color: var(--text-primary, #10022c);
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: var(--arizona-hero-weight);
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    margin: 20px 0 14px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-sub {
+    color: rgba(16, 2, 44, .6);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    /* held short so it does not run the full width of the panel */
+    margin: 0;
+    max-width: 620px
+}
+
+/* ── the cards ──────────────────────────────────────────────────────────── */
+.design-v2 .section-spotlight-hero-trust .arf-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    max-width: none;
+    /* edge to edge — the cards end well above the panel's rounded bottom, so
+       nothing is clipped by the corner radius */
+    padding: 0
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-card {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 30px 28px 28px;
+    position: relative;
+    transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-card:hover {
+    border-color: rgba(249, 115, 22, .3);
+    box-shadow: 0 24px 50px -22px rgba(2, 14, 40, .3);
+    transform: translateY(-3px)
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-num {
+    color: rgba(16, 2, 44, .16);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    position: absolute;
+    right: 26px;
+    top: 26px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-icon {
+    align-items: center;
+    background: linear-gradient(150deg, rgba(249, 115, 22, .16), rgba(251, 191, 36, .18));
+    border: 1px solid rgba(249, 115, 22, .2);
+    border-radius: 14px;
+    color: #c2410c;
+    display: flex;
+    font-size: 22px;
+    height: 50px;
+    justify-content: center;
+    width: 50px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-title {
+    color: var(--text-primary, #10022c);
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.015em;
+    line-height: 1.25;
+    margin: 20px 0 12px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-desc {
+    color: rgba(16, 2, 44, .62);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 22px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-points {
+    border-top: 1px solid rgba(16, 2, 44, .07);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    margin: auto 0 0;
+    padding: 18px 0 0
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-points li {
+    align-items: center;
+    color: rgba(16, 2, 44, .78);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 500;
+    gap: 9px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-points i {
+    align-items: center;
+    background: rgba(22, 163, 74, .13);
+    border-radius: 50%;
+    color: #15803d;
+    display: flex;
+    flex: none;
+    font-size: 11px;
+    height: 18px;
+    justify-content: center;
+    width: 18px
+}
+
+@media (max-width: 1024px) {
+    .design-v2 .section-spotlight-hero-trust .arf-grid { grid-template-columns: repeat(2, 1fr) }
+}
+
+@media (max-width: 720px) {
+    .design-v2 .section-spotlight-hero-trust .arf-grid { grid-template-columns: 1fr }
+    .design-v2 .section-spotlight-hero-trust .arf-header { margin: 56px auto 30px; padding: 0 }
+    .design-v2 .section-spotlight-hero-trust .arf-grid { padding-left: 0; padding-right: 0 }
+    .design-v2 .section-spotlight-hero-trust .arf-card { padding: 26px 22px 24px }
+}
+
+/* ══ Card and features as one object ════════════════════════════════════════
+   The section background stays white. Continuity comes from geometry instead:
+   the receptionist card squares off its lower corners and a white panel picks
+   up flush underneath with the same width and edges, so the two read as a
+   single card — dark on top, features below — rather than as two blocks with a
+   band of page between them. */
+.design-v2 .spotlight-hero-trust-card {
+    border-bottom: none;
+    border-radius: 24px 24px 0 0;
+    margin-bottom: 0
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-panel {
+    background: #fff;
+    border: none;
+    border-radius: 0 0 24px 24px;
+    overflow: hidden;
+    position: relative
+}
+
+/* the header no longer needs to clear a gap above it */
+.design-v2 .section-spotlight-hero-trust .arf-header {
+    /* starts just under the join rather than after a band of empty white */
+    margin: 26px auto 34px
+}
+
+.design-v2 .section-spotlight-hero-trust .arf-grid {
+    padding-bottom: 56px
+}
+
+@media (max-width: 720px) {
+    .design-v2 .section-spotlight-hero-trust .arf-header {
+        margin: 22px auto 24px;
+        padding: 0 24px 0 46px
+    }
+    .design-v2 .section-spotlight-hero-trust .arf-grid { padding-bottom: 38px }
+}
+
+/* ══ Mini product UI in each feature card ═══════════════════════════════════
+   Each card closes on a small slice of real interface. Held quiet on purpose:
+   a white surface on a hairline, one type size for labels and one for values,
+   and icons that inherit the colour of the text beside them. Tinting the
+   glyphs coral and green made them read as emoji sitting in the panel - they
+   are Remix Icon glyphs, but colour was doing the talking instead of form. */
+.design-v2 .section-spotlight-hero-trust .arfui {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+    gap: 10px;
+    margin: auto 0 0;
+    padding: 14px
+}
+
+/* ── header: what happened, when ─────────────────────────────────────────── */
+.design-v2 .section-spotlight-hero-trust .arfui-head {
+    align-items: center;
+    border-bottom: 1px solid rgba(16, 2, 44, .06);
+    color: rgba(16, 2, 44, .5);
+    display: flex;
+    font-size: 11px;
+    font-weight: 600;
+    gap: 6px;
+    letter-spacing: .04em;
+    padding-bottom: 10px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-head i,
+.design-v2 .section-spotlight-hero-trust .arfui-ok i {
+    color: inherit;
+    font-size: 13px;
+    opacity: .75
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-head em {
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin-left: auto;
+    opacity: .72;
+    text-transform: none
+}
+
+/* ── 01: calendar slots, one taken ───────────────────────────────────────── */
+.design-v2 .section-spotlight-hero-trust .arfui-slots {
+    display: flex;
+    gap: 6px
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-slots b {
+    border: 1px solid rgba(16, 2, 44, .1);
+    border-radius: 7px;
+    color: rgba(16, 2, 44, .55);
+    flex: 1;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    padding: 8px 0;
+    text-align: center
+}
+
+/* The taken slot is the one place colour appears in this card. */
+.design-v2 .section-spotlight-hero-trust .arfui-slot--on {
+    background: rgba(249, 115, 22, .07);
+    border-color: rgba(249, 115, 22, .38);
+    color: #c2410c
+}
+
+/* ── 02: two lines of the call, in the caller's language ─────────────────── */
+.design-v2 .section-spotlight-hero-trust .arfui-thread {
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-msg {
+    align-self: flex-start;
+    background: rgba(16, 2, 44, .04);
+    border-radius: 10px 10px 10px 3px;
+    color: rgba(16, 2, 44, .68);
+    font-size: 12px;
+    line-height: 1.4;
+    max-width: 82%;
+    padding: 8px 11px;
+    width: fit-content
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-msg--ai {
+    align-self: flex-end;
+    background: rgba(249, 115, 22, .09);
+    border-radius: 10px 10px 3px;
+    color: #9a3412
+}
+
+/* ── 03: the record it writes ────────────────────────────────────────────── */
+.design-v2 .section-spotlight-hero-trust .arfui-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-rows b {
+    align-items: baseline;
+    color: rgba(16, 2, 44, .45);
+    display: flex;
+    font-size: 11.5px;
+    font-weight: 500;
+    gap: 8px
+}
+
+/* A dotted leader ties each label to its value, so the pairs read as one row
+   rather than as two loose columns. */
+.design-v2 .section-spotlight-hero-trust .arfui-rows b:after {
+    border-bottom: 1px dotted rgba(16, 2, 44, .16);
+    content: "";
+    flex: 1;
+    order: 1;
+    transform: translateY(-3px)
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-rows i {
+    color: rgba(16, 2, 44, .82);
+    font-size: 11.5px;
+    font-style: normal;
+    font-weight: 600;
+    order: 2
+}
+
+/* ── closing row ─────────────────────────────────────────────────────────── */
+.design-v2 .section-spotlight-hero-trust .arfui-ok {
+    align-items: center;
+    border-top: 1px solid rgba(16, 2, 44, .06);
+    color: #15803d;
+    display: flex;
+    font-size: 11.5px;
+    font-weight: 600;
+    gap: 6px;
+    padding-top: 10px
+}
+
+.design-v2 .section-spotlight-hero-trust .arfui-ok--lang {
+    color: rgba(16, 2, 44, .55)
+}

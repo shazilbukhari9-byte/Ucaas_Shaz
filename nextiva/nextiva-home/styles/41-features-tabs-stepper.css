@@ -1,0 +1,160 @@
+/* ── Product tabs: phone stepper ────────────────────────────────────────── */
+/* Four tabs do not fit a phone; the bar used to scroll sideways with the
+   second tab cut off at the edge. On phones it becomes a stepper instead —
+   "‹ Cloud Phone ›" — showing only the active tab between two round arrow
+   buttons, all inside the same grey pill track. The arrows (and their logic
+   in useFeatureTabs) cycle through the tabs and wrap at both ends. */
+
+.design-v2 .section-tabbed-trust-showcase .primary-tabs-step {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar {
+        align-items: center;
+        display: flex;
+        gap: 6px;
+        margin: 0 auto 28px;
+        max-width: 360px;
+        overflow: visible;
+        padding: 5px;
+        width: 100%;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar .primary-tab {
+        display: none;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar .primary-tab.active {
+        animation: tabsStepIn .28s ease;
+        display: inline-flex;
+        flex: 1 1 auto;
+        gap: 8px;
+        justify-content: center;
+        min-width: 0;
+        padding: 11px 16px;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar .primary-tab.active .primary-tab-icon {
+        margin-right: 0;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-step {
+        align-items: center;
+        background: #fff;
+        border: 1px solid rgba(15, 23, 42, .1);
+        border-radius: 50%;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, .06);
+        color: var(--text-primary);
+        cursor: pointer;
+        display: inline-flex;
+        flex: none;
+        font-size: 22px;
+        height: 42px;
+        justify-content: center;
+        padding: 0;
+        transition: background .2s ease, transform .15s ease;
+        width: 42px;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-step:active {
+        background: rgba(15, 23, 42, .06);
+        transform: scale(.94);
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-step:focus-visible {
+        outline: 2px solid var(--text-primary);
+        outline-offset: 2px;
+    }
+}
+
+@keyframes tabsStepIn {
+    from {
+        opacity: 0;
+        transform: scale(.96);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar .primary-tab.active {
+        animation: none;
+    }
+}
+
+/* ── Stat callouts: one row on phones ───────────────────────────────────── */
+/* The theme's ≤768 layout put the three stats in a 2 + 1 grid, leaving
+   "24/7 Answering" alone on a second row with half the width empty. Here
+   they sit side by side as three equal, centred columns divided by hairlines,
+   with the type stepped down so each label fits its ~105px column. */
+@media (max-width: 768px) {
+    .design-v2 .section-tabbed-trust-showcase .section-header-callouts {
+        /* The desktop row bottom-aligns (flex-end); here a shorter
+           description would drop its whole column out of line. */
+        align-items: stretch;
+        border-bottom: 1px solid var(--border-subtle);
+        border-top: 1px solid var(--border-subtle);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 36px;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .stat-callout,
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:first-child,
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:nth-child(2),
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:last-child {
+        align-items: center;
+        border-bottom: none;
+        border-right: none;
+        gap: 6px;
+        grid-column: auto;
+        justify-content: flex-start;
+        padding: 20px 8px;
+        text-align: center;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:not(:last-child) {
+        border-right: 1px solid var(--border-subtle);
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-icon {
+        margin-bottom: 4px;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-title {
+        font-size: 14px;
+        line-height: 1.25;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-desc {
+        font-size: 11.5px;
+        line-height: 1.4;
+        max-width: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .design-v2 .section-tabbed-trust-showcase .stat-callout,
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:first-child,
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:nth-child(2),
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:last-child {
+        padding: 18px 5px;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-title {
+        font-size: 13px;
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-desc {
+        font-size: 11px;
+    }
+}
+
+/* Stat callouts: the three descriptions are written to the same length and
+   held to one line each on desktop, so the row reads as one even band
+   instead of three ragged two-line blocks. */
+.design-v2 .section-tabbed-trust-showcase .stat-callout-desc {
+    max-width: none;
+    text-wrap: balance;
+}
+@media (min-width: 1025px) {
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-desc { white-space: nowrap }
+}

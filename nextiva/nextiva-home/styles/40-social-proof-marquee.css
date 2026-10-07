@@ -1,0 +1,166 @@
+/* ── Customer stories: auto-scrolling single row ────────────────────────── */
+/* SocialProofGrid renders the six cards twice inside one flex track. The track
+   slides left by exactly half its width (one full set plus the trailing gap),
+   at which point the copy sits where the original started, so the loop
+   restarts without a jump. The row runs edge to edge of the viewport and fades
+   out at both sides. */
+
+.design-v2.section-social-proof-grid {
+    overflow-x: clip;
+}
+
+.design-v2 .social-proof-marquee {
+    --spm-card-width: 320px;
+    --spm-gap: 24px;
+    --spm-duration: 48s;
+    margin-inline: calc(50% - 50vw);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    overflow: hidden;
+    padding-block: 8px 16px;
+}
+
+.design-v2 .social-proof-marquee-track {
+    animation: spm-scroll var(--spm-duration) linear infinite;
+    display: flex;
+    gap: var(--spm-gap);
+    padding-left: var(--spm-gap);
+    width: max-content;
+}
+
+.design-v2 .social-proof-marquee:hover .social-proof-marquee-track,
+.design-v2 .social-proof-marquee:focus-within .social-proof-marquee-track {
+    animation-play-state: paused;
+}
+
+/* The base sheet hides cards 4–6 on phones; every card belongs in the row. */
+.design-v2 .social-proof-marquee .social-proof-grid-card,
+.design-v2 .social-proof-marquee .social-proof-grid-card:nth-child(n) {
+    display: flex;
+    flex: 0 0 var(--spm-card-width);
+    transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.design-v2 .social-proof-marquee .social-proof-grid-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .08);
+    transform: translateY(-4px);
+}
+
+/* ── Compact card ──────────────────────────────────────────────────────────
+   Sized for a moving row: a narrower card with a tighter type scale, so a
+   quote reads in one glance and the full text always fits — nothing is
+   clamped or truncated, the cards simply stretch to the tallest quote.
+   `body` + !important is needed to beat the site-wide 18px prose rule in
+   39-typography-unified.css. */
+body.design-v2 .social-proof-marquee .social-proof-grid-card {
+    border: 1px solid rgba(15, 23, 42, .06);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+    padding: 22px 22px 20px;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card:hover {
+    border-color: rgba(15, 23, 42, .1);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, .08);
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-header {
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-logo {
+    flex-shrink: 0;
+    height: 24px;
+}
+
+/* 80px keeps a wide wordmark (DHL, Hyundai) beside the longest metric chip;
+   on narrow phone cards the chip wraps under the logo instead of widening
+   the card. */
+body.design-v2 .social-proof-marquee .social-proof-grid-card-logo img {
+    max-width: 80px;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-metric {
+    border-radius: 999px;
+    font-size: 11.5px !important;
+    gap: 5px;
+    line-height: 1.2;
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-metric .metric-icon {
+    height: 12px;
+    width: 12px;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-text {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    margin: 0 0 18px;
+}
+
+/* Footer pinned to the bottom so the cards line up despite uneven quotes. */
+body.design-v2 .social-proof-marquee .social-proof-grid-card-footer {
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-stars {
+    font-size: 12px !important;
+    letter-spacing: .04em;
+    margin-bottom: 8px;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-author {
+    gap: 2px;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-name {
+    font-size: 14px !important;
+    line-height: 1.35;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-role {
+    font-size: 13px !important;
+    line-height: 1.4;
+}
+
+body.design-v2 .social-proof-marquee .social-proof-grid-card-company {
+    font-size: 12px !important;
+    line-height: 1.4;
+}
+
+@keyframes spm-scroll {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 640px) {
+    .design-v2 .social-proof-marquee {
+        --spm-card-width: 290px;
+        --spm-gap: 16px;
+        --spm-duration: 40s;
+    }
+}
+
+/* No drift for people who asked for less motion: the row becomes a normal
+   horizontal scroller and the duplicate set is dropped. */
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .social-proof-marquee {
+        -webkit-mask-image: none;
+        mask-image: none;
+        overflow-x: auto;
+    }
+    .design-v2 .social-proof-marquee-track {
+        animation: none;
+        padding-right: var(--spm-gap);
+    }
+    .design-v2 .social-proof-marquee .social-proof-grid-card[aria-hidden="true"] {
+        display: none;
+    }
+}

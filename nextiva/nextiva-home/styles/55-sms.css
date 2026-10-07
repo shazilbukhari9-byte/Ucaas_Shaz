@@ -1,0 +1,367 @@
+/* Business SMS & MMS page (components/landing/sms/*). */
+
+/* ── Hero texting window ──────────────────────────────────────────────── */
+.smm {
+    --smm-ink: #10022c;
+    --smm-muted: #5b6475;
+    --smm-line: rgba(16, 2, 44, .07);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    background: rgba(255, 252, 248, .86);
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgba(194, 65, 12, .08), 0 40px 80px -36px rgba(124, 45, 18, .45), inset 0 1px 0 rgba(255, 255, 255, .9);
+    color: var(--smm-ink);
+    padding: 14px 16px 16px;
+    text-align: left
+}
+.smm :where(button) { cursor: pointer; font: inherit }
+.smm button:focus-visible, .smm input:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.smm-head { align-items: center; display: flex; gap: 10px; padding: 0 2px 12px }
+.smm-title { align-items: center; display: flex; font-size: 15px; font-weight: 600; gap: 10px; margin-left: 4px }
+.smm-reg { align-items: center; background: #ecfdf5; border-radius: 999px; color: #047857; display: inline-flex; font-size: 11px; font-weight: 700; gap: 5px; margin-left: auto; padding: 4px 10px }
+
+.smm-contact { align-items: center; background: #fff; border: 1px solid var(--smm-line); border-radius: 14px 14px 0 0; display: flex; gap: 10px; padding: 10px 12px }
+.smm-av { align-items: center; background: linear-gradient(135deg, #fb923c, #ea580c); border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 12px; font-weight: 700; height: 34px; justify-content: center; width: 34px }
+.smm-who { display: flex; flex: 1; flex-direction: column; line-height: 1.25; min-width: 0 }
+.smm-who b { font-size: 13.5px; font-weight: 600 }
+.smm-who em { color: var(--smm-muted); font-size: 11.5px; font-style: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.smm-state { align-items: center; background: #ecfdf5; border-radius: 999px; color: #047857; display: inline-flex; flex: none; font-size: 11px; font-weight: 600; gap: 5px; padding: 3px 9px }
+.smm-state i { background: #22c55e; border-radius: 50%; height: 6px; width: 6px }
+.smm-state--out { background: #fef2f2; color: #b91c1c }
+.smm-state--out i { background: #ef4444 }
+
+.smm-thread {
+    background: #f7f5f2;
+    border-left: 1px solid var(--smm-line);
+    border-right: 1px solid var(--smm-line);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 236px;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 12px
+}
+.smm-msg { animation: psm-in .3s ease; display: flex; flex-direction: column; gap: 2px; max-width: 82% }
+.smm-msg--in { align-items: flex-start; align-self: flex-start }
+.smm-msg--out { align-items: flex-end; align-self: flex-end }
+.smm-bubble { border-radius: 16px; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; padding: 8px 12px }
+.smm-msg--in .smm-bubble { background: #fff; border: 1px solid var(--smm-line); border-bottom-left-radius: 4px; color: var(--smm-ink) }
+.smm-msg--out .smm-bubble { background: linear-gradient(135deg, #14b8a6, #0d9488); border-bottom-right-radius: 4px; color: #fff }
+.smm-msg.is-auto .smm-bubble { background: #10022c }
+.smm-auto { align-items: center; color: #8a8f9c; display: inline-flex; font-size: 10.5px; font-weight: 600; gap: 4px }
+.smm-meta { align-items: center; color: #9a948e; display: inline-flex; font-size: 10.5px; gap: 6px }
+.smm-status { font-weight: 600 }
+.smm-status--sending { color: #9a948e }
+.smm-status--sent { color: #64748b }
+.smm-status--delivered { color: #0d9488 }
+.smm-mms { align-items: center; background: #fff; border: 1px solid var(--smm-line); border-radius: 14px; display: inline-flex; gap: 10px; padding: 6px 12px 6px 6px }
+.smm-mms-img { align-items: center; background: linear-gradient(135deg, #ccfbf1, #99f6e4); border-radius: 10px; color: #0f766e; display: inline-flex; font-size: 20px; height: 44px; justify-content: center; width: 52px }
+.smm-mms-meta { display: flex; flex-direction: column }
+.smm-mms-meta b { font-size: 12px; font-weight: 600 }
+.smm-mms-meta em { color: #8a8f9c; font-size: 10.5px; font-style: normal }
+.smm-typing span { align-items: center; background: #fff; border: 1px solid var(--smm-line); border-radius: 999px; display: inline-flex; gap: 3px; padding: 7px 10px }
+.smm-typing span i { animation: tcm-dot 1.1s ease-in-out infinite; background: #9a948e; border-radius: 50%; height: 5px; width: 5px }
+.smm-typing span i:nth-child(2) { animation-delay: .15s }
+.smm-typing span i:nth-child(3) { animation-delay: .3s }
+
+.smm-compose { background: #fff; border: 1px solid var(--smm-line); border-radius: 0 0 14px 14px; padding: 8px 10px 10px; position: relative }
+.smm-tools { align-items: center; display: flex; gap: 6px; margin-bottom: 7px }
+.smm-tools button {
+    align-items: center;
+    background: #f6f4f2;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--smm-muted);
+    display: inline-flex;
+    font-size: 11.5px;
+    font-weight: 600;
+    gap: 4px;
+    padding: 4px 8px;
+    transition: all .15s ease
+}
+.smm-tools button:hover { color: var(--smm-ink) }
+.smm-tools button.is-on { background: #f0fdfa; border-color: #99f6e4; color: #0f766e }
+.smm-count { color: #9a948e; font-size: 10.5px; font-variant-numeric: tabular-nums; margin-left: auto; white-space: nowrap }
+.smm-row { align-items: center; display: flex; gap: 6px }
+.smm-row input {
+    background: #f6f4f2;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: var(--smm-ink);
+    flex: 1;
+    font: inherit;
+    font-size: 13px;
+    min-width: 0;
+    outline: none;
+    padding: 9px 11px
+}
+.smm-row input:focus { background: #fff; border-color: rgba(13, 148, 136, .45) }
+.smm-send { align-items: center; background: #0d9488; border: 0; border-radius: 10px; color: #fff; display: inline-flex; font-size: 15px; height: 34px; justify-content: center; width: 36px }
+.smm-send:disabled { background: #e7e3df; color: #a39e99; cursor: default }
+.smm-pop {
+    background: #fff;
+    border: 1px solid var(--smm-line);
+    border-radius: 14px;
+    bottom: calc(100% + 6px);
+    box-shadow: 0 18px 36px -20px rgba(16, 2, 44, .45);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    left: 8px;
+    padding: 6px;
+    position: absolute;
+    right: 8px;
+    z-index: 3
+}
+.smm-pop-label { color: #9a948e; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; padding: 4px 6px; text-transform: uppercase }
+.smm-pop button { align-items: flex-start; background: transparent; border: 0; border-radius: 10px; color: var(--smm-ink); display: flex; flex-direction: column; gap: 1px; padding: 7px 8px; text-align: left }
+.smm-pop button:hover { background: #f6f4f2 }
+.smm-pop button b { font-size: 12.5px; font-weight: 600 }
+.smm-pop button em { color: var(--smm-muted); font-size: 11.5px; font-style: normal }
+.smm-pop .smm-pop-file { align-items: center; flex-direction: row; gap: 8px }
+.smm-pop-file i { color: #0d9488; font-size: 18px }
+.smm-pop-file em { margin-left: auto }
+.smm-locked { align-items: center; background: #fef2f2; border-radius: 10px; color: #991b1b; display: flex; font-size: 12px; gap: 8px; padding: 9px 10px }
+.smm-locked i { font-size: 16px }
+.smm-locked span { flex: 1 }
+.smm-locked button { background: #fff; border: 1px solid #fecaca; border-radius: 8px; color: #991b1b; font-size: 11.5px; font-weight: 600; padding: 4px 9px; white-space: nowrap }
+
+@media (min-width: 1025px) and (max-height: 860px) { .smm-thread { height: 206px } }
+@media (min-width: 1025px) and (max-height: 680px) { .smm-thread { height: 168px } .smm-head { padding-bottom: 8px } }
+@media (max-width: 560px) {
+    .smm { border-radius: 18px; padding: 12px }
+    .smm-head .lp-dots { display: none }
+    .smm-title { margin-left: 0 }
+    .smm-count { display: none }
+}
+
+/* ── Heads ────────────────────────────────────────────────────────────── */
+.sm-head { margin: 0 auto 40px; max-width: 760px; text-align: center }
+.sm-head .lp-intro { margin: 14px auto 0 }
+
+/* Shared message bubble for the section visuals */
+.sm-bub { border-radius: 16px; display: inline-flex; flex-direction: column; font-size: 13px; gap: 4px; line-height: 1.45; max-width: 92%; padding: 9px 12px }
+.sm-bub em { font-size: 10.5px; font-style: normal; font-weight: 600; opacity: .75 }
+.sm-bub--out { align-self: flex-end; background: linear-gradient(135deg, #14b8a6, #0d9488); border-bottom-right-radius: 4px; color: #fff }
+.sm-bub--in { align-self: flex-start; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-bottom-left-radius: 4px; color: #10022c }
+.sm-bub--note { align-self: center; background: #fff7ed; border: 1px dashed #fdba74; border-radius: 10px; color: #9a3412; font-size: 12px; font-weight: 600 }
+
+/* ── Features: tiles with their message ───────────────────────────────── */
+.sm-feat { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.sm-tile {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease
+}
+.sm-tile:hover { border-color: var(--t-bd); box-shadow: 0 26px 46px -34px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.sm-tile-msg {
+    align-items: center;
+    background:
+        radial-gradient(80% 100% at 100% 0%, var(--t-bg), transparent 70%),
+        #f7f5f2;
+    border-bottom: 1px solid rgba(16, 2, 44, .06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 118px;
+    padding: 18px
+}
+.sm-tile-body { align-items: flex-start; display: flex; gap: 14px; padding: 18px 20px 22px }
+.sm-tile-ic { align-items: center; background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 12px; color: var(--t-fg); display: inline-flex; flex: none; font-size: 18px; height: 40px; justify-content: center; width: 40px }
+body.design-v2 .lp .sm-tile-title { color: var(--lp-ink, #10022c); font-size: 17px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 4px }
+body.design-v2 .lp .sm-tile-text { color: var(--lp-muted, #5b6475); font-size: 14px !important; line-height: 1.55 !important; margin: 0 }
+
+/* ── 10DLC tracker ────────────────────────────────────────────────────── */
+.sm-reg-sec { background: #fff }
+.sm-reg { background: #fbfaf9; border: 1px solid rgba(16, 2, 44, .08); border-radius: 26px; margin: 0 auto; max-width: 1120px; padding: 24px 28px 30px }
+.sm-reg-legend { display: flex; gap: 18px; justify-content: flex-end; margin-bottom: 22px }
+.sm-reg-legend span { align-items: center; color: #5b6475; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 7px }
+.sm-reg-key { border-radius: 50%; height: 10px; width: 10px }
+.sm-reg-key--us { background: #0d9488 }
+.sm-reg-key--you { background: #ea580c }
+.sm-reg-track { display: grid; gap: 22px; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; position: relative }
+.sm-reg-track::before {
+    background: linear-gradient(90deg, #0d9488 0%, #0d9488 66%, #ea580c 100%);
+    border-radius: 2px;
+    content: "";
+    height: 3px;
+    left: 26px;
+    position: absolute;
+    right: 26px;
+    top: 24px
+}
+.sm-reg-step { position: relative }
+.sm-reg-marker { align-items: center; display: flex; gap: 10px; margin-bottom: 16px }
+.sm-reg-n {
+    align-items: center;
+    background: #fff;
+    border: 3px solid #0d9488;
+    border-radius: 50%;
+    box-shadow: 0 0 0 6px #fbfaf9;
+    color: #0f766e;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 700;
+    height: 50px;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    z-index: 1
+}
+.sm-reg-step--you .sm-reg-n { background: #ea580c; border-color: #ea580c; color: #fff }
+.sm-reg-time { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 999px; color: #5b6475; font-size: 11.5px; font-weight: 600; padding: 3px 9px; position: relative; z-index: 1 }
+.sm-reg-who { border-radius: 999px; display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; padding: 3px 8px; text-transform: uppercase }
+.sm-reg-step--us .sm-reg-who { background: #ccfbf1; color: #0f766e }
+.sm-reg-step--you .sm-reg-who { background: #ffedd5; color: #c2410c }
+body.design-v2 .lp .sm-reg-title { color: var(--lp-ink, #10022c); font-size: 17px !important; font-weight: 600; line-height: 1.3 !important; margin: 10px 0 6px }
+body.design-v2 .lp .sm-reg-text { color: var(--lp-muted, #5b6475); font-size: 14px !important; line-height: 1.55 !important; margin: 0 }
+
+/* ── Shared inbox ─────────────────────────────────────────────────────── */
+.sm-in { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr) }
+body.design-v2 .lp .sm-in-copy .lp-intro { margin-left: 0; margin-top: 14px }
+.sm-in-points { display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 24px 0 0; padding: 0 }
+.sm-in-points li { align-items: center; color: var(--lp-ink, #10022c); display: flex; font-size: 15px; font-weight: 500; gap: 10px }
+.sm-in-points i { align-items: center; background: #fff; border: 1px solid #99f6e4; border-radius: 50%; color: #0d9488; display: inline-flex; font-size: 13px; height: 24px; justify-content: center; width: 24px }
+
+.sm-in-app { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 24px; box-shadow: 0 34px 70px -50px rgba(124, 45, 18, .45); overflow: hidden }
+.sm-in-app :where(button) { cursor: pointer; font: inherit }
+.sm-in-app button:focus-visible { outline: 2px solid #ea580c; outline-offset: -2px }
+.sm-in-head { align-items: center; background: linear-gradient(180deg, #fcfaf8, #f8f5f2); border-bottom: 1px solid rgba(16, 2, 44, .07); display: flex; justify-content: space-between; padding: 13px 18px }
+.sm-in-head span { align-items: center; display: inline-flex; font-size: 13.5px; font-weight: 600; gap: 8px }
+.sm-in-head span i { color: #0d9488; font-size: 17px }
+.sm-in-head em { background: #ffedd5; border-radius: 999px; color: #c2410c; font-size: 11.5px; font-style: normal; font-weight: 700; padding: 3px 9px }
+.sm-in-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) }
+.sm-in-list { border-right: 1px solid rgba(16, 2, 44, .07); list-style: none; margin: 0; padding: 6px }
+.sm-in-row {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 12px;
+    color: inherit;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 10px;
+    text-align: left;
+    transition: background .15s ease;
+    width: 100%
+}
+.sm-in-row:hover { background: #faf8f6 }
+.sm-in-row.is-on { background: #f0fdfa }
+.sm-in-row.is-done { opacity: .5 }
+.sm-in-av { align-items: center; border-radius: 50%; color: #fff; display: inline-flex; font-size: 11px; font-weight: 700; height: 34px; justify-content: center; width: 34px }
+.sm-in-av--orange { background: linear-gradient(135deg, #fb923c, #ea580c) }
+.sm-in-av--blue { background: linear-gradient(135deg, #60a5fa, #2563eb) }
+.sm-in-av--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed) }
+.sm-in-av--teal { background: linear-gradient(135deg, #2dd4bf, #0d9488) }
+.sm-in-av--slate { background: linear-gradient(135deg, #94a3b8, #475569) }
+.sm-in-txt { display: flex; flex-direction: column; min-width: 0 }
+.sm-in-top { align-items: baseline; display: flex; gap: 6px; justify-content: space-between }
+.sm-in-top b { font-size: 13px; font-weight: 600 }
+.sm-in-top em { color: #9a948e; font-size: 11px; font-style: normal }
+.sm-in-last { color: #5b6475; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.sm-in-side { align-items: flex-end; display: flex; flex-direction: column; gap: 3px }
+.sm-in-badge { background: #ea580c; border-radius: 999px; color: #fff; font-size: 10px; font-style: normal; font-weight: 700; padding: 1px 6px }
+.sm-in-replier { color: #8a8f9c; font-size: 10.5px; font-weight: 600 }
+.sm-in-detail { animation: psm-in .3s ease; display: flex; flex-direction: column; gap: 12px; padding: 16px }
+.sm-in-d-top { align-items: center; display: flex; justify-content: space-between }
+.sm-in-d-top b { font-size: 15px; font-weight: 600 }
+.sm-in-tag { background: #f4f2ef; border-radius: 999px; color: #5b6475; font-size: 11px; font-weight: 600; padding: 3px 9px }
+.sm-in-msg { background: #f7f5f2; border-radius: 12px; color: #10022c; font-size: 13px; padding: 10px 12px }
+.sm-in-note { align-items: flex-start; background: #fffbeb; border: 1px dashed #fcd34d; border-radius: 12px; color: #78350f; display: flex; font-size: 12.5px; gap: 8px; padding: 10px 12px }
+.sm-in-note i { color: #d97706; font-size: 15px }
+.sm-in-note span { display: flex; flex-direction: column; gap: 2px }
+.sm-in-note em { color: #b45309; font-size: 10.5px; font-style: normal; font-weight: 600 }
+.sm-in-assign { display: flex; flex-direction: column; gap: 6px }
+.sm-in-assign > span { color: #8a8f9c; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase }
+.sm-in-assign div { display: flex; gap: 6px }
+.sm-in-assign button { background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 999px; color: #10022c; font-size: 12px; font-weight: 600; padding: 5px 11px; transition: all .15s ease }
+.sm-in-assign button.is-on { background: #0d9488; border-color: #0d9488; color: #fff }
+.sm-in-done { align-items: center; align-self: flex-start; background: #10022c; border: 0; border-radius: 10px; color: #fff; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 6px; margin-top: auto; padding: 8px 12px }
+.sm-in-done.is-on { background: #fff; border: 1px solid rgba(16, 2, 44, .12); color: #10022c }
+
+/* ── Use cases as example texts ───────────────────────────────────────── */
+.sm-uc { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+.sm-uc-card { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease }
+.sm-uc-card:hover { box-shadow: 0 24px 44px -32px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.sm-uc-phone { background: linear-gradient(180deg, var(--t-bg), #f7f5f2); display: flex; flex-direction: column; gap: 8px; min-height: 150px; padding: 16px }
+.sm-uc-from { align-self: center; color: #8a8f9c; font-size: 10.5px; font-weight: 600 }
+.sm-uc-body { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px 20px }
+.sm-uc-ic { align-items: center; background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 10px; color: var(--t-fg); display: inline-flex; font-size: 16px; height: 34px; justify-content: center; margin-bottom: 6px; width: 34px }
+.sm-uc-body b { color: var(--lp-ink, #10022c); font-size: 15.5px; font-weight: 600 }
+.sm-uc-body em { color: var(--lp-muted, #5b6475); font-size: 13.5px; font-style: normal; line-height: 1.5 }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .sm-feat { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .sm-reg-track { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 30px }
+    .sm-reg-track::before { display: none }
+    .sm-in { gap: 32px; grid-template-columns: minmax(0, 1fr) }
+    .sm-in-copy { text-align: center }
+    body.design-v2 .lp .sm-in-copy .lp-intro { margin-left: auto; margin-right: auto }
+    .sm-in-points { align-items: flex-start; margin-left: auto; margin-right: auto; max-width: 400px }
+    .sm-uc { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 640px) {
+    .sm-feat, .sm-reg-track, .sm-uc { grid-template-columns: minmax(0, 1fr) }
+    .sm-reg { padding: 18px }
+    .sm-reg-legend { justify-content: flex-start }
+    .sm-in-body { grid-template-columns: minmax(0, 1fr) }
+    .sm-in-list { border-bottom: 1px solid rgba(16, 2, 44, .07); border-right: 0 }
+}
+@media (prefers-reduced-motion: reduce) {
+    .smm-msg, .smm-typing span i, .sm-in-detail { animation: none }
+}
+
+/* SMS hero art (pink-teal hills with birds): deeper wash on the copy side. */
+.lp-hero-art[style*="desert-hills-bird-flock"] { background-position: 50% 45% }
+.lp-hero-art[style*="desert-hills-bird-flock"]::after {
+    background: linear-gradient(90deg, rgba(255, 247, 240, .93) 0%, rgba(255, 247, 240, .82) 36%, rgba(255, 247, 240, .3) 58%, rgba(255, 247, 240, 0) 74%)
+}
+@media (max-width: 1024px) {
+    .lp-hero-art[style*="desert-hills-bird-flock"]::after { background: linear-gradient(180deg, rgba(255, 247, 240, .9) 0%, rgba(255, 247, 240, .65) 55%, rgba(255, 247, 240, .25) 100%) }
+}
+
+/* ── Hero mock as transparent glass (as on the Unified Communication, Hosted
+   Phone System and Team Chat heroes) ───────────────────────────────────────
+   The shell is mostly see-through with a strong blur so the landscape shows
+   through; the contact bar, thread and composer become lighter frosted
+   layers with white hairlines; status chips turn translucent. */
+.lp-hero--sms .smm {
+    --smm-line: rgba(255, 255, 255, .55);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    backdrop-filter: blur(24px) saturate(165%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, .16));
+    border: 1px solid rgba(255, 255, 255, .55);
+    box-shadow: 0 44px 90px -40px rgba(15, 23, 42, .6), inset 0 1px 0 rgba(255, 255, 255, .8), inset 0 0 0 1px rgba(255, 255, 255, .12);
+    position: relative
+}
+.lp-hero--sms .smm::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), transparent);
+    content: "";
+    height: 1px;
+    left: 12%;
+    pointer-events: none;
+    position: absolute;
+    right: 12%;
+    top: 0
+}
+.lp-hero--sms .smm-reg, .lp-hero--sms .smm-state { background: rgba(236, 253, 245, .6); border: 1px solid rgba(255, 255, 255, .6) }
+.lp-hero--sms .smm-state--out { background: rgba(254, 242, 242, .7) }
+.lp-hero--sms .smm-contact, .lp-hero--sms .smm-compose {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .6);
+    border-color: rgba(255, 255, 255, .7)
+}
+.lp-hero--sms .smm-thread { background: rgba(255, 255, 255, .3); border-color: rgba(255, 255, 255, .6) }
+.lp-hero--sms .smm-msg--in .smm-bubble, .lp-hero--sms .smm-mms, .lp-hero--sms .smm-typing span { background: rgba(255, 255, 255, .78); border-color: rgba(255, 255, 255, .9) }
+.lp-hero--sms .smm-tools button:not(.is-on), .lp-hero--sms .smm-row input { background: rgba(255, 255, 255, .55); border-color: rgba(255, 255, 255, .7) }
+.lp-hero--sms .smm-row input:focus { background: #fff }

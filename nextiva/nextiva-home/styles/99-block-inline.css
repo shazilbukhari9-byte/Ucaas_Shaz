@@ -1,0 +1,14 @@
+@media (max-width: 768px) {
+                    .ucaas-sticky-cta-banner-block .sticky-cta-content {
+                        justify-content: center;
+                    }
+                    .ucaas-sticky-cta-banner-block .sticky-cta-text {
+                        font-size: 13px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .ucaas-sticky-cta-banner-block .sticky-cta-banner {
+                        right: 75px;
+                    }
+                }

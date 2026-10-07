@@ -1,0 +1,110 @@
+/* Hero: raise the copy toward the header.
+   ---------------------------------------------------------------------------
+   The hero opened with 225px above the eyebrow, leaving a wide empty band
+   under the header and pushing the headline and dashboard mock further down
+   the fold than they needed to be. This lifts the block by ~80px.
+
+   Targeted at `.section-hero--aurora.section-hero--stacked`, NOT the plain
+   `--stacked` rule. This hero carries both classes, and the aurora rule is one
+   class more specific — it sets `clamp(195px, 25vh, 270px)`, which at a 900px
+   viewport resolves to exactly the 225px observed. An override written against
+   `--stacked` alone matches the element but still loses, silently.
+
+   Kept as a clamp rather than a flat px so it still tracks viewport height:
+   short laptop screens pull it in, tall monitors let it breathe. Scoped to
+   >1024px, since the narrow breakpoints already drop to 120px/100px and an
+   unscoped rule in a later sheet would beat those media queries. */
+
+@media (min-width: 1025px) {
+    .design-v2 .section-hero--aurora.section-hero--stacked .hero-container {
+        padding-top: clamp(120px, 16vh, 180px)
+    }
+}
+
+/* --- hero eyebrow sparkle -------------------------------------------------- */
+
+/* The chip was a transparent box with a hairline and a white glyph — correct
+   but inert, and the glyph had nothing behind it on a pale background. It now
+   carries a faint glass fill of its own, and twinkles.
+
+   The blink is deliberately not a steady pulse. A sparkle that fades in and
+   out on a sine wave reads as a status light; a real one catches, drops, and
+   catches again. So the glyph holds steady for most of the cycle and spends
+   about a second doing a quick double-catch, with the chip's warm glow firing
+   on the same beat. */
+.design-v2 .section-hero--aurora .hero-eyebrow--pill i {
+    background: linear-gradient(150deg, hsla(0, 0%, 100%, .5), hsla(0, 0%, 100%, .2));
+    animation: heroSparkChip 4.2s ease-in-out infinite;
+    position: relative
+}
+
+/* The glyph lives in ::before, so that is what has to move — transforming the
+   <i> would drag the chip with it. */
+.design-v2 .section-hero--aurora .hero-eyebrow--pill i:before {
+    animation: heroSparkTwinkle 4.2s ease-in-out infinite;
+    display: block
+}
+
+@keyframes heroSparkTwinkle {
+    0%, 44% { opacity: 1; transform: scale(1) rotate(0) }
+    50% { opacity: .28; transform: scale(.8) rotate(-14deg) }
+    55% { opacity: 1; transform: scale(1.16) rotate(8deg) }
+    61% { opacity: .45; transform: scale(.9) rotate(-4deg) }
+    68%, to { opacity: 1; transform: scale(1) rotate(0) }
+}
+
+/* Warm glow on the same beat. The first three shadows are the theme's own edge
+   and inset highlight, repeated in every step so only the fourth — the glow —
+   actually changes. */
+@keyframes heroSparkChip {
+    0%, 44% {
+        box-shadow:
+            0 0 0 1px hsla(0, 0%, 100%, .4),
+            inset 0 1px 0 hsla(0, 0%, 100%, .5),
+            0 4px 14px -4px rgba(100, 116, 139, .25),
+            0 0 0 0 rgba(238, 103, 48, 0)
+    }
+    55% {
+        box-shadow:
+            0 0 0 1px hsla(0, 0%, 100%, .7),
+            inset 0 1px 0 hsla(0, 0%, 100%, .7),
+            0 4px 14px -4px rgba(100, 116, 139, .25),
+            0 0 18px 2px rgba(238, 103, 48, .5)
+    }
+    68%, to {
+        box-shadow:
+            0 0 0 1px hsla(0, 0%, 100%, .4),
+            inset 0 1px 0 hsla(0, 0%, 100%, .5),
+            0 4px 14px -4px rgba(100, 116, 139, .25),
+            0 0 0 0 rgba(238, 103, 48, 0)
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-hero--aurora .hero-eyebrow--pill i,
+    .design-v2 .section-hero--aurora .hero-eyebrow--pill i:before {
+        animation: none
+    }
+}
+
+/* Eyebrow sparkle, in the brand colours. The white glyph on a clear glass chip
+   barely registered against the pale sky — it read as an empty box. The chip
+   now carries the same warm orange as "Answered." in the headline, with a
+   white glyph, a soft lift and a light rim, and keeps its twinkle. */
+body.design-v2 .section-hero--aurora .hero-eyebrow--pill i {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: linear-gradient(140deg, #fdba74 0%, #f97316 48%, #ea580c 100%);
+    border-radius: 9px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .55), inset 0 1px 0 rgba(255, 255, 255, .45), 0 6px 16px -6px rgba(234, 88, 12, .65);
+    color: #fff;
+    font-size: 15px;
+    height: 30px;
+    text-shadow: 0 1px 2px rgba(124, 45, 18, .35);
+    width: 30px
+}
+@keyframes heroSparkChip {
+    0%, 44% { box-shadow: 0 0 0 1px rgba(255, 255, 255, .55), inset 0 1px 0 rgba(255, 255, 255, .45), 0 6px 16px -6px rgba(234, 88, 12, .65), 0 0 0 0 rgba(249, 115, 22, 0) }
+    55% { box-shadow: 0 0 0 1px rgba(255, 255, 255, .8), inset 0 1px 0 rgba(255, 255, 255, .6), 0 6px 16px -6px rgba(234, 88, 12, .65), 0 0 20px 3px rgba(249, 115, 22, .45) }
+    68%, to { box-shadow: 0 0 0 1px rgba(255, 255, 255, .55), inset 0 1px 0 rgba(255, 255, 255, .45), 0 6px 16px -6px rgba(234, 88, 12, .65), 0 0 0 0 rgba(249, 115, 22, 0) }
+}

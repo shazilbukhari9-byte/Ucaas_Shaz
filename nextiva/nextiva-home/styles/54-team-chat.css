@@ -1,0 +1,1553 @@
+/* Team Chat page (components/landing/teamchat/*). */
+
+/* ── Hero chat window ─────────────────────────────────────────────────── */
+.tcm {
+    --tcm-ink: #10022c;
+    --tcm-muted: #5b6475;
+    --tcm-line: rgba(16, 2, 44, .07);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    background: rgba(255, 252, 248, .84);
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgba(194, 65, 12, .08), 0 40px 80px -36px rgba(124, 45, 18, .45), inset 0 1px 0 rgba(255, 255, 255, .9);
+    color: var(--tcm-ink);
+    padding: 14px 16px 16px;
+    text-align: left
+}
+.tcm :where(button) { cursor: pointer; font: inherit }
+.tcm button:focus-visible, .tcm input:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.tcm-head { align-items: center; display: flex; gap: 10px; padding: 0 2px 12px }
+.tcm-title { align-items: center; display: flex; font-size: 15px; font-weight: 600; gap: 10px; margin-left: 4px }
+.tcm-live { align-items: center; background: #dcfce7; border-radius: 999px; color: #15803d; display: inline-flex; font-size: 11px; font-weight: 700; gap: 6px; margin-left: auto; padding: 4px 10px }
+.tcm-live i { animation: psm-pulse 1.6s ease-out infinite; background: #22c55e; border-radius: 50%; height: 6px; width: 6px }
+
+.tcm-body {
+    background: #fff;
+    border: 1px solid var(--tcm-line);
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 148px minmax(0, 1fr);
+    height: 372px;
+    overflow: hidden
+}
+.tcm-side { background: #faf8f6; border-right: 1px solid var(--tcm-line); display: flex; flex-direction: column; gap: 2px; padding: 12px 8px }
+.tcm-side-label { color: #9a948e; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; padding: 8px 8px 4px; text-transform: uppercase }
+.tcm-side-label:first-child { padding-top: 0 }
+.tcm-chan {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    color: #5b6475;
+    display: flex;
+    font-size: 12.5px;
+    gap: 6px;
+    justify-content: space-between;
+    padding: 6px 8px;
+    text-align: left;
+    width: 100%
+}
+.tcm-chan span { align-items: center; display: inline-flex; gap: 5px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.tcm-chan span > i:not(.tcm-dot) { color: #b3ada7; font-style: normal; font-weight: 700 }
+.tcm-chan:hover { background: #f1eeea; color: var(--tcm-ink) }
+.tcm-chan.is-on { background: #10022c; color: #fff }
+.tcm-chan.is-on span > i:not(.tcm-dot) { color: #fdba74 }
+.tcm-chan em { background: #ea580c; border-radius: 999px; color: #fff; font-size: 10px; font-style: normal; font-weight: 700; padding: 1px 6px }
+.tcm-chan-huddle { animation: psm-pulse 1.6s ease-out infinite; border-radius: 50%; color: #16a34a; font-size: 12px }
+.tcm-chan.is-on .tcm-chan-huddle { color: #86efac }
+.tcm-dot { border-radius: 50%; flex: none; height: 7px; width: 7px }
+.tcm-dot--active { background: #22c55e }
+.tcm-dot--call { background: #ef4444 }
+
+.tcm-main { display: flex; flex-direction: column; min-width: 0 }
+.tcm-bar { align-items: center; border-bottom: 1px solid var(--tcm-line); display: flex; justify-content: space-between; padding: 9px 12px }
+.tcm-bar-title { display: flex; flex-direction: column; line-height: 1.25; min-width: 0 }
+.tcm-bar-title b { font-size: 13.5px; font-weight: 600 }
+.tcm-bar-title em { color: var(--tcm-muted); font-size: 11.5px; font-style: normal }
+.tcm-huddle-btn {
+    align-items: center;
+    background: #f4f2ef;
+    border: 1px solid var(--tcm-line);
+    border-radius: 999px;
+    color: var(--tcm-ink);
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 600;
+    gap: 5px;
+    padding: 5px 11px;
+    transition: all .2s ease
+}
+.tcm-huddle-btn.is-live { background: #16a34a; border-color: #16a34a; color: #fff }
+.tcm-huddle-btn:hover { filter: brightness(.97) }
+
+.tcm-huddle {
+    align-items: center;
+    animation: psm-in .35s ease;
+    background: #f0fdf4;
+    border-bottom: 1px solid #bbf7d0;
+    display: flex;
+    gap: 10px;
+    padding: 8px 12px
+}
+.tcm-huddle.is-joined { background: #dcfce7 }
+.tcm-huddle-avs { display: inline-flex }
+.tcm-huddle-avs .tcm-av + .tcm-av { margin-left: -6px }
+.tcm-huddle-txt { display: flex; flex: 1; flex-direction: column; line-height: 1.25 }
+.tcm-huddle-txt b { color: #166534; font-size: 12.5px; font-weight: 600 }
+.tcm-huddle-txt em { color: #15803d; font-size: 11px; font-style: normal; font-variant-numeric: tabular-nums }
+.tcm-wave { align-items: center; display: inline-flex; gap: 2px; height: 16px }
+.tcm-wave i { animation: psm-wave .8s ease-in-out infinite alternate; background: #16a34a; border-radius: 2px; height: 100%; width: 3px }
+.tcm-wave i:nth-child(2) { animation-delay: -.3s }
+.tcm-wave i:nth-child(3) { animation-delay: -.55s }
+.tcm-wave i:nth-child(4) { animation-delay: -.15s }
+
+.tcm-msgs { display: flex; flex: 1; flex-direction: column; gap: 10px; list-style: none; margin: 0; min-height: 0; overflow: hidden; padding: 12px }
+.tcm-msg { align-items: flex-start; animation: psm-in .35s ease; display: flex; gap: 9px }
+.tcm-msg-body { display: flex; flex-direction: column; gap: 1px; min-width: 0 }
+.tcm-msg-top { align-items: baseline; display: flex; gap: 7px }
+.tcm-msg-top b { font-size: 12.5px; font-weight: 600 }
+.tcm-msg-top em { color: #9a948e; font-size: 10.5px; font-style: normal }
+.tcm-msg-text { color: #3b4356; font-size: 12.5px; line-height: 1.45; overflow-wrap: anywhere }
+.tcm-msg.is-me .tcm-msg-text { color: var(--tcm-ink) }
+.tcm-sys { align-items: center; animation: psm-in .35s ease; align-self: center; background: #f0fdf4; border-radius: 999px; color: #15803d; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 5px; padding: 3px 10px }
+.tcm-typing { align-items: center; display: flex; gap: 8px }
+.tcm-typing span { align-items: center; background: #f4f2ef; border-radius: 999px; display: inline-flex; gap: 3px; padding: 6px 9px }
+.tcm-typing span i { animation: tcm-dot 1.1s ease-in-out infinite; background: #9a948e; border-radius: 50%; height: 5px; width: 5px }
+.tcm-typing span i:nth-child(2) { animation-delay: .15s }
+.tcm-typing span i:nth-child(3) { animation-delay: .3s }
+@keyframes tcm-dot { 0%, 60%, 100% { transform: translateY(0); opacity: .5 } 30% { transform: translateY(-3px); opacity: 1 } }
+
+.tcm-av {
+    align-items: center;
+    border-radius: 9px;
+    color: #fff;
+    display: inline-flex;
+    flex: none;
+    font-size: 10.5px;
+    font-weight: 700;
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+.tcm-av--sm { border: 2px solid #fff; border-radius: 50%; font-size: 9px; height: 22px; width: 22px }
+.tcm-av--orange { background: linear-gradient(135deg, #fb923c, #ea580c) }
+.tcm-av--blue { background: linear-gradient(135deg, #60a5fa, #2563eb) }
+.tcm-av--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed) }
+.tcm-av--teal { background: linear-gradient(135deg, #2dd4bf, #0d9488) }
+
+.tcm-compose { align-items: center; border-top: 1px solid var(--tcm-line); display: flex; gap: 8px; padding: 9px 10px; position: relative }
+.tcm-compose input {
+    background: #f6f4f2;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: var(--tcm-ink);
+    flex: 1;
+    font: inherit;
+    font-size: 12.5px;
+    min-width: 0;
+    outline: none;
+    padding: 8px 10px;
+    transition: border-color .2s ease, background .2s ease
+}
+.tcm-compose input:focus { background: #fff; border-color: rgba(234, 88, 12, .45) }
+.tcm-send {
+    align-items: center;
+    background: #ea580c;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 15px;
+    height: 32px;
+    justify-content: center;
+    width: 34px
+}
+.tcm-send:disabled { background: #e7e3df; color: #a39e99; cursor: default }
+.tcm-mention {
+    background: #fff;
+    border: 1px solid var(--tcm-line);
+    border-radius: 12px;
+    bottom: calc(100% + 4px);
+    box-shadow: 0 16px 30px -18px rgba(16, 2, 44, .45);
+    display: flex;
+    flex-direction: column;
+    left: 10px;
+    padding: 4px;
+    position: absolute;
+    width: 170px;
+    z-index: 3
+}
+.tcm-mention button { align-items: center; background: transparent; border: 0; border-radius: 8px; color: var(--tcm-ink); display: flex; font-size: 12.5px; gap: 8px; padding: 6px; text-align: left }
+.tcm-mention button:hover { background: #f4f2ef }
+
+@media (min-width: 1025px) and (max-height: 860px) {
+    .tcm { padding: 12px 14px 14px }
+    .tcm-body { height: 336px }
+}
+@media (min-width: 1025px) and (max-height: 680px) {
+    .tcm-body { height: 290px }
+    .tcm-head { padding-bottom: 8px }
+}
+@media (max-width: 560px) {
+    .tcm { border-radius: 18px; padding: 12px }
+    .tcm-head .lp-dots { display: none }
+    .tcm-title { margin-left: 0 }
+    .tcm-body { grid-template-columns: minmax(0, 1fr); height: 360px }
+    .tcm-side { display: none }
+}
+
+/* ── Shared heads ─────────────────────────────────────────────────────── */
+.tc-head { margin: 0 auto 40px; max-width: 760px; text-align: center }
+.tc-head .lp-intro { margin: 14px auto 0 }
+
+/* ── Features: sticky intro + list ────────────────────────────────────── */
+.tc-feat { align-items: start; display: grid; gap: 56px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr) }
+.tc-feat-side { position: sticky; top: 110px }
+body.design-v2 .lp .tc-feat-side .lp-intro { margin-left: 0; margin-top: 14px }
+.tc-feat-cta { margin-top: 24px }
+.tc-feat-list { display: flex; flex-direction: column; list-style: none; margin: 0; padding: 0 }
+.tc-feat-row {
+    align-items: center;
+    border-top: 1px solid rgba(16, 2, 44, .08);
+    display: grid;
+    gap: 18px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 20px 6px;
+    transition: background .2s ease
+}
+.tc-feat-row:last-child { border-bottom: 1px solid rgba(16, 2, 44, .08) }
+.tc-feat-row:hover { background: linear-gradient(90deg, var(--t-bg), transparent 70%) }
+.tc-feat-ic {
+    align-items: center;
+    background: var(--t-bg);
+    border: 1px solid var(--t-bd);
+    border-radius: 12px;
+    color: var(--t-fg);
+    display: inline-flex;
+    font-size: 19px;
+    height: 44px;
+    justify-content: center;
+    width: 44px
+}
+.tc-feat-txt { display: flex; flex-direction: column; gap: 3px }
+.tc-feat-txt b { color: var(--lp-ink, #10022c); font-size: 16px; font-weight: 600 }
+.tc-feat-txt em { color: var(--lp-muted, #5b6475); font-size: 14px; font-style: normal; line-height: 1.55 }
+.tc-feat-tag { background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 999px; color: #5b6475; font-size: 11.5px; font-weight: 600; padding: 4px 10px; white-space: nowrap }
+
+/* ── Slack bridge ─────────────────────────────────────────────────────── */
+.tc-br { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) }
+.tc-br-copy .lp-head, .tc-br-copy { text-align: left }
+body.design-v2 .lp .tc-br-copy .lp-intro { margin-left: 0; margin-top: 14px }
+.tc-br-points { display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 24px 0 0; padding: 0 }
+/* Text always starts at the same left edge, even when a line wraps inside a centred column. */
+.tc-br-points li { align-items: flex-start; color: var(--lp-ink, #10022c); display: flex; font-size: 15px; font-weight: 500; gap: 10px; line-height: 1.45; text-align: left }
+.tc-br-points i { align-items: center; background: #fff; border: 1px solid #fed7aa; border-radius: 50%; color: #ea580c; display: inline-flex; flex: none; font-size: 13px; height: 24px; justify-content: center; margin-top: -1px; width: 24px }
+
+.tc-br-viz { align-items: center; display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr) 110px minmax(0, 1fr) }
+.tc-br-app {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 18px;
+    box-shadow: 0 24px 48px -34px rgba(16, 2, 44, .45);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px
+}
+.tc-br-app-head { align-items: center; display: flex; font-size: 13px; gap: 8px }
+.tc-br-app-head b { font-weight: 600 }
+.tc-br-logo { align-items: center; border-radius: 8px; color: #fff; display: inline-flex; font-size: 14px; height: 26px; justify-content: center; width: 26px }
+.tc-br-logo--us { background: linear-gradient(135deg, #2dd4bf, #0d9488) }
+.tc-br-logo--slack { background: #4a154b }
+.tc-br-ch { color: #8a8f9c; font-size: 12px; font-weight: 600 }
+.tc-br-msg { align-items: center; background: #f8f6f3; border-radius: 10px; color: #3b4356; display: flex; font-size: 12.5px; gap: 8px; padding: 7px 9px }
+.tc-br-msg--file i { color: #dc2626; font-size: 16px }
+.tc-br-sync { align-items: center; display: flex; flex-direction: column; gap: 10px }
+.tc-br-lane { display: flex; gap: 6px; justify-content: center; width: 100% }
+.tc-br-lane i { animation: tc-flow 1.6s ease-in-out infinite; background: #fb923c; border-radius: 50%; height: 7px; opacity: 0; width: 7px }
+.tc-br-lane i:nth-child(2) { animation-delay: .25s }
+.tc-br-lane i:nth-child(3) { animation-delay: .5s }
+.tc-br-lane--back { flex-direction: row-reverse }
+.tc-br-lane--back i { background: #a855f7 }
+@keyframes tc-flow { 0% { opacity: 0; transform: scale(.6) } 40% { opacity: 1; transform: scale(1) } 100% { opacity: 0; transform: scale(.6) } }
+.tc-br-badge { align-items: center; background: #10022c; border-radius: 999px; color: #fff; display: inline-flex; font-size: 11px; font-weight: 700; gap: 5px; padding: 5px 10px; white-space: nowrap }
+.tc-br-badge i { color: #fdba74 }
+
+/* ── Presence ─────────────────────────────────────────────────────────── */
+.tc-pres-sec { background: #fff }
+.tc-pres { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr) }
+body.design-v2 .lp .tc-pres-copy .lp-intro { margin-left: 0; margin-top: 14px }
+.tc-states { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 26px }
+.tc-state {
+    align-items: center;
+    background: #fbfaf9;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 14px;
+    color: var(--lp-ink, #10022c);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    gap: 12px;
+    padding: 12px 14px;
+    text-align: left;
+    transition: all .2s ease
+}
+.tc-state:hover { border-color: rgba(16, 2, 44, .18) }
+.tc-state.is-on { background: #fff; box-shadow: 0 14px 28px -20px rgba(16, 2, 44, .45) }
+.tc-state:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.tc-state span { display: flex; flex-direction: column }
+.tc-state b { font-size: 14px; font-weight: 600 }
+.tc-state em { color: #5b6475; font-size: 12px; font-style: normal }
+.tc-state-dot { border-radius: 50%; flex: none; height: 10px; width: 10px }
+.tc-state--green .tc-state-dot { background: #22c55e }
+.tc-state--red .tc-state-dot { background: #ef4444 }
+.tc-state--amber .tc-state-dot { background: #f59e0b }
+.tc-state--violet .tc-state-dot { background: #8b5cf6 }
+.tc-state--green.is-on { border-color: #86efac }
+.tc-state--red.is-on { border-color: #fca5a5 }
+.tc-state--amber.is-on { border-color: #fcd34d }
+.tc-state--violet.is-on { border-color: #c4b5fd }
+
+.tc-pres-card {
+    background: linear-gradient(180deg, #fcfbfa, #fff);
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 24px;
+    box-shadow: 0 34px 70px -50px rgba(16, 2, 44, .4);
+    padding: 22px
+}
+.tc-pres-cap { color: #9a948e; display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; margin-bottom: 10px; text-transform: uppercase }
+.tc-pres-me { align-items: center; display: flex; gap: 14px }
+.tc-pres-av { align-items: center; background: linear-gradient(135deg, #2dd4bf, #0d9488); border-radius: 16px; color: #fff; display: inline-flex; font-size: 16px; font-weight: 700; height: 56px; justify-content: center; position: relative; width: 56px }
+.tc-pres-badge { border: 3px solid #fff; border-radius: 50%; bottom: -3px; height: 16px; position: absolute; right: -3px; transition: background .25s ease; width: 16px }
+.tc-pres-badge--green { background: #22c55e }
+.tc-pres-badge--red { background: #ef4444 }
+.tc-pres-badge--amber { background: #f59e0b }
+.tc-pres-badge--violet { background: #8b5cf6 }
+.tc-pres-name { display: flex; flex-direction: column; gap: 4px }
+.tc-pres-name b { font-size: 18px; font-weight: 600 }
+.tc-pres-status { align-items: center; border-radius: 999px; display: inline-flex; font-size: 12px; font-style: normal; font-weight: 600; gap: 5px; padding: 3px 9px; width: fit-content }
+.tc-pres-status i { font-size: 11px }
+.tc-pres-status--green { background: #dcfce7; color: #15803d }
+.tc-pres-status--red { background: #fee2e2; color: #b91c1c }
+.tc-pres-status--amber { background: #fef3c7; color: #b45309 }
+.tc-pres-status--violet { background: #ede9fe; color: #6d28d9 }
+.tc-pres-facts { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; margin: 18px 0 10px }
+.tc-pres-facts > div { background: #f8f6f3; border-radius: 12px; padding: 10px 12px }
+.tc-pres-facts dt { align-items: center; color: #8a8f9c; display: flex; font-size: 11px; font-weight: 600; gap: 5px; margin-bottom: 3px }
+.tc-pres-facts dd { color: var(--lp-ink, #10022c); font-size: 13px; font-weight: 600; margin: 0 }
+body.design-v2 .lp .tc-pres-note { color: #5b6475; font-size: 13.5px !important; line-height: 1.5 !important; margin: 0 0 18px }
+.tc-pres-team { border-top: 1px dashed rgba(16, 2, 44, .12); padding-top: 14px }
+.tc-pres-team ul { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 0; padding: 0 }
+.tc-pres-team li { align-items: center; color: var(--lp-ink, #10022c); display: flex; font-size: 13.5px; font-weight: 500; gap: 10px }
+.tc-pres-team li em { margin-left: auto }
+.tc-mini { align-items: center; border-radius: 8px; color: #fff; display: inline-flex; flex: none; font-size: 10px; font-weight: 700; height: 26px; justify-content: center; width: 26px }
+.tc-mini--orange { background: linear-gradient(135deg, #fb923c, #ea580c) }
+.tc-mini--blue { background: linear-gradient(135deg, #60a5fa, #2563eb) }
+.tc-mini--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed) }
+
+/* ── Before / after ───────────────────────────────────────────────────── */
+.tc-ba { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; margin: 0 auto; max-width: 1000px }
+.tc-ba-col { border-radius: 22px; padding: 24px }
+.tc-ba-col--before { background: #f4f2ef; border: 1px solid rgba(16, 2, 44, .06) }
+.tc-ba-col--after { background: #fff; border: 1px solid #99f6e4; box-shadow: 0 30px 60px -44px rgba(13, 148, 136, .55) }
+.tc-ba-top { align-items: center; display: flex; gap: 10px; justify-content: space-between; margin-bottom: 16px }
+.tc-ba-label { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase }
+.tc-ba-col--before .tc-ba-label { color: #7a8090 }
+.tc-ba-col--after .tc-ba-label { color: #0f766e }
+.tc-ba-time { align-items: center; border-radius: 999px; display: inline-flex; font-size: 12.5px; font-weight: 700; gap: 5px; padding: 4px 10px; white-space: nowrap }
+.tc-ba-col--before .tc-ba-time { background: #fee2e2; color: #b91c1c }
+.tc-ba-col--after .tc-ba-time { background: #ccfbf1; color: #0f766e }
+.tc-ba ol { display: flex; flex-direction: column; gap: 10px; list-style: none; margin: 0; padding: 0 }
+.tc-ba li { align-items: center; display: flex; font-size: 14.5px; gap: 12px }
+.tc-ba-col--before li { color: #7a8090 }
+.tc-ba-col--after li { color: var(--lp-ink, #10022c); font-weight: 500 }
+.tc-ba-n { align-items: center; border-radius: 50%; display: inline-flex; flex: none; font-size: 12px; font-weight: 700; height: 26px; justify-content: center; width: 26px }
+.tc-ba-col--before .tc-ba-n { background: #e7e3df; color: #8a8f9c }
+.tc-ba-col--after .tc-ba-n { background: #0d9488; color: #fff }
+
+/* ── Who it's for ─────────────────────────────────────────────────────── */
+.tc-who-sec { background: #fff }
+.tc-who {
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 22px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0
+}
+.tc-who li { display: flex; flex-direction: column; gap: 6px; padding: 24px 22px; transition: background .2s ease }
+.tc-who li + li { border-left: 1px solid rgba(16, 2, 44, .08) }
+.tc-who li:hover { background: var(--t-bg) }
+.tc-who-ic { align-items: center; background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 12px; color: var(--t-fg); display: inline-flex; font-size: 19px; height: 42px; justify-content: center; margin-bottom: 8px; width: 42px }
+.tc-who b { color: var(--lp-ink, #10022c); font-size: 16px; font-weight: 600 }
+.tc-who em { color: var(--lp-muted, #5b6475); font-size: 14px; font-style: normal; line-height: 1.5 }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .tc-feat, .tc-br, .tc-pres { gap: 36px; grid-template-columns: minmax(0, 1fr) }
+    .tc-feat-side { position: static; text-align: center }
+    body.design-v2 .lp .tc-feat-side .lp-intro, body.design-v2 .lp .tc-br-copy .lp-intro, body.design-v2 .lp .tc-pres-copy .lp-intro { margin-left: auto; margin-right: auto }
+    .tc-br-copy, .tc-pres-copy { text-align: center }
+    .tc-br-points { align-items: flex-start; margin-left: auto; margin-right: auto; max-width: 420px }
+    .tc-who { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .tc-who li:nth-child(3) { border-left: 0 }
+    .tc-who li:nth-child(n+3) { border-top: 1px solid rgba(16, 2, 44, .08) }
+}
+@media (max-width: 640px) {
+    .tc-feat-row { gap: 12px; grid-template-columns: auto minmax(0, 1fr) }
+    .tc-feat-tag { display: none }
+    .tc-br-viz { grid-template-columns: minmax(0, 1fr) }
+    .tc-br-sync { flex-direction: row; justify-content: center }
+    .tc-br-lane { width: auto }
+    .tc-pres-facts { grid-template-columns: 1fr }
+    /* Status picker stays a compact 2 × 2 grid on phones instead of a tall stack. */
+    .tc-states { gap: 8px; margin-top: 20px }
+    .tc-state { align-items: flex-start; border-radius: 12px; gap: 8px; min-width: 0; padding: 10px 10px }
+    .tc-state-dot { height: 8px; margin-top: 5px; width: 8px }
+    .tc-state span { min-width: 0 }
+    .tc-state b { font-size: 13px; white-space: nowrap }
+    .tc-state em { font-size: 11px; line-height: 1.35 }
+    .tc-ba { grid-template-columns: minmax(0, 1fr) }
+    .tc-who { grid-template-columns: minmax(0, 1fr) }
+    .tc-who li + li { border-left: 0; border-top: 1px solid rgba(16, 2, 44, .08) }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tcm-live i, .tcm-chan-huddle, .tcm-wave i, .tcm-msg, .tcm-sys, .tcm-typing span i, .tcm-huddle, .tc-br-lane i { animation: none }
+}
+
+/* Team Chat hero art (teal sunrise): deeper cream wash on the copy side. */
+.lp-hero-art[style*="desert-mountain-sunrise"] { background-position: 50% 70% }
+.lp-hero-art[style*="desert-mountain-sunrise"]::after {
+    background: linear-gradient(90deg,
+        rgba(255, 247, 240, .93) 0%,
+        rgba(255, 247, 240, .82) 36%,
+        rgba(255, 247, 240, .3) 58%,
+        rgba(255, 247, 240, 0) 74%)
+}
+@media (max-width: 1024px) {
+    .lp-hero-art[style*="desert-mountain-sunrise"]::after {
+        background: linear-gradient(180deg, rgba(255, 247, 240, .9) 0%, rgba(255, 247, 240, .65) 55%, rgba(255, 247, 240, .25) 100%)
+    }
+}
+
+/* ── Chat mockup: interactions ────────────────────────────────────────── */
+.tcm-chan.is-unread:not(.is-on) { color: var(--tcm-ink); font-weight: 700 }
+.tcm-msg { border-radius: 10px; margin: 0 -6px; padding: 4px 6px; position: relative; transition: background .15s ease }
+.tcm-msg:hover { background: #faf8f6 }
+.tcm-quick {
+    background: #fff;
+    border: 1px solid var(--tcm-line);
+    border-radius: 999px;
+    box-shadow: 0 8px 18px -12px rgba(16, 2, 44, .45);
+    display: flex;
+    gap: 1px;
+    opacity: 0;
+    padding: 2px;
+    pointer-events: none;
+    position: absolute;
+    right: 6px;
+    top: -12px;
+    transform: translateY(3px);
+    transition: opacity .15s ease, transform .15s ease
+}
+.tcm-msg:hover .tcm-quick, .tcm-msg:focus-within .tcm-quick { opacity: 1; pointer-events: auto; transform: none }
+.tcm-quick button { background: transparent; border: 0; border-radius: 50%; font-size: 13px; height: 24px; line-height: 1; width: 24px }
+.tcm-quick button:hover { background: #f4f2ef; transform: scale(1.15) }
+.tcm-reacts { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px }
+.tcm-reacts button {
+    align-items: center;
+    background: #f6f4f2;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--tcm-ink);
+    display: inline-flex;
+    font-size: 11.5px;
+    gap: 3px;
+    padding: 1px 7px;
+    transition: all .15s ease
+}
+.tcm-reacts button b { font-size: 11px; font-weight: 600 }
+.tcm-reacts button.is-mine { background: #fff7ed; border-color: #fdba74; color: #c2410c }
+
+.tcm-file {
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--tcm-line);
+    border-radius: 10px;
+    color: var(--tcm-ink);
+    display: inline-flex;
+    gap: 9px;
+    margin-top: 3px;
+    max-width: 240px;
+    padding: 7px 10px;
+    text-align: left
+}
+.tcm-file > i:first-child { font-size: 20px }
+.tcm-file span { display: flex; flex-direction: column; min-width: 0 }
+.tcm-file b { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.tcm-file em { color: #9a948e; font-size: 10.5px; font-style: normal }
+.tcm-file-dl { color: #9a948e; margin-left: auto }
+.tcm-file--red > i:first-child { color: #dc2626 }
+.tcm-file--green > i:first-child { color: #16a34a }
+.tcm-file--blue > i:first-child { color: #2563eb }
+
+.tcm-typing em { color: #9a948e; font-size: 11px; font-style: italic }
+
+.tcm-tool {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    color: #8a8f9c;
+    display: inline-flex;
+    flex: none;
+    font-size: 17px;
+    height: 30px;
+    justify-content: center;
+    width: 30px
+}
+.tcm-tool:hover, .tcm-tool.is-on { background: #f4f2ef; color: var(--tcm-ink) }
+.tcm-compose { gap: 4px }
+.tcm-compose input { margin: 0 2px }
+
+.tcm-pop {
+    background: #fff;
+    border: 1px solid var(--tcm-line);
+    border-radius: 12px;
+    bottom: calc(100% + 4px);
+    box-shadow: 0 16px 30px -18px rgba(16, 2, 44, .45);
+    position: absolute;
+    z-index: 3
+}
+.tcm-pop--emoji { display: grid; gap: 2px; grid-template-columns: repeat(4, 1fr); padding: 6px; right: 44px }
+.tcm-pop--emoji button { background: transparent; border: 0; border-radius: 8px; font-size: 17px; height: 32px; width: 32px }
+.tcm-pop--emoji button:hover { background: #f4f2ef }
+.tcm-pop--files { display: flex; flex-direction: column; gap: 4px; left: 10px; padding: 6px; width: 230px }
+.tcm-pop--files .tcm-file { border-color: transparent; margin: 0; max-width: none; width: 100% }
+.tcm-pop--files .tcm-file:hover { background: #faf8f6; border-color: var(--tcm-line) }
+.tcm-mention button.is-on { background: #fff7ed }
+
+.tcm-huddle-ctl { display: inline-flex; gap: 6px }
+.tcm-huddle-ctl button {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #bbf7d0;
+    border-radius: 50%;
+    color: #166534;
+    display: inline-flex;
+    font-size: 14px;
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+.tcm-huddle-ctl button.is-off { background: #fee2e2; border-color: #fecaca; color: #b91c1c }
+.tcm-huddle-ctl button.is-leave { background: #ef4444; border-color: #ef4444; color: #fff }
+.tcm-huddle-ctl button.is-leave i { transform: rotate(135deg) }
+.tcm-huddle-btn.is-joined { background: #fff; border-color: #fecaca; color: #b91c1c }
+.tcm-chan .tcm-chan-meta { align-items: center; display: inline-flex; flex: none; gap: 4px; overflow: visible }
+/* Keep the composer pinned: the message list shrinks, the window doesn't grow. */
+.tcm-body { grid-template-rows: minmax(0, 1fr) }
+.tcm-main, .tcm-side { min-height: 0; overflow: hidden }
+.tcm-bar, .tcm-huddle, .tcm-compose { flex: none }
+
+/* ── Who it's for (final): its own warm ground so it never reads as part of
+   the white "Pairs well with" section below; 2×2 cards, each with a short
+   in-chat moment. Overrides the earlier 4-column strip. */
+.tc-who-sec {
+    background:
+        radial-gradient(55% 70% at 0% 0%, rgba(253, 186, 116, .3), transparent 70%),
+        radial-gradient(50% 60% at 100% 100%, rgba(153, 246, 228, .35), transparent 70%),
+        linear-gradient(180deg, #fbf6f1, #f7f2ec);
+    border-bottom: 1px solid rgba(16, 2, 44, .06);
+    border-top: 1px solid rgba(16, 2, 44, .06)
+}
+.tc-who-head { align-items: end; display: grid; gap: 32px; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); margin-bottom: 36px }
+body.design-v2 .lp .tc-who-note { color: var(--lp-muted, #5b6475); font-size: 15.5px !important; line-height: 1.6 !important; margin: 0 }
+.tc-who {
+    border: 0;
+    border-radius: 0;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    overflow: visible;
+    padding: 0
+}
+.tc-who li + li { border-left: 0 }
+.tc-who li:hover { background: #fff }
+.tc-who-card {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 22px;
+    box-shadow: 0 20px 44px -36px rgba(16, 2, 44, .4);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease
+}
+.tc-who-card:hover { border-color: var(--t-bd); box-shadow: 0 28px 50px -34px rgba(16, 2, 44, .45); transform: translateY(-3px) }
+.tc-who-top { align-items: center; display: flex; gap: 14px }
+.tc-who .tc-who-ic { flex: none; margin: 0 }
+.tc-who-txt { display: flex; flex-direction: column; gap: 2px }
+.tc-who-txt b { color: var(--lp-ink, #10022c); font-size: 17px; font-weight: 600 }
+.tc-who-txt em { color: var(--lp-muted, #5b6475); font-size: 14px; font-style: normal; line-height: 1.5 }
+.tc-who-chat { background: #faf8f6; border: 1px solid rgba(16, 2, 44, .06); border-radius: 16px; display: flex; flex-direction: column; gap: 8px; padding: 12px }
+.tc-who-bubble { align-items: flex-start; color: #3b4356; display: flex; font-size: 13.5px; gap: 9px; line-height: 1.45 }
+.tc-who-bubble > span:last-child { background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 4px 12px 12px 12px; padding: 7px 10px }
+.tc-who-bubble--me > span:last-child { background: #f0fdfa; border-color: #99f6e4; color: #134e4a }
+.tc-who-time { align-items: center; align-self: flex-start; background: #fff7ed; border-radius: 999px; color: #c2410c; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 5px; margin-top: 2px; padding: 3px 9px }
+.tc-mini--teal { background: linear-gradient(135deg, #2dd4bf, #0d9488) }
+@media (max-width: 1024px) {
+    .tc-who-head { grid-template-columns: minmax(0, 1fr); text-align: center }
+}
+@media (max-width: 760px) {
+    .tc-who { grid-template-columns: minmax(0, 1fr) }
+}
+
+/* ── Works with (Team Chat): heading + facts on the left, an integrations
+   panel on the right — one card, a row per connected product with what it
+   adds, a connection pill and an Open link. */
+.tc-ww-sec { background: #fff }
+.tc-ww { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr) }
+body.design-v2 .lp .tc-ww-side .lp-intro { margin-left: 0; margin-top: 14px }
+.tc-ww-facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 24px 0 0; padding: 0 }
+.tc-ww-facts li {
+    align-items: center;
+    background: #faf8f6;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 999px;
+    color: var(--lp-ink, #10022c);
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 6px;
+    padding: 6px 12px
+}
+.tc-ww-facts i { color: #0d9488; font-size: 15px }
+
+.tc-ww-panel {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 24px;
+    box-shadow: 0 34px 70px -52px rgba(16, 2, 44, .45);
+    overflow: hidden
+}
+.tc-ww-panel-head {
+    align-items: center;
+    background: linear-gradient(180deg, #fcfaf8, #f8f5f2);
+    border-bottom: 1px solid rgba(16, 2, 44, .07);
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 20px
+}
+.tc-ww-panel-head span { align-items: center; color: var(--lp-ink, #10022c); display: inline-flex; font-size: 13.5px; font-weight: 600; gap: 8px }
+.tc-ww-panel-head span i { color: #0d9488; font-size: 17px }
+.tc-ww-panel-head em { align-items: center; background: #ecfdf5; border-radius: 999px; color: #047857; display: inline-flex; font-size: 11.5px; font-style: normal; font-weight: 700; gap: 6px; padding: 3px 9px }
+.tc-ww-panel-head em i { background: #22c55e; border-radius: 50%; height: 6px; width: 6px }
+.tc-ww-panel ul { list-style: none; margin: 0; padding: 6px }
+.tc-ww-row {
+    align-items: center;
+    border-radius: 16px;
+    color: inherit;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    padding: 14px;
+    text-decoration: none;
+    transition: background .2s ease
+}
+.tc-ww-panel li + li .tc-ww-row { border-top: 1px solid rgba(16, 2, 44, .06); border-radius: 0 0 16px 16px }
+.tc-ww-row:hover { background: linear-gradient(90deg, var(--t-bg), #fff 75%) }
+.tc-ww-row:focus-visible { outline: 2px solid #ea580c; outline-offset: -2px }
+.tc-ww-ic {
+    align-items: center;
+    background: var(--t-bg);
+    border: 1px solid var(--t-bd);
+    border-radius: 12px;
+    color: var(--t-fg);
+    display: inline-flex;
+    font-size: 19px;
+    height: 44px;
+    justify-content: center;
+    width: 44px
+}
+.tc-ww-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0 }
+.tc-ww-txt b { color: var(--lp-ink, #10022c); font-size: 15.5px; font-weight: 600 }
+.tc-ww-txt em { color: var(--lp-muted, #5b6475); font-size: 13.5px; font-style: normal; line-height: 1.5 }
+.tc-ww-pill { background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 999px; color: var(--t-fg); font-size: 11.5px; font-weight: 700; padding: 4px 10px; white-space: nowrap }
+.tc-ww-go { align-items: center; color: var(--lp-ink, #10022c); display: inline-flex; font-size: 13px; font-weight: 600; gap: 4px; opacity: .55; transition: opacity .2s ease, transform .2s ease }
+.tc-ww-row:hover .tc-ww-go { opacity: 1; transform: translateX(2px) }
+.tc-ww-go i { color: var(--t-fg) }
+
+@media (max-width: 1024px) {
+    .tc-ww { gap: 32px; grid-template-columns: minmax(0, 1fr) }
+    .tc-ww-side { text-align: center }
+    body.design-v2 .lp .tc-ww-side .lp-intro { margin-left: auto; margin-right: auto }
+    .tc-ww-facts { justify-content: center }
+}
+@media (max-width: 640px) {
+    .tc-ww-row { gap: 12px; grid-template-columns: auto minmax(0, 1fr); padding: 12px }
+    .tc-ww-pill { grid-column: 2; justify-self: start }
+    .tc-ww-go { display: none }
+    /* Keep the three facts on one line on phones. */
+    .tc-ww-facts { flex-wrap: nowrap; gap: 6px }
+    .tc-ww-facts li { flex: 0 1 auto; font-size: 11.5px; gap: 4px; justify-content: center; min-width: 0; padding: 5px 9px; white-space: nowrap }
+    .tc-ww-facts i { font-size: 13px }
+}
+
+/* ── Hero mock as transparent glass (as on the Unified Communication and
+   Hosted Phone System heroes) ──────────────────────────────────────────────
+   The shell is mostly see-through with a strong blur so the landscape shows
+   through; the chat window inside becomes a lighter frosted layer with
+   white hairlines, and the tinted strips turn translucent. */
+.lp-hero--team-chat .tcm {
+    --tcm-line: rgba(255, 255, 255, .55);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    backdrop-filter: blur(24px) saturate(165%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, .16));
+    border: 1px solid rgba(255, 255, 255, .55);
+    box-shadow: 0 44px 90px -40px rgba(15, 23, 42, .6), inset 0 1px 0 rgba(255, 255, 255, .8), inset 0 0 0 1px rgba(255, 255, 255, .12);
+    position: relative
+}
+.lp-hero--team-chat .tcm::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), transparent);
+    content: "";
+    height: 1px;
+    left: 12%;
+    pointer-events: none;
+    position: absolute;
+    right: 12%;
+    top: 0
+}
+.lp-hero--team-chat .tcm-live { background: rgba(220, 252, 231, .6); border: 1px solid rgba(255, 255, 255, .6) }
+.lp-hero--team-chat .tcm-body {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .6);
+    border-color: rgba(255, 255, 255, .7)
+}
+.lp-hero--team-chat .tcm-side { background: rgba(255, 255, 255, .28) }
+.lp-hero--team-chat .tcm-chan:hover { background: rgba(255, 255, 255, .55) }
+.lp-hero--team-chat .tcm-chan.is-on { background: #1a1a1a }
+.lp-hero--team-chat .tcm-huddle { background: rgba(240, 253, 244, .65); border-bottom-color: rgba(187, 247, 208, .7) }
+.lp-hero--team-chat .tcm-huddle.is-joined { background: rgba(220, 252, 231, .72) }
+.lp-hero--team-chat .tcm-huddle-btn:not(.is-live) { background: rgba(255, 255, 255, .6) }
+.lp-hero--team-chat .tcm-sys { background: rgba(240, 253, 244, .8) }
+.lp-hero--team-chat .tcm-compose input { background: rgba(255, 255, 255, .6); border-color: rgba(255, 255, 255, .7) }
+.lp-hero--team-chat .tcm-compose input:focus { background: #fff }
+
+
+/* ── What you get: callouts around a feature window (ChatAnatomy.jsx) ──────
+   Callouts 1–4 | a glass Team Chat window over a nature photo | callouts
+   5–8. The window shows a dedicated screen for the active feature; the
+   active callout turns near-black with an orange number. */
+.tc-feat-sec .lp-head { margin-bottom: 44px }
+body.design-v2 .lp .tc-feat-sec .lp-h2 { text-wrap: balance }
+.tca {
+    align-items: center;
+    display: grid;
+    gap: 28px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr) minmax(0, 1fr)
+}
+.tca-col { display: flex; flex-direction: column; gap: 10px; list-style: none; margin: 0; padding: 0 }
+
+/* Callouts */
+.tca-co {
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 16px;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    gap: 12px;
+    padding: 14px 16px;
+    text-align: left;
+    transition: background .3s ease, border-color .3s ease, box-shadow .3s ease, translate .3s ease;
+    width: 100%
+}
+.tca-co:hover { border-color: rgba(234, 88, 12, .3) }
+.tca-co:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.tca-co-n { align-items: center; background: #f6f1ea; border-radius: 50%; color: #1a1a1a; display: inline-flex; flex: none; font-size: 12px; font-weight: 700; height: 26px; justify-content: center; transition: background .3s ease, color .3s ease; width: 26px }
+.tca-co-txt { display: flex; flex-direction: column; gap: 4px; min-width: 0 }
+.tca-co-txt b { align-items: center; color: #1a1a1a; display: flex; flex-wrap: wrap; font-size: 15px; font-weight: 600; gap: 6px 8px }
+.tca-co-txt small { background: #f6f1ea; border-radius: 999px; color: #6b6560; font-size: 10.5px; font-weight: 600; padding: 2px 8px }
+.tca-co-txt em { color: #6b6560; display: -webkit-box; font-size: 13px; font-style: normal; line-height: 1.5; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2 }
+.tca-co.is-on { background: #1a1a1a; border-color: #1a1a1a; box-shadow: 0 22px 40px -26px rgba(16, 2, 44, .7) }
+.tca-co.is-on .tca-co-n { background: #ea580c; color: #fff }
+.tca-co.is-on .tca-co-txt b { color: #fff }
+.tca-co.is-on .tca-co-txt small { background: rgba(255, 255, 255, .12); color: #fdba74 }
+.tca-co.is-on .tca-co-txt em { color: rgba(255, 255, 255, .7) }
+.tca-col--l .tca-co.is-on { translate: 4px 0 }
+.tca-col--r .tca-co.is-on { translate: -4px 0 }
+
+/* Stage + window */
+.tca-stage {
+    background-color: #e9e4dc;
+    background-position: center;
+    background-size: cover;
+    border-radius: 24px;
+    box-shadow: 0 40px 80px -50px rgba(16, 2, 44, .6);
+    overflow: hidden;
+    padding: 30px 24px 38px;
+    position: relative
+}
+.tca-stage::before { background: linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(24, 16, 8, .18)); content: ""; inset: 0; position: absolute }
+.tca-win {
+    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    backdrop-filter: blur(22px) saturate(165%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .72), rgba(255, 255, 255, .52));
+    border: 1px solid rgba(255, 255, 255, .75);
+    border-radius: 16px;
+    box-shadow: 0 40px 70px -30px rgba(15, 23, 42, .55), inset 0 1px 0 rgba(255, 255, 255, .9);
+    color: #18181b;
+    font-size: 11.5px;
+    line-height: 1.3;
+    overflow: hidden;
+    position: relative
+}
+.tca-bar { align-items: center; border-bottom: 1px solid rgba(255, 255, 255, .6); display: flex; gap: 10px; padding: 10px 14px }
+.tca-dots { display: inline-flex; gap: 4px }
+.tca-dots i { border-radius: 50%; height: 8px; width: 8px }
+.tca-dots i:nth-child(1) { background: #f87171 }
+.tca-dots i:nth-child(2) { background: #fbbf24 }
+.tca-dots i:nth-child(3) { background: #34d399 }
+.tca-bar-t { align-items: center; display: inline-flex; flex: 1; font-size: 12.5px; font-weight: 600; gap: 6px }
+.tca-bar-t i { color: #ea580c; font-size: 14px }
+.tca-bar-f { align-items: center; background: rgba(255, 255, 255, .7); border-radius: 999px; color: #44403c; display: inline-flex; font-size: 10.5px; font-weight: 600; gap: 5px; padding: 3px 10px }
+.tca-bar-f i { color: #ea580c }
+/* Fixed height: switching screens never moves the page. */
+.tca-screen { animation: tca-in .5s cubic-bezier(.2, .8, .2, 1) both; height: 318px; padding: 14px }
+.tca-steps { bottom: 14px; display: flex; gap: 5px; left: 50%; position: absolute; translate: -50% 0; z-index: 1 }
+.tca-steps i { background: rgba(255, 255, 255, .55); border-radius: 99px; height: 6px; transition: background .3s ease, width .3s ease; width: 6px }
+.tca-steps i.on { background: #fff; width: 18px }
+
+/* Kit */
+.tca-win b { font-weight: 600 }
+.tca-win em { color: #78716c; font-style: normal }
+.tca-av { align-items: center; border: 2px solid #fff; border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 8.5px; font-weight: 700; height: 24px; justify-content: center; width: 24px }
+.tca-av--a { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.tca-av--b { background: linear-gradient(135deg, #57534e, #1c1917) }
+.tca-av--c { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.tca-av--d { background: linear-gradient(135deg, #a8a29e, #57534e) }
+.tca-stack { display: inline-flex }
+.tca-stack .tca-av + .tca-av { margin-left: -7px }
+.tca-stack-v { display: flex; flex-direction: column; gap: 10px; height: 100% }
+.tca-row-head { align-items: center; display: flex; gap: 10px; justify-content: space-between }
+.tca-row-head > b { font-size: 13.5px }
+.tca-dim { color: #78716c; font-size: 11px }
+.tca-label { color: #78716c; font-size: 9.5px; font-weight: 700; letter-spacing: .08em; padding: 6px 8px 3px; text-transform: uppercase }
+.tca-card { background: rgba(255, 255, 255, .58); border: 1px solid rgba(255, 255, 255, .8); border-radius: 12px; display: flex; flex-direction: column; gap: 10px; padding: 12px }
+.tca-note { align-items: center; background: rgba(255, 255, 255, .55); border: 1px solid rgba(255, 255, 255, .8); border-radius: 10px; color: #44403c; display: flex; font-size: 11px; gap: 7px; margin-top: auto; padding: 8px 10px }
+.tca-note i { color: #ea580c; font-size: 14px }
+.tca-btn { align-items: center; background: #18181b; border-radius: 7px; color: #fff; display: inline-flex; font-size: 10.5px; font-weight: 600; gap: 4px; padding: 5px 10px; white-space: nowrap }
+.tca-btn i { color: #fdba74 }
+.tca-btn--wide { justify-content: center; margin-top: 4px; padding: 8px }
+.tca-tabs { background: rgba(255, 255, 255, .45); border-radius: 7px; display: inline-flex; gap: 2px; padding: 2px }
+.tca-tabs span { border-radius: 5px; color: #78716c; font-size: 10.5px; font-weight: 600; padding: 3px 8px }
+.tca-tabs span.on { background: #fff; color: #18181b }
+.tca-pill { align-items: center; border-radius: 999px; display: inline-flex; font-size: 10px; font-weight: 600; gap: 5px; padding: 3px 9px; white-space: nowrap }
+.tca-pill i { border-radius: 50%; height: 6px; width: 6px }
+.tca-pill--ok { background: rgba(240, 253, 244, .9); color: #15803d }
+.tca-pill--ok i { background: #22c55e }
+.tca-pill--busy { background: rgba(254, 242, 242, .9); color: #b91c1c }
+.tca-pill--busy i { background: #ef4444 }
+.tca-pill--meet { background: rgba(255, 247, 237, .9); color: #c2410c }
+.tca-pill--meet i { background: #f97316 }
+.tca-pill--focus, .tca-pill--idle { background: rgba(245, 245, 244, .85); color: #57534e }
+.tca-pill--focus i, .tca-pill--idle i { background: #a8a29e }
+.tca-pill--live { background: #18181b; color: #fff }
+.tca-pill--live i { animation: tca-ping 1.4s ease-out infinite; background: #fb923c }
+
+.tca-msg { align-items: flex-start; display: flex; gap: 8px }
+.tca-msg > span:last-child { color: #44403c; display: flex; flex-direction: column; gap: 3px; min-width: 0 }
+.tca-msg b em { font-weight: 500; margin-left: 4px }
+.tca-msg--reply { border-left: 2px solid rgba(234, 88, 12, .35); margin-left: 12px; padding-left: 9px }
+.tca-win mark { background: #fff7ed; border-radius: 4px; color: #c2410c; font-weight: 600; padding: 0 3px }
+.tca-file { align-items: center; align-self: flex-start; background: rgba(255, 255, 255, .9); border-radius: 7px; display: inline-flex; font-weight: 600; gap: 5px; padding: 4px 8px }
+.tca-file i { color: #ea580c; font-size: 13px }
+.tca-file em { margin-left: 3px }
+.tca-compose { align-items: center; background: rgba(255, 255, 255, .62); border: 1px solid rgba(255, 255, 255, .85); border-radius: 9px; color: #a8a29e; display: flex; justify-content: space-between; margin-top: auto; padding: 8px 10px }
+.tca-compose i { color: #ea580c; font-size: 14px }
+
+/* 1 Channels */
+.tca-split { display: grid; gap: 12px; grid-template-columns: 150px minmax(0, 1fr); height: 100% }
+.tca-pane { background: rgba(255, 255, 255, .35); border-radius: 10px; display: flex; flex-direction: column; gap: 1px; padding: 4px 6px }
+.tca-pane--main { background: transparent; gap: 10px; padding: 0 }
+.tca-ch { align-items: center; border-radius: 7px; color: #44403c; display: flex; font-weight: 500; gap: 6px; padding: 5px 8px; white-space: nowrap }
+.tca-ch i { color: #a8a29e }
+.tca-ch .tca-av { border: 0; font-size: 7px; height: 18px; width: 18px }
+.tca-ch.is-on { background: #18181b; color: #fff }
+.tca-ch.is-on i { color: #fdba74 }
+.tca-ch em { background: #ea580c; border-radius: 999px; color: #fff; font-size: 9.5px; font-weight: 700; margin-left: auto; padding: 0 6px }
+
+/* 3 Huddle */
+.tca-seats { display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.tca-seat { align-items: center; background: rgba(255, 255, 255, .58); border: 1px solid rgba(255, 255, 255, .8); border-radius: 12px; display: flex; flex-direction: column; gap: 3px; padding: 16px 6px 12px }
+.tca-seat-av { border-radius: 50%; display: inline-flex; margin-bottom: 4px; padding: 3px }
+.tca-seat .tca-av { font-size: 12px; height: 42px; width: 42px }
+.tca-seat b { white-space: nowrap }
+.tca-seat.is-talk { border-color: #fdba74 }
+.tca-seat.is-talk .tca-seat-av { animation: tca-talk 1.4s ease-out infinite; box-shadow: 0 0 0 2px #ea580c }
+.tca-seat.is-talk em { color: #c2410c; font-weight: 600 }
+.tca-ctrls { display: grid; gap: 6px; grid-template-columns: repeat(4, 1fr) }
+.tca-ctrls span { align-items: center; background: rgba(255, 255, 255, .6); border: 1px solid rgba(255, 255, 255, .8); border-radius: 9px; color: #44403c; display: flex; flex-direction: column; font-size: 10px; font-weight: 600; gap: 3px; padding: 7px 2px }
+.tca-ctrls i { font-size: 14px }
+.tca-ctrls span.is-end { background: #ef4444; border-color: #ef4444; color: #fff }
+.tca-ctrls span.is-end i { rotate: 135deg }
+
+/* 4 Presence */
+.tca-list { background: rgba(255, 255, 255, .55); border: 1px solid rgba(255, 255, 255, .8); border-radius: 12px; display: flex; flex-direction: column }
+.tca-li { align-items: center; border-top: 1px solid rgba(255, 255, 255, .8); display: grid; gap: 10px; grid-template-columns: auto minmax(0, 1fr) auto 16px; padding: 8px 12px }
+.tca-li:first-child { border-top: 0 }
+.tca-src { color: #a8a29e; font-size: 13px }
+.tca-pres { position: relative }
+.tca-pres::after { border: 2px solid #fff; border-radius: 50%; bottom: -1px; content: ""; height: 9px; position: absolute; right: -2px; width: 9px }
+.tca-pres--busy::after { background: #ef4444 }
+.tca-pres--meet::after { background: #f97316 }
+.tca-pres--focus::after { background: #a8a29e }
+.tca-pres--ok::after { background: #22c55e }
+
+/* 5 DND */
+.tca-paused { align-items: center; background: #18181b; border-radius: 999px; color: #fff; display: inline-flex; font-size: 10.5px; font-weight: 600; gap: 5px; padding: 4px 10px; white-space: nowrap }
+.tca-paused i { color: #fdba74 }
+.tca-agenda { display: flex; flex-direction: column; gap: 6px }
+.tca-slot { align-items: center; display: grid; gap: 10px; grid-template-columns: 34px 1fr }
+.tca-time { color: #57534e; font-size: 10.5px; font-variant-numeric: tabular-nums; font-weight: 600; text-align: right }
+.tca-ev { background: rgba(255, 255, 255, .58); border: 1px solid rgba(255, 255, 255, .8); border-left: 3px solid #d6d3d1; border-radius: 8px; display: flex; flex-direction: column; padding: 6px 10px }
+.tca-slot.is-now .tca-ev { background: rgba(255, 247, 237, .9); border-left-color: #ea580c }
+.tca-slot.is-now .tca-ev em { color: #c2410c; font-weight: 600 }
+
+/* 6 Bridge */
+.tca-bridge { align-items: center; display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr) }
+.tca-bcol { background: rgba(255, 255, 255, .58); border: 1px solid rgba(255, 255, 255, .8); border-radius: 12px; display: flex; flex-direction: column; gap: 8px; padding: 10px }
+.tca-bhead { align-items: center; display: flex; font-size: 10.5px; font-weight: 600; gap: 6px; white-space: nowrap }
+.tca-blogo { align-items: center; background: #18181b; border-radius: 6px; color: #fdba74; display: inline-flex; font-size: 12px; height: 22px; justify-content: center; width: 22px }
+.tca-blogo--slack { background: #fff; box-shadow: inset 0 0 0 1px #ece7e0; color: #4a154b }
+.tca-bmsg { align-items: center; background: rgba(255, 255, 255, .85); border-radius: 9px; color: #44403c; display: flex; gap: 6px; padding: 6px 8px }
+.tca-bmsg .tca-av { border: 0; font-size: 7px; height: 20px; width: 20px }
+.tca-bmsg--in { border: 1px dashed rgba(234, 88, 12, .45) }
+.tca-bsync { align-items: center; background: #ea580c; border-radius: 50%; box-shadow: 0 8px 16px -8px rgba(234, 88, 12, .8); color: #fff; display: inline-flex; font-size: 14px; height: 30px; justify-content: center; width: 30px }
+
+/* 7 Guest */
+.tca-form { gap: 7px }
+.tca-field { align-items: center; background: rgba(255, 255, 255, .85); border: 1px solid rgba(255, 255, 255, .9); border-radius: 8px; display: flex; gap: 8px; padding: 7px 10px }
+.tca-field em { font-size: 10px; width: 50px }
+.tca-field i { color: #78716c; margin-left: auto }
+.tca-radio { align-items: center; color: #44403c; display: flex; gap: 8px; padding: 2px 4px }
+.tca-radio i { border: 2px solid #d6d3d1; border-radius: 50%; height: 14px; width: 14px }
+.tca-radio.is-on i { border: 4px solid #ea580c }
+
+/* 8 Calls */
+.tca-callbtn { align-items: center; background: #16a34a; border-radius: 50%; color: #fff; display: inline-flex; font-size: 13px; height: 28px; justify-content: center; width: 28px }
+.tca-calling { align-items: center; background: #18181b; border-radius: 12px; color: #fff; display: flex; gap: 10px; padding: 12px }
+.tca-calling .tca-av { border-color: #18181b; font-size: 11px; height: 36px; width: 36px }
+.tca-calling-t { display: flex; flex: 1; flex-direction: column; min-width: 0 }
+.tca-win .tca-calling-t em { color: rgba(255, 255, 255, .65); font-size: 10.5px }
+.tca-rec { align-items: center; color: #fca5a5; display: inline-flex; font-size: 11px; font-variant-numeric: tabular-nums; font-weight: 700; gap: 5px }
+.tca-rec i { animation: tca-blink 1.2s ease-in-out infinite; background: #ef4444; border-radius: 50%; height: 7px; width: 7px }
+
+@keyframes tca-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@keyframes tca-ping { 0% { box-shadow: 0 0 0 0 rgba(251, 146, 60, .6) } 100% { box-shadow: 0 0 0 5px rgba(251, 146, 60, 0) } }
+@keyframes tca-talk { 0% { box-shadow: 0 0 0 2px #ea580c, 0 0 0 2px rgba(234, 88, 12, .5) } 100% { box-shadow: 0 0 0 2px #ea580c, 0 0 0 10px rgba(234, 88, 12, 0) } }
+@keyframes tca-blink { 50% { opacity: .3 } }
+
+/* Below 1100px: the window first, the callouts as a grid underneath. */
+@media (max-width: 1100px) {
+    .tca { gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .tca-stage { grid-column: 1 / -1; grid-row: 1; margin: 0 auto 6px; max-width: 640px; width: 100% }
+    .tca-col--l .tca-co.is-on, .tca-col--r .tca-co.is-on { translate: none }
+}
+@media (max-width: 640px) {
+    .tca { grid-template-columns: minmax(0, 1fr) }
+    .tca-stage { border-radius: 18px; padding: 18px 12px 30px }
+    .tca-win { zoom: .8 }
+    .tca-split { grid-template-columns: 120px minmax(0, 1fr) }
+    .tca-co { padding: 12px 14px }
+    .tca-co-txt b { font-size: 14px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tca-screen, .tca-pill--live i, .tca-seat.is-talk .tca-seat-av, .tca-rec i { animation: none }
+}
+
+/* ── Stronger glass on the feature window ──────────────────────────────────
+   More of the landscape shows through: a lighter, cooler tint with a
+   stronger blur, a bright top edge and inner light, and every inner
+   surface a thin frosted layer with white hairlines. */
+.tca-stage::before { background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(24, 16, 8, .22)) }
+.tca-win {
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    backdrop-filter: blur(26px) saturate(180%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .42) 0%, rgba(255, 255, 255, .2) 60%, rgba(255, 255, 255, .28) 100%);
+    border: 1px solid rgba(255, 255, 255, .6);
+    box-shadow:
+        0 44px 80px -34px rgba(15, 23, 42, .6),
+        inset 0 1px 0 rgba(255, 255, 255, .9),
+        inset 0 0 0 1px rgba(255, 255, 255, .14),
+        inset 0 -30px 60px -40px rgba(255, 255, 255, .5)
+}
+/* Light catching the top edge. */
+.tca-win::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), transparent);
+    content: "";
+    height: 1px;
+    left: 10%;
+    pointer-events: none;
+    position: absolute;
+    right: 10%;
+    top: 0;
+    z-index: 1
+}
+.tca-bar { background: rgba(255, 255, 255, .14); border-bottom-color: rgba(255, 255, 255, .45) }
+.tca-bar-f { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: rgba(255, 255, 255, .45); border: 1px solid rgba(255, 255, 255, .6) }
+
+.tca-card, .tca-note, .tca-list, .tca-seat, .tca-ctrls span:not(.is-end), .tca-ev, .tca-bcol, .tca-compose {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .32);
+    border-color: rgba(255, 255, 255, .6);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6)
+}
+.tca-pane { background: rgba(255, 255, 255, .2) }
+.tca-pane--main { background: transparent }
+.tca-li { border-top-color: rgba(255, 255, 255, .5) }
+.tca-file, .tca-bmsg, .tca-field { background: rgba(255, 255, 255, .6); border-color: rgba(255, 255, 255, .75) }
+.tca-tabs { background: rgba(255, 255, 255, .28) }
+.tca-slot.is-now .tca-ev { background: rgba(255, 237, 213, .62) }
+.tca-seat.is-talk { background: rgba(255, 237, 213, .45) }
+.tca-win em, .tca-dim, .tca-label { color: #57534e }
+.tca-ch, .tca-msg > span:last-child, .tca-note { color: #292524 }
+.tca-compose { color: #78716c }
+
+/* ── Built for: dark panel with team tabs over a call + chat scene
+   (TeamMoments.jsx). Near-black brand panel with a soft orange glow; the
+   active tab lifts to a light glass pill; the scene splits into the live
+   call (left), a "still on the call" connector and the chat (right). */
+.tc-who-head { align-items: end }
+body.design-v2 .lp .tc-who-head .lp-h2 { text-wrap: balance }
+.tcw {
+    background:
+        radial-gradient(60% 80% at 100% 0%, rgba(234, 88, 12, .22), transparent 60%),
+        radial-gradient(50% 70% at 0% 100%, rgba(253, 186, 116, .1), transparent 60%),
+        #1a1a1a;
+    border-radius: 28px;
+    box-shadow: 0 50px 90px -50px rgba(16, 2, 44, .7);
+    color: #fff;
+    overflow: hidden;
+    padding: 14px 14px 26px;
+    position: relative
+}
+/* Fine dot texture. */
+.tcw::before {
+    background-image: radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px);
+    background-size: 18px 18px;
+    content: "";
+    inset: 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+    pointer-events: none;
+    position: absolute
+}
+
+/* Tabs */
+.tcw-tabs { display: grid; gap: 6px; grid-template-columns: repeat(4, minmax(0, 1fr)); position: relative }
+.tcw-tab {
+    align-items: flex-start;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 18px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    gap: 12px;
+    padding: 14px 16px;
+    text-align: left;
+    transition: background .3s ease, border-color .3s ease, box-shadow .3s ease
+}
+.tcw-tab:hover { background: rgba(255, 255, 255, .08) }
+.tcw-tab:focus-visible { outline: 2px solid #fdba74; outline-offset: 2px }
+.tcw-tab-ic { align-items: center; background: rgba(255, 255, 255, .08); border-radius: 10px; color: #a8a29e; display: inline-flex; flex: none; font-size: 17px; height: 36px; justify-content: center; transition: background .3s ease, color .3s ease; width: 36px }
+.tcw-tab-t { display: flex; flex-direction: column; gap: 3px; min-width: 0 }
+.tcw-tab-t b { font-size: 14.5px; font-weight: 600 }
+.tcw-tab-t em { color: rgba(255, 255, 255, .55); font-size: 12.5px; font-style: normal; line-height: 1.45 }
+.tcw-tab.is-on { background: rgba(255, 255, 255, .96); border-color: #fff; box-shadow: 0 18px 34px -20px rgba(0, 0, 0, .8) }
+.tcw-tab.is-on .tcw-tab-ic { background: #1a1a1a; color: #fdba74 }
+.tcw-tab.is-on .tcw-tab-t b { color: #1a1a1a }
+.tcw-tab.is-on .tcw-tab-t em { color: #6b6560 }
+
+/* Scene */
+.tcw-scene {
+    align-items: center;
+    animation: tcw-in .55s cubic-bezier(.2, .8, .2, 1) both;
+    display: grid;
+    gap: 0;
+    grid-template-columns: minmax(0, .9fr) 200px minmax(0, 1.2fr);
+    min-height: 300px;
+    padding: 34px 26px 6px;
+    position: relative
+}
+.tcw-label { align-items: center; color: rgba(255, 255, 255, .6); display: inline-flex; font-size: 11px; font-weight: 700; gap: 7px; letter-spacing: .1em; text-transform: uppercase }
+.tcw-live { animation: tcw-ping 1.6s ease-out infinite; background: #22c55e; border-radius: 50%; height: 7px; width: 7px }
+
+.tcw-call {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03));
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px
+}
+.tcw-caller { align-items: center; display: flex; gap: 12px }
+.tcw-caller-t { display: flex; flex-direction: column; gap: 2px; min-width: 0 }
+.tcw-caller-t b { font-size: 16px; font-weight: 600 }
+.tcw-caller-t em { color: rgba(255, 255, 255, .55); font-size: 12.5px; font-style: normal }
+.tcw-av { align-items: center; border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 10px; font-weight: 700; height: 30px; justify-content: center; width: 30px }
+.tcw-av--lg { background: linear-gradient(135deg, #fdba74, #ea580c); box-shadow: 0 0 0 4px rgba(234, 88, 12, .18); font-size: 14px; height: 48px; width: 48px }
+.tcw-av--me { background: #fff; color: #1a1a1a }
+.tcw-av--a { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.tcw-av--b { background: linear-gradient(135deg, #78716c, #292524); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15) }
+.tcw-av--c { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.tcw-wave { align-items: center; display: flex; gap: 3px; height: 34px }
+.tcw-wave i {
+    animation: tcw-wave 1.1s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -.09s);
+    background: linear-gradient(180deg, #fdba74, #ea580c);
+    border-radius: 2px;
+    flex: 1;
+    height: 100%;
+    max-width: 4px;
+    opacity: .9
+}
+.tcw-call-foot { align-items: center; display: flex; justify-content: space-between }
+.tcw-timer { font-size: 15px; font-variant-numeric: tabular-nums; font-weight: 600; letter-spacing: .04em }
+.tcw-ctrls { display: inline-flex; gap: 8px }
+.tcw-ctrls i { align-items: center; background: rgba(255, 255, 255, .1); border-radius: 50%; display: inline-flex; font-size: 14px; height: 32px; justify-content: center; width: 32px }
+.tcw-ctrls i.is-end { background: #ef4444; rotate: 135deg }
+
+/* Connector */
+.tcw-link { align-items: center; display: flex; flex-direction: column; gap: 10px; justify-content: center }
+.tcw-link-line { background: repeating-linear-gradient(180deg, rgba(253, 186, 116, .7) 0 4px, transparent 4px 9px); height: 46px; width: 2px }
+.tcw-link-badge {
+    align-items: center;
+    background: rgba(234, 88, 12, .14);
+    border: 1px solid rgba(253, 186, 116, .35);
+    border-radius: 999px;
+    color: #fdba74;
+    display: inline-flex;
+    font-size: 11px;
+    font-weight: 600;
+    gap: 6px;
+    padding: 6px 12px;
+    text-align: center
+}
+
+/* Chat */
+.tcw-chat {
+    background: rgba(255, 255, 255, .96);
+    border-radius: 22px;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8);
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 20px 20px
+}
+.tcw-chat-head { align-items: baseline; border-bottom: 1px solid #f0ebe3; display: flex; gap: 8px; padding-bottom: 10px }
+.tcw-chat-head b { font-size: 14px; font-weight: 600 }
+.tcw-chat-head em { color: #a8a29e; font-size: 11.5px; font-style: normal }
+.tcw-msg { align-items: flex-start; animation: tcw-in .5s cubic-bezier(.2, .8, .2, 1) both; display: flex; gap: 10px }
+.tcw-msg + .tcw-msg { animation-delay: .45s }
+.tcw-bub { background: #f6f1ea; border-radius: 4px 14px 14px 14px; color: #292524; font-size: 14px; line-height: 1.45; padding: 9px 13px }
+.tcw-msg--me .tcw-av--me { background: #1a1a1a; color: #fdba74 }
+.tcw-msg--me .tcw-bub { background: #1a1a1a; color: #fff }
+.tcw-outcome { align-items: center; align-self: flex-start; animation: tcw-in .5s .8s cubic-bezier(.2, .8, .2, 1) both; background: #fff7ed; border-radius: 999px; color: #c2410c; display: inline-flex; font-size: 12px; font-weight: 600; gap: 6px; margin-left: 40px; padding: 4px 11px }
+
+.tcw-steps { bottom: 12px; display: flex; gap: 5px; left: 50%; position: absolute; translate: -50% 0 }
+.tcw-steps i { background: rgba(255, 255, 255, .22); border-radius: 99px; height: 5px; transition: background .3s ease, width .3s ease; width: 5px }
+.tcw-steps i.on { background: #fdba74; width: 18px }
+
+@keyframes tcw-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@keyframes tcw-ping { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .6) } 100% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0) } }
+@keyframes tcw-wave { 0%, 100% { transform: scaleY(.25) } 50% { transform: scaleY(1) } }
+
+@media (max-width: 1024px) {
+    .tcw-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .tcw-scene { gap: 0; grid-template-columns: minmax(0, 1fr); padding: 26px 12px 6px }
+    .tcw-link { flex-direction: row; padding: 12px 0 }
+    .tcw-link-line { background: repeating-linear-gradient(90deg, rgba(253, 186, 116, .7) 0 4px, transparent 4px 9px); height: 2px; width: 36px }
+}
+@media (max-width: 640px) {
+    .tcw { border-radius: 22px; padding: 10px 10px 24px }
+    .tcw-tab { padding: 10px 11px }
+    .tcw-tab-t em { display: none }
+    .tcw-tab-t b { font-size: 13px }
+    .tcw-tab-ic { font-size: 14px; height: 30px; width: 30px }
+    .tcw-scene { padding: 20px 4px 4px }
+    .tcw-call, .tcw-chat { border-radius: 18px; padding: 16px }
+    .tcw-bub { font-size: 13px }
+    .tcw-link-line { width: 18px }
+    /* Same chat height for every team, so the page never jumps. */
+    .tcw-chat { min-height: 236px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tcw-scene, .tcw-msg, .tcw-outcome, .tcw-live, .tcw-wave i { animation: none }
+}
+
+/* ── Slack bridge, live (SyncBridge.jsx) ───────────────────────────────────
+   Two overlapping app windows — Slack behind, Team Chat in front as glass —
+   each new event lands on one side and is mirrored on the other; a dark
+   "Synced" badge between them shows the direction. A rollout strip below
+   shows teams moving over one at a time. */
+.tsb-points { display: flex; flex-direction: column; list-style: none; margin: 26px 0 0; padding: 0 }
+.tsb-points li { align-items: center; border-top: 1px solid rgba(16, 2, 44, .08); color: #1a1a1a; display: flex; font-size: 15.5px; font-weight: 500; gap: 14px; padding: 14px 0 }
+.tsb-points li:last-child { border-bottom: 1px solid rgba(16, 2, 44, .08) }
+.tsb-points-ic { align-items: center; background: #1a1a1a; border-radius: 10px; color: #fdba74; display: inline-flex; flex: none; font-size: 16px; height: 34px; justify-content: center; width: 34px }
+
+.tsb { display: flex; flex-direction: column; gap: 16px }
+.tsb-stage {
+    background:
+        radial-gradient(60% 70% at 15% 10%, rgba(74, 21, 75, .1), transparent 70%),
+        radial-gradient(60% 70% at 90% 95%, rgba(234, 88, 12, .2), transparent 70%),
+        linear-gradient(160deg, #f4efe8, #efe7dc);
+    border: 1px solid rgba(16, 2, 44, .06);
+    border-radius: 26px;
+    height: 400px;
+    overflow: hidden;
+    position: relative
+}
+.tsb-stage::before {
+    background-image: radial-gradient(rgba(16, 2, 44, .08) 1px, transparent 1px);
+    background-size: 18px 18px;
+    content: "";
+    inset: 0;
+    -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent);
+    mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent);
+    position: absolute
+}
+
+.tsb-win { border-radius: 18px; overflow: hidden; position: absolute; width: 62% }
+.tsb-win--slack { background: #fff; box-shadow: 0 24px 50px -30px rgba(16, 2, 44, .45); left: 5%; opacity: .96; top: 7% }
+.tsb-win--us {
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .8), rgba(255, 255, 255, .62));
+    border: 1px solid rgba(255, 255, 255, .9);
+    bottom: 7%;
+    box-shadow: 0 40px 70px -30px rgba(16, 2, 44, .5), inset 0 1px 0 #fff;
+    right: 5%;
+    z-index: 1
+}
+.tsb-head { align-items: center; border-bottom: 1px solid rgba(16, 2, 44, .06); display: flex; gap: 8px; padding: 10px 14px }
+.tsb-head b { font-size: 13px; font-weight: 600 }
+.tsb-head em { color: #a8a29e; font-size: 11.5px; font-style: normal; margin-left: auto }
+.tsb-logo { align-items: center; border-radius: 7px; display: inline-flex; font-size: 13px; height: 24px; justify-content: center; width: 24px }
+.tsb-win--slack .tsb-head { background: #4a154b; border-bottom: 0; color: #fff }
+.tsb-win--slack .tsb-head em { color: rgba(255, 255, 255, .6) }
+.tsb-win--slack .tsb-logo { background: rgba(255, 255, 255, .14); color: #fff }
+.tsb-win--us .tsb-logo { background: #1a1a1a; color: #fdba74 }
+
+.tsb-feed { display: flex; flex-direction: column; gap: 10px; height: 172px; justify-content: flex-end; overflow: hidden; padding: 12px 14px }
+.tsb-msg { align-items: flex-start; display: flex; gap: 9px }
+.tsb-msg.is-fresh { animation: tsb-in .55s cubic-bezier(.2, .8, .2, 1) both }
+.tsb-win--us .tsb-msg.is-fresh { animation-delay: .35s }
+.tsb-av { align-items: center; border-radius: 8px; color: #fff; display: inline-flex; flex: none; font-size: 9px; font-weight: 700; height: 28px; justify-content: center; width: 28px }
+.tsb-win--us .tsb-av { border-radius: 50% }
+.tsb-av--a { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.tsb-av--b { background: linear-gradient(135deg, #57534e, #1c1917) }
+.tsb-av--c { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.tsb-msg-t { color: #44403c; display: flex; flex-direction: column; font-size: 12.5px; gap: 3px; line-height: 1.4; min-width: 0 }
+.tsb-msg-t b { align-items: center; color: #1a1a1a; display: flex; flex-wrap: wrap; font-size: 12.5px; font-weight: 600; gap: 6px }
+.tsb-tag { border-radius: 999px; font-size: 9.5px; font-weight: 600; padding: 1px 7px }
+.tsb-tag--slack { background: rgba(74, 21, 75, .08); color: #4a154b }
+.tsb-tag--us { background: #fff7ed; color: #c2410c }
+.tsb-file { align-items: center; align-self: flex-start; background: rgba(255, 255, 255, .9); border: 1px solid #ede7de; border-radius: 8px; display: inline-flex; font-weight: 600; gap: 6px; padding: 4px 9px }
+.tsb-file i { color: #ea580c; font-size: 14px }
+
+.tsb-sync {
+    align-items: center;
+    animation: tsb-pop .5s cubic-bezier(.2, 1.3, .3, 1) both;
+    background: #1a1a1a;
+    border-radius: 999px;
+    box-shadow: 0 18px 30px -16px rgba(16, 2, 44, .7);
+    color: #fff;
+    display: inline-flex;
+    gap: 9px;
+    left: 50%;
+    padding: 7px 14px 7px 7px;
+    position: absolute;
+    top: 50%;
+    translate: -50% -50%;
+    z-index: 2
+}
+.tsb-sync > i { align-items: center; background: #ea580c; border-radius: 50%; display: inline-flex; font-size: 15px; height: 28px; justify-content: center; width: 28px }
+.tsb-sync span { display: flex; flex-direction: column; line-height: 1.2 }
+.tsb-sync b { font-size: 12px; font-weight: 600 }
+.tsb-sync em { color: rgba(255, 255, 255, .6); font-size: 10.5px; font-style: normal; white-space: nowrap }
+
+/* Rollout strip */
+.tsb-roll {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 18px;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: auto repeat(4, minmax(0, 1fr));
+    padding: 10px 12px
+}
+.tsb-roll-l { color: #a39e99; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; padding: 0 6px; text-transform: uppercase }
+.tsb-team { background: #faf7f3; border-radius: 12px; display: flex; flex-direction: column; gap: 3px; padding: 8px 10px }
+.tsb-team b { color: #1a1a1a; font-size: 12.5px; font-weight: 600 }
+.tsb-team em { align-items: center; color: #6b6560; display: inline-flex; font-size: 10.5px; font-style: normal; font-weight: 600; gap: 5px; white-space: nowrap }
+.tsb-team em i { border-radius: 50%; height: 7px; width: 7px }
+.tsb-team--us { background: #1a1a1a }
+.tsb-team--us b { color: #fff }
+.tsb-team--us em { color: #fdba74 }
+.tsb-team--us em i { background: #fdba74 }
+.tsb-team--both em i { background: linear-gradient(90deg, #ea580c 50%, #4a154b 50%) }
+.tsb-team--slack em i { background: #4a154b }
+
+@keyframes tsb-in { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: none } }
+@keyframes tsb-pop { from { opacity: 0; scale: .85 } to { opacity: 1; scale: 1 } }
+
+@media (max-width: 1024px) {
+    .tc-br-viz-wrap { margin: 0 auto; max-width: 620px; width: 100% }
+    .tsb-points { margin-left: auto; margin-right: auto; max-width: 460px; text-align: left }
+}
+@media (max-width: 640px) {
+    .tsb-stage { border-radius: 20px; height: 440px }
+    .tsb-win { width: 86% }
+    .tsb-win--slack { left: 4%; top: 4% }
+    .tsb-win--us { bottom: 4%; right: 4% }
+    .tsb-feed { height: 150px }
+    .tsb-roll { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .tsb-roll-l { grid-column: 1 / -1; padding-top: 2px }
+    .tsb-points li { font-size: 14.5px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tsb-msg.is-fresh, .tsb-sync { animation: none }
+}
+
+/* Diagonal cascade with no overlap: Slack top-left, Team Chat bottom-right,
+   the Synced badge in the free top-right corner. Phones: windows stacked,
+   badge in the gap between them. */
+.tsb-stage { height: 470px }
+.tsb-win--slack { top: 20px }
+.tsb-win--us { bottom: 20px }
+.tsb-sync { left: auto; right: 5%; top: 24%; translate: none }
+@media (max-width: 640px) {
+    .tsb-stage { height: 470px }
+    .tsb-win--slack { top: 14px }
+    .tsb-win--us { bottom: 14px }
+    .tsb-sync { left: 50%; right: auto; top: 50%; translate: -50% -50% }
+}
+
+/* Built-for panel over a nature photo per team: the photos crossfade with
+   the active tab; a dark wash keeps the white tabs and call card readable. */
+.tcw { background: #1a1a1a }
+.tcw::before { display: none }
+.tcw-bg { inset: 0; position: absolute; z-index: 0 }
+.tcw-bg i {
+    background-position: center;
+    background-size: cover;
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+    scale: 1.04;
+    transition: opacity .9s ease, scale 6s ease
+}
+.tcw-bg i.on { opacity: 1; scale: 1 }
+.tcw-bg::after {
+    background:
+        linear-gradient(180deg, rgba(12, 10, 9, .55) 0%, rgba(12, 10, 9, .35) 45%, rgba(12, 10, 9, .6) 100%),
+        linear-gradient(90deg, rgba(12, 10, 9, .35), transparent 55%);
+    content: "";
+    inset: 0;
+    position: absolute
+}
+.tcw-tabs, .tcw-scene { position: relative; z-index: 1 }
+.tcw-steps { z-index: 1 }
+.tcw-tab:not(.is-on) {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: rgba(20, 16, 14, .35);
+    border-color: rgba(255, 255, 255, .14)
+}
+.tcw-tab:not(.is-on):hover { background: rgba(20, 16, 14, .5) }
+.tcw-tab:not(.is-on) .tcw-tab-t em { color: rgba(255, 255, 255, .72) }
+.tcw-call {
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    background: linear-gradient(160deg, rgba(20, 16, 14, .5), rgba(20, 16, 14, .32));
+    border-color: rgba(255, 255, 255, .16)
+}
+.tcw-link-badge { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); background: rgba(20, 16, 14, .55) }
+@media (prefers-reduced-motion: reduce) { .tcw-bg i { scale: none; transition: none } }
+
+/* Active tab and chat card as glass instead of solid white. The active
+   tab is a brighter frosted pill with a white rim and an orange icon tile;
+   the chat card is light frosted glass so the photo glows through while
+   the dark text stays readable. */
+.tcw-tab.is-on {
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .3), rgba(255, 255, 255, .14));
+    border-color: rgba(255, 255, 255, .55);
+    box-shadow: 0 18px 36px -22px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .6)
+}
+.tcw-tab.is-on .tcw-tab-ic { background: #ea580c; color: #fff; box-shadow: 0 8px 16px -8px rgba(234, 88, 12, .8) }
+.tcw-tab.is-on .tcw-tab-t b { color: #fff }
+.tcw-tab.is-on .tcw-tab-t em { color: rgba(255, 255, 255, .85) }
+
+.tcw-chat {
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .62), rgba(255, 255, 255, .42));
+    border: 1px solid rgba(255, 255, 255, .6);
+    box-shadow: 0 34px 64px -30px rgba(0, 0, 0, .75), inset 0 1px 0 rgba(255, 255, 255, .85)
+}
+.tcw-chat-head { border-bottom-color: rgba(255, 255, 255, .55) }
+.tcw-chat-head em { color: #57534e }
+.tcw-bub { background: rgba(255, 255, 255, .62); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7) }
+.tcw-outcome { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: rgba(255, 247, 237, .8) }
+
+/* ── Presence: a day in your status (PresenceDemo.jsx) ─────────────────────
+   Centered head; one panel with your status card, the teammate's view and
+   a ribbon of the day. Status colours are semantic dots only (green active,
+   orange meeting, red call, stone focus); everything else stays in the
+   brand palette, the current block in near-black. */
+.tcp-head { margin: 0 auto 40px; max-width: 760px; text-align: center }
+body.design-v2 .lp .tcp-head .lp-h2 { text-wrap: balance }
+body.design-v2 .lp .tcp-head .lp-intro { margin: 14px auto 0 }
+
+.tcp {
+    --st: #22c55e;
+    background:
+        radial-gradient(60% 80% at 100% 0%, rgba(253, 186, 116, .18), transparent 60%),
+        linear-gradient(180deg, #fdfbf8, #faf6f0);
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 28px;
+    box-shadow: 0 40px 80px -56px rgba(16, 2, 44, .45);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 22px
+}
+.tcp[data-status="meeting"] { --st: #f97316 }
+.tcp[data-status="call"] { --st: #ef4444 }
+.tcp[data-status="focus"] { --st: #78716c }
+.tcp-k { color: #a39e99; display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; margin-bottom: 14px; text-transform: uppercase }
+
+.tcp-top { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) }
+.tcp-me, .tcp-them { background: #fff; border: 1px solid rgba(16, 2, 44, .06); border-radius: 20px; padding: 20px 22px }
+.tcp-me { animation: tcp-in .5s cubic-bezier(.2, .8, .2, 1) both }
+
+.tcp-av { align-items: center; background: linear-gradient(135deg, #d6b89c, #9a6b47); border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 15px; font-weight: 700; height: 56px; justify-content: center; position: relative; width: 56px }
+.tcp-av i { background: var(--st); border: 3px solid #fff; border-radius: 50%; bottom: 0; height: 16px; position: absolute; right: 0; transition: background .4s ease; width: 16px }
+.tcp-av--sm { font-size: 10px; height: 32px; width: 32px }
+.tcp-av--sm i { border-width: 2px; height: 11px; width: 11px }
+.tcp-av--xs { font-size: 8px; height: 22px; width: 22px }
+.tcp-av--me { background: linear-gradient(135deg, #57534e, #1c1917) }
+.tcp-me-row { align-items: center; display: flex; gap: 14px; margin-bottom: 18px }
+.tcp-me-t { display: flex; flex-direction: column; gap: 6px }
+.tcp-me-t b { color: #1a1a1a; font-size: 18px; font-weight: 600 }
+.tcp-status { align-items: center; align-self: flex-start; background: #1a1a1a; border-radius: 999px; color: #fff; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 6px; padding: 5px 12px }
+.tcp-status i { color: var(--st); font-size: 12px; transition: color .4s ease }
+.tcp-status--sm { font-size: 11px; margin-left: auto; padding: 3px 9px }
+.tcp-facts { border-top: 1px solid #f1ece5; display: flex; flex-direction: column; margin: 0 }
+.tcp-facts div { align-items: center; border-bottom: 1px solid #f1ece5; display: flex; gap: 12px; justify-content: space-between; padding: 10px 0 }
+.tcp-facts div:last-child { border-bottom: 0; padding-bottom: 0 }
+.tcp-facts dt { color: #8a857c; font-size: 12.5px }
+.tcp-facts dd { align-items: center; color: #1a1a1a; display: inline-flex; font-size: 13px; font-weight: 600; gap: 6px; margin: 0; text-align: right }
+.tcp-facts dd i { color: #ea580c }
+
+.tcp-dm { background: #faf7f3; border: 1px solid #f1ece5; border-radius: 16px; display: flex; flex-direction: column; height: 200px; overflow: hidden }
+.tcp-dm-head { align-items: center; background: #fff; border-bottom: 1px solid #f1ece5; display: flex; gap: 10px; padding: 10px 14px }
+.tcp-dm-head b { color: #1a1a1a; font-size: 13.5px; font-weight: 600 }
+.tcp-dm-body { align-items: center; animation: tcp-in .5s cubic-bezier(.2, .8, .2, 1) both; display: flex; flex: 1; justify-content: center; padding: 14px }
+.tcp-hint { align-items: flex-start; background: #fff; border: 1px solid #f1ece5; border-left: 3px solid var(--st); border-radius: 10px; color: #44403c; display: flex; font-size: 13px; gap: 8px; line-height: 1.5; padding: 10px 12px; transition: border-color .4s ease }
+.tcp-hint i { color: #a8a29e; font-size: 15px; line-height: 1.3 }
+.tcp-dm-compose { align-items: center; background: #fff; border-top: 1px solid #f1ece5; display: flex; gap: 10px; padding: 10px 12px }
+.tcp-draft { align-items: center; color: #6b6560; display: flex; flex: 1; font-size: 12.5px; gap: 8px; min-width: 0; overflow: hidden; white-space: nowrap }
+.tcp-send { align-items: center; background: #1a1a1a; border-radius: 9px; color: #fff; display: inline-flex; font-size: 12px; font-weight: 600; gap: 6px; padding: 7px 12px; white-space: nowrap }
+.tcp-send i { color: #fdba74 }
+
+/* Day ribbon */
+.tcp-day { background: #fff; border: 1px solid rgba(16, 2, 44, .06); border-radius: 20px; padding: 18px 22px 30px }
+.tcp-day-head { align-items: center; display: flex; justify-content: space-between }
+.tcp-day-head .tcp-k { margin-bottom: 0 }
+.tcp-legend { display: flex; gap: 14px }
+.tcp-legend span { align-items: center; color: #6b6560; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 6px }
+.tcp-legend i { border-radius: 50%; height: 8px; width: 8px }
+.tcp-legend .is-active { background: #22c55e }
+.tcp-legend .is-meeting { background: #f97316 }
+.tcp-legend .is-call { background: #ef4444 }
+.tcp-legend .is-focus { background: #78716c }
+
+.tcp-ribbon { display: flex; gap: 4px; margin-top: 34px; position: relative }
+.tcp-block {
+    align-items: center;
+    background: #f6f1ea;
+    border: 0;
+    border-radius: 10px;
+    color: #44403c;
+    cursor: pointer;
+    display: flex;
+    flex-basis: 0;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    gap: 6px;
+    height: 46px;
+    justify-content: center;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 8px;
+    transition: background .35s ease, color .35s ease, box-shadow .35s ease
+}
+.tcp-block span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.tcp-block i { flex: none; font-size: 11px }
+.tcp-block.is-active i { color: #22c55e }
+.tcp-block.is-meeting i { color: #f97316 }
+.tcp-block.is-call i { color: #ef4444 }
+.tcp-block.is-focus i { color: #78716c }
+.tcp-block:hover { background: #efe7dc }
+.tcp-block:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.tcp-block.is-on { background: #1a1a1a; box-shadow: 0 14px 26px -14px rgba(16, 2, 44, .7); color: #fff }
+.tcp-block.is-on.is-focus i { color: #d6d3d1 }
+.tcp-now { bottom: calc(100% + 6px); position: absolute; transition: left .6s cubic-bezier(.2, .8, .2, 1); translate: 0 0 }
+.tcp-now b { background: #ea580c; border-radius: 6px; color: #fff; display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .06em; padding: 2px 7px; position: relative; text-transform: uppercase }
+.tcp-now b::after { border: 5px solid transparent; border-top-color: #ea580c; content: ""; left: 8px; position: absolute; top: 100% }
+.tcp-axis { height: 14px; margin-top: 10px; position: relative }
+.tcp-axis span { color: #a39e99; font-size: 11px; font-weight: 600; position: absolute; translate: -50% 0; white-space: nowrap }
+.tcp-axis span:first-child { translate: 0 0 }
+
+@keyframes tcp-in { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+
+@media (max-width: 1024px) {
+    .tcp-top { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 640px) {
+    .tcp { border-radius: 22px; gap: 14px; padding: 12px }
+    .tcp-me, .tcp-them, .tcp-day { border-radius: 16px; padding: 16px }
+    .tcp-legend { display: none }
+    .tcp-block span { display: none }
+    .tcp-block { height: 40px; padding: 0 }
+    .tcp-block i { font-size: 13px }
+    .tcp-axis span:nth-child(even) { display: none }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tcp-me, .tcp-dm-body { animation: none }
+    .tcp-now { transition: none }
+}
+

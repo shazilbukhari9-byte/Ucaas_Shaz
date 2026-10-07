@@ -1,0 +1,1100 @@
+/* MCM mega-menu navigation — ported from the mcm-menu-showcase prototype.
+   All classes are mcm- prefixed to stay clear of the legacy nb20/design-v2
+   header rules. The slot overlays the hero without occupying flow height. */
+
+.mcm-nav-slot {
+    height: 0;
+    position: relative;
+    z-index: 80
+}
+
+/* Fixed under the promo banner (its live height is set inline as `top`), with
+   a hairline rule beneath like nextiva.com. Once the page scrolls, the bar
+   picks up a frosted-glass background so content passing under stays legible. */
+.mcm-wrap {
+    border-bottom: 1px solid rgba(16, 2, 44, .10);
+    left: 0;
+    padding: 0 clamp(24px, 7vw, 138px);
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: background-color .25s ease, box-shadow .25s ease, border-color .25s ease
+}
+
+.mcm-wrap--stuck {
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    backdrop-filter: saturate(180%) blur(16px);
+    background: hsla(0, 0%, 100%, .72);
+    border-bottom-color: rgba(16, 2, 44, .12);
+    box-shadow: 0 1px 24px rgba(15, 23, 42, .07)
+}
+
+/* Top bar — transparent over the hero, like nextiva.com: no card, no border,
+   no shadow. Panels keep their own white surface. */
+.mcm-bar {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    font-family: var(--font-body, 'Space Grotesk', sans-serif);
+    gap: 4px;
+    min-height: 68px;
+    padding: 16px 0;
+    position: relative;
+    z-index: 5
+}
+
+.mcm-logo {
+    align-items: center;
+    color: #10022c;
+    display: flex;
+    font-size: 18px;
+    font-weight: 800;
+    gap: 8px;
+    margin-right: 18px;
+    text-decoration: none
+}
+
+.mcm-logo-img {
+    display: block;
+    /* 38px rendered the "UCaaS Private Limited" line at about 2.5px tall, which
+       just read as a smudge. At 50 the lockup is ~102px wide and the line is
+       legible; the bar's 68px min-height still leaves clearance. */
+    height: 50px;
+    width: auto
+}
+
+.mcm-tab {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: #10022c;
+    cursor: pointer;
+    display: flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 5px;
+    padding: 8px 14px;
+    text-decoration: none;
+    user-select: none
+}
+
+.mcm-tab:hover {
+    background: rgba(16, 2, 44, .06)
+}
+
+.mcm-tab--active {
+    background: rgba(124, 58, 237, .1);
+    color: #7c3aed
+}
+
+.mcm-caret {
+    font-size: 9px;
+    opacity: .6
+}
+
+.mcm-right {
+    align-items: center;
+    display: flex;
+    gap: 14px;
+    margin-left: auto
+}
+
+/* Nav actions — same black/white pair as the hero CTAs. */
+.mcm-btn {
+    align-items: center;
+    border-radius: 999px;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    justify-content: center;
+    min-width: 104px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color .2s ease, box-shadow .2s ease;
+    white-space: nowrap
+}
+
+.mcm-btn--solid {
+    background: #1a1a1a;
+    color: #fff
+}
+
+.mcm-btn--solid:hover {
+    background: #333
+}
+
+.mcm-btn--ghost {
+    background: hsla(0, 0%, 100%, .68);
+    box-shadow: inset 0 0 0 1px rgba(43, 43, 43, .18);
+    color: #2b2b2b
+}
+
+.mcm-btn--ghost:hover {
+    background: hsla(0, 0%, 100%, .9);
+    box-shadow: inset 0 0 0 1px rgba(43, 43, 43, .34)
+}
+
+/* mega panel */
+.mcm-panel {
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    border: 1px solid #eef0f4;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(15, 23, 42, .10);
+    font-family: var(--font-body, 'Space Grotesk', sans-serif);
+    margin-top: 10px;
+    overflow: hidden
+}
+
+.mcm-panel-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr
+}
+
+/* left rail */
+.mcm-rail {
+    background: #fafbff;
+    border-right: 1px solid #eef0f4;
+    padding: 16px
+}
+
+.mcm-rail-k {
+    color: #94a3b8;
+    display: flex;
+    font-size: 10px;
+    font-weight: 800;
+    justify-content: space-between;
+    letter-spacing: .6px;
+    margin-bottom: 10px;
+    text-transform: uppercase
+}
+
+.mcm-suite {
+    align-items: flex-start;
+    background: none;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    font-family: inherit;
+    gap: 11px;
+    margin-bottom: 4px;
+    padding: 11px;
+    text-align: left;
+    width: 100%
+}
+
+.mcm-suite:hover {
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(15, 23, 42, .06)
+}
+
+.mcm-suite--on {
+    background: #fff;
+    box-shadow: 0 1px 8px rgba(15, 23, 42, .08)
+}
+
+.mcm-suite-ic {
+    align-items: center;
+    border-radius: 9px;
+    display: flex;
+    flex-shrink: 0;
+    font-size: 16px;
+    height: 34px;
+    justify-content: center;
+    width: 34px
+}
+
+.mcm-ic-ai { background: #f3e8ff }
+.mcm-ic-cp { background: #e0edff }
+.mcm-ic-cc { background: #e6fbf6 }
+.mcm-ic-wh { background: #fef3c7 }
+
+.mcm-suite-t {
+    align-items: center;
+    color: #0f172a;
+    display: flex;
+    font-size: 14px;
+    font-weight: 700;
+    gap: 6px
+}
+
+.mcm-suite-d {
+    color: #64748b;
+    display: block;
+    font-size: 11.5px
+}
+
+.mcm-dotp {
+    background: #7c3aed;
+    border-radius: 50%;
+    display: inline-block;
+    height: 6px;
+    width: 6px
+}
+
+.mcm-suite-arrow {
+    align-self: center;
+    color: #cbd5e1;
+    margin-left: auto
+}
+
+/* content */
+.mcm-content {
+    padding: 18px 20px
+}
+
+.mcm-banner {
+    align-items: center;
+    background: linear-gradient(120deg, #faf5ff, #eef2ff);
+    border: 1px solid #ede9fe;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding: 14px 16px
+}
+
+.mcm-banner-pill {
+    background: #fff;
+    border: 1px solid #ddd6fe;
+    border-radius: 20px;
+    color: #7c3aed;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px
+}
+
+.mcm-banner h3 {
+    color: #0f172a;
+    font-size: 17px;
+    font-weight: 800;
+    margin: 6px 0 2px
+}
+
+.mcm-banner p {
+    color: #475569;
+    font-size: 12.5px;
+    margin: 0;
+    max-width: 560px
+}
+
+.mcm-banner-cta {
+    border: 1px solid #dbeafe;
+    border-radius: 20px;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    white-space: nowrap
+}
+
+.mcm-items {
+    display: grid;
+    gap: 6px 22px;
+    grid-template-columns: 1fr 1fr
+}
+
+.mcm-item {
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 11px;
+    padding: 9px;
+    text-decoration: none
+}
+
+.mcm-item:hover {
+    background: #f8fafc
+}
+
+.mcm-item-ic {
+    align-items: center;
+    background: #f1f5f9;
+    border-radius: 8px;
+    display: flex;
+    flex-shrink: 0;
+    font-size: 14px;
+    height: 30px;
+    justify-content: center;
+    width: 30px
+}
+
+.mcm-item-n {
+    align-items: center;
+    color: #0f172a;
+    display: flex;
+    font-size: 13.5px;
+    font-weight: 700;
+    gap: 6px
+}
+
+.mcm-item-s {
+    color: #64748b;
+    font-size: 11.5px
+}
+
+.mcm-badge {
+    border-radius: 4px;
+    font-size: 8.5px;
+    font-weight: 800;
+    padding: 1px 6px
+}
+
+.mcm-bg-ai { background: #f3e8ff; color: #7c3aed }
+.mcm-bg-pop { background: #fee2e2; color: #dc2626 }
+.mcm-bg-new { background: #dcfce7; color: #16a34a }
+
+.mcm-foot {
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    color: #64748b;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    padding: 10px 20px
+}
+
+.mcm-foot b {
+    color: #7c3aed
+}
+
+@media (max-width: 1100px) {
+    .mcm-panel-grid { grid-template-columns: 1fr }
+    .mcm-rail { border-right: none; border-bottom: 1px solid #eef0f4 }
+    .mcm-items { grid-template-columns: 1fr }
+}
+
+/* ══ Mobile navigation ══════════════════════════════════════════════════════
+   The bar had no small-screen handling: a 98px logo, six ~110px tabs and a
+   222px button group were all laid out side by side inside 323px, so they ran
+   straight off the edge. Below 980px the tabs and the button pair drop out and
+   a burger opens a drawer instead. */
+.mcm-burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    height: 40px;
+    justify-content: center;
+    margin-left: auto;
+    padding: 0 8px;
+    width: 40px
+}
+
+.mcm-burger span {
+    background: var(--text-primary, #10022c);
+    border-radius: 2px;
+    display: block;
+    height: 2px;
+    transition: transform .22s ease, opacity .18s ease;
+    width: 22px
+}
+
+.mcm-burger--open span:nth-child(1) { transform: translateY(7px) rotate(45deg) }
+.mcm-burger--open span:nth-child(2) { opacity: 0 }
+.mcm-burger--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) }
+
+/* ── Mobile menu sheet ──────────────────────────────────────────────────────
+   A full-height sheet under the bar rather than a short floating card: the
+   list scrolls inside it, the page behind is locked (see McmMegaHeader), and
+   the sign-in pair is pinned to the bottom so it is always one tap away.
+   Each tab is an accordion holding the links of its desktop mega panel. */
+.mcm-wrap--menu {
+    background: #fff;
+    border-bottom-color: #eef0f4;
+    box-shadow: none
+}
+
+.mcm-drawer {
+    animation: mcmSheetIn .24s cubic-bezier(.2, .8, .2, 1);
+    background: #fff;
+    border-top: 1px solid #eef0f4;
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    /* Full-bleed: cancel the wrap's side gutter. */
+    margin: 0 calc(-1 * clamp(24px, 7vw, 138px))
+}
+
+/* While the menu is open the fixed wrap runs to the bottom of the viewport
+   and lays out as a column, so the sheet fills exactly the space under the
+   bar whatever its height or the promo banner above it. */
+@media (max-width: 980px) {
+    .mcm-wrap--menu {
+        bottom: 0;
+        display: flex;
+        flex-direction: column
+    }
+}
+
+.mcm-drawer-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 8px 20px 24px;
+    -webkit-overflow-scrolling: touch
+}
+
+/* Accordion rows */
+.mcm-acc {
+    border-bottom: 1px solid #f0f2f5
+}
+
+.mcm-acc-head {
+    align-items: center;
+    background: none;
+    border: 0;
+    color: #10022c;
+    cursor: pointer;
+    display: flex;
+    font-size: 17px;
+    font-weight: 600;
+    justify-content: space-between;
+    letter-spacing: -.01em;
+    padding: 18px 2px;
+    text-align: left;
+    text-decoration: none;
+    width: 100%
+}
+
+.mcm-acc-head--link {
+    border-bottom: 1px solid #f0f2f5
+}
+
+.mcm-acc-chev,
+.mcm-acc-arrow {
+    align-items: center;
+    background: #f4f5f8;
+    border-radius: 50%;
+    color: #10022c;
+    display: inline-flex;
+    flex: none;
+    font-size: 14px;
+    height: 30px;
+    justify-content: center;
+    transition: background .2s ease, transform .25s ease;
+    width: 30px
+}
+
+/* Chevron drawn in CSS so it rotates crisply. */
+.mcm-acc-chev::before {
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    content: "";
+    height: 7px;
+    margin-top: -3px;
+    transform: rotate(45deg);
+    width: 7px
+}
+
+.mcm-acc--open .mcm-acc-chev {
+    background: #10022c;
+    color: #fff;
+    transform: rotate(180deg)
+}
+
+/* Height animates via the 0fr -> 1fr grid-row trick, no JS measuring. */
+.mcm-acc-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .3s ease
+}
+
+.mcm-acc--open .mcm-acc-body {
+    grid-template-rows: 1fr
+}
+
+.mcm-acc-inner {
+    min-height: 0;
+    overflow: hidden
+}
+
+.mcm-acc--open .mcm-acc-inner {
+    padding-bottom: 14px
+}
+
+/* Product suite groups */
+.mcm-m-group + .mcm-m-group {
+    border-top: 1px dashed #eceef2;
+    margin-top: 6px;
+    padding-top: 12px
+}
+
+.mcm-m-group-head {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    padding: 4px 2px 6px
+}
+
+.mcm-m-group-head .mcm-suite-ic {
+    flex: none
+}
+
+.mcm-m-group-t {
+    color: #10022c;
+    display: block;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.mcm-m-group-d {
+    color: #6b7280;
+    display: block;
+    font-size: 12px
+}
+
+/* Link items */
+.mcm-m-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.mcm-m-item {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    gap: 12px;
+    padding: 9px 8px;
+    text-decoration: none;
+    transition: background .15s ease
+}
+
+.mcm-m-item:active,
+.mcm-m-item:hover {
+    background: #f6f7f9
+}
+
+.mcm-m-item-ic {
+    align-items: center;
+    background: #f4f5f8;
+    border: 1px solid #eceef2;
+    border-radius: 10px;
+    display: inline-flex;
+    flex: none;
+    font-size: 16px;
+    height: 36px;
+    justify-content: center;
+    width: 36px
+}
+
+.mcm-m-item-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0
+}
+
+.mcm-m-item-n {
+    align-items: center;
+    color: #10022c;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14.5px;
+    font-weight: 500;
+    gap: 6px
+}
+
+.mcm-m-item-s {
+    color: #6b7280;
+    font-size: 12.5px;
+    line-height: 1.35
+}
+
+.mcm-drawer-note {
+    background: #f7f4ff;
+    border-radius: 12px;
+    color: #4b5563;
+    font-size: 12.5px;
+    line-height: 1.5;
+    margin: 20px 0 0;
+    padding: 12px 14px
+}
+
+.mcm-drawer-note b {
+    color: #7c3aed
+}
+
+/* Pinned action bar */
+.mcm-drawer-actions {
+    background: #fff;
+    border-top: 1px solid #eef0f4;
+    box-shadow: 0 -10px 24px -18px rgba(2, 16, 48, .25);
+    display: flex;
+    gap: 10px;
+    padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px))
+}
+
+.mcm-drawer-actions .mcm-btn {
+    flex: 1;
+    justify-content: center;
+    min-height: 48px
+}
+
+@keyframes mcmSheetIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px)
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mcm-drawer { animation: none }
+    .mcm-acc-body,
+    .mcm-acc-chev { transition: none }
+}
+
+@media (max-width: 980px) {
+    .mcm-bar {
+        gap: 0;
+        min-height: 60px;
+        padding: 10px 0
+    }
+    .mcm-bar .mcm-tab,
+    .mcm-bar > .mcm-right { display: none }
+    .mcm-burger { display: flex }
+    .mcm-drawer { display: flex }
+    .mcm-logo-img { height: 42px }
+    /* the desktop mega panels never fit here */
+    .mcm-panel { display: none }
+}
+
+/* == Header type =============================================================
+   The bar inherited Space Grotesk from the body. That face is a display sans -
+   its single-storey `a`, tailed `g` and splayed `R` are the point of it at
+   headline size, but at 16px in a row of nav items they read as clunky and
+   uneven. Inter is drawn for interface text at exactly this size: even colour,
+   plain letterforms, tight default spacing. Scoped to the header so the rest
+   of the page keeps its voice.
+   .mcm-bar, .mcm-panel and the drawer links each re-declare
+   var(--font-body, 'Space Grotesk') and --font-body is never defined, so they
+   fell back to Space Grotesk and overrode anything merely inherited from the
+   wrapper - they have to be named directly.
+   Weight also drops 600 -> 500; Inter at 600 is heavier on the page than
+   Space Grotesk at 600 was, and 500 matches the previous density. */
+.mcm-wrap,
+.mcm-wrap .mcm-bar,
+.mcm-wrap .mcm-panel,
+.mcm-drawer,
+.mcm-drawer a {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+}
+
+/* Pricing is the only tab with no caret, so its line box came out 31px against
+   34px for the rest - enough to give it a differently-sized hover background.
+   An explicit line-height and min-height make all six identical. */
+.mcm-tab {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -.006em;
+    line-height: 18px;
+    min-height: 34px
+}
+
+.mcm-btn {
+    font-weight: 500;
+    letter-spacing: -.006em
+}
+
+/* ══ Menu icons ═════════════════════════════════════════════════════════════
+   Solid interface glyphs (Remix Icon, loaded site-wide) on soft tinted
+   tiles — the treatment SaaS menus such as Stripe's, HubSpot's or
+   Intercom's use, in place of the earlier 3D emoji renders. The glyph
+   element fills its tile and carries the colour, so the tile wrappers
+   (.mcm-item-ic, .mcm-suite-ic, .mcm-m-item-ic) are just frames. Each tone
+   pairs a strong foreground with a pale wash and a hairline edge; hovering
+   a row fills the tile with its tone and turns the glyph white. */
+.mcm-glyph,
+.mcm-acc-ic {
+    --tone-fg: #334155;
+    --tone-bg: #f1f5f9;
+    --tone-bd: #e2e8f0;
+    align-items: center;
+    background: var(--tone-bg);
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px var(--tone-bd);
+    color: var(--tone-fg);
+    display: flex;
+    font-size: 17px;
+    font-style: normal;
+    height: 100%;
+    justify-content: center;
+    line-height: 1;
+    transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .25s cubic-bezier(.34, 1.4, .5, 1);
+    width: 100%
+}
+
+.mcm-tone--blue { --tone-fg: #2563eb; --tone-bg: #eff6ff; --tone-bd: #dbeafe }
+.mcm-tone--violet { --tone-fg: #7c3aed; --tone-bg: #f5f3ff; --tone-bd: #ede9fe }
+.mcm-tone--teal { --tone-fg: #0d9488; --tone-bg: #f0fdfa; --tone-bd: #ccfbf1 }
+.mcm-tone--amber { --tone-fg: #d97706; --tone-bg: #fffbeb; --tone-bd: #fde68a }
+.mcm-tone--green { --tone-fg: #16a34a; --tone-bg: #f0fdf4; --tone-bd: #bbf7d0 }
+.mcm-tone--rose { --tone-fg: #e11d48; --tone-bg: #fff1f2; --tone-bd: #fecdd3 }
+.mcm-tone--slate { --tone-fg: #334155; --tone-bg: #f1f5f9; --tone-bd: #e2e8f0 }
+
+/* Tile frames: the glyph paints the surface, so these only size and clip. */
+.mcm-item-ic,
+.mcm-m-item-ic,
+.mcm-suite-ic {
+    background: none;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: none;
+    height: 36px;
+    overflow: hidden;
+    padding: 0;
+    width: 36px
+}
+
+/* Hover / selected: the tile fills with its tone. */
+.mcm-item:hover .mcm-glyph,
+.mcm-item:focus-visible .mcm-glyph,
+.mcm-m-item:hover .mcm-glyph,
+.mcm-suite:hover .mcm-glyph,
+.mcm-suite--on .mcm-glyph {
+    background: var(--tone-fg);
+    box-shadow: inset 0 0 0 1px var(--tone-fg), 0 4px 10px -4px var(--tone-fg);
+    color: #fff
+}
+
+.mcm-item:hover .mcm-glyph,
+.mcm-m-item:hover .mcm-glyph {
+    transform: translateY(-1px)
+}
+
+/* Pricing row in the mobile menu: the icon sits before the label. */
+.mcm-acc-label {
+    align-items: center;
+    display: inline-flex;
+    gap: 12px
+}
+
+.mcm-acc-ic {
+    border-radius: 8px;
+    font-size: 15px;
+    height: 28px;
+    width: 28px
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mcm-glyph,
+    .mcm-acc-ic { transition: none }
+}
+
+/* ══ Compact mega panel ═════════════════════════════════════════════════════
+   Two things made the dropdown feel oversized:
+   1. The site-wide type scale (39-typography-unified.css) forces every h3 to
+      22px Fraunces and every p to 18px with !important, and that reached into
+      the panel — the banner heading and copy rendered at headline size, and
+      the panel grew to ~410-440px tall. Text inside the panel is pinned back
+      to the header's own interface scale here, at a higher specificity and
+      with !important so the global rule cannot win.
+   2. The panel was a 1200px slab with generous padding. It is narrower now,
+      with tighter rails, banner and rows — the same content in about two
+      thirds of the height — and it never runs past the bottom of the
+      viewport (it scrolls inside itself on short screens). */
+.mcm-wrap .mcm-panel,
+.mcm-wrap .mcm-panel * {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+}
+
+.mcm-wrap .mcm-panel {
+    border-radius: 14px;
+    max-height: calc(100vh - var(--mcm-top, 0px) - 96px);
+    max-width: 1040px;
+    overflow-y: auto;
+    overscroll-behavior: contain
+}
+
+.mcm-wrap .mcm-panel-grid {
+    grid-template-columns: 250px 1fr
+}
+
+.mcm-wrap .mcm-rail {
+    padding: 12px
+}
+
+.mcm-wrap .mcm-rail-k {
+    margin-bottom: 6px
+}
+
+.mcm-wrap .mcm-suite {
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2px;
+    padding: 8px 9px
+}
+
+.mcm-wrap .mcm-suite-ic {
+    height: 34px;
+    width: 34px
+}
+
+.mcm-wrap .mcm-suite-t {
+    font-size: 13.5px;
+    font-weight: 600
+}
+
+.mcm-wrap .mcm-suite-d {
+    font-size: 11.5px;
+    line-height: 1.35
+}
+
+.mcm-wrap .mcm-content {
+    padding: 14px 16px
+}
+
+.mcm-wrap .mcm-banner {
+    border-radius: 10px;
+    gap: 16px;
+    margin-bottom: 8px;
+    padding: 11px 14px
+}
+
+.mcm-wrap .mcm-banner h3 {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    color: #0f172a;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: -.01em !important;
+    line-height: 1.3 !important;
+    margin: 6px 0 2px
+}
+
+.mcm-wrap .mcm-banner p {
+    color: #475569;
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+    max-width: 520px
+}
+
+.mcm-wrap .mcm-banner-pill {
+    font-size: 9.5px;
+    letter-spacing: .02em;
+    padding: 2px 8px
+}
+
+.mcm-wrap .mcm-banner-cta {
+    font-size: 11.5px;
+    padding: 5px 11px
+}
+
+.mcm-wrap .mcm-items {
+    gap: 2px 14px
+}
+
+.mcm-wrap .mcm-item {
+    align-items: center;
+    gap: 10px;
+    padding: 7px 8px
+}
+
+.mcm-wrap .mcm-item-ic {
+    border-radius: 10px;
+    height: 34px;
+    width: 34px
+}
+
+.mcm-wrap .mcm-item-n {
+    font-size: 13px;
+    font-weight: 600
+}
+
+.mcm-wrap .mcm-item-s {
+    font-size: 11.5px;
+    line-height: 1.35
+}
+
+.mcm-wrap .mcm-foot {
+    font-size: 11.5px;
+    padding: 9px 16px
+}
+
+/* The wrap's hairline is meant to sit under the bar. While a panel is open
+   the wrap grows to the panel's bottom edge, so that hairline was drawn
+   right across the page below the dropdown. */
+.mcm-wrap--panel {
+    border-bottom-color: transparent
+}
+
+/* ...but the bar keeps its rule. With the wrap's own border hidden while a
+   panel is open, the same full-width hairline is drawn directly under the
+   bar instead, so the navbar looks identical open or closed and the panel
+   hangs below the line. It spans the wrap's side gutter to run edge to edge. */
+.mcm-wrap--panel .mcm-bar::after {
+    background: rgba(16, 2, 44, .10);
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: calc(-1 * clamp(24px, 7vw, 138px));
+    pointer-events: none;
+    position: absolute;
+    right: calc(-1 * clamp(24px, 7vw, 138px))
+}
+
+.mcm-wrap--panel.mcm-wrap--stuck .mcm-bar::after {
+    background: rgba(16, 2, 44, .12)
+}
+
+
+/* The banner CTA is a real link now that tabs carry an overview URL. */
+a.mcm-banner-cta {
+    text-decoration: none;
+    transition: background .15s ease, border-color .15s ease
+}
+
+a.mcm-banner-cta:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe
+}
+
+/* ── "Page built" marker ─────────────────────────────────────────────────
+   A small red dot in the top-right corner of any menu link whose page
+   exists (content/builtPages.js), on desktop panels, the Overview / "All …"
+   buttons and the mobile menu. */
+.mcm-item,
+.mcm-m-item,
+a.mcm-banner-cta {
+    position: relative
+}
+
+.mcm-built-dot {
+    background: #ef4444;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #fff, 0 1px 3px rgba(239, 68, 68, .45);
+    height: 8px;
+    pointer-events: none;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 8px
+}
+
+a.mcm-banner-cta .mcm-built-dot {
+    right: -3px;
+    top: -3px
+}
+
+/* Black variant: menu entries whose page was just added to the menu. */
+.mcm-built-dot--recent {
+    background: #111;
+    box-shadow: 0 0 0 2px #fff, 0 1px 3px rgba(0, 0, 0, .35)
+}
+
+/* "New" tag beside a rail tab title (the UCaaS tabs the sheet marks NEW in
+   Features and Solutions) and in the matching mobile-menu group heading. */
+.mcm-new {
+    background: #dcfce7;
+    border-radius: 999px;
+    color: #15803d;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    line-height: 1;
+    margin-left: 2px;
+    padding: 3px 6px;
+    text-transform: uppercase
+}
+
+.mcm-m-group-t .mcm-new {
+    margin-left: 6px;
+    vertical-align: 2px
+}
+
+/* Footer "All features / All solutions" links in the tabbed panels. */
+.mcm-foot a {
+    color: inherit;
+    text-decoration: none
+}
+
+.mcm-foot a:hover {
+    color: #10022c
+}
+
+/* ── No backdrop beside an open dropdown ───────────────────────────────────
+   Once the page has scrolled, the wrap turns frosted white (.mcm-wrap--stuck).
+   The wrap also contains the open mega panel, so that white fill ran down
+   the full height of the dropdown and showed as wide white bands either side
+   of it. While a panel is open the wrap itself goes transparent and the
+   frosted fill is redrawn on the bar only — edge to edge, bar-height — so
+   the page stays visible around the dropdown. */
+.mcm-wrap--stuck.mcm-wrap--panel {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: transparent;
+    box-shadow: none
+}
+
+.mcm-wrap--stuck.mcm-wrap--panel .mcm-bar::before {
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    backdrop-filter: saturate(180%) blur(16px);
+    background: hsla(0, 0%, 100%, .72);
+    bottom: 0;
+    box-shadow: 0 1px 24px rgba(15, 23, 42, .07);
+    content: "";
+    left: calc(-1 * clamp(24px, 7vw, 138px));
+    pointer-events: none;
+    position: absolute;
+    right: calc(-1 * clamp(24px, 7vw, 138px));
+    top: calc(-1 * var(--mcm-top, 0px));
+    z-index: -1
+}
+
+/* The nav and its panels are UI, not reading text: no text selection, so a
+   stray drag or double-click can't paint the menu in selection blue. */
+.mcm-wrap, .mcm-wrap .mcm-panel, .mcm-drawer { -webkit-user-select: none; user-select: none }
+.mcm-wrap ::selection { background: transparent }
+
+/* ══ Mobile menu, tidied ════════════════════════════════════════════════════
+   Every top-level row now has an icon (not just Pricing), an open section
+   sits in a soft card so it reads as one group, suite headings are small
+   labels on the same left edge as their links, link descriptions stay on one
+   line, and the "built" dot sits centred on the right instead of floating
+   in the corner. */
+@media (max-width: 980px) {
+    .mcm-drawer-scroll { padding: 6px 16px 20px }
+    .mcm-acc, .mcm-acc-head--link { border-bottom: 1px solid #f1f2f5 }
+    .mcm-acc-head { font-size: 16px; min-height: 60px; padding: 12px 4px }
+    .mcm-acc-label { gap: 12px }
+    .mcm-acc-ic { border-radius: 9px; font-size: 16px; height: 34px; width: 34px }
+    .mcm-acc--open > .mcm-acc-head .mcm-acc-ic { background: var(--tone-fg); box-shadow: 0 6px 14px -8px var(--tone-fg); color: #fff }
+    .mcm-acc-chev, .mcm-acc-arrow { height: 28px; width: 28px }
+
+    .mcm-acc-inner { padding: 0 }
+    .mcm-acc--open .mcm-acc-inner { padding: 0 0 14px }
+    .mcm-acc-inner > .mcm-m-group,
+    .mcm-acc-inner > .mcm-m-items { background: #f8f8fa; border: 1px solid #eef0f4; border-radius: 16px; padding: 6px }
+    .mcm-acc-inner > .mcm-m-group + .mcm-m-group { border-top: 1px solid #eef0f4; margin-top: 8px; padding-top: 6px }
+
+    .mcm-m-group-head { gap: 10px; padding: 8px 8px 6px }
+    .mcm-m-group-head .mcm-suite-ic { border-radius: 8px; height: 26px; width: 26px }
+    .mcm-m-group-head .mcm-suite-ic .mcm-glyph { font-size: 13px }
+    .mcm-m-group-t { color: #475569; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase }
+    .mcm-m-group-d { display: none }
+
+    .mcm-m-items { gap: 2px }
+    .mcm-m-item { background: #fff; border: 1px solid transparent; border-radius: 12px; gap: 12px; min-height: 58px; padding: 9px 30px 9px 8px }
+    .mcm-m-item:hover, .mcm-m-item:active { background: #fff; border-color: #e5e7eb; box-shadow: 0 6px 14px -12px rgba(16, 2, 44, .35) }
+    .mcm-m-item-ic { border-radius: 10px; height: 36px; width: 36px }
+    .mcm-m-item-txt { flex: 1 }
+    .mcm-m-item-n { flex-wrap: nowrap; font-size: 14.5px; font-weight: 600; white-space: nowrap }
+    .mcm-m-item-n .mcm-badge { flex: none }
+    .mcm-m-item-s { font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+    .mcm-m-item .mcm-built-dot { height: 7px; right: 12px; top: calc(50% - 3.5px); width: 7px }
+
+    .mcm-drawer-note { margin: 16px 0 0 }
+    .mcm-drawer-actions { padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)) }
+}

@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+
+.vercel
+.env*
+
+# Backup of the earlier Vercel link (another account)
+.vercel-previous-link
+
+# Local auth user store (password hashes) — never commit
+data/

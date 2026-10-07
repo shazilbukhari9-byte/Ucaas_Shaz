@@ -1,0 +1,5755 @@
+.design-v2 .section-tabbed-trust-showcase {
+    background: var(--brand-cream);
+    padding: 100px max(100px, (100% - var(--content-max-width))/2)
+}
+
+.design-v2 .section-tabbed-trust-showcase .section-header-row {
+    align-items: center;
+    display: flex;
+    gap: 60px;
+    justify-content: space-between;
+    margin-bottom: 60px
+}
+
+.design-v2 .section-tabbed-trust-showcase .section-header-left {
+    flex: 1;
+    max-width: 780px
+}
+
+.design-v2 .section-tabbed-trust-showcase .section-header-left .accordion-section-heading {
+    margin-bottom: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .platform-badge {
+    background: rgba(0, 0, 0, .06);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .platform-badge--ghost {
+    background: hsla(0, 0%, 100%, .15);
+    border: 1px solid hsla(0, 0%, 100%, .25);
+    color: var(--text-white)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-section-heading {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-size: var(--text-heading-xl);
+    font-weight: var(--arizona-heading-weight);
+    letter-spacing: var(--arizona-heading-letter-spacing);
+    line-height: var(--arizona-heading-line-height);
+    margin-bottom: 60px;
+    max-width: 24ch;
+    text-wrap: balance
+}
+
+.design-v2 .section-tabbed-trust-showcase .section-header-callouts {
+    align-items: flex-end;
+    contain: layout paint;
+    display: flex;
+    gap: 0;
+    transform: translateZ(0);
+    will-change: contents
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 32px;
+    position: relative
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout:first-child {
+    padding-left: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout:last-child {
+    padding-right: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout:not(:last-child):after {
+    background: var(--border-light);
+    bottom: 0;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-icon {
+    align-items: center;
+    color: var(--text-primary);
+    display: flex;
+    flex-shrink: 0;
+    height: 22px;
+    justify-content: center;
+    margin-bottom: 6px;
+    width: 22px
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-icon svg {
+    height: 20px;
+    width: 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-icon i {
+    font-size: var(--text-body-xl)
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-icon img {
+    height: 20px;
+    object-fit: contain;
+    width: 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-title {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: 600;
+    line-height: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-title .counter {
+    font-variant-numeric: tabular-nums
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-desc {
+    color: var(--neutral-700);
+    font-family: var(--font-body);
+    font-size: var(--text-caption-lg);
+    font-weight: 400;
+    line-height: 1.4;
+    max-width: 180px
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-source {
+    align-items: center;
+    color: var(--neutral-500);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 400;
+    gap: 4px;
+    margin-top: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .stat-callout-source i {
+    font-size: var(--text-micro)
+}
+
+/* A centred pill floating at the top of the panel card -- no full-bleed strip
+   and no divider rules, so nothing cuts across the card. */
+/* Same shape as the reference: one rounded track holding the tabs. Ours is
+   grey rather than white so it separates from the panel, with the active tab
+   in black instead of blue. */
+.design-v2 .section-tabbed-trust-showcase .primary-tabs-bar {
+    background: rgba(15, 23, 42, .06);
+    border: 1px solid rgba(15, 23, 42, .1);
+    border-radius: 999px;
+    box-shadow: none;
+    display: flex;
+    gap: 4px;
+    margin: 0 auto 48px;
+    padding: 6px;
+    width: fit-content
+}
+
+.design-v2 .section-tabbed-trust-showcase .primary-tab-icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .primary-tab-icon .tab-icon {
+    align-items: center;
+    display: inline-flex;
+    font-size: var(--text-body);
+    height: 20px;
+    justify-content: center;
+    width: 20px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .primary-tab {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 22px;
+    transition: all .2s ease;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .primary-tab i {
+    font-size: var(--text-body-lg)
+}
+
+.design-v2 .section-tabbed-trust-showcase .primary-tab .tab-icon {
+    flex-shrink: 0;
+    height: 18px;
+    width: 18px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .primary-tab:hover:not(.active) {
+    background: rgba(15, 23, 42, .08)
+}
+
+.design-v2 .section-tabbed-trust-showcase .primary-tab.active {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+    color: var(--text-white)
+}
+
+.design-v2 .section-tabbed-trust-showcase .new-pill {
+    background: #ee6730;
+    border-radius: 999px;
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    padding: 3px 8px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .tabs-container-card {
+    background: var(--brand-white);
+    border: 1px solid var(--text-primary);
+    border-radius: 24px;
+    padding: 24px;
+    text-align: left
+}
+
+.design-v2 .section-tabbed-trust-showcase .tabs-container-accordion {
+    align-items: stretch;
+    display: grid;
+    gap: 28px;
+    /* Narrower copy column so the mock panel on the right gets the room it
+       needs and stops being cut off. */
+    grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+    text-align: left
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-content-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-content {
+    animation: fadeInContent .4s ease;
+    display: none;
+    flex-direction: column;
+    height: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-content.active {
+    display: flex
+}
+
+/* `margin-top: auto` shoved the capabilities list to the bottom of the column,
+   leaving a large gap under the description. Sit it directly below instead. */
+.design-v2 .section-tabbed-trust-showcase .product-content .product-content-eyebrow {
+    margin-top: 20px
+}
+
+@keyframes fadeInContent {
+    0% {
+        opacity: 0;
+        transform: translateY(10px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-content-eyebrow {
+    color: var(--text-primary);
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    margin-bottom: 16px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-content-number {
+    color: var(--brand-blue);
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: -.02em;
+    margin-bottom: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-content-title {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-heading-md);
+    font-weight: 600;
+    margin-bottom: 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-content-description {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-links-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card {
+    align-items: flex-start;
+    background: var(--brand-cream);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    display: flex;
+    gap: 14px;
+    padding: 14px 40px 14px 16px;
+    position: relative;
+    text-decoration: none;
+    transition: all .2s ease
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card:after {
+    color: var(--neutral-300);
+    content: "→";
+    font-size: var(--text-body);
+    opacity: .5;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+    transition: all .2s ease
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card:hover {
+    background: var(--brand-white);
+    border-color: #ee6730;
+    box-shadow: 0 2px 8px rgba(238, 103, 48, .12);
+    transform: translateX(4px)
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card:hover:after {
+    color: #ee6730;
+    opacity: 1;
+    transform: translateY(-50%) translateX(0)
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card:hover .product-link-card-icon {
+    background: #ee6730
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card-icon {
+    align-items: center;
+    background: var(--text-primary);
+    border-radius: 8px;
+    color: var(--text-white);
+    display: flex;
+    flex-shrink: 0;
+    font-size: var(--text-body-lg);
+    height: 36px;
+    justify-content: center;
+    transition: background .2s ease;
+    width: 36px
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card-icon .tab-icon {
+    display: inline-block;
+    height: 20px;
+    width: 20px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card-title {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    line-height: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .product-link-card-desc {
+    color: var(--neutral-700);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 400;
+    line-height: 1.4
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-cards-row {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 2fr 1fr;
+    margin-top: 24px
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-card-image {
+    align-items: flex-end;
+    background-position: 50%;
+    background-size: cover;
+    border: 1px solid var(--text-primary);
+    border-radius: 24px;
+    display: flex;
+    min-height: 520px;
+    overflow: hidden;
+    position: relative
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-card-image:before {
+    background: linear-gradient(0deg, rgba(0, 0, 0, .7) 0, rgba(0, 0, 0, .1) 40%, transparent 70%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-card-image.feature-card-blue-overlay:before {
+    background: linear-gradient(0deg, rgba(10, 25, 60, .85) 0, rgba(15, 40, 80, .5) 35%, rgba(20, 50, 100, .2) 60%, transparent 85%);
+    mix-blend-mode: multiply
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-card-overlay {
+    padding: 32px;
+    position: relative;
+    width: 100%;
+    z-index: 2
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-card-label {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: hsla(0, 0%, 100%, .15);
+    border: 1px solid hsla(0, 0%, 100%, .25);
+    border-radius: 4px;
+    color: var(--text-white);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    padding: 6px 10px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-card-title {
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: var(--text-heading-md);
+    font-weight: 700;
+    margin-bottom: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .feature-card-desc {
+    color: hsla(0, 0%, 100%, .9);
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 380px
+}
+
+.design-v2 .section-tabbed-trust-showcase .eye-radiate {
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    z-index: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .eye-radiate-ring {
+    animation: eyeRadiate 8s ease-out infinite;
+    border: 1px solid hsla(0, 0%, 100%, .45);
+    border-radius: 50%;
+    height: 60px;
+    left: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    will-change: transform, opacity
+}
+
+.design-v2 .section-tabbed-trust-showcase .eye-radiate-ring:first-child {
+    animation-delay: 0s
+}
+
+.design-v2 .section-tabbed-trust-showcase .eye-radiate-ring:nth-child(2) {
+    animation-delay: 1.6s
+}
+
+.design-v2 .section-tabbed-trust-showcase .eye-radiate-ring:nth-child(3) {
+    animation-delay: 3.2s
+}
+
+.design-v2 .section-tabbed-trust-showcase .eye-radiate-ring:nth-child(4) {
+    animation-delay: 4.8s
+}
+
+.design-v2 .section-tabbed-trust-showcase .eye-radiate-ring:nth-child(5) {
+    animation-delay: 6.4s
+}
+
+@keyframes eyeRadiate {
+    0% {
+        opacity: 0;
+        transform: scale(.5)
+    }
+    3% {
+        opacity: .5
+    }
+    40% {
+        opacity: 0
+    }
+    to {
+        opacity: 0;
+        transform: scale(10)
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder:not([style*=background-image]) {
+    background: radial-gradient(circle at top left, rgba(0, 98, 184, .15), transparent 55%), radial-gradient(circle at bottom right, rgba(251, 146, 60, .2), transparent 55%), var(--brand-navy);
+    border-radius: 20px;
+    min-height: 320px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-container {
+    height: 100%;
+    isolation: isolate;
+    min-width: 0;
+    position: relative
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual {
+    animation: accordionFadeIn .4s ease;
+    background: var(--text-primary, #1a1a1a);
+    border-radius: 12px;
+    display: none;
+    height: 100%;
+    isolation: isolate;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual.active {
+    display: block
+}
+
+@keyframes accordionFadeIn {
+    0% { opacity: 0 }
+    to { opacity: 1 }
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    font-family: var(--font-body);
+    height: 100%;
+    justify-content: center;
+    min-height: 637px;
+    overflow: hidden;
+    position: relative
+}
+
+@media(max-width:900px) {
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder {
+        flex-direction: column;
+        gap: 12px;
+        min-height: 340px;
+        padding: 24px
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder {
+        min-height: 300px;
+        padding: 20px
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast {
+    align-items: flex-start;
+    animation: tabToastIn .5s ease-out both;
+    background: rgba(120, 140, 160, .75);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .12), 0 0 0 1px hsla(0, 0%, 100%, .2), inset 0 1px 0 hsla(0, 0%, 100%, .15);
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    position: absolute;
+    right: calc(62% + 24px);
+    width: 172px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-1 {
+    animation-delay: .2s;
+    left: 48px;
+    right: auto;
+    top: 30%
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-2 {
+    animation-delay: .4s;
+    left: 48px;
+    right: auto;
+    top: 40%
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-3 {
+    animation-delay: .6s;
+    left: 48px;
+    right: auto;
+    top: 50%
+}
+
+@keyframes tabToastIn {
+    0% {
+        transform: translateX(-30px) translateZ(0)
+    }
+    to {
+        transform: translateX(0) translateZ(0)
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-icon {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .3);
+    border-radius: 10px;
+    color: hsla(0, 0%, 100%, .9);
+    display: flex;
+    flex-shrink: 0;
+    font-size: var(--text-body);
+    height: 36px;
+    justify-content: center;
+    width: 36px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-title {
+    color: hsla(0, 0%, 100%, .95);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    /* Wrap rather than ellipsis: at these narrower card widths titles like
+       "AI Appointment Booked" were being cut to "Appointment B...". */
+    line-height: 1.25;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-toast-desc {
+    color: hsla(0, 0%, 100%, .7);
+    display: -webkit-box;
+    font-size: var(--text-caption-sm);
+    font-weight: 400;
+    letter-spacing: -.005em;
+    line-height: 1.4;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2
+}
+
+.design-v2 .section-tabbed-trust-showcase .toast-avatar-stack {
+    display: flex;
+    margin-top: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .toast-avatar-stack img,
+.design-v2 .section-tabbed-trust-showcase .toast-avatar {
+    border: 1px solid hsla(0, 0%, 100%, .9);
+    border-radius: 50%;
+    height: 38px;
+    margin-left: -12px;
+    object-fit: cover;
+    width: 38px
+}
+
+.design-v2 .section-tabbed-trust-showcase .toast-avatar-stack img:first-child,
+.design-v2 .section-tabbed-trust-showcase .toast-avatar:first-child {
+    margin-left: 0
+}
+
+/* Initials chips standing in for the old stock portraits. */
+.design-v2 .section-tabbed-trust-showcase .toast-avatar {
+    align-items: center;
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    justify-content: center;
+    letter-spacing: .02em
+}
+
+.design-v2 .section-tabbed-trust-showcase .toast-avatar--a { background: #e0e7ff; color: #4338ca }
+.design-v2 .section-tabbed-trust-showcase .toast-avatar--b { background: #d7f2f0; color: #0f766e }
+.design-v2 .section-tabbed-trust-showcase .toast-avatar--c { background: #fde5d3; color: #c2410c }
+.design-v2 .section-tabbed-trust-showcase .toast-avatar--d { background: #e8eaf0; color: #475569 }
+
+.design-v2 .section-tabbed-trust-showcase .tab-phone-mockup {
+    animation: tabPhoneIn .6s ease-out both;
+    animation-delay: .3s;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 28px;
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, .15), 0 0 0 1px hsla(0, 0%, 100%, .4), inset 0 1px 0 hsla(0, 0%, 100%, .5);
+    height: 420px;
+    left: 350px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateZ(0);
+    width: 200px;
+    z-index: 5
+}
+
+@keyframes tabPhoneIn {
+    0% {
+        transform: translateY(-50%) translateY(30px) translateZ(0)
+    }
+    to {
+        transform: translateY(-50%) translateY(0) translateZ(0)
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-phone-notch {
+    background: rgba(0, 0, 0, .3);
+    border-radius: 14px;
+    height: 24px;
+    left: 50%;
+    position: absolute;
+    top: 10px;
+    transform: translateX(-50%);
+    width: 80px;
+    z-index: 10
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-phone-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 40px 8px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-phone-call {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-label {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: var(--text-micro-sm);
+    font-weight: 500;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-avatar {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .25);
+    border-radius: 50%;
+    display: flex;
+    height: 72px;
+    justify-content: center;
+    overflow: hidden;
+    width: 72px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-avatar img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-name {
+    color: hsla(0, 0%, 100%, .95);
+    font-size: var(--text-body-lg);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-timer {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: var(--text-body-sm);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-wave {
+    align-items: center;
+    display: flex;
+    gap: 5px;
+    height: 20px;
+    justify-content: center;
+    margin: 8px 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-wave span {
+    animation: waveBar 1s ease-in-out infinite;
+    border-radius: 2px;
+    outline: 1px solid hsla(0, 0%, 100%, .9);
+    outline-offset: 1px;
+    width: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-wave span:first-child {
+    animation-delay: 0s;
+    background: #1e3a5f;
+    height: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-wave span:nth-child(2) {
+    animation-delay: .1s;
+    background: var(--brand-blue);
+    height: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-wave span:nth-child(3) {
+    animation-delay: .2s;
+    background: #7a9e7e;
+    height: 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-wave span:nth-child(4) {
+    animation-delay: .3s;
+    background: var(--neutral-500);
+    height: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-wave span:nth-child(5) {
+    animation-delay: .4s;
+    background: #e87830;
+    height: 6px
+}
+
+@keyframes waveBar {
+    0%,
+    to {
+        transform: scaleY(1)
+    }
+    50% {
+        transform: scaleY(1.8)
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-call-actions {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-action {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 50%;
+    color: hsla(0, 0%, 100%, .85);
+    display: flex;
+    font-size: var(--text-body-xl);
+    height: 52px;
+    justify-content: center;
+    width: 52px
+}
+
+.design-v2 .section-tabbed-trust-showcase .phone-action.end {
+    transform: rotate(135deg)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-desktop-app {
+    animation: tabAppIn .6s ease-out both;
+    animation-delay: .1s;
+    left: 530px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+@keyframes tabAppIn {
+    0% {
+        transform: translateY(-50%) translateX(40px)
+    }
+    to {
+        transform: translateY(-50%) translateX(0)
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-window {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    background: hsla(0, 0%, 100%, .55);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px -12px rgba(100, 116, 139, .15), 0 0 0 1px hsla(0, 0%, 100%, .4), inset 0 1px 0 hsla(0, 0%, 100%, .5);
+    display: flex;
+    flex-direction: column;
+    height: 520px;
+    overflow: hidden;
+    width: 660px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-header {
+    align-items: center;
+    border-bottom: 1px solid rgba(16, 2, 44, .1);
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-title {
+    color: rgba(16, 2, 44, .6);
+    font-size: var(--text-caption);
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-icons {
+    display: flex;
+    gap: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-icons i {
+    color: rgba(16, 2, 44, .55);
+    font-size: var(--text-body)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-sidebar {
+    border-right: 1px solid rgba(16, 2, 44, .08);
+    display: flex;
+    flex-direction: column;
+    padding: 14px 0;
+    width: 200px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-sidebar-title {
+    color: rgba(16, 2, 44, .5);
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    padding: 0 14px 12px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conversation {
+    align-items: center;
+    cursor: default;
+    display: flex;
+    gap: 10px;
+    padding: 10px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conversation.active,
+.design-v2 .section-tabbed-trust-showcase .tab-conversation:hover {
+    background: rgba(16, 2, 44, .05)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: 34px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 34px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar img {
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar.team {
+    background: hsla(0, 0%, 100%, .15)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar.team i {
+    color: hsla(0, 0%, 100%, .7);
+    font-size: var(--text-body-sm)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-status {
+    background: #22c55e;
+    border: 2px solid rgba(255, 255, 255, .9);
+    border-radius: 50%;
+    bottom: -1px;
+    height: 10px;
+    position: absolute;
+    right: -1px;
+    width: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-name {
+    color: rgba(16, 2, 44, .88);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-preview {
+    color: rgba(16, 2, 44, .55);
+    font-size: var(--text-caption-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-time {
+    color: rgba(16, 2, 44, .4);
+    flex-shrink: 0;
+    font-size: var(--text-micro)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-app-chat {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-header {
+    align-items: center;
+    border-bottom: 1px solid rgba(16, 2, 44, .08);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-name {
+    color: rgba(16, 2, 44, .9);
+    font-size: var(--text-body-sm);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-actions {
+    display: flex;
+    gap: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-actions i {
+    color: rgba(16, 2, 44, .55);
+    font-size: var(--text-body)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-msg {
+    border-radius: 14px;
+    font-size: var(--text-caption);
+    line-height: 1.4;
+    max-width: 85%;
+    padding: 10px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-msg.received {
+    align-self: flex-start;
+    background: rgba(16, 2, 44, .06);
+    border-bottom-left-radius: 4px;
+    color: rgba(16, 2, 44, .88)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-msg.sent {
+    align-self: flex-end;
+    background: rgba(238, 103, 48, .18);
+    border-bottom-right-radius: 4px;
+    color: #7c2d12
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-input {
+    align-items: center;
+    background: rgba(16, 2, 44, .05);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding: 12px 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-input span {
+    color: rgba(16, 2, 44, .45);
+    font-size: var(--text-caption)
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-input i {
+    color: rgba(16, 2, 44, .55);
+    font-size: var(--text-body)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-toast-1 {
+    animation-delay: .2s;
+    left: calc(50% - 412px);
+    right: auto;
+    top: calc(50% - 135px);
+    z-index: 10
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-toast-2 {
+    animation-delay: .4s;
+    left: calc(50% - 412px);
+    right: auto;
+    top: calc(50% - 40px);
+    z-index: 10
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-toast-3 {
+    animation-delay: .6s;
+    left: calc(50% - 412px);
+    right: auto;
+    top: calc(50% + 48px);
+    z-index: 10
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-phone-mockup {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 36px;
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, .15), 0 0 0 1px hsla(0, 0%, 100%, .4), inset 0 1px 0 hsla(0, 0%, 100%, .5);
+    height: 506px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 242px;
+    z-index: 5
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-phone-call {
+    animation: tabPhoneIn .6s ease-out both;
+    animation-delay: .3s;
+    left: calc(50% - 112px)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-phone-summary {
+    animation: tabAppIn .6s ease-out both;
+    animation-delay: .5s;
+    left: calc(50% + 170px)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-header {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .15);
+    display: flex;
+    justify-content: center;
+    padding: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-header-brand {
+    align-items: center;
+    display: flex;
+    gap: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-header-icon {
+    color: hsla(0, 0%, 100%, .95);
+    font-size: 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-label {
+    color: hsla(0, 0%, 100%, .95);
+    font-size: var(--text-caption-lg);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-content {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-caller-avatar {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .18);
+    border: 2px solid hsla(0, 0%, 100%, .3);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    font-size: var(--text-body-sm);
+    font-weight: 700;
+    height: 64px;
+    justify-content: center;
+    width: 64px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-caller-name {
+    color: hsla(0, 0%, 100%, .95);
+    font-size: var(--text-body);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-timer {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: var(--text-caption-lg);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-transcript {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+    width: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-transcript-line {
+    border-radius: 10px;
+    font-size: var(--text-micro);
+    line-height: 1.4;
+    padding: 8px 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-transcript-line.caller {
+    align-self: flex-start;
+    background: hsla(0, 0%, 100%, .15);
+    color: hsla(0, 0%, 100%, .85);
+    max-width: 85%
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-transcript-line.ai {
+    align-self: flex-end;
+    background: hsla(0, 0%, 100%, .25);
+    color: hsla(0, 0%, 100%, .95);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    max-width: 85%
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-ai-label {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: var(--text-micro-xs);
+    font-weight: 600;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-takeover-btn {
+    background: hsla(0, 0%, 100%, .9);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    color: #1a1a1a;
+    cursor: pointer;
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    padding: 10px 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-summary-header {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .15);
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-summary-title {
+    color: hsla(0, 0%, 100%, .95);
+    font-size: var(--text-caption-lg);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-summary-date {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: var(--text-micro);
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-summary-stats {
+    display: flex;
+    gap: 8px;
+    padding: 10px 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-stat {
+    background: hsla(0, 0%, 100%, .1);
+    border-radius: 8px;
+    flex: 1;
+    padding: 8px 6px;
+    text-align: center
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-stat-num {
+    color: hsla(0, 0%, 100%, .95);
+    display: block;
+    font-size: var(--text-heading-sm);
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-stat-label {
+    color: hsla(0, 0%, 100%, .85);
+    font-size: var(--text-micro-xs);
+    font-weight: 600;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-item {
+    align-items: flex-start;
+    background: hsla(0, 0%, 100%, .08);
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+    padding: 6px 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-item-avatar {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .18);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    flex-shrink: 0;
+    font-size: var(--text-micro-xs);
+    font-weight: 700;
+    height: 24px;
+    justify-content: center;
+    margin-top: 2px;
+    width: 24px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-item-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-item-name {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .95);
+    display: flex;
+    font-size: var(--text-micro);
+    font-weight: 600;
+    justify-content: space-between
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-item-result {
+    color: hsla(0, 0%, 100%, .75);
+    font-size: var(--text-micro-sm)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-panel-call-item-time {
+    color: hsla(0, 0%, 100%, .6);
+    flex-shrink: 0;
+    font-size: var(--text-micro-xs)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ai-badge-mini {
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 6px;
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    padding: 2px 6px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding: 10px 2px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-meta {
+    color: hsla(0, 0%, 100%, .5);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    justify-content: space-between;
+    padding: 0 2px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-section {
+    background: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-section-header {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .9);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    gap: 6px;
+    margin-bottom: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-section-header i {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-badge {
+    background: hsla(0, 0%, 100%, .1);
+    border-radius: 4px;
+    color: hsla(0, 0%, 100%, .5);
+    font-size: var(--text-micro-sm);
+    font-weight: 500;
+    margin-left: auto;
+    padding: 2px 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-summary {
+    color: hsla(0, 0%, 100%, .75);
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    line-height: 1.5;
+    margin: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-speaker {
+    color: hsla(0, 0%, 100%, .7);
+    font-size: var(--text-micro-sm);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-tag {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .1);
+    border-radius: 6px;
+    color: hsla(0, 0%, 100%, .8);
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 500;
+    gap: 4px;
+    padding: 3px 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-analysis-tag i {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: 11px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-assist-sidebar {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: hsla(0, 0%, 100%, .16);
+    border-radius: 14px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, .2), 0 0 0 1px hsla(0, 0%, 100%, .3), inset 0 1px 0 hsla(0, 0%, 100%, .35);
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    width: 300px
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-tabbed-trust-showcase .accordion-assist-sidebar {
+        width: 260px
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-tabbed-trust-showcase .accordion-assist-sidebar {
+        width: 260px
+    }
+}
+
+@media(max-width:480px) {
+    .design-v2 .section-tabbed-trust-showcase .accordion-assist-sidebar {
+        width: 240px
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-bar {
+    align-items: center;
+    background: rgba(0, 0, 0, .15);
+    border-bottom: 1px solid hsla(0, 0%, 100%, .08);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-bar-left {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-card {
+    background: rgba(0, 0, 0, .18);
+    border-radius: 10px;
+    padding: 10px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-card-label {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .5);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro-sm);
+    font-weight: 600;
+    gap: 5px;
+    letter-spacing: .04em;
+    margin-bottom: 5px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-card-label i {
+    font-size: 11px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-card-text {
+    color: hsla(0, 0%, 100%, .85);
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    line-height: 1.45
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-bar-label {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .85);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    gap: 6px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-bar-status {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .45);
+    display: flex;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    gap: 5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-bar-status:before {
+    background: var(--blue-200);
+    border-radius: 50%;
+    content: "";
+    height: 6px;
+    width: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 14px 14px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-content .accordion-spotlight-hero-trust-name {
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    text-align: center
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-content .sound-wave {
+    margin: 0 0 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-content .accordion-sidebar-cards {
+    width: 100%
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .accordion-sidebar-content .accordion-transcript-line {
+    font-size: var(--text-caption-sm);
+    line-height: 1.45
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-assist-sidebar--analysis .accordion-sidebar-content {
+    align-items: stretch
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-assist-sidebar--analysis .accordion-analysis-content {
+    padding: 4px 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .mockup-group {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10
+}
+
+.design-v2 .section-tabbed-trust-showcase .mockup-group .tab-toast {
+    left: auto;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    /* fill the label column rather than the base 172px float width */
+    width: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .toasts-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dashboard-group {
+    left: auto;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none
+}
+
+.design-v2 .section-tabbed-trust-showcase .cc-toast-1 {
+    animation-delay: .2s
+}
+
+.design-v2 .section-tabbed-trust-showcase .cc-toast-2 {
+    animation-delay: .4s
+}
+
+.design-v2 .section-tabbed-trust-showcase .cc-toast-3 {
+    animation-delay: .6s
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-toast-1 {
+    animation-delay: .2s
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-toast-2 {
+    animation-delay: .4s
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-toast-3 {
+    animation-delay: .6s
+}
+
+.design-v2 .section-tabbed-trust-showcase .cc-dashboard .tab-app-window,
+.design-v2 .section-tabbed-trust-showcase .cx-dashboard .tab-app-window {
+    height: 560px;
+    width: 520px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-dashboard .tab-app-window {
+    height: 540px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cc-dashboard-body,
+.design-v2 .section-tabbed-trust-showcase .cx-dashboard-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+    padding: 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-hub-body {
+    gap: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-section-label {
+    color: hsla(0, 0%, 100%, .5);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-apps-grid {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(3, 1fr)
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-app-card {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .06);
+    border: 1px solid hsla(0, 0%, 100%, .06);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 8px 10px;
+    text-align: center
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-app-card.integ-connected {
+    border-color: hsla(0, 0%, 100%, .1)
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-app-icon {
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    font-size: var(--text-body-lg);
+    height: 36px;
+    justify-content: center;
+    width: 36px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-app-name {
+    color: hsla(0, 0%, 100%, .9);
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    line-height: 1.2
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-app-status {
+    align-items: center;
+    color: hsla(0, 0%, 100%, .4);
+    display: flex;
+    font-size: var(--text-micro-sm);
+    font-weight: 500;
+    gap: 3px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-app-status.connected {
+    color: rgba(134, 239, 172, .9)
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-item {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .05);
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    padding: 8px 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-icon {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .08);
+    border-radius: 7px;
+    color: hsla(0, 0%, 100%, .6);
+    display: flex;
+    flex-shrink: 0;
+    font-size: var(--text-caption-lg);
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1px
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-text {
+    color: hsla(0, 0%, 100%, .85);
+    font-size: var(--text-caption-sm);
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .integ-activity-meta {
+    color: hsla(0, 0%, 100%, .4);
+    font-size: var(--text-micro-sm)
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-stats-row {
+    display: flex;
+    gap: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-stat-card {
+    background: hsla(0, 0%, 100%, .1);
+    border-radius: 10px;
+    flex: 1;
+    padding: 12px 10px;
+    position: relative;
+    text-align: center
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-stat-value {
+    color: hsla(0, 0%, 100%, .95);
+    display: block;
+    font-size: var(--text-heading-sm);
+    font-weight: 700;
+    line-height: 1.1
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-stat-label {
+    color: hsla(0, 0%, 100%, .85);
+    font-size: var(--text-micro);
+    font-weight: 600;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-stat-trend {
+    align-items: center;
+    display: flex;
+    font-size: var(--text-micro);
+    font-weight: 700;
+    gap: 1px;
+    position: absolute;
+    right: 8px;
+    top: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-stat-trend.up {
+    color: rgba(134, 239, 172, .9)
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-trend-banner {
+    align-items: center;
+    background: rgba(34, 197, 94, .15);
+    border-radius: 8px;
+    color: rgba(134, 239, 172, .95);
+    display: flex;
+    font-size: var(--text-caption-sm);
+    font-weight: 500;
+    gap: 8px;
+    padding: 10px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-header span:first-child {
+    color: hsla(0, 0%, 100%, .9);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-count {
+    color: hsla(0, 0%, 100%, .75);
+    font-size: var(--text-caption-sm);
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-item {
+    background: hsla(0, 0%, 100%, .08);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-stars {
+    color: #fbbf24;
+    font-size: var(--text-caption-sm)
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-stars .star-empty {
+    color: hsla(0, 0%, 100%, .3)
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-text {
+    color: hsla(0, 0%, 100%, .95);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    line-height: 1.4
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-meta {
+    align-items: center;
+    display: flex;
+    gap: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-meta img {
+    border-radius: 50%;
+    height: 18px;
+    object-fit: cover;
+    width: 18px
+}
+
+.design-v2 .section-tabbed-trust-showcase .cx-feedback-meta span {
+    color: hsla(0, 0%, 100%, .75);
+    font-size: var(--text-micro);
+    font-weight: 500
+}
+
+@media(max-width:1200px) {
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder .tab-toast {
+        left: 24px;
+        max-width: 220px
+    }
+    .design-v2 .section-tabbed-trust-showcase .tab-desktop-app {
+        left: 110px
+    }
+    .design-v2 .section-tabbed-trust-showcase .tab-app-window {
+        height: 400px;
+        width: 440px
+    }
+    .design-v2 .section-tabbed-trust-showcase .tab-phone-mockup {
+        height: 360px;
+        left: 170px;
+        width: 170px
+    }
+    .design-v2 .section-tabbed-trust-showcase .cc-dashboard .tab-app-window {
+        height: 400px;
+        width: 400px
+    }
+    .design-v2 .section-tabbed-trust-showcase .integ-apps-grid {
+        gap: 6px;
+        grid-template-columns: repeat(3, 1fr)
+    }
+    .design-v2 .section-tabbed-trust-showcase .integ-app-card {
+        padding: 10px 6px 8px
+    }
+    .design-v2 .section-tabbed-trust-showcase .integ-app-icon {
+        font-size: var(--text-body-sm);
+        height: 30px;
+        width: 30px
+    }
+    .design-v2 .section-tabbed-trust-showcase .cx-dashboard .tab-app-window {
+        height: 450px;
+        width: 400px
+    }
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-toast-1,
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-toast-2,
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-toast-3 {
+        left: calc(50% - 380px)
+    }
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-phone-call {
+        left: calc(50% - 90px)
+    }
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-phone-summary {
+        left: calc(50% + 160px)
+    }
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-phone-mockup {
+        height: 460px;
+        width: 220px
+    }
+}
+
+@media(max-width:900px) {
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder>.tab-toast {
+        left: auto;
+        max-width: 280px;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%
+    }
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual.visual-paused,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual.visual-paused * {
+    animation-play-state: paused !important
+}
+
+@media(max-width:1200px) {
+    .design-v2 .section-tabbed-trust-showcase .section-header-row {
+        flex-direction: column;
+        gap: 40px
+    }
+    .design-v2 .section-tabbed-trust-showcase .section-header-left {
+        max-width: 100%
+    }
+    .design-v2 .section-tabbed-trust-showcase .section-header-callouts {
+        justify-content: flex-start;
+        padding-top: 0;
+        width: 100%
+    }
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-tabbed-trust-showcase {
+        padding: 60px 40px
+    }
+    .design-v2 .section-tabbed-trust-showcase .tabs-container-card {
+        padding: 20px
+    }
+    .design-v2 .section-tabbed-trust-showcase .tabs-container-accordion {
+        gap: 32px;
+        grid-template-columns: 1fr
+    }
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-container {
+        order: -1;
+        position: relative;
+        top: 0
+    }
+    .design-v2 .section-tabbed-trust-showcase .accordion-heading {
+        font-size: var(--text-heading-sm)
+    }
+}
+
+@media(max-width:900px) {
+    .design-v2 .section-tabbed-trust-showcase .feature-cards-row {
+        grid-template-columns: 1fr
+    }
+    .design-v2 .section-tabbed-trust-showcase .feature-card-image {
+        min-height: 400px
+    }
+    .design-v2 .section-tabbed-trust-showcase .tab-desktop-app,
+    .design-v2 .section-tabbed-trust-showcase .tab-phone-mockup,
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-phone-mockup {
+        display: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .cx-mockup-group {
+        flex-direction: column
+    }
+    .design-v2 .section-tabbed-trust-showcase .cx-mockup-group .dashboard-group {
+        display: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .cc-mockup-group {
+        flex-direction: column
+    }
+    .design-v2 .section-tabbed-trust-showcase .cc-mockup-group .dashboard-group {
+        display: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .mockup-group .toasts-group {
+        gap: 12px
+    }
+    .design-v2 .section-tabbed-trust-showcase .product-content .product-content-eyebrow {
+        margin-top: 24px
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-tabbed-trust-showcase {
+        display: flex;
+        flex-direction: column
+    }
+    .design-v2 .section-tabbed-trust-showcase .section-header-row {
+        display: contents
+    }
+    .design-v2 .section-tabbed-trust-showcase .section-header-left {
+        margin-bottom: 32px;
+        order: 1
+    }
+    .design-v2 .section-tabbed-trust-showcase .primary-tab-icon {
+        margin-right: 0
+    }
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        scrollbar-width: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar::-webkit-scrollbar {
+        display: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .primary-tab {
+        border-radius: 999px;
+        border-right: none;
+        flex: 0 0 auto;
+        padding: 10px 16px;
+        white-space: nowrap
+    }
+    .design-v2 .section-tabbed-trust-showcase .tabs-container-card {
+        order: 3
+    }
+    .design-v2 .section-tabbed-trust-showcase .feature-cards-row {
+        order: 4
+    }
+    .design-v2 .section-tabbed-trust-showcase .section-header-callouts {
+        display: grid;
+        gap: 0;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 40px;
+        order: 5
+    }
+    .design-v2 .section-tabbed-trust-showcase .stat-callout {
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 16px;
+        width: 100%
+    }
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:not(:last-child):after {
+        display: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:first-child {
+        border-right: 1px solid var(--border-subtle);
+        padding-left: 0
+    }
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:nth-child(2) {
+        padding-right: 0
+    }
+    .design-v2 .section-tabbed-trust-showcase .stat-callout:last-child {
+        border-bottom: none;
+        grid-column: 1/-1;
+        padding-bottom: 0;
+        padding-left: 0
+    }
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-title {
+        font-size: var(--text-body-sm)
+    }
+    .design-v2 .section-tabbed-trust-showcase .stat-callout-desc {
+        font-size: var(--text-caption);
+        max-width: none
+    }
+}
+
+@media(max-width:640px) {
+    .design-v2 .section-tabbed-trust-showcase {
+        padding: 60px 20px
+    }
+    .design-v2 .section-tabbed-trust-showcase .tabs-container-card {
+        border-radius: 16px;
+        padding: 16px
+    }
+    .design-v2 .section-tabbed-trust-showcase .feature-cards-row {
+        gap: 16px;
+        margin-top: 16px
+    }
+    .design-v2 .section-tabbed-trust-showcase .feature-card-image {
+        border-radius: 16px;
+        min-height: 360px
+    }
+    .design-v2 .section-tabbed-trust-showcase .feature-card-overlay {
+        padding: 24px
+    }
+    .design-v2 .section-tabbed-trust-showcase .feature-card-title {
+        font-size: var(--text-body-xl)
+    }
+    .design-v2 .section-tabbed-trust-showcase .feature-card-desc {
+        font-size: var(--text-body-sm)
+    }
+    .design-v2 .section-tabbed-trust-showcase .accordion-label {
+        font-size: var(--text-body-md)
+    }
+    .design-v2 .section-tabbed-trust-showcase .accordion-heading {
+        font-size: var(--text-body-xl)
+    }
+    .design-v2 .section-tabbed-trust-showcase .accordion-tab.active .accordion-content {
+        padding-left: 0
+    }
+    .design-v2 .section-tabbed-trust-showcase .product-content-title {
+        font-size: var(--text-body-lg)
+    }
+    .design-v2 .section-tabbed-trust-showcase .product-content .product-content-eyebrow {
+        margin-top: 24px
+    }
+}
+/* ── Light tab panel ────────────────────────────────────────────────────────
+   The pastel artwork on tab 01 is far lighter than the other panels, so the
+   glass overlays flip to dark text. Scoped to the modifier — the remaining
+   tabs keep their dark treatment. */
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .tab-toast {
+    background: hsla(0, 0%, 100%, .82);
+    box-shadow: 0 8px 28px rgba(60, 40, 30, .16), 0 0 0 1px rgba(30, 25, 35, .06)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .tab-toast-icon {
+    background: rgba(30, 25, 35, .08);
+    color: #4a4038
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .tab-toast-title {
+    color: #2b2620
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .tab-toast-desc {
+    color: rgba(43, 38, 32, .68)
+}
+
+/* ── Phone mock: in-call dialer ───────────────────────────────────────────
+   Replaces the old "Active Call" portrait screen with the call-control
+   layout: contact header, 3x3 control grid, hangup, live sentiment. The
+   frame is small (200px wide), so everything here is deliberately tiny. */
+.design-v2 .section-tabbed-trust-showcase .tab-phone-mockup {
+    height: 470px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-phone-screen {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    height: 100%;
+    padding: 58px 10px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-contact {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .5);
+    /* full-bleed: cancels the screen's side padding so the card reaches the
+       phone's edges, with only a hairline under it */
+    border: none;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .65);
+    border-radius: 0;
+    display: flex;
+    gap: 6px;
+    margin: 0 -10px;
+    padding: 10px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-avatar {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .75);
+    border-radius: 50%;
+    color: #0f766e;
+    display: flex;
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    height: 24px;
+    justify-content: center;
+    width: 24px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-who {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-name {
+    color: #10022c;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-number {
+    color: rgba(16, 2, 44, .62);
+    font-size: 8.5px;
+    line-height: 1.3
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-tag {
+    color: #15803d;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-meta {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-status {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .7);
+    border-radius: 999px;
+    color: #1d4ed8;
+    display: flex;
+    font-size: 7.5px;
+    font-weight: 600;
+    gap: 3px;
+    padding: 2px 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-status i {
+    font-size: 5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-timer {
+    color: #dc2626;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-keys {
+    display: grid;
+    gap: 7px 4px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: auto;
+    padding-top: 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-btn {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-key {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .62);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    border-radius: 50%;
+    color: #1e293b;
+    display: flex;
+    font-size: 14px;
+    height: 34px;
+    justify-content: center;
+    width: 34px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-key--rec {
+    background: #dc2626;
+    border-color: hsla(0, 0%, 100%, .6);
+    color: #fff
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-key--end {
+    background: #dc2626;
+    border-color: hsla(0, 0%, 100%, .6);
+    color: #fff;
+    transform: rotate(135deg)
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-key-label {
+    color: rgba(16, 2, 44, .78);
+    font-size: 7.5px;
+    font-weight: 600;
+    text-align: center
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-btn--end {
+    align-self: center;
+    margin-bottom: auto
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-btn--end .dialer-key-label {
+    color: #dc2626
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-sentiment {
+    background: hsla(0, 0%, 100%, .14);
+    border: 1px solid hsla(0, 0%, 100%, .3);
+    border-radius: 10px;
+    padding: 7px 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-sentiment-title {
+    color: rgba(16, 2, 44, .6);
+    display: block;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    margin-bottom: 5px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-gauges {
+    display: flex;
+    justify-content: space-between
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-gauge {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-gauge svg {
+    height: 40px;
+    transform: rotate(-90deg);
+    width: 40px
+}
+
+.design-v2 .section-tabbed-trust-showcase .gauge-track {
+    fill: none;
+    stroke: rgba(16, 2, 44, .14);
+    stroke-width: 3
+}
+
+.design-v2 .section-tabbed-trust-showcase .gauge-fill {
+    fill: none;
+    stroke-linecap: round;
+    stroke-width: 3
+}
+
+.design-v2 .section-tabbed-trust-showcase .gauge-pos { stroke: #16a34a }
+.design-v2 .section-tabbed-trust-showcase .gauge-neu { stroke: #2563eb }
+.design-v2 .section-tabbed-trust-showcase .gauge-neg { stroke: #dc2626 }
+
+.design-v2 .section-tabbed-trust-showcase .dialer-gauge-value {
+    color: #10022c;
+    font-size: 7.5px;
+    font-weight: 700;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dialer-gauge-label {
+    color: rgba(16, 2, 44, .65);
+    font-size: 7px;
+    margin-top: 1px
+}
+
+/* Conversation rows: initials chips instead of stock portraits, each tinted so
+   the people in the list are distinguishable at a glance. */
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: .02em
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--rk {
+    background: #e0e7ff;
+    color: #4338ca
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--ps {
+    background: #d7f2f0;
+    color: #0f766e
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--mn {
+    background: #fde5d3;
+    color: #c2410c
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--dp {
+    background: #e6e3f7;
+    color: #5b45b8
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--av {
+    background: #dbeafe;
+    color: #1d4ed8
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--si {
+    background: #fee2e2;
+    color: #b91c1c
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--to {
+    background: #dcfce7;
+    color: #15803d
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-conv-avatar--lc {
+    background: #fef3c7;
+    color: #a16207
+}
+
+
+/* ── Call Intelligence panel (AI Agent tab) ──────────────────────────────
+   Replaces the two phone mockups with the transcript + insights dashboard.
+   Light app surface on the dark photo, matching the product screenshot. */
+.design-v2 .section-tabbed-trust-showcase .ci-window {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    background: hsla(0, 0%, 100%, .16);
+    border-radius: 16px;
+    box-shadow: 0 25px 80px -12px rgba(0, 0, 0, .35), 0 0 0 1px hsla(0, 0%, 100%, .35), inset 0 1px 0 hsla(0, 0%, 100%, .4);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+    flex: 1 1 0;
+    /* Bounded so the window never stretches to the full panel height. */
+    height: min(100%, 470px);
+    max-width: none;
+    min-width: 0;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-titlebar {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
+    color: hsla(0, 0%, 100%, .95);
+    flex-shrink: 0;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 10px 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-body {
+    display: grid;
+    flex: 1;
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 300px);
+    min-height: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-col {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    padding: 10px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-col--transcript {
+    border-right: 1px solid hsla(0, 0%, 100%, .18)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-col-title {
+    color: hsla(0, 0%, 100%, .6);
+    flex-shrink: 0;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    margin-bottom: 10px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-transcript {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 9px;
+    min-height: 0;
+    overflow: hidden;
+    /* On narrower panels the transcript runs past the column; fade the cut so
+       it reads as "more above" rather than a message sliced in half. */
+    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 78%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0, #000 78%, transparent 100%)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line--in {
+    align-items: flex-start
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line--out {
+    align-items: flex-end
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line-meta {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: 9.5px;
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line-time {
+    color: hsla(0, 0%, 100%, .45);
+    font-weight: 500;
+    margin-left: 3px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-bubble {
+    background: hsla(0, 0%, 100%, .15);
+    border-radius: 8px;
+    color: hsla(0, 0%, 100%, .92);
+    font-size: 11.5px;
+    max-width: 78%;
+    padding: 7px 11px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line--out .ci-bubble {
+    background: hsla(0, 0%, 100%, .3);
+    color: #fff
+}
+
+/* insights column */
+.design-v2 .section-tabbed-trust-showcase .ci-col--insights {
+    background: transparent;
+    gap: 0;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-section-label {
+    color: hsla(0, 0%, 100%, .6);
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    margin: 7px 0 4px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-card {
+    background: hsla(0, 0%, 100%, .12);
+    border: 1px solid hsla(0, 0%, 100%, .22);
+    border-radius: 8px;
+    color: hsla(0, 0%, 100%, .88);
+    flex-shrink: 0;
+    font-size: 10px;
+    line-height: 1.45;
+    padding: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-card-title {
+    color: hsla(0, 0%, 100%, .6);
+    display: block;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    margin-bottom: 6px;
+    text-transform: uppercase
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauges {
+    display: flex;
+    justify-content: space-between
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge svg {
+    height: 44px;
+    transform: rotate(-90deg);
+    width: 44px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge-track {
+    fill: none;
+    stroke: hsla(0, 0%, 100%, .22);
+    stroke-width: 3
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge-fill {
+    fill: none;
+    stroke-linecap: round;
+    stroke-width: 3
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge--pos { stroke: #6ee7a8 }
+.design-v2 .section-tabbed-trust-showcase .ci-gauge--neu { stroke: #93c5fd }
+.design-v2 .section-tabbed-trust-showcase .ci-gauge--neg { stroke: #ffb4b4 }
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge-value {
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 17px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge-label {
+    color: hsla(0, 0%, 100%, .72);
+    font-size: 9.5px;
+    margin-top: 2px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-topic {
+    background: hsla(0, 0%, 100%, .18);
+    border: 1px solid hsla(0, 0%, 100%, .28);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 9px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio + .ci-ratio {
+    margin-top: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-name {
+    color: hsla(0, 0%, 100%, .92);
+    font-size: 10.5px;
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-val {
+    color: hsla(0, 0%, 100%, .65);
+    font-size: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-bar {
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 999px;
+    display: block;
+    height: 5px;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-fill {
+    border-radius: 999px;
+    display: block;
+    height: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-fill--a { background: #93c5fd }
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-fill--b { background: #ffa877 }
+
+.design-v2 .section-tabbed-trust-showcase .ci-footer {
+    border-top: 1px solid hsla(0, 0%, 100%, .2);
+    flex-shrink: 0;
+    padding: 8px 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-footer .ci-section-label {
+    display: block;
+    margin: 0 0 3px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-footer-text {
+    color: hsla(0, 0%, 100%, .72);
+    font-size: 11px
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-tabbed-trust-showcase .ci-layout {
+        gap: 18px
+    }
+    .design-v2 .section-tabbed-trust-showcase .ci-body {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 250px)
+    }
+}
+
+@media(max-width:768px) {
+    .design-v2 .section-tabbed-trust-showcase .ci-window {
+        display: none
+    }
+}
+
+
+/* The panel is far narrower than the viewport on many displays, so the labels
+   and the window are laid out in flow and allowed to wrap rather than being
+   absolutely positioned against each other. */
+.design-v2 .section-tabbed-trust-showcase .ci-layout {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    gap: 20px;
+    height: 100%;
+    justify-content: center;
+    padding: 24px;
+    width: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels {
+    display: flex;
+    flex: 0 1 186px;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 186px;
+    min-width: 0
+}
+
+/* In-flow inside .ci-labels, overriding the absolute float the other tabs use. */
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast {
+    left: auto;
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100%
+}
+
+@media(max-width:1024px) {
+    .design-v2 .section-tabbed-trust-showcase .ci-layout {
+        flex-wrap: wrap;
+        padding: 20px
+    }
+    .design-v2 .section-tabbed-trust-showcase .ci-labels {
+        flex-basis: 100%;
+        flex-direction: row;
+        max-width: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .ci-window {
+        flex-basis: 100%;
+        max-width: none
+    }
+}
+
+/* Nothing inside the window scrolls: the transcript is clipped and the insights
+   column is sized to fit, so no scrollbar ever appears over the glass. */
+.design-v2 .section-tabbed-trust-showcase .ci-window,
+.design-v2 .section-tabbed-trust-showcase .ci-window * {
+    scrollbar-width: none
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-window ::-webkit-scrollbar,
+.design-v2 .section-tabbed-trust-showcase .ci-window::-webkit-scrollbar {
+    display: none
+}
+
+/* On the pastel sky the Call Intelligence glass needs dark type, the same flip
+   the Cloud Phone tab uses -- white-on-pale is unreadable. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-window {
+    background: hsla(0, 0%, 100%, .55);
+    box-shadow: 0 25px 80px -12px rgba(60, 40, 30, .28), 0 0 0 1px hsla(0, 0%, 100%, .7), inset 0 1px 0 hsla(0, 0%, 100%, .6)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-titlebar {
+    border-bottom-color: rgba(16, 2, 44, .12);
+    color: #10022c
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-col--transcript {
+    border-right-color: rgba(16, 2, 44, .1)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-col-title,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-section-label,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-card-title {
+    color: rgba(16, 2, 44, .58)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-line-meta {
+    color: rgba(16, 2, 44, .6)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-line-time {
+    color: rgba(16, 2, 44, .4)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-bubble {
+    background: hsla(0, 0%, 100%, .75);
+    color: #10022c
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-line--out .ci-bubble {
+    background: rgba(16, 2, 44, .07);
+    border: 1px solid rgba(16, 2, 44, .06);
+    color: rgba(16, 2, 44, .78)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-col--insights {
+    background: transparent
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-card {
+    background: hsla(0, 0%, 100%, .62);
+    border-color: hsla(0, 0%, 100%, .8);
+    color: rgba(16, 2, 44, .85)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-gauge-track {
+    stroke: rgba(16, 2, 44, .12)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-gauge--pos { stroke: #16a34a }
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-gauge--neu { stroke: #2563eb }
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-gauge--neg { stroke: #dc2626 }
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-gauge-value {
+    color: #10022c
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-gauge-label {
+    color: rgba(16, 2, 44, .62)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-topic {
+    background: hsla(0, 0%, 100%, .7);
+    border-color: rgba(37, 99, 235, .2);
+    color: #2563eb
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-ratio-name {
+    color: #10022c
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-ratio-val {
+    color: rgba(16, 2, 44, .6)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-ratio-bar {
+    background: rgba(16, 2, 44, .1)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-ratio-fill--a { background: #2563eb }
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-ratio-fill--b { background: #ee6730 }
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-footer {
+    border-top-color: rgba(16, 2, 44, .1)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-footer-text {
+    color: rgba(16, 2, 44, .62)
+}
+
+/* ── Auto Dialer + Connected Tools mocks on the pastel skies ─────────────
+   Both mocks were authored white-on-dark for the old desert photos. On the
+   light skies every label has to flip to dark, and the near-invisible white
+   fills need enough frost to read as cards. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-stat-card,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-app-card,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-activity-item {
+    background: hsla(0, 0%, 100%, .6);
+    border-color: hsla(0, 0%, 100%, .8)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-stat-value,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-feedback-text,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-app-name,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-activity-text,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-feedback-header span:first-child {
+    color: #10022c
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-stat-label,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-feedback-count,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-feedback-meta span,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-section-label,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-activity-icon {
+    color: rgba(16, 2, 44, .6)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-app-status,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-activity-meta {
+    color: rgba(16, 2, 44, .5)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-activity-icon {
+    background: rgba(16, 2, 44, .07)
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-feedback-stars .star-empty {
+    color: rgba(16, 2, 44, .22)
+}
+
+/* "Connected" reads as a status, so keep it green rather than muted grey. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .integ-app-status.connected {
+    color: #16a34a
+}
+
+/* Trend arrows were a pale mint that disappears on a light card. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .cx-stat-trend.up {
+    color: #16a34a
+}
+
+/* Below the desktop breakpoint the pill scrolls sideways instead of wrapping. */
+@media (max-width: 1024px) {
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar {
+        border-radius: 999px;
+        margin: 0 auto 32px;
+        max-width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar::-webkit-scrollbar {
+        display: none
+    }
+    .design-v2 .section-tabbed-trust-showcase .primary-tabs-bar .primary-tab {
+        border-radius: 999px;
+        border-right: none;
+        padding: 10px 18px
+    }
+}
+
+/* ── Cloud Phone mock group ─────────────────────────────────────────────────
+   The original collage pinned every piece with fixed pixel offsets (toasts,
+   phone at 350px, app at 530px + a 660px window), which either bled past the
+   panel or piled the phone on top of the app depending on the display width.
+   A three-column grid — toasts | phone | app — keeps them side by side at any
+   size: the app column shrinks (minmax(0, …)) instead of overflowing, and the
+   entry animations are skipped because their parked first frames (translate
+   offsets) are exactly what pushed things out of bounds when paused. */
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .accordion-visual-placeholder {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 26px
+}
+
+/* The collage is laid out at its natural size and then scaled down to fit the
+   panel (--mock-scale, set from JS). Proportions stay identical at any zoom
+   level or viewport instead of the columns cramping as the panel narrows. */
+.design-v2 .section-tabbed-trust-showcase .cp-stage {
+    align-items: center;
+    column-gap: 0;
+    display: grid;
+    grid-template-columns: auto 872px;
+    grid-template-rows: auto;
+    row-gap: 0;
+    transform: scale(var(--mock-scale, 1));
+    transform-origin: center;
+    width: max-content
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-phone-mockup {
+    animation: cpPhoneIn .6s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .18s;
+    /* Sits proud of the app window, with a deeper shadow so it reads as the
+       nearest layer rather than a tile in a row. */
+    box-shadow: 0 34px 70px -18px rgba(60, 40, 30, .45), 0 0 0 1px hsla(0, 0%, 100%, .55), inset 0 1px 0 hsla(0, 0%, 100%, .6);
+    /* Dropped below the app window's header so the two planes stagger rather
+       than starting on the same line. */
+    align-self: start;
+    grid-column: 1;
+    left: auto;
+    margin-right: -54px;
+    margin-top: 140px;
+    /* Nudged visually rather than with more margin: extra margin would grow the
+       stage and shrink the fit-scale, cancelling most of the movement. This
+       offset scales with the stage and lets the frame clip the phone's foot. */
+    position: relative;
+    top: 14px;
+    z-index: 2
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-desktop-app {
+    animation: cpAppIn .65s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .28s;
+    grid-column: 2;
+    left: auto;
+    min-width: 0;
+    position: relative;
+    top: auto;
+    z-index: 1
+}
+
+/* Wider than the frame allows once scaled, so the chat column runs off the
+   right edge and is clipped — the window reads as continuing beyond the frame. */
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-app-window {
+    width: 872px
+}
+
+/* Roomier handset: a little wider than the 200px default and taller. The extra
+   width comes off the app window beside it so the stage still measures 1066
+   (248 phone - 54 overlap + 872 app), and the top margin absorbs the height so
+   the phone's bottom edge stays put at 610. */
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-phone-mockup {
+    height: 455px;
+    margin-top: 155px;
+    /* Nudged up off the layout position. Using `top` rather than the margin
+       keeps the stage's natural height at 610, so the rendered size still
+       matches the other three tabs. */
+    top: -18px;
+    width: 248px
+}
+
+/* Auto Dialer / Connected Tools: the centred mock group is wider than the
+   panel on mid-size displays, so it spilled ~8px past each edge. Cap it to the
+   panel and let the dashboard window shrink rather than overhang. */
+.design-v2 .section-tabbed-trust-showcase .mockup-group {
+    max-width: calc(100% - 32px)
+}
+
+.design-v2 .section-tabbed-trust-showcase .mockup-group .dashboard-group {
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .mockup-group .tab-app-window {
+    max-width: 100%
+}
+
+/* ── AI Agent stage ─────────────────────────────────────────────────────────
+   Same approach as the Cloud Phone collage: the Call Intelligence layout is
+   built at a fixed design size and scaled to fit the panel, so the transcript
+   and insights columns keep their proportions instead of the window shrinking
+   and squeezing them as the panel narrows. */
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .accordion-visual-placeholder {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 26px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-layout {
+    align-items: center;
+    column-gap: 24px;
+    display: grid;
+    flex: none;
+    /* Same 1066x610 footprint as the Cloud Phone stage so every tab's mock
+       renders at identical dimensions. */
+    grid-template-columns: 200px 842px;
+    height: auto;
+    padding: 0;
+    transform: scale(var(--mock-scale, 1));
+    transform-origin: center;
+    width: max-content
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-labels {
+    flex: none;
+    max-width: none;
+    width: 200px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-window {
+    flex: none;
+    height: 610px;
+    width: 842px
+}
+
+/* ── Auto Dialer: campaign console ───────────────────────────────────────────
+   Built at a fixed design size and scaled to the panel by the same
+   --mock-scale mechanism as the other tabs, so the table keeps its
+   proportions instead of the columns collapsing. */
+.design-v2 .section-tabbed-trust-showcase #visual-customer-experience .accordion-visual-placeholder {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 26px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-stage {
+    align-items: center;
+    column-gap: 24px;
+    display: grid;
+    grid-template-columns: 200px 842px;
+    transform: scale(var(--mock-scale, 1));
+    transform-origin: center;
+    width: max-content
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 14px
+}
+
+/* Pop-up labels: same treatment as the other tabs, dealt in one after another. */
+.design-v2 .section-tabbed-trust-showcase .adx-toast {
+    animation: adxToastIn .55s cubic-bezier(.22, .8, .3, 1) both;
+    left: auto;
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100%
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-toast-1 { animation-delay: .10s }
+.design-v2 .section-tabbed-trust-showcase .adx-toast-2 { animation-delay: .22s }
+.design-v2 .section-tabbed-trust-showcase .adx-toast-3 { animation-delay: .34s }
+
+.design-v2 .section-tabbed-trust-showcase .adx-window {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    background: hsla(0, 0%, 100%, .5);
+    border: 1px solid hsla(0, 0%, 100%, .7);
+    border-radius: 16px;
+    box-shadow: 0 25px 80px -12px rgba(60, 40, 30, .3);
+    display: grid;
+    font-family: var(--font-body);
+    animation: adxWindowIn .6s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .18s;
+    grid-template-columns: 176px 1fr;
+    height: 610px;
+    overflow: hidden;
+    width: 870px
+}
+
+/* left rail */
+.design-v2 .section-tabbed-trust-showcase .adx-nav {
+    background: hsla(0, 0%, 100%, .22);
+    border-right: 1px solid hsla(0, 0%, 100%, .55);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-nav-title {
+    color: #10022c;
+    font-size: var(--text-body-lg);
+    font-weight: 700;
+    padding: 4px 8px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-nav-item {
+    align-items: center;
+    border-radius: 8px;
+    color: rgba(16, 2, 44, .68);
+    display: flex;
+    font-size: var(--text-body-xs);
+    gap: 10px;
+    padding: 11px 9px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-nav-item i {
+    font-size: var(--text-body-lg)
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-nav-item--on {
+    background: rgba(37, 99, 235, .1);
+    color: #2563eb;
+    font-weight: 600
+}
+
+/* main column */
+.design-v2 .section-tabbed-trust-showcase .adx-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-topbar {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .5);
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    padding: 12px 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-heading {
+    color: #10022c;
+    font-size: var(--text-body-lg);
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-tools {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-search,
+.design-v2 .section-tabbed-trust-showcase .adx-select {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .55);
+    border: 1px solid hsla(0, 0%, 100%, .75);
+    border-radius: 8px;
+    color: rgba(16, 2, 44, .5);
+    display: inline-flex;
+    font-size: var(--text-body-xs);
+    gap: 7px;
+    padding: 9px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-select {
+    color: rgba(16, 2, 44, .72)
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-add {
+    background: hsla(0, 0%, 100%, .6);
+    border: 1px solid rgba(37, 99, 235, .75);
+    border-radius: 8px;
+    color: #2563eb;
+    font-size: var(--text-body-xs);
+    font-weight: 600;
+    padding: 9px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-hint {
+    background: hsla(0, 0%, 100%, .28);
+    color: rgba(16, 2, 44, .66);
+    font-size: var(--text-caption-lg);
+    margin: 0;
+    padding: 11px 16px
+}
+
+/* table */
+.design-v2 .section-tabbed-trust-showcase .adx-table {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-row {
+    align-items: center;
+    /* Rows stretch to fill the table, so a taller window means taller rows
+       rather than a block of empty space beneath the last one. */
+    flex: 1;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .45);
+    display: grid;
+    gap: 8px;
+    /* Widened for the larger type: the date column needs ~200px at 13px. */
+    grid-template-columns: 1.5fr .9fr 1.95fr 1fr .5fr 1.4fr .6fr 1.15fr;
+    padding: 0 18px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-row--head {
+    background: hsla(0, 0%, 100%, .3);
+    flex: 0 0 auto
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-row--head .adx-cell {
+    color: rgba(16, 2, 44, .55);
+    font-weight: 600;
+    padding: 9px 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-cell {
+    color: rgba(16, 2, 44, .72);
+    font-size: var(--text-caption-lg);
+    overflow: hidden;
+    padding: 10px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-cell--name {
+    color: #10022c;
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-status {
+    border-radius: 7px;
+    display: inline-block;
+    font-size: var(--text-caption-sm);
+    font-weight: 600;
+    padding: 4px 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-status--proc  { background: #fff4e0; color: #b45309 }
+.design-v2 .section-tabbed-trust-showcase .adx-status--pause { background: #ffe6ee; color: #be123c }
+.design-v2 .section-tabbed-trust-showcase .adx-status--done  { background: #e6f8ef; color: #15803d }
+.design-v2 .section-tabbed-trust-showcase .adx-status--new   { background: #e8f0ff; color: #2563eb }
+
+.design-v2 .section-tabbed-trust-showcase .adx-count {
+    align-items: center;
+    background: #2563eb;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    font-size: var(--text-caption-sm);
+    font-weight: 700;
+    height: 24px;
+    justify-content: center;
+    width: 24px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-cell--progress {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-bar {
+    background: rgba(100, 116, 139, .55);
+    border-radius: 5px;
+    display: flex;
+    flex: 1;
+    height: 14px;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-bar-done { background: #22c55e }
+.design-v2 .section-tabbed-trust-showcase .adx-bar-live { background: #fbbf77 }
+
+.design-v2 .section-tabbed-trust-showcase .adx-refresh {
+    color: rgba(16, 2, 44, .4);
+    font-size: var(--text-caption-lg)
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-cell--actions {
+    display: flex;
+    gap: 7px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-cell--actions i {
+    color: rgba(16, 2, 44, .38);
+    font-size: var(--text-body)
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-cell--actions .adx-danger {
+    color: #e5484d
+}
+
+@media (max-width: 768px) {
+    .design-v2 .section-tabbed-trust-showcase .adx-stage {
+        display: none
+    }
+}
+
+/* Campaign-type dropdown, shown open so the dialing modes are visible in the
+   mock. Purely presentational — it is a static panel, not a real menu. */
+.design-v2 .section-tabbed-trust-showcase .adx-select {
+    position: relative
+}
+
+/* Held open on purpose: the mock is a still, and the open menu is what shows
+   the three dialing modes. */
+.design-v2 .section-tabbed-trust-showcase .adx-select--open {
+    border-color: #2563eb;
+    color: #10022c;
+    cursor: pointer
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-select--open i {
+    color: #2563eb;
+    transform: rotate(180deg)
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-select i {
+    transition: transform .18s ease
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-menu {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    background: hsla(0, 0%, 100%, .78);
+    border: 1px solid #2563eb;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px -10px rgba(15, 23, 42, .3);
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: calc(100% + 6px);
+    width: 100%;
+    z-index: 6
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-menu-item {
+    color: rgba(16, 2, 44, .82);
+    font-size: var(--text-body-xs);
+    padding: 11px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-menu-item--on {
+    background: hsla(0, 0%, 100%, .55)
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-menu-item:hover {
+    background: rgba(37, 99, 235, .08);
+    color: #2563eb
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .adx-menu,
+    .design-v2 .section-tabbed-trust-showcase .adx-select i {
+        transition: none
+    }
+}
+
+/* Layered entry: each plane slides in from slightly behind and to the side, so
+   the group assembles front-to-back. Both keyframes are explicit so a paused
+   animation can never leave a panel parked off its mark. */
+@keyframes cpPhoneIn {
+    from { opacity: 0; transform: translate3d(0, 34px, 0) scale(.94) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes cpAppIn {
+    from { opacity: 0; transform: translate3d(38px, 0, 0) scale(.97) }
+    to   { opacity: 1; transform: none }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-phone-mockup,
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-desktop-app {
+        animation: none
+    }
+}
+
+/* ── Mock framing ───────────────────────────────────────────────────────────
+   The panels sit inside the rounded visual frame and run past its right edge,
+   so the product reads as a window you are looking into rather than a small
+   card floating on the artwork. Anchored left, clipped by the frame. */
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .accordion-visual-placeholder,
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .accordion-visual-placeholder,
+.design-v2 .section-tabbed-trust-showcase #visual-customer-experience .accordion-visual-placeholder {
+    /* Anchored to the top of the frame, not centred: centring left a large
+       band of empty sky above the mock. */
+    align-items: flex-start;
+    box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, .45);
+    justify-content: flex-start;
+    padding: 60px 0 0 44px
+}
+
+/* Taken out of flow so a tall mock can't stretch the frame past the copy
+   column beside it — the frame's height comes from the column, and the mock
+   scales to whatever room that leaves. */
+.design-v2 .section-tabbed-trust-showcase .cp-stage,
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-layout,
+.design-v2 .section-tabbed-trust-showcase .adx-stage {
+    flex: none;
+    left: 44px;
+    position: absolute;
+    top: 60px;
+    transform-origin: left top
+}
+
+/* Connected Tools uses the older centred mock group; pin and size it like the
+   stages on the other tabs so all four dashboards match. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .accordion-visual-placeholder {
+    align-items: flex-start;
+    box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, .45);
+    justify-content: flex-start;
+    padding: 60px 0 0 44px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .mockup-group {
+    left: 44px;
+    top: 60px;
+    transform: scale(var(--mock-scale, 1));
+    transform-origin: left top;
+    width: max-content
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .mockup-group {
+    max-width: none
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .cc-dashboard .tab-app-window {
+    height: 610px;
+    /* 1066 total = toast column 200 + 24 gap + 842 */
+    width: 842px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group {
+    flex: none;
+    gap: 14px;
+    width: 200px
+}
+
+/* ── Auto Dialer console: refreshed shell ───────────────────────────────────
+   Adds a live-status footer to the rail, a KPI strip above the table, and
+   roomier rows. Everything animates in so the tab feels alive on switch. */
+@keyframes adxToastIn {
+    from { opacity: 0; transform: translate3d(-24px, 0, 0) scale(.96) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes adxWindowIn {
+    from { opacity: 0; transform: translate3d(30px, 0, 0) scale(.985) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes adxRowIn {
+    from { opacity: 0; transform: translate3d(0, 10px, 0) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes adxPulse {
+    0%, to { opacity: 1; transform: scale(1) }
+    50%    { opacity: .35; transform: scale(.82) }
+}
+
+@keyframes adxBarGrow {
+    from { transform: scaleX(0) }
+    to   { transform: scaleX(1) }
+}
+
+/* rail footer */
+.design-v2 .section-tabbed-trust-showcase .adx-nav-foot {
+    align-items: center;
+    color: rgba(16, 2, 44, .6);
+    display: flex;
+    font-size: var(--text-caption);
+    gap: 8px;
+    margin-top: auto;
+    padding: 10px 9px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-nav-dot {
+    animation: adxPulse 1.8s ease-in-out infinite;
+    background: #16a34a;
+    border-radius: 50%;
+    height: 8px;
+    width: 8px
+}
+
+/* KPI strip */
+.design-v2 .section-tabbed-trust-showcase .adx-kpis {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 14px 18px 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-kpi {
+    background: hsla(0, 0%, 100%, .5);
+    border: 1px solid hsla(0, 0%, 100%, .7);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-kpi-head {
+    align-items: center;
+    color: rgba(16, 2, 44, .58);
+    display: flex;
+    font-size: var(--text-caption);
+    gap: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-kpi-value {
+    align-items: baseline;
+    color: #10022c;
+    display: flex;
+    font-size: var(--text-body-lg);
+    font-weight: 700;
+    gap: 7px;
+    letter-spacing: -.02em
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-kpi-delta {
+    font-size: var(--text-caption-sm);
+    font-weight: 600
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-kpi-delta--up { color: #16a34a }
+
+/* table */
+.design-v2 .section-tabbed-trust-showcase .adx-table {
+    padding: 6px 18px 16px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-row {
+    animation: adxRowIn .45s ease both;
+    border-radius: 10px;
+    grid-template-columns: 1.7fr .95fr 1fr .5fr 1.5fr 1fr;
+    padding: 0 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-row:nth-child(2) { animation-delay: .30s }
+.design-v2 .section-tabbed-trust-showcase .adx-row:nth-child(3) { animation-delay: .36s }
+.design-v2 .section-tabbed-trust-showcase .adx-row:nth-child(4) { animation-delay: .42s }
+.design-v2 .section-tabbed-trust-showcase .adx-row:nth-child(5) { animation-delay: .48s }
+.design-v2 .section-tabbed-trust-showcase .adx-row:nth-child(6) { animation-delay: .54s }
+
+.design-v2 .section-tabbed-trust-showcase .adx-row--head {
+    animation-delay: .24s;
+    border-radius: 8px;
+    margin-bottom: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-row:not(.adx-row--head):hover {
+    background: hsla(0, 0%, 100%, .45)
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-type {
+    background: hsla(0, 0%, 100%, .55);
+    border: 1px solid hsla(0, 0%, 100%, .75);
+    border-radius: 6px;
+    color: rgba(16, 2, 44, .72);
+    font-size: var(--text-caption-sm);
+    padding: 3px 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-pct {
+    color: rgba(16, 2, 44, .55);
+    font-size: var(--text-caption-sm);
+    font-variant-numeric: tabular-nums;
+    min-width: 30px
+}
+
+/* bars sweep out on entry */
+.design-v2 .section-tabbed-trust-showcase .adx-bar-done,
+.design-v2 .section-tabbed-trust-showcase .adx-bar-live {
+    animation: adxBarGrow .7s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .55s;
+    transform-origin: left center
+}
+
+.design-v2 .section-tabbed-trust-showcase .adx-add {
+    align-items: center;
+    display: inline-flex;
+    gap: 5px
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .adx-toast,
+    .design-v2 .section-tabbed-trust-showcase .adx-window,
+    .design-v2 .section-tabbed-trust-showcase .adx-row,
+    .design-v2 .section-tabbed-trust-showcase .adx-nav-dot,
+    .design-v2 .section-tabbed-trust-showcase .adx-bar-done,
+    .design-v2 .section-tabbed-trust-showcase .adx-bar-live {
+        animation: none
+    }
+}
+
+/* The transcript column was eating most of the 856px window, squeezing the
+   insights column to the point where its cards were cut off. Trade width back
+   to the right-hand side so both read comfortably. */
+/* The stage bleeds past the right edge of the frame here just as it does on
+   Cloud Phone, so the transcript is pinned narrow and the insights column takes
+   everything left over — that puts far more of the insights inside the frame
+   and lets the tail of the column run off the edge. */
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-body {
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr)
+}
+
+/* ══ Auto Dialer control centre ═════════════════════════════════════════════
+   Replaces the old campaign table. The three dialling modes are the headline
+   — Preview, Progressive and Predictive sit across the top as pickable cards —
+   with the live call and its queue underneath and pacing stats along the foot.
+   Everything is glass over the tab's sky so it matches the other three tabs. */
+.design-v2 .section-tabbed-trust-showcase .dz-app {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    animation: dzAppIn .6s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .16s;
+    background: hsla(0, 0%, 100%, .5);
+    border: 1px solid hsla(0, 0%, 100%, .7);
+    border-radius: 18px;
+    box-shadow: 0 25px 80px -12px rgba(60, 40, 30, .3);
+    color: #10022c;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+    height: 610px;
+    overflow: hidden;
+    width: 842px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-app b,
+.design-v2 .section-tabbed-trust-showcase .dz-app em {
+    font-style: normal
+}
+
+/* ── header ─────────────────────────────────────────────────────────────── */
+/* The stage deliberately bleeds ~175px past the right edge of the frame (same
+   trick the other tabs use). Everything that has to be readable is therefore
+   kept inside a 676px safe zone; only the queue column runs off the edge. */
+.design-v2 .section-tabbed-trust-showcase .dz-head {
+    align-items: center;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .6);
+    display: flex;
+    flex: none;
+    gap: 14px;
+    justify-content: space-between;
+    padding: 14px 219px 14px 20px
+}
+
+
+.design-v2 .section-tabbed-trust-showcase .dz-brand-text,
+.design-v2 .section-tabbed-trust-showcase .dz-call-who,
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-brand-text b {
+    font-size: var(--text-body-lg);
+    font-weight: 700;
+    letter-spacing: -.01em
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-brand-text em,
+.design-v2 .section-tabbed-trust-showcase .dz-call-who em,
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info em {
+    color: rgba(16, 2, 44, .55);
+    font-size: var(--text-caption)
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-head-right {
+    align-items: center;
+    display: flex;
+    gap: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-live {
+    align-items: center;
+    background: rgba(22, 163, 74, .12);
+    border-radius: 999px;
+    color: #15803d;
+    display: flex;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    gap: 7px;
+    padding: 6px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-live-dot {
+    animation: dzPulse 1.8s ease-in-out infinite;
+    background: #16a34a;
+    border-radius: 50%;
+    height: 7px;
+    width: 7px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-agents {
+    display: flex
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-agent {
+    align-items: center;
+    border: 2px solid hsla(0, 0%, 100%, .9);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    font-size: var(--text-caption-sm);
+    font-weight: 700;
+    height: 28px;
+    justify-content: center;
+    margin-left: -8px;
+    width: 28px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-agent:first-child { margin-left: 0 }
+.design-v2 .section-tabbed-trust-showcase .dz-agent--mn { background: #6366f1 }
+.design-v2 .section-tabbed-trust-showcase .dz-agent--rk { background: #0ea5e9 }
+.design-v2 .section-tabbed-trust-showcase .dz-agent--ps { background: #f97316 }
+.design-v2 .section-tabbed-trust-showcase .dz-agent--dp { background: #14b8a6 }
+
+.design-v2 .section-tabbed-trust-showcase .dz-agent--more {
+    background: hsla(0, 0%, 100%, .8);
+    color: rgba(16, 2, 44, .6)
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-btn {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .72);
+    border: 1px solid hsla(0, 0%, 100%, .9);
+    border-radius: 8px;
+    color: rgba(16, 2, 44, .82);
+    display: inline-flex;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    gap: 5px;
+    padding: 8px 14px
+}
+
+/* ── the three dialling modes ───────────────────────────────────────────── */
+.design-v2 .section-tabbed-trust-showcase .dz-modes {
+    display: grid;
+    flex: none;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 12px 219px 2px 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode {
+    animation: dzRise .5s cubic-bezier(.22, .8, .3, 1) both;
+    background: hsla(0, 0%, 100%, .52);
+    border: 1px solid hsla(0, 0%, 100%, .75);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 13px 14px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode:nth-child(1) { animation-delay: .30s }
+.design-v2 .section-tabbed-trust-showcase .dz-mode:nth-child(2) { animation-delay: .38s }
+.design-v2 .section-tabbed-trust-showcase .dz-mode:nth-child(3) { animation-delay: .46s }
+
+/* The selected mode stays glass like the rest of the console — it reads as
+   picked through a brighter fill, a defined ring and a filled tick. */
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on {
+    background: hsla(0, 0%, 100%, .82);
+    border-color: hsla(0, 0%, 100%, .95);
+    box-shadow: 0 14px 32px -14px rgba(60, 40, 30, .45), 0 0 0 1.5px rgba(16, 2, 44, .5)
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-top {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-icon {
+    align-items: center;
+    background: rgba(16, 2, 44, .07);
+    border-radius: 8px;
+    display: flex;
+    font-size: var(--text-body);
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-mode-icon {
+    background: rgba(16, 2, 44, .1)
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-name {
+    flex: 1;
+    font-size: var(--text-body);
+    font-weight: 700;
+    letter-spacing: -.01em
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-check {
+    align-items: center;
+    border: 1px solid rgba(16, 2, 44, .18);
+    border-radius: 50%;
+    color: rgba(16, 2, 44, .4);
+    display: flex;
+    font-size: var(--text-caption);
+    height: 20px;
+    justify-content: center;
+    width: 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-mode-check {
+    background: hsla(0, 0%, 100%, .9);
+    border-color: rgba(16, 2, 44, .55);
+    border-width: 1.5px;
+    color: #10022c
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-desc {
+    color: rgba(16, 2, 44, .6);
+    font-size: var(--text-caption);
+    line-height: 1.4;
+    min-height: 33px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-mode-desc {
+    color: rgba(16, 2, 44, .68)
+}
+
+/* Pushed to the bottom so the three meters line up even when one description
+   runs to an extra line. */
+.design-v2 .section-tabbed-trust-showcase .dz-mode-meter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-meter-head {
+    color: rgba(16, 2, 44, .5);
+    display: flex;
+    font-size: var(--text-caption-sm);
+    justify-content: space-between
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-meter-head b {
+    color: #10022c;
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-mode-meter-head { color: rgba(16, 2, 44, .55) }
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-mode-meter-head b { color: #10022c }
+
+.design-v2 .section-tabbed-trust-showcase .dz-bar {
+    background: rgba(16, 2, 44, .1);
+    border-radius: 999px;
+    display: block;
+    height: 5px;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-bar { background: rgba(16, 2, 44, .14) }
+
+.design-v2 .section-tabbed-trust-showcase .dz-bar-fill {
+    animation: dzGrow .8s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .6s;
+    background: rgba(16, 2, 44, .45);
+    border-radius: 999px;
+    display: block;
+    height: 100%;
+    transform-origin: left center
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode--on .dz-bar-fill { background: #10022c }
+
+/* ── live call + queue ──────────────────────────────────────────────────── */
+.design-v2 .section-tabbed-trust-showcase .dz-floor {
+    display: grid;
+    flex: 1;
+    gap: 12px;
+    /* Call + queue stack in the left column, inside the readable safe zone; the
+       activity rail sits past it and is meant to be cut by the frame. */
+    grid-template-columns: 470px 320px;
+    min-height: 0;
+    padding: 12px 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-main {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0
+}
+
+/* With the waveform gone the card only needs its own content height. Letting
+   it hug that — rather than stretching and leaving a block of empty glass —
+   keeps the panel airy and lets the queue beside it run full height. */
+.design-v2 .section-tabbed-trust-showcase .dz-call {
+    flex: none;
+    gap: 10px;
+    padding: 13px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call,
+.design-v2 .section-tabbed-trust-showcase .dz-queue {
+    animation: dzRise .5s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .54s;
+    background: hsla(0, 0%, 100%, .52);
+    border: 1px solid hsla(0, 0%, 100%, .75);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    padding: 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-queue {
+    animation-delay: .62s;
+    flex: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-head {
+    align-items: center;
+    display: flex;
+    gap: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-avatar {
+    align-items: center;
+    background: #6366f1;
+    border-radius: 11px;
+    color: #fff;
+    display: flex;
+    flex: none;
+    font-size: var(--text-body);
+    font-weight: 700;
+    height: 40px;
+    justify-content: center;
+    width: 40px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-who {
+    flex: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-who b {
+    font-size: var(--text-body-lg);
+    font-weight: 700;
+    letter-spacing: -.015em
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-timer {
+    align-items: center;
+    color: #dc2626;
+    display: flex;
+    font-size: var(--text-body);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    gap: 5px
+}
+
+/* Live audio: bars breathe on a loop so the panel never looks like a still. */
+
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-meta {
+    display: flex;
+    flex: none;
+    gap: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-chip {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .6);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    border-radius: 7px;
+    color: rgba(16, 2, 44, .62);
+    display: inline-flex;
+    font-size: var(--text-caption-sm);
+    gap: 5px;
+    padding: 5px 9px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-actions {
+    display: flex;
+    flex: none;
+    gap: 6px;
+    margin-top: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-act {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .72);
+    border: 1px solid hsla(0, 0%, 100%, .9);
+    border-radius: 8px;
+    color: rgba(16, 2, 44, .78);
+    display: inline-flex;
+    flex: 1;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    gap: 5px;
+    justify-content: center;
+    padding: 8px 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-act--end {
+    background: #dc2626;
+    border-color: #dc2626;
+    color: #fff;
+    flex: 0 0 82px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-act--end i { transform: rotate(135deg) }
+
+/* queue */
+.design-v2 .section-tabbed-trust-showcase .dz-queue-head {
+    align-items: center;
+    color: rgba(16, 2, 44, .5);
+    display: flex;
+    flex: none;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    justify-content: space-between;
+    letter-spacing: .02em;
+    margin-bottom: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-queue-head b {
+    color: #10022c;
+    font-weight: 700
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead {
+    align-items: center;
+    animation: dzRise .45s ease both;
+    border-radius: 9px;
+    display: flex;
+    flex: 1;
+    gap: 9px;
+    min-height: 0;
+    padding: 0 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead:nth-of-type(1) { animation-delay: .68s }
+.design-v2 .section-tabbed-trust-showcase .dz-lead:nth-of-type(2) { animation-delay: .74s }
+.design-v2 .section-tabbed-trust-showcase .dz-lead:nth-of-type(3) { animation-delay: .80s }
+.design-v2 .section-tabbed-trust-showcase .dz-lead:nth-of-type(4) { animation-delay: .86s }
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar {
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    flex: none;
+    font-size: var(--text-caption-sm);
+    font-weight: 700;
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar--av { background: #8b5cf6 }
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar--rk { background: #0ea5e9 }
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar--dp { background: #14b8a6 }
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar--si { background: #f97316 }
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info {
+    flex: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info b {
+    font-size: var(--text-caption);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info em {
+    font-size: var(--text-caption-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-tag {
+    background: hsla(0, 0%, 100%, .7);
+    border-radius: 6px;
+    color: rgba(16, 2, 44, .55);
+    flex: none;
+    font-size: var(--text-caption-sm);
+    padding: 3px 7px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-queue-foot {
+    align-items: center;
+    border-top: 1px solid hsla(0, 0%, 100%, .7);
+    color: rgba(16, 2, 44, .45);
+    display: flex;
+    flex: none;
+    font-size: var(--text-caption-sm);
+    gap: 5px;
+    margin-top: 6px;
+    padding-top: 9px
+}
+
+/* ── pacing stats along the foot ────────────────────────────────────────── */
+.design-v2 .section-tabbed-trust-showcase .dz-foot {
+    border-top: 1px solid hsla(0, 0%, 100%, .6);
+    display: grid;
+    flex: none;
+    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px 219px 12px 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-stat {
+    animation: dzRise .45s ease both;
+    animation-delay: .8s;
+    display: flex
+}
+
+
+
+
+.design-v2 .section-tabbed-trust-showcase .dz-stat-text {
+    color: rgba(16, 2, 44, .55);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-caption);
+    gap: 2px;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-stat-text b {
+    color: #10022c;
+    font-size: var(--text-body-lg);
+    font-weight: 700;
+    letter-spacing: -.02em
+}
+
+/* ── motion ─────────────────────────────────────────────────────────────── */
+@keyframes dzAppIn {
+    from { opacity: 0; transform: translate3d(28px, 0, 0) scale(.99) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes dzRise {
+    from { opacity: 0; transform: translate3d(0, 12px, 0) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes dzGrow {
+    from { transform: scaleX(0) }
+    to   { transform: scaleX(1) }
+}
+
+@keyframes dzPulse {
+    0%, to { opacity: 1; transform: scale(1) }
+    50%    { opacity: .35; transform: scale(.8) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .dz-app,
+    .design-v2 .section-tabbed-trust-showcase .dz-mode,
+    .design-v2 .section-tabbed-trust-showcase .dz-bar-fill,
+    .design-v2 .section-tabbed-trust-showcase .dz-call,
+    .design-v2 .section-tabbed-trust-showcase .dz-queue,
+    .design-v2 .section-tabbed-trust-showcase .dz-lead,
+    .design-v2 .section-tabbed-trust-showcase .dz-stat,
+    .design-v2 .section-tabbed-trust-showcase .dz-live-dot {
+        animation: none
+    }
+}
+
+@media (max-width: 768px) {
+    .design-v2 .section-tabbed-trust-showcase .dz-app { display: none }
+}
+
+/* ── Pop-up labels, AI Agent and Auto Dialer ────────────────────────────────
+   Keeping the icon, title and description on a single row left the text barely
+   120px to work with: titles broke over two lines, descriptions over three, and
+   the cards in a stack ended up different heights. Lay each card out as a grid
+   instead — icon and title share the top row, the description spans the full
+   width underneath — and widen the column to 200px so the type can go up a
+   size and still hold every title on one line. Shared by all three tabs that
+   carry pop-up labels. */
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast {
+    align-items: center;
+    border-radius: 14px;
+    column-gap: 10px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    padding: 13px;
+    row-gap: 7px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-icon {
+    border-radius: 9px;
+    font-size: 15px;
+    grid-column: 1;
+    grid-row: 1;
+    height: 32px;
+    width: 32px
+}
+
+/* Lifts the title and description into the card's own grid. */
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-content,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-content,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-content {
+    display: contents
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-title,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-title,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-title {
+    font-size: 14px;
+    font-weight: 600;
+    grid-column: 2;
+    grid-row: 1;
+    letter-spacing: -.015em;
+    line-height: 1.2;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-desc {
+    -webkit-line-clamp: 2;
+    font-size: 12.5px;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    line-height: 1.4;
+    /* Reserve both lines so every card in a stack comes out the same height. */
+    min-height: 35px
+}
+
+/* ── One title treatment for every tab's mock ───────────────────────────────
+   Call Intelligence is the reference: 12.5px, bold, solid navy. Integration Hub
+   and Cloud Phone's Messages heading were lighter weights in muted grey, and the
+   Auto Dialer heading sat at 18px, so all three are pulled onto that setting. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-titlebar,
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-title,
+.design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .tab-sidebar-title,
+.design-v2 .section-tabbed-trust-showcase .dz-brand-text b {
+    color: #10022c;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: normal
+}
+
+/* Keeps the heading clear of the line under it now that it is the smaller size. */
+.design-v2 .section-tabbed-trust-showcase .dz-brand-text em {
+    font-size: var(--text-caption-sm)
+}
+
+/* ── Typing indicator, Cloud Phone chat ─────────────────────────────────────
+   Sits at the end of the thread as a received bubble with three dots that
+   stagger. Both keyframe ends are opaque so the tab's paused state (before the
+   section scrolls into view) shows three settled dots rather than a gap. */
+.design-v2 .section-tabbed-trust-showcase .tab-msg--typing {
+    align-items: center;
+    display: inline-flex;
+    gap: 5px;
+    padding: 12px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-typing-dot {
+    animation: tabTyping 1.25s ease-in-out infinite;
+    background: rgba(16, 2, 44, .42);
+    border-radius: 50%;
+    height: 6px;
+    width: 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-typing-dot:nth-child(2) { animation-delay: .16s }
+.design-v2 .section-tabbed-trust-showcase .tab-typing-dot:nth-child(3) { animation-delay: .32s }
+
+@keyframes tabTyping {
+    0%, to { opacity: 1; transform: translateY(0) }
+    45%    { opacity: .35; transform: translateY(-3px) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .tab-typing-dot { animation: none }
+}
+
+/* ── Composer typing effect, Cloud Phone chat ───────────────────────────────
+   The placeholder now types itself out. The text sits in an overflow-hidden
+   span whose width steps open one character at a time; the caret is the next
+   sibling, so it travels with the growing edge rather than sitting at a fixed
+   spot. Reversing on alternate gives the line a natural backspace. */
+.design-v2 .section-tabbed-trust-showcase .tab-chat-compose {
+    align-items: center;
+    display: inline-flex;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-typed {
+    /* 153px is the rendered width of the 30-character line at 12px Space
+       Grotesk; steps(30) lands one character per step. No fill mode, so before
+       the animation starts the span keeps its natural width and reads in full. */
+    animation: tabType 2.4s steps(30) .6s infinite alternate;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+@keyframes tabType {
+    from { width: 0 }
+    to   { width: 153px }
+}
+
+.design-v2 .section-tabbed-trust-showcase .tab-chat-caret {
+    animation: tabCaret 1s step-end infinite;
+    background: rgba(16, 2, 44, .55);
+    flex: none;
+    height: 14px;
+    margin-left: 2px;
+    width: 1.5px
+}
+
+@keyframes tabCaret {
+    0%, to { opacity: 1 }
+    50%    { opacity: 0 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .tab-chat-typed,
+    .design-v2 .section-tabbed-trust-showcase .tab-chat-caret { animation: none }
+}
+
+/* ── Call Intelligence: legibility pass ─────────────────────────────────────
+   The panel was drawn at 8.5-11.5px, which reads as noise once the mock is
+   scaled down. Everything moves up 2-3px, with a little more room around the
+   cards to match. Sizes only — the layout and palette are untouched. */
+.design-v2 .section-tabbed-trust-showcase .ci-col-title {
+    font-size: 11.5px;
+    letter-spacing: .6px;
+    margin-bottom: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-line-meta {
+    font-size: 11px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-bubble {
+    font-size: 13.5px;
+    line-height: 1.45;
+    padding: 9px 13px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-transcript {
+    gap: 11px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-section-label {
+    font-size: 11px;
+    letter-spacing: .6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-card-title {
+    font-size: 11px;
+    letter-spacing: .5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-card {
+    padding: 12px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-card--summary {
+    font-size: 13px;
+    line-height: 1.5
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-topic {
+    font-size: 12px;
+    padding: 5px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-name {
+    font-size: 12.5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-ratio-val {
+    font-size: 11.5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-footer-text {
+    font-size: 12.5px
+}
+
+/* Four gauges now, so they get an even grid rather than space-between. */
+.design-v2 .section-tabbed-trust-showcase .ci-gauges {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge svg {
+    height: 50px;
+    width: 50px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge-value {
+    font-size: 11px;
+    top: 20px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge-label {
+    font-size: 11px;
+    margin-top: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-gauge--mix { stroke: #d8b4fe }
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-gauge--mix {
+    stroke: #a855f7
+}
+
+/* Six messages read clearly and the seventh fades under the cut, so the thread
+   looks like it carries on. The default fade started at 78% and washed out two
+   readable lines. */
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-transcript {
+    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 90%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0, #000 90%, transparent 100%)
+}
+
+/* ── Call Intelligence: entrance ────────────────────────────────────────────
+   The panel had no reveal of its own, so it simply appeared. It now deals in
+   like the other tabs: the window slides in, then the transcript lines and the
+   insight cards rise in sequence, the gauge arcs draw themselves and the ratio
+   bars sweep out. Runs when the section scrolls into view. */
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-window {
+    animation: ciWindowIn .6s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .16s
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-col-title {
+    animation: ciRise .45s ease both;
+    animation-delay: .34s
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line {
+    animation: ciRise .45s cubic-bezier(.22, .8, .3, 1) both
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line:nth-child(1) { animation-delay: .40s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line:nth-child(2) { animation-delay: .47s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line:nth-child(3) { animation-delay: .54s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line:nth-child(4) { animation-delay: .61s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line:nth-child(5) { animation-delay: .68s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line:nth-child(6) { animation-delay: .75s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line:nth-child(7) { animation-delay: .82s }
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-section-label,
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-card {
+    animation: ciRise .45s cubic-bezier(.22, .8, .3, 1) both
+}
+
+/* The insights column alternates label, card, label, card — pair them up. */
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-section-label:nth-of-type(1),
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-card:nth-of-type(1) { animation-delay: .44s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-section-label:nth-of-type(2),
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-card:nth-of-type(2) { animation-delay: .54s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-section-label:nth-of-type(3),
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-card:nth-of-type(3) { animation-delay: .64s }
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-section-label:nth-of-type(4),
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-card:nth-of-type(4) { animation-delay: .74s }
+
+/* Drawing the arc via dashoffset works whatever each gauge's dash length is,
+   so one rule covers all four. */
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-gauge-fill {
+    animation: ciDraw .9s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .7s
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-ratio-fill {
+    animation: ciSweep .8s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .84s;
+    transform-origin: left center
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-footer {
+    animation: ciRise .45s ease both;
+    animation-delay: .9s
+}
+
+@keyframes ciWindowIn {
+    from { opacity: 0; transform: translate3d(34px, 0, 0) scale(.985) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes ciRise {
+    from { opacity: 0; transform: translate3d(0, 12px, 0) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes ciDraw {
+    from { stroke-dashoffset: 87.96 }
+    to   { stroke-dashoffset: 0 }
+}
+
+@keyframes ciSweep {
+    from { transform: scaleX(0) }
+    to   { transform: scaleX(1) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-window,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-col-title,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-line,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-section-label,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-card,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-gauge-fill,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-ratio-fill,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-footer {
+        animation: none
+    }
+}
+
+/* ── Activity rail ──────────────────────────────────────────────────────────
+   Deliberately the least important thing on the panel: it sits past the safe
+   zone so the frame clips it, which is what makes the console read as a window
+   you are looking into rather than a card floating on the artwork. */
+.design-v2 .section-tabbed-trust-showcase .dz-feed {
+    animation: dzRise .5s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .7s;
+    background: hsla(0, 0%, 100%, .52);
+    border: 1px solid hsla(0, 0%, 100%, .75);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    padding: 12px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-head {
+    align-items: center;
+    color: rgba(16, 2, 44, .5);
+    display: flex;
+    flex: none;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    justify-content: space-between;
+    margin-bottom: 2px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-head b {
+    color: rgba(16, 2, 44, .38);
+    font-weight: 500
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-item {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: 9px;
+    min-height: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-dot {
+    border-radius: 50%;
+    flex: none;
+    height: 7px;
+    width: 7px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-dot--done { background: #16a34a }
+.design-v2 .section-tabbed-trust-showcase .dz-feed-dot--warn { background: #f59e0b }
+.design-v2 .section-tabbed-trust-showcase .dz-feed-dot--dead { background: rgba(16, 2, 44, .28) }
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info b {
+    color: #10022c;
+    font-size: var(--text-caption);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info em {
+    color: rgba(16, 2, 44, .5);
+    font-size: var(--text-caption-sm);
+    font-style: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-feed-time {
+    color: rgba(16, 2, 44, .4);
+    flex: none;
+    font-size: var(--text-caption-sm)
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .dz-feed { animation: none }
+}
+
+/* Three leads with room to breathe reads better than four squeezed flat; the
+   count in the header already says the queue runs deeper. */
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar {
+    height: 26px;
+    width: 26px
+}
+
+/* Tightened so the stacked call + queue below get usable height. The mode
+   cards stay the largest thing on the panel, just less padded. */
+.design-v2 .section-tabbed-trust-showcase .dz-modes {
+    padding-bottom: 0;
+    padding-top: 10px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode {
+    gap: 5px;
+    padding: 10px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-icon {
+    height: 26px;
+    width: 26px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-mode-desc {
+    min-height: 30px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-queue {
+    padding: 12px 13px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-queue-foot {
+    margin-top: 4px;
+    padding-top: 7px
+}
+
+/* == Connected Tools: layered and clipped like the other three ==============
+   This tab used to sit whole inside the frame - centred, dashboard narrowed to
+   640 so it was height-bound. Centring it in a frame narrower than the group
+   clipped BOTH edges, which took the toast column off the left. It is now
+   anchored 44/60 like Cloud Phone, AI Agent and Auto Dialer, so the toasts sit
+   fully inside and the overflow all lands on the right. The 842px window and
+   left-top origin come from the earlier block, which applies once these
+   overrides are gone. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .accordion-visual-placeholder {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 60px 0 0 44px
+}
+
+/* The body is a column: the app grid takes what it needs and the activity list
+   stretches into whatever is left, so there is no dead space under it. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-hub-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0
+}
+
+/* Two fixed columns, not three fluid ones. The mock now bleeds past the frame
+   like the other tabs, and only ~579px of its natural width clears the edge; a
+   third column started at 549 and was reduced to a 29px sliver. Two fixed
+   columns keep all six apps whole, sized so the pair spans the full 559px that
+   clears the frame - at 250px they left a dead 49px gutter before the cut. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-apps-grid {
+    flex: none;
+    gap: 10px;
+    grid-template-columns: repeat(2, 274px)
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    flex: 1;
+    min-height: 0
+}
+
+/* ── entrance ───────────────────────────────────────────────────────────── */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-window {
+    animation: ccWindowIn .6s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .16s
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card {
+    animation: ccRise .45s cubic-bezier(.22, .8, .3, 1) both
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card:nth-child(1) { animation-delay: .34s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card:nth-child(2) { animation-delay: .40s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card:nth-child(3) { animation-delay: .46s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card:nth-child(4) { animation-delay: .52s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card:nth-child(5) { animation-delay: .58s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card:nth-child(6) { animation-delay: .64s }
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-section-label {
+    animation: ccRise .45s ease both;
+    animation-delay: .30s
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    animation: ccRise .45s cubic-bezier(.22, .8, .3, 1) both
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item:nth-child(1) { animation-delay: .68s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item:nth-child(2) { animation-delay: .74s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item:nth-child(3) { animation-delay: .80s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item:nth-child(4) { animation-delay: .86s }
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item:nth-child(5) { animation-delay: .92s }
+
+@keyframes ccWindowIn {
+    from { opacity: 0; transform: translate3d(0, 26px, 0) scale(.985) }
+    to   { opacity: 1; transform: none }
+}
+
+@keyframes ccRise {
+    from { opacity: 0; transform: translate3d(0, 12px, 0) }
+    to   { opacity: 1; transform: none }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-window,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-section-label,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+        animation: none
+    }
+}
+
+/* ── Recent sync activity: legibility and alignment ─────────────────────────
+   The rows stretch to fill the column, but their content was only ~21px tall
+   inside a 54px band, so each row read as text stranded in a large empty box.
+   Bigger type and a larger icon fill the row properly and put the icon and the
+   two-line label on the same optical centre. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-section-label {
+    font-size: 11.5px;
+    letter-spacing: .05em
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    gap: 12px;
+    padding: 8px 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-icon {
+    border-radius: 9px;
+    font-size: 15px;
+    height: 34px;
+    width: 34px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-info {
+    gap: 2px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-text {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    line-height: 1.3
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-meta {
+    font-size: 11px;
+    line-height: 1.3
+}
+
+/* ── Live Sentiment ─────────────────────────────────────────────────────────
+   Four equal dials made the small shares (5% and 6%) render as stubs of arc
+   that read as glitches, and the value inside a 44px ring was unreadable. One
+   large dial carries the headline share and the full split moves to a legend
+   with its own mini bars, so every value is legible at any size. */
+.design-v2 .section-tabbed-trust-showcase .ci-sentiment {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    /* The insights column is 542 wide but only ~370 of it clears the frame, so
+       the block is capped to keep the legend's values off the cut edge. */
+    max-width: 314px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-dial {
+    flex: none;
+    height: 104px;
+    position: relative;
+    width: 104px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-dial svg {
+    height: 104px;
+    transform: rotate(-90deg);
+    width: 104px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-dial-track {
+    fill: none;
+    stroke: rgba(16, 2, 44, .1);
+    stroke-width: 3.4
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-dial-fill {
+    animation: ciDialDraw .95s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .7s;
+    fill: none;
+    stroke: #16a34a;
+    stroke-linecap: round;
+    stroke-width: 3.4
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-dial-mid {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    inset: 0;
+    justify-content: center;
+    position: absolute
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-dial-mid b {
+    color: #10022c;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-dial-mid em {
+    color: rgba(16, 2, 44, .5);
+    font-size: 11px;
+    font-style: normal
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-legend {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg {
+    align-items: center;
+    display: grid;
+    gap: 9px;
+    grid-template-columns: 8px 62px 1fr 42px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg-dot {
+    border-radius: 50%;
+    height: 8px;
+    width: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg-name {
+    color: rgba(16, 2, 44, .62);
+    font-size: 12px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg-track {
+    background: rgba(16, 2, 44, .09);
+    border-radius: 999px;
+    height: 5px;
+    overflow: hidden
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg-fill {
+    animation: ciSweep .8s cubic-bezier(.22, .8, .3, 1) both;
+    animation-delay: .82s;
+    border-radius: 999px;
+    display: block;
+    height: 100%;
+    transform-origin: left center
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg-val {
+    color: #10022c;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    text-align: right
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-leg-dot--pos,
+.design-v2 .section-tabbed-trust-showcase .ci-leg-fill--pos { background: #16a34a }
+.design-v2 .section-tabbed-trust-showcase .ci-leg-dot--neu,
+.design-v2 .section-tabbed-trust-showcase .ci-leg-fill--neu { background: #3b82f6 }
+.design-v2 .section-tabbed-trust-showcase .ci-leg-dot--neg,
+.design-v2 .section-tabbed-trust-showcase .ci-leg-fill--neg { background: #ef4444 }
+.design-v2 .section-tabbed-trust-showcase .ci-leg-dot--mix,
+.design-v2 .section-tabbed-trust-showcase .ci-leg-fill--mix { background: #a855f7 }
+
+@keyframes ciDialDraw {
+    from { stroke-dashoffset: 97.39 }
+    to   { stroke-dashoffset: 0 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .ci-dial-fill,
+    .design-v2 .section-tabbed-trust-showcase .ci-leg-fill { animation: none }
+}
+
+/* ── Live call + queue: less crowded ────────────────────────────────────────
+   The card ran three dense rows — contact, three meta chips, four buttons. The
+   chips said little the rest of the card did not: the red dot beside the timer
+   already reads as recording, and the attempt count now rides next to the name.
+   Dropping the row leaves the card at two clear rows and hands the height back
+   to the queue underneath. */
+.design-v2 .section-tabbed-trust-showcase .dz-call {
+    gap: 14px;
+    padding: 15px 15px 14px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-who b {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-tag {
+    background: hsla(0, 0%, 100%, .7);
+    border: 1px solid hsla(0, 0%, 100%, .9);
+    border-radius: 6px;
+    color: rgba(16, 2, 44, .55);
+    font-size: var(--text-caption-sm);
+    font-weight: 500;
+    padding: 3px 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-actions {
+    gap: 8px;
+    margin-top: 0
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-act {
+    padding: 9px 6px
+}
+
+/* Roomier queue rows now that there is height to spare. */
+.design-v2 .section-tabbed-trust-showcase .dz-lead {
+    gap: 11px;
+    padding: 0 6px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-lead-avatar {
+    height: 30px;
+    width: 30px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-queue-head {
+    margin-bottom: 6px
+}
+
+/* Name and the line under it were set 1px apart with tight leading, so each
+   pair read as one dense block. Space them properly in the live call card, the
+   queue rows and the activity rail alike. */
+.design-v2 .section-tabbed-trust-showcase .dz-call-who,
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info,
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info {
+    gap: 4px
+}
+
+.design-v2 .section-tabbed-trust-showcase .dz-call-who b,
+.design-v2 .section-tabbed-trust-showcase .dz-call-who em,
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info b,
+.design-v2 .section-tabbed-trust-showcase .dz-lead-info em,
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info b,
+.design-v2 .section-tabbed-trust-showcase .dz-feed-info em {
+    line-height: 1.25
+}
+
+/* ══ Pop-up labels: finish and motion ═══════════════════════════════════════
+   The cards were flat white with a grey icon tile, and they slid in flatly.
+   Each icon now carries a tint of its own, the card gets a crisper edge and a
+   two-part shadow so it lifts off the artwork, and all three tabs share one
+   entrance that actually pops — scaling up past its final size and settling. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .adx-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .toasts-group .tab-toast {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: hsla(0, 0%, 100%, .9);
+    border: 1px solid hsla(0, 0%, 100%, .95);
+    box-shadow: 0 14px 30px -10px rgba(60, 40, 30, .3), 0 2px 5px rgba(60, 40, 30, .07)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast {
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-name: labelPop;
+    animation-timing-function: cubic-bezier(.34, 1.56, .64, 1);
+    row-gap: 5px
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-desc {
+    color: rgba(16, 2, 44, .55)
+}
+
+/* A tint per card so the three read as distinct events rather than a stack of
+   identical grey tiles. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-labels .tab-toast:nth-child(1) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .adx-labels .tab-toast:nth-child(1) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .toasts-group .tab-toast:nth-child(1) .tab-toast-icon {
+    background: #eef2ff;
+    color: #4f46e5
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-labels .tab-toast:nth-child(2) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .adx-labels .tab-toast:nth-child(2) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .toasts-group .tab-toast:nth-child(2) .tab-toast-icon {
+    background: #d9f2ee;
+    color: #0f766e
+}
+
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-labels .tab-toast:nth-child(3) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .adx-labels .tab-toast:nth-child(3) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .toasts-group .tab-toast:nth-child(3) .tab-toast-icon {
+    background: #fef1d6;
+    color: #b45309
+}
+
+@keyframes labelPop {
+    from { opacity: 0; transform: translate3d(-16px, 10px, 0) scale(.84) }
+    to   { opacity: 1; transform: none }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast,
+    .design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast,
+    .design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast {
+        animation: none
+    }
+}
+
+/* ── Pop-up labels: single-line, compact ────────────────────────────────────
+   Descriptions were wrapping — "Tomorrow, 11:00 AM • Meera N." dropped its last
+   word onto a second line, which is what made the cards look ragged. The copy
+   is now short enough to hold one line and the card is pinned to two rows, so
+   all nine read as the same tight object. The pop also lands harder. */
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-desc {
+    -webkit-line-clamp: 1;
+    min-height: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast {
+    animation-duration: .55s;
+    animation-name: labelPopHard;
+    padding: 14px 14px 15px;
+    row-gap: 7px
+}
+
+@keyframes labelPopHard {
+    from { opacity: 0; transform: translate3d(-22px, 14px, 0) scale(.76) }
+    to   { opacity: 1; transform: none }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast,
+    .design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast,
+    .design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast {
+        animation: none
+    }
+}
+
+/* ══ Phones: show the mocks, do not drop them ═══════════════════════════════
+   Every product mock was set to display:none below 900px, so the whole tabbed
+   section rendered as copy with an empty frame beside it. They are shown again
+   here and fitted to the screen: the stages come back into flow so the frame
+   can size to them, and the scaler (which stops bleeding under 900px) does the
+   rest. Small, but present — which beats absent. */
+@media (max-width: 900px) {
+    .design-v2 .section-tabbed-trust-showcase .tab-desktop-app,
+    .design-v2 .section-tabbed-trust-showcase .tab-phone-mockup,
+    .design-v2 .section-tabbed-trust-showcase .ai-panel-phone-mockup,
+    .design-v2 .section-tabbed-trust-showcase .cx-mockup-group .dashboard-group,
+    .design-v2 .section-tabbed-trust-showcase .cc-mockup-group .dashboard-group {
+        display: block
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .ci-window,
+    .design-v2 .section-tabbed-trust-showcase .dz-app {
+        display: flex
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .adx-stage {
+        display: grid
+    }
+
+    /* back into flow, centred, so the frame wraps the scaled mock */
+    .design-v2 .section-tabbed-trust-showcase .cp-stage,
+    .design-v2 .section-tabbed-trust-showcase .adx-stage,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-layout,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .mockup-group {
+        left: auto;
+        margin: 0 auto;
+        position: relative;
+        top: auto;
+        transform: scale(var(--mock-scale, 1));
+        transform-origin: top center
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder {
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 0;
+        padding: 14px 8px
+    }
+
+    /* the toast column stacks above the panel rather than beside it */
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-layout,
+    .design-v2 .section-tabbed-trust-showcase .adx-stage {
+        grid-template-columns: 1fr
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .ci-labels,
+    .design-v2 .section-tabbed-trust-showcase .adx-labels {
+        display: none
+    }
+}
+
+/* The per-tab frame rules are id-scoped, so they outrank the generic mobile
+   rule above; the 637px floor has to be lifted per tab or the frame stays a
+   tall empty box around a small mock. */
+@media (max-width: 900px) {
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .accordion-visual-placeholder,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .accordion-visual-placeholder,
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-experience .accordion-visual-placeholder,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .accordion-visual-placeholder {
+        align-items: flex-start;
+        height: auto;
+        justify-content: center;
+        min-height: 0;
+        padding: 14px 8px
+    }
+
+    /* the frame's height came from the copy column beside it; on a phone the
+       two are stacked, so it sizes to the mock instead */
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual,
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-container {
+        height: auto;
+        min-height: 0
+    }
+}
+
+/* The accordion grid stretches its rows, so the visual column was as tall as
+   the copy beside it — a 400px-tall empty frame around a 164px mock. Letting
+   the rows start means the frame sizes to what is in it. */
+@media (max-width: 900px) {
+    .design-v2 .section-tabbed-trust-showcase .tabs-container-accordion { align-items: start }
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-container,
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual.active { height: auto }
+}
+
+/* Phones: the stage goes back out of flow and the frame takes its height from
+   --mock-h, the scaled height the fit hook measures. In flow the transform left
+   a 610px-tall layout box behind a 164px-tall picture, which is why the frame
+   stayed a tall empty panel. */
+@media (max-width: 900px) {
+    .design-v2 .section-tabbed-trust-showcase .cp-stage,
+    .design-v2 .section-tabbed-trust-showcase .adx-stage,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-layout,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .mockup-group {
+        left: 50%;
+        margin: 0;
+        position: absolute;
+        top: 14px;
+        transform: translateX(-50%) scale(var(--mock-scale, 1));
+        transform-origin: top center
+    }
+
+    .design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder,
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .accordion-visual-placeholder,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .accordion-visual-placeholder,
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-experience .accordion-visual-placeholder,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .accordion-visual-placeholder {
+        height: calc(var(--mock-h, 300px) + 28px);
+        min-height: 0;
+        padding: 14px 8px;
+        position: relative
+    }
+}
+
+/* the surfaces inside go opaque too, or the window still reads as see-through */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card,
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .09);
+    box-shadow: 0 1px 2px rgba(16, 2, 44, .04)
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-header {
+    background: #fff;
+    border-bottom: 1px solid rgba(16, 2, 44, .08)
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-hub-body {
+    background: #f7f8fb
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-section-label {
+    color: rgba(16, 2, 44, .5)
+}
+
+/* the pop-up labels come forward with it */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast {
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    box-shadow: 0 26px 50px -18px rgba(60, 40, 30, .55), 0 4px 12px -4px rgba(60, 40, 30, .3)
+}
+
+/* == Connected Tools: glass interior ========================================
+   The window itself was already glass — rgba(255,255,255,.55) over blur(16px)
+   — but every surface inside it was painted opaque: a solid #f7f8fb body with
+   solid white header, app cards and activity rows stacked on top. The result
+   read as a flat white panel with no depth at all.
+   These match the treatment AI Agent uses: no solid body fill, and translucent
+   cards with white hairlines so the artwork behind carries through. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-hub-body,
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .cc-dashboard-body {
+    background: transparent
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-header {
+    background: hsla(0, 0%, 100%, .34);
+    border-bottom: 1px solid hsla(0, 0%, 100%, .55)
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card,
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    background: hsla(0, 0%, 100%, .62);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    box-shadow: 0 2px 10px -6px rgba(60, 40, 30, .28)
+}
+
+/* The two section labels sat on the solid body; without it they need their own
+   contrast rather than relying on the fill behind them. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-section-label {
+    color: rgba(16, 2, 44, .62)
+}
+
+/* == Connected Tools toasts: full glass, and the desc aligned to the title ===
+   Two fixes. The toast was forced to a solid #fff above, so its blur(10px) had
+   nothing to show through — it now carries the same translucent white the rest
+   of this tab uses.
+   And .tab-toast-content is display:contents, which promotes the title and
+   desc to grid items of the toast itself. With a single auto column the icon
+   took col 1, the title col 2, and the desc wrapped back to col 1 on row 2 —
+   starting 40px left of the title. Spanning the icon down both rows puts the
+   desc in col 2 under the title, where it belongs. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast {
+    -webkit-backdrop-filter: blur(18px) saturate(1.35);
+    backdrop-filter: blur(18px) saturate(1.35);
+    background: hsla(0, 0%, 100%, .58);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    box-shadow: 0 26px 50px -18px rgba(60, 40, 30, .5), 0 4px 12px -4px rgba(60, 40, 30, .26);
+    grid-template-columns: auto 1fr
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast-icon {
+    grid-row: 1 / span 2
+}
+
+/* The desc carries an explicit grid-column: 1 / -1 from the shared toast
+   styles, so it spanned the full width and started under the icon rather than
+   under the title. Pin it to the text column. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast-desc {
+    grid-column: 2
+}
+
+/* The glass interior pushed the body 21px past the dashboard's fixed 610px, so
+   the last activity row was being squeezed. Reclaimed from the app cards'
+   padding and the gaps rather than by dropping content. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-app-card {
+    gap: 5px;
+    padding: 9px 8px 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-apps-grid {
+    gap: 8px
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-list {
+    gap: 5px
+}
+
+/* Toast icons carry no brand colour — they sit neutral against the glass, the
+   same grey the activity rail uses, so the artwork behind stays the only
+   colour in the panel. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast-icon {
+    background: rgba(16, 2, 44, .07);
+    color: rgba(16, 2, 44, .55)
+}
+
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast-icon i {
+    color: inherit
+}
+
+/* Last 12px: the activity rows give it back rather than the list dropping a
+   row or the final one sitting clipped. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-activity-item {
+    padding: 6px 12px
+}
+
+/* The header sat on its own .34 white ON TOP of the window's .55, compounding
+   to roughly .70 opaque — a solid bar above a body that showed the artwork. It
+   now carries no fill of its own, so it is the same glass as the rest of the
+   window, separated only by a hairline. That hairline is the same dark
+   rgba(16,2,44,.12) AI Agent uses on .ci-titlebar - a white line over light
+   glass reads as a lighter band, which was the remaining difference between
+   the two tabs. */
+.design-v2 .section-tabbed-trust-showcase #visual-connected-tools .tab-app-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(16, 2, 44, .12)
+}
+
+/* == All toasts: one treatment across every tab =============================
+   The three fixes made for Connected Tools applied only to that panel, leaving
+   AI Agent and Auto Dialer with .9-opaque cards, descs misaligned 40px left of
+   their titles, and coloured icon chips. Scoped to the shared class so all
+   three tabs match:
+     - full glass instead of near-solid white
+     - .tab-toast-content is display:contents, so the title and desc are grid
+       items of the toast itself; the desc's inherited grid-column: 1 / -1 put
+       it under the icon. Icon spans both rows, desc pinned to the text column.
+     - neutral icons, so the artwork behind is the only colour. */
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast {
+    -webkit-backdrop-filter: blur(18px) saturate(1.35);
+    backdrop-filter: blur(18px) saturate(1.35);
+    background: hsla(0, 0%, 100%, .58);
+    border: 1px solid hsla(0, 0%, 100%, .8);
+    grid-template-columns: auto 1fr
+}
+
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-icon {
+    background: rgba(16, 2, 44, .07);
+    color: rgba(16, 2, 44, .55);
+    grid-row: 1 / span 2
+}
+
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-icon i {
+    color: inherit
+}
+
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-desc {
+    grid-column: 2
+}
+
+/* == Toasts, properly: .ci-labels and .adx-labels too =======================
+   The previous block only reached .toasts-group, which is Connected Tools. AI
+   Tools and Auto Dialer keep their toasts in .ci-labels / .adx-labels, so they
+   kept the near-solid .9 white, the desc under the icon, and the coloured
+   chips. All three containers are named here.
+   The icon carried grid-row: 1, so the desc (grid-column: 1 / -1) wrapped
+   beneath it; spanning the icon and pinning the desc to column 2 aligns the
+   two lines of text. The tint rules are :nth-child-based, so these match that
+   specificity and win on order. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .adx-labels .tab-toast,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .toasts-group .tab-toast {
+    -webkit-backdrop-filter: blur(18px) saturate(1.35);
+    backdrop-filter: blur(18px) saturate(1.35);
+    background: hsla(0, 0%, 100%, .58);
+    border: 1px solid hsla(0, 0%, 100%, .8)
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-icon {
+    grid-row: 1 / span 2
+}
+
+.design-v2 .section-tabbed-trust-showcase .ci-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .adx-labels .tab-toast-desc,
+.design-v2 .section-tabbed-trust-showcase .toasts-group .tab-toast-desc {
+    grid-column: 2
+}
+
+/* Neutral chips, replacing the indigo / teal / amber tints. */
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .ci-labels .tab-toast:nth-child(n) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .adx-labels .tab-toast:nth-child(n) .tab-toast-icon,
+.design-v2 .section-tabbed-trust-showcase .accordion-visual-placeholder--light .toasts-group .tab-toast:nth-child(n) .tab-toast-icon {
+    background: rgba(16, 2, 44, .07);
+    color: rgba(16, 2, 44, .55)
+}
+
+/* Product links under each tab: two to a row on phones and tablets instead of
+   one long stack. Each card turns into a small tile — icon on top, name, then
+   a one-line description — with the arrow in the top-right corner. */
+@media (max-width: 900px) {
+    body.design-v2 .section-tabbed-trust-showcase .product-links-cards {
+        display: grid;
+        gap: 10px;
+        grid-auto-rows: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card {
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+        padding: 14px 14px 14px
+    }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card:hover { transform: translateY(-2px) }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card:after {
+        right: 12px;
+        top: 14px;
+        transform: translateX(-4px)
+    }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card:hover:after { transform: translateX(0) }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card-icon { height: 34px; width: 34px }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card-content { gap: 5px; width: 100% }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card-title { line-height: 1.25 }
+    body.design-v2 .section-tabbed-trust-showcase .product-link-card-desc {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2
+    }
+}
+
+/* ── Cloud Phone mock on phones: a view switcher ─────────────────────────────
+   The softphone + desktop collage is 1066px wide, so fitted whole to a phone
+   it shrank to a quarter size and none of it could be read. The collage is
+   unchanged on larger screens; on phones a two-way switcher (FeaturesTabs)
+   shows either the softphone or the team chat window at its real size. */
+.design-v2 .section-tabbed-trust-showcase .cp-switch { display: none }
+@media (max-width: 640px) {
+    .design-v2 .section-tabbed-trust-showcase .cp-switch {
+        background: rgba(255, 255, 255, .72);
+        border: 1px solid rgba(255, 255, 255, .9);
+        border-radius: 999px;
+        box-shadow: 0 6px 16px -10px rgba(16, 2, 44, .35);
+        display: flex;
+        gap: 2px;
+        left: 50%;
+        padding: 3px;
+        position: absolute;
+        top: 12px;
+        transform: translateX(-50%);
+        z-index: 5
+    }
+    .design-v2 .section-tabbed-trust-showcase .cp-switch button {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        border-radius: 999px;
+        color: rgba(16, 2, 44, .65);
+        cursor: pointer;
+        display: inline-flex;
+        font: inherit;
+        font-size: 12.5px;
+        font-weight: 600;
+        gap: 5px;
+        padding: 6px 12px;
+        white-space: nowrap
+    }
+    .design-v2 .section-tabbed-trust-showcase .cp-switch button.is-on { background: #10022c; color: #fff }
+    .design-v2 .section-tabbed-trust-showcase .cp-switch button:focus-visible { outline: 2px solid #ee6730; outline-offset: 2px }
+
+    /* the stage sits under the switcher; the frame grows by the same amount */
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .cp-stage { top: 58px }
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .accordion-visual-placeholder { height: calc(var(--mock-h, 300px) + 74px) }
+
+    /* one view at a time */
+    .design-v2 .section-tabbed-trust-showcase .cp-stage[data-view] { grid-template-columns: auto; width: max-content }
+    .design-v2 .section-tabbed-trust-showcase .cp-stage[data-view="phone"] .tab-desktop-app { display: none }
+    .design-v2 .section-tabbed-trust-showcase .cp-stage[data-view="chat"] .tab-phone-mockup { display: none }
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .cp-stage .tab-phone-mockup { margin: 0 }
+
+    /* team chat view: the chat window at a phone's width, conversation list folded away */
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .cp-stage[data-view="chat"] .tab-desktop-app { grid-column: 1; margin: 0; width: 320px }
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .cp-stage[data-view="chat"] .tab-app-window { height: auto; width: 100% }
+    .design-v2 .section-tabbed-trust-showcase .cp-stage[data-view="chat"] .tab-app-sidebar { display: none }
+    .design-v2 .section-tabbed-trust-showcase .cp-stage[data-view="chat"] .tab-app-chat { flex: 1 1 auto; min-width: 0; width: auto }
+}
+/* Team chat view on phones: a fixed-height window (the newest messages at the
+   bottom, older ones scrolled out of view) so it matches the softphone's
+   height instead of running ~600px tall. */
+@media (max-width: 640px) {
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .cp-stage[data-view="chat"] .tab-app-window { height: 380px }
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .cp-stage[data-view="chat"] .tab-app-chat { min-height: 0 }
+    .design-v2 .section-tabbed-trust-showcase #visual-customer-interactions .cp-stage[data-view="chat"] .tab-chat-messages {
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        min-height: 0;
+        overflow: hidden
+    }
+}
+
+/* AI Agent mock on phones: the same two columns, laid out narrower (560px
+   instead of 842px) so the window can be drawn at about half size rather
+   than a third — transcript, sentiment, summary, topics and talk ratio all
+   stay, and become readable. */
+@media (max-width: 640px) {
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-layout,
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-window { width: 590px }
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-window { height: auto }
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-col--transcript { flex: 0 0 210px; width: 210px }
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-col--insights { flex: 1 1 auto; min-width: 0; width: auto }
+}
+/* …and the sentiment legend fitted to the narrower insights column, so its
+   values and the summary below no longer run past the window's right edge. */
+@media (max-width: 640px) {
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-sentiment { gap: 12px; min-width: 0 }
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-legend { flex: 1 1 auto; min-width: 0 }
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-leg { column-gap: 7px; grid-template-columns: 8px minmax(0, 1fr) auto }
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-leg-track { display: none }
+    .design-v2 .section-tabbed-trust-showcase #visual-ai-tools .ci-card { min-width: 0; overflow-wrap: anywhere }
+}
+
+/* Auto Dialer and Connected Tools on phones: every part of each mock stays,
+   laid out narrower (560px / 520px instead of 842px) so the fit hook can draw
+   them at roughly half size instead of a third, where the text reads. */
+@media (max-width: 640px) {
+    /* Auto Dialer: header, three modes, live call + queue beside the feed, stats */
+    .design-v2 .section-tabbed-trust-showcase .adx-stage,
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-app { width: 560px }
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-app { height: auto }
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-head { flex-wrap: wrap; gap: 8px }
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-floor { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) }
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-actions { flex-wrap: wrap; row-gap: 6px }
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-call { min-width: 0 }
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-main,
+    .design-v2 .section-tabbed-trust-showcase .adx-stage .dz-feed { min-width: 0; width: auto }
+
+    /* Connected Tools: the three sync toasts as one row over the hub */
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .mockup-group { width: 520px }
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group { align-self: stretch; display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); width: auto }
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast { inset: auto; margin: 0; max-width: none; min-width: 0; width: auto }
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .cc-dashboard,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .cc-dashboard .tab-app-window { height: auto; width: 100% }
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .integ-apps-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+}
+/* the three toasts in a row: tighter padding and text that wraps, so each
+   title reads in full instead of being cut off */
+@media (max-width: 640px) {
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast { gap: 8px; padding: 9px 10px }
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast > * { min-width: 0 }
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast-title,
+    .design-v2 .section-tabbed-trust-showcase #visual-connected-tools .toasts-group .tab-toast-desc { overflow-wrap: anywhere; white-space: normal }
+}

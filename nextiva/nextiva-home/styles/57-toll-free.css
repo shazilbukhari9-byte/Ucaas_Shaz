@@ -1,0 +1,464 @@
+/* Toll-free Numbers page (components/landing/tollfree/*). */
+
+/* ── Hero: number search ──────────────────────────────────────────────── */
+.tfm {
+    --tfm-ink: #10022c;
+    --tfm-muted: #5b6475;
+    --tfm-line: rgba(16, 2, 44, .08);
+    --tfm-acc: #059669;
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    background: rgba(255, 253, 250, .9);
+    border: 1px solid rgba(255, 255, 255, .9);
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgba(5, 150, 105, .08), 0 40px 80px -36px rgba(120, 72, 52, .45), inset 0 1px 0 rgba(255, 255, 255, .9);
+    color: var(--tfm-ink);
+    padding: 14px 16px 16px;
+    text-align: left
+}
+.tfm :where(button) { cursor: pointer; font: inherit }
+.tfm button:focus-visible, .tfm input:focus-visible { outline: 2px solid var(--tfm-acc); outline-offset: 2px }
+.tfm-head { align-items: center; display: flex; gap: 10px; padding: 0 2px 12px }
+.tfm-title { align-items: center; display: flex; font-size: 15px; font-weight: 600; gap: 10px; margin-left: 4px }
+.tfm-meta { background: #ecfdf5; border-radius: 999px; color: #047857; font-size: 11px; font-variant-numeric: tabular-nums; font-weight: 700; margin-left: auto; padding: 4px 10px; white-space: nowrap }
+
+.tfm-search { align-items: center; background: #fff; border: 1px solid var(--tfm-line); border-radius: 12px; display: flex; gap: 8px; padding: 0 12px; transition: border-color .15s ease }
+.tfm-search:focus-within { border-color: rgba(5, 150, 105, .5); box-shadow: 0 0 0 3px rgba(5, 150, 105, .1) }
+.tfm-search > i { color: #8a8f9c; font-size: 16px }
+.tfm-search input { background: transparent; border: 0; color: var(--tfm-ink); flex: 1; font: inherit; font-size: 15px; font-weight: 600; letter-spacing: .08em; min-width: 0; outline: none; padding: 10px 0 }
+.tfm-search input:focus-visible { outline: none }
+.tfm-search em { background: #f5f3ff; border-radius: 999px; color: #6d28d9; font-size: 11px; font-style: normal; font-weight: 700; padding: 3px 8px; white-space: nowrap }
+
+.tfm-chips { display: grid; gap: 4px; grid-template-columns: repeat(8, minmax(0, 1fr)); margin: 8px 0 }
+.tfm-chips button { background: #f5f2ee; border: 1px solid transparent; border-radius: 8px; color: var(--tfm-muted); font-size: 11.5px; font-variant-numeric: tabular-nums; font-weight: 600; padding: 5px 0; transition: all .15s ease }
+.tfm-chips button:not(.is-on):not(:disabled):hover { background: #ece8e3; color: var(--tfm-ink) }
+.tfm-chips button.is-on { background: var(--tfm-ink); color: #fff }
+.tfm-chips button:disabled { cursor: default; opacity: .6 }
+
+.tfm-list { border: 1px solid var(--tfm-line); border-radius: 14px; display: flex; flex-direction: column; height: 214px; list-style: none; margin: 0; overflow-y: auto; overscroll-behavior: contain; padding: 4px; scrollbar-width: thin }
+.tfm-row {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: inherit;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    padding: 8px 10px;
+    text-align: left;
+    transition: background .15s ease, border-color .15s ease;
+    width: 100%
+}
+.tfm-row:hover:not(:disabled) { background: #faf8f5 }
+.tfm-row.is-on { background: #ecfdf5; border-color: rgba(5, 150, 105, .35) }
+.tfm-row:disabled { cursor: default }
+.tfm-num { font-size: 13.5px; font-variant-numeric: tabular-nums; font-weight: 600; letter-spacing: .02em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.tfm-type { color: #8a8f9c; font-size: 10.5px; font-weight: 600; white-space: nowrap }
+.tfm-type.is-vanity { color: #7c3aed }
+.tfm-pick { align-items: center; background: #fff; border: 1px solid var(--tfm-line); border-radius: 999px; color: var(--tfm-ink); display: inline-flex; font-size: 11px; font-weight: 600; gap: 3px; min-width: 52px; justify-content: center; padding: 3px 9px }
+.tfm-row.is-on .tfm-pick { background: var(--tfm-acc); border-color: var(--tfm-acc); color: #fff }
+
+.tfm-foot { align-items: center; display: flex; gap: 10px; margin-top: 10px; min-height: 40px }
+.tfm-sel { color: var(--tfm-muted); flex: 1; font-size: 12.5px; font-variant-numeric: tabular-nums; font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.tfm-go { align-items: center; background: var(--tfm-acc); border: 0; border-radius: 10px; color: #fff; display: inline-flex; font-size: 13px; font-weight: 600; gap: 6px; padding: 10px 16px; transition: background .15s ease }
+.tfm-go:hover:not(:disabled) { background: #047857 }
+.tfm-go:disabled { background: #e7e3df; color: #a39e99; cursor: default }
+.tfm-steps { display: grid; gap: 4px 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; width: 100% }
+.tfm-steps li { align-items: center; color: #a39e99; display: flex; font-size: 11.5px; font-weight: 600; gap: 5px; white-space: nowrap }
+.tfm-steps li.is-run { color: var(--tfm-ink) }
+.tfm-steps li.is-run i { animation: tfm-spin .8s linear infinite }
+.tfm-steps li.is-done { color: #047857 }
+@keyframes tfm-spin { to { transform: rotate(360deg) } }
+
+.tfm-live { align-items: center; animation: psm-in .35s ease; display: flex; flex-direction: column; gap: 6px; padding: 26px 8px 8px; text-align: center }
+.tfm-live-ic { align-items: center; background: #ecfdf5; border-radius: 50%; color: var(--tfm-acc); display: inline-flex; font-size: 30px; height: 58px; justify-content: center; margin-bottom: 4px; width: 58px }
+.tfm-live-k { color: var(--tfm-muted); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase }
+.tfm-live-n { font-size: 24px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .02em }
+.tfm-live-d { color: #8a8f9c; font-size: 12.5px; font-variant-numeric: tabular-nums }
+.tfm-live-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; list-style: none; margin: 10px 0 14px; padding: 0 }
+.tfm-live-tags li { align-items: center; background: #fff; border: 1px solid var(--tfm-line); border-radius: 999px; color: var(--tfm-ink); display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 4px; padding: 4px 10px }
+.tfm-live-tags i { color: var(--tfm-acc) }
+.tfm-again { align-items: center; background: var(--tfm-ink); border: 0; border-radius: 10px; color: #fff; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 6px; padding: 9px 16px }
+
+@media (min-width: 1025px) and (max-height: 860px) { .tfm-list { height: 186px } }
+@media (min-width: 1025px) and (max-height: 700px) { .tfm-list { height: 146px } .tfm-head { padding-bottom: 8px } .tfm-live { padding-top: 10px } }
+@media (max-width: 560px) {
+    .tfm { border-radius: 18px; padding: 12px }
+    .tfm-head .lp-dots { display: none }
+    .tfm-title { margin-left: 0 }
+    /* Prefix chips: one swipeable row instead of two cramped ones. */
+    .tfm-chips {
+        display: flex;
+        gap: 6px;
+        margin: 10px -12px;
+        overflow-x: auto;
+        padding: 0 12px;
+        scrollbar-width: none
+    }
+    .tfm-chips::-webkit-scrollbar { display: none }
+    .tfm-chips button { border-radius: 999px; flex: none; font-size: 12px; padding: 6px 14px }
+    /* Rows: the number with its type underneath, the action on the right. */
+    .tfm-list { height: 236px; padding: 4px }
+    .tfm-row {
+        column-gap: 10px;
+        grid-template-areas: 'num pick' 'type pick';
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 8px 10px;
+        row-gap: 1px
+    }
+    .tfm-num { font-size: 14px; grid-area: num }
+    .tfm-type { display: block; font-size: 10.5px; grid-area: type }
+    .tfm-pick { font-size: 11.5px; grid-area: pick; min-width: 64px; padding: 5px 10px }
+    .tfm-search input { font-size: 14px; padding: 9px 0 }
+    .tfm-foot { gap: 8px }
+    .tfm-go { flex: none; padding: 10px 14px }
+    .tfm-steps { grid-template-columns: minmax(0, 1fr) }
+}
+
+/* ── Shared head ──────────────────────────────────────────────────────── */
+.tf-head { margin: 0 auto 44px; max-width: 760px; text-align: center }
+.tf-head .lp-intro { margin: 14px auto 0 }
+
+/* ── Prefix timeline ──────────────────────────────────────────────────── */
+.tf-pre { display: grid; gap: 14px; grid-template-columns: repeat(7, minmax(0, 1fr)); list-style: none; margin: 0 auto; max-width: 1120px; padding: 0; position: relative }
+.tf-pre::before { background: linear-gradient(90deg, rgba(5, 150, 105, .15), #10b981 50%, rgba(5, 150, 105, .15)); border-radius: 2px; content: ""; height: 2px; left: 0; position: absolute; right: 0; top: 37px }
+.tf-pre-item { align-items: center; display: flex; flex-direction: column; gap: 10px }
+.tf-pre-year { color: #8a8f9c; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .04em }
+.tf-pre-dot { background: #fff; border: 3px solid #10b981; border-radius: 50%; box-shadow: 0 0 0 5px #fff; height: 14px; position: relative; width: 14px; z-index: 1 }
+.tf-pre-card {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(16, 2, 44, .08);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 128px;
+    padding: 18px 10px 16px;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    width: 100%
+}
+.tf-pre-item:hover .tf-pre-card { border-color: #a7f3d0; box-shadow: 0 22px 40px -30px rgba(5, 150, 105, .55); transform: translateY(-4px) }
+.tf-pre-item:hover .tf-pre-dot { background: #10b981 }
+.tf-pre-card b { color: #10022c; font-size: 30px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: -.02em; line-height: 1 }
+.tf-pre-ok { align-items: center; background: #ecfdf5; border-radius: 999px; color: #047857; display: inline-flex; font-size: 11px; font-weight: 700; gap: 3px; padding: 2px 8px }
+.tf-pre-card em { color: #8a8f9c; font-size: 11.5px; font-style: normal; line-height: 1.3; text-align: center }
+.tf-pre-foot { align-items: center; color: var(--lp-muted, #5b6475); display: flex; font-size: 14px; gap: 8px; justify-content: center; margin: 28px 0 0 }
+.tf-pre-foot i { color: #059669; font-size: 17px }
+
+/* ── Vanity keypad ────────────────────────────────────────────────────── */
+.tf-van { align-items: center; display: grid; gap: 64px; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr) }
+body.design-v2 .lp .tf-van-copy .lp-intro { margin: 14px 0 0 }
+.tf-van-copy :where(button) { cursor: pointer; font: inherit }
+.tf-van-form { align-items: stretch; background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 14px; display: flex; gap: 6px; margin-top: 26px; padding: 5px }
+.tf-van-form:focus-within { border-color: rgba(234, 88, 12, .45); box-shadow: 0 0 0 3px rgba(234, 88, 12, .1) }
+.tf-van-pre { background: #f5f2ee; border-radius: 10px; display: flex; gap: 2px; padding: 3px }
+.tf-van-pre button { background: transparent; border: 0; border-radius: 8px; color: #5b6475; font-size: 13px; font-weight: 600; padding: 6px 10px }
+.tf-van-pre button.is-on { background: #fff; box-shadow: 0 1px 3px rgba(16, 2, 44, .12); color: #10022c }
+.tf-van-form input { background: transparent; border: 0; color: #10022c; flex: 1; font: inherit; font-size: 17px; font-weight: 700; letter-spacing: .12em; min-width: 0; outline: none; padding: 0 10px }
+.tf-van-ex { align-items: center; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px }
+.tf-van-ex span { color: #9a948e; font-size: 12px; font-weight: 600; margin-right: 2px }
+.tf-van-ex button { background: rgba(255, 255, 255, .7); border: 1px solid rgba(16, 2, 44, .1); border-radius: 999px; color: #10022c; font-size: 12px; font-weight: 600; letter-spacing: .04em; padding: 4px 10px }
+.tf-van-ex button:hover { border-color: #fdba74; color: #c2410c }
+.tf-van-out { display: flex; flex-direction: column; gap: 2px; margin-top: 24px }
+.tf-van-word { color: #10022c; font-size: 26px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .04em }
+.tf-van-word b { color: #ea580c }
+.tf-van-arrow { color: #c4bfb8; font-size: 16px }
+.tf-van-digits { color: #5b6475; font-size: 20px; font-variant-numeric: tabular-nums; font-weight: 600; letter-spacing: .06em }
+.tf-van-digits i { border-radius: 4px; font-style: normal; padding: 0 1px; transition: background .15s ease, color .15s ease }
+.tf-van-digits i.is-lit { background: #ea580c; color: #fff }
+
+.tf-pad { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 30px; box-shadow: 0 34px 70px -50px rgba(124, 45, 18, .5); margin: 0 auto; max-width: 340px; padding: 20px; width: 100% }
+.tf-pad-screen { align-items: center; background: #10022c; border-radius: 16px; color: #fff; display: flex; flex-direction: column; gap: 2px; margin-bottom: 16px; padding: 14px }
+.tf-pad-screen span { color: rgba(255, 255, 255, .55); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase }
+.tf-pad-screen b { font-size: 20px; font-variant-numeric: tabular-nums; font-weight: 600; letter-spacing: .08em }
+.tf-pad-grid { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr) }
+.tf-key { align-items: center; aspect-ratio: 1.35; background: #f6f3ef; border: 1px solid transparent; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; transition: background .18s ease, border-color .18s ease, transform .12s ease }
+.tf-key b { color: #10022c; font-size: 22px; font-weight: 600; line-height: 1 }
+.tf-key em { color: #9a948e; font-size: 10px; font-style: normal; font-weight: 700; letter-spacing: .12em; min-height: 12px }
+.tf-key.is-on { background: #fff7ed; border-color: #fed7aa }
+.tf-key.is-on em { color: #c2410c }
+.tf-key.is-press { background: #ea580c; border-color: #ea580c; transform: scale(.94) }
+.tf-key.is-press b, .tf-key.is-press em { color: #fff }
+.tf-pad-dial { align-items: center; background: #16a34a; border: 0; border-radius: 14px; color: #fff; cursor: pointer; display: flex; font: inherit; font-size: 14px; font-weight: 600; gap: 8px; justify-content: center; margin-top: 14px; padding: 12px; width: 100% }
+.tf-pad-dial:disabled { cursor: default; opacity: .6 }
+
+/* ── Feature bento ────────────────────────────────────────────────────── */
+.tf-bento { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+.tf-card { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease }
+.tf-card:hover { border-color: var(--t-bd); box-shadow: 0 26px 46px -34px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.tf-card-vis { align-items: center; background: radial-gradient(90% 100% at 100% 0%, var(--t-bg), transparent 70%), #f8f6f3; border-bottom: 1px solid rgba(16, 2, 44, .06); display: flex; height: 132px; justify-content: center; padding: 16px }
+.tf-card-body { padding: 18px 20px 22px }
+.tf-card-tag { align-items: center; color: var(--t-fg); display: inline-flex; font-size: 12px; font-weight: 700; gap: 6px; margin-bottom: 8px }
+body.design-v2 .lp .tf-card-title { color: var(--lp-ink, #10022c); font-size: 17px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 6px }
+body.design-v2 .lp .tf-card-text { color: var(--lp-muted, #5b6475); font-size: 14px !important; line-height: 1.55 !important; margin: 0 }
+
+.tf-v { display: flex; flex-direction: column; gap: 8px; width: 100% }
+.tf-v-input { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 10px; color: #10022c; display: flex; font-size: 13px; font-weight: 700; gap: 6px; letter-spacing: .08em; padding: 7px 10px }
+.tf-v-input i { color: #8a8f9c }
+.tf-v-pres { display: grid; gap: 4px; grid-template-columns: repeat(7, 1fr) }
+.tf-v-pres i { animation: tf-scan 1.75s ease-in-out infinite; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 6px; color: #5b6475; font-size: 10.5px; font-style: normal; font-weight: 700; padding: 4px 0; text-align: center }
+@keyframes tf-scan { 0%, 100% { background: #fff; color: #5b6475 } 14% { background: #10b981; border-color: #10b981; color: #fff } 40% { background: #ecfdf5; color: #047857 } }
+
+.tf-v--speed { gap: 12px }
+.tf-v-track { background: #ece7e1; border-radius: 999px; height: 6px; overflow: hidden }
+.tf-v-track i { animation: tf-fill 3s ease-in-out infinite; background: linear-gradient(90deg, #fbbf24, #d97706); border-radius: inherit; display: block; height: 100%; transform-origin: left }
+@keyframes tf-fill { 0% { transform: scaleX(0) } 70%, 100% { transform: scaleX(1) } }
+.tf-v-marks { display: flex; justify-content: space-between }
+.tf-v-marks em { color: #8a8f9c; display: flex; flex-direction: column; font-size: 11px; font-style: normal; font-weight: 600 }
+.tf-v-marks em:nth-child(2) { align-items: center }
+.tf-v-marks em:last-child { align-items: flex-end }
+.tf-v-marks b { color: #10022c; font-size: 15px; font-variant-numeric: tabular-nums }
+
+.tf-v--cid { gap: 6px }
+.tf-v-call { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 12px; display: grid; gap: 0 10px; grid-template-columns: auto 1fr; padding: 7px 12px }
+.tf-v-call i { font-size: 20px; grid-row: span 2 }
+.tf-v-call b { color: #10022c; font-size: 13px }
+.tf-v-call em { color: #8a8f9c; font-size: 11px; font-style: normal }
+.tf-v-call.is-good i { color: #2563eb }
+.tf-v-call.is-bad { opacity: .55 }
+.tf-v-call.is-bad i { color: #dc2626 }
+.tf-v-call.is-bad b { text-decoration: line-through }
+
+.tf-v-bub { border-radius: 14px; font-size: 12.5px; line-height: 1.4; max-width: 80%; padding: 7px 11px }
+.tf-v-bub.is-in { align-self: flex-start; background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-bottom-left-radius: 4px; color: #10022c }
+.tf-v-bub.is-out { align-self: flex-end; background: linear-gradient(135deg, #14b8a6, #0d9488); border-bottom-right-radius: 4px; color: #fff }
+
+.tf-v--route { align-items: center; flex-direction: row; gap: 0; justify-content: center }
+.tf-v-src { align-items: center; background: #10022c; border-radius: 10px; color: #fff; display: inline-flex; font-size: 12px; font-weight: 700; gap: 4px; padding: 7px 10px }
+.tf-v-lines { display: flex; flex-direction: column; gap: 16px; width: 34px }
+.tf-v-lines i { border-top: 2px dashed #c4b5fd; display: block }
+.tf-v-lines i:first-child { transform: rotate(-24deg) translateY(4px) }
+.tf-v-lines i:last-child { transform: rotate(24deg) translateY(-4px) }
+.tf-v-dst { display: flex; flex-direction: column; gap: 5px }
+.tf-v-dst em { align-items: center; background: #fff; border: 1px solid rgba(124, 58, 237, .2); border-radius: 8px; color: #10022c; display: inline-flex; font-size: 11.5px; font-style: normal; font-weight: 600; gap: 4px; padding: 4px 9px }
+.tf-v-dst i { color: #7c3aed }
+
+.tf-v--port { align-items: center; display: grid; gap: 8px; grid-template-columns: 1fr auto 1fr }
+.tf-v-box { background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 10px; color: #8a8f9c; font-size: 12px; font-weight: 600; padding: 9px 6px; text-align: center }
+.tf-v-box.is-new { border-color: #10022c; color: #10022c }
+.tf-v-arrow { color: #64748b; font-size: 18px }
+.tf-v-live { align-items: center; color: #047857; display: inline-flex; font-size: 11.5px; font-style: normal; font-weight: 600; gap: 6px; grid-column: 1 / -1; justify-content: center }
+.tf-v-live i { animation: ivm-pulse 2s ease-in-out infinite; background: #22c55e; border-radius: 50%; height: 6px; width: 6px }
+
+/* ── Usage meter ──────────────────────────────────────────────────────── */
+.tf-use-sec { background: #fff }
+.tf-use { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) }
+body.design-v2 .lp .tf-use-copy .lp-intro { margin: 14px 0 0 }
+.tf-use-points { display: grid; gap: 10px 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; margin: 24px 0 0; padding: 0 }
+.tf-use-points li { align-items: flex-start; color: var(--lp-ink, #10022c); display: flex; font-size: 14.5px; font-weight: 500; gap: 8px; line-height: 1.4 }
+.tf-use-points i { align-items: center; background: #ecfdf5; border-radius: 50%; color: #059669; display: inline-flex; flex: none; font-size: 12px; height: 20px; justify-content: center; margin-top: 1px; width: 20px }
+
+.tf-meter { --m: #059669; background: #fbfaf9; border: 1px solid rgba(16, 2, 44, .08); border-radius: 24px; padding: 20px 22px 22px }
+.tf-meter--warn { --m: #d97706 }
+.tf-meter--over { --m: #dc2626 }
+.tf-meter-head { align-items: center; display: flex; justify-content: space-between; margin-bottom: 16px }
+.tf-meter-head span { align-items: center; color: #10022c; display: inline-flex; font-size: 13.5px; font-weight: 600; gap: 6px }
+.tf-meter-head span i { color: #059669 }
+.tf-meter-head em { background: #f1eeea; border-radius: 999px; color: #8a8f9c; font-size: 11px; font-style: normal; font-weight: 600; padding: 3px 9px }
+.tf-meter-body { align-items: center; display: grid; gap: 22px; grid-template-columns: 170px minmax(0, 1fr) }
+.tf-ring { height: 170px; position: relative; width: 170px }
+.tf-ring svg { height: 100%; width: 100% }
+.tf-ring-track { fill: none; stroke: #ece7e1; stroke-width: 12 }
+.tf-ring-fill { fill: none; stroke: var(--m); stroke-linecap: round; stroke-width: 12; transition: stroke-dasharray .25s ease, stroke .25s ease }
+.tf-ring-tick { fill: #fff; stroke: #c9c2ba; stroke-width: 2 }
+.tf-ring-tick.is-hit { fill: var(--m); stroke: #fff }
+.tf-ring-mid { align-items: center; display: flex; flex-direction: column; inset: 0; justify-content: center; position: absolute }
+.tf-ring-mid b { color: var(--m); font-size: 32px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: -.02em; line-height: 1; transition: color .25s ease }
+.tf-ring-mid span { color: #8a8f9c; font-size: 11.5px; font-variant-numeric: tabular-nums; margin-top: 4px }
+.tf-alerts { display: flex; flex-direction: column; gap: 6px; list-style: none; margin: 0; padding: 0 }
+.tf-alerts li { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 12px; color: #8a8f9c; display: flex; font-size: 13px; font-weight: 600; gap: 8px; padding: 8px 12px; transition: all .2s ease }
+.tf-alerts li em { font-size: 11.5px; font-style: normal; margin-left: auto }
+.tf-alerts li.is-hit { border-color: var(--m); color: #10022c }
+.tf-alerts li.is-hit i, .tf-alerts li.is-hit em { color: var(--m) }
+.tf-over { background: #fff; border: 1px dashed rgba(16, 2, 44, .14); border-radius: 12px; display: flex; flex-direction: column; margin-top: 8px; padding: 10px 12px }
+.tf-over span { color: #9a948e; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase }
+.tf-over b { color: #10022c; font-size: 17px; font-variant-numeric: tabular-nums }
+.tf-meter--over .tf-over b { color: #dc2626 }
+.tf-over em { color: #8a8f9c; font-size: 12px; font-style: normal }
+.tf-meter-slider { display: flex; flex-direction: column; gap: 6px; margin-top: 18px }
+.tf-meter-slider span { color: #8a8f9c; font-size: 12px; font-weight: 600 }
+.tf-meter-slider input { accent-color: var(--m); cursor: pointer; width: 100% }
+
+/* ── Use cases: number in context ─────────────────────────────────────── */
+.tf-uc { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+.tf-uc-card { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease }
+.tf-uc-card:hover { box-shadow: 0 24px 44px -32px rgba(16, 2, 44, .42); transform: translateY(-3px) }
+.tf-uc-ad { background: radial-gradient(100% 120% at 0% 0%, var(--t-bg), transparent 70%), #10022c; color: #fff; display: flex; flex-direction: column; gap: 2px; min-height: 128px; padding: 18px; position: relative }
+.tf-uc-ad::after { background: var(--t-fg); border-radius: 999px; bottom: 16px; content: ""; height: 3px; left: 18px; position: absolute; width: 28px }
+.tf-uc-where { color: rgba(255, 255, 255, .5); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; margin-bottom: auto; text-transform: uppercase }
+.tf-uc-call { color: rgba(255, 255, 255, .75); font-size: 12px; font-weight: 600; margin-top: 18px }
+.tf-uc-num { font-size: 19px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .03em; margin-bottom: 14px; white-space: nowrap }
+.tf-uc-body { padding: 16px 18px 20px }
+.tf-uc-ic { align-items: center; background: var(--t-bg); border: 1px solid var(--t-bd); border-radius: 10px; color: var(--t-fg); display: inline-flex; font-size: 16px; height: 34px; justify-content: center; margin-bottom: 10px; width: 34px }
+body.design-v2 .lp .tf-uc-title { color: var(--lp-ink, #10022c); font-size: 16px !important; font-weight: 600; line-height: 1.3 !important; margin: 0 0 4px }
+body.design-v2 .lp .tf-uc-text { color: var(--lp-muted, #5b6475); font-size: 13.5px !important; line-height: 1.5 !important; margin: 0 }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .tf-pre { gap: 10px; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 22px }
+    .tf-pre::before { display: none }
+    .tf-van { gap: 36px; grid-template-columns: minmax(0, 1fr) }
+    .tf-van-copy { text-align: center }
+    body.design-v2 .lp .tf-van-copy .lp-intro { margin: 14px auto 0 }
+    .tf-van-ex { justify-content: center }
+    .tf-bento { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .tf-use { gap: 32px; grid-template-columns: minmax(0, 1fr) }
+    .tf-uc { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 640px) {
+    .tf-pre { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .tf-pre-card { min-height: 0 }
+    .tf-van-word { font-size: 21px }
+    .tf-van-digits { font-size: 17px }
+    .tf-bento, .tf-uc { grid-template-columns: minmax(0, 1fr) }
+    .tf-use-points { grid-template-columns: minmax(0, 1fr) }
+    .tf-meter { padding: 16px }
+    .tf-meter-body { grid-template-columns: minmax(0, 1fr); justify-items: center }
+    .tf-meter-side { width: 100% }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tfm-steps li.is-run i, .tfm-live, .tf-v-pres i, .tf-v-track i, .tf-v-live i { animation: none }
+}
+
+/* Toll-free hero art (saguaro at dawn, teal sky): cream wash on the copy side. */
+.lp-hero-art[style*="desert-saguaro-dawn"] { background-position: 50% 60% }
+.lp-hero-art[style*="desert-saguaro-dawn"]::after {
+    background: linear-gradient(90deg, rgba(255, 248, 242, .94) 0%, rgba(255, 248, 242, .84) 36%, rgba(255, 248, 242, .35) 58%, rgba(255, 248, 242, .05) 76%)
+}
+@media (max-width: 1024px) {
+    .lp-hero-art[style*="desert-saguaro-dawn"]::after { background: linear-gradient(180deg, rgba(255, 248, 242, .92) 0%, rgba(255, 248, 242, .7) 55%, rgba(255, 248, 242, .3) 100%) }
+}
+
+/* Phones only: the four use-case cards sit two by two, with a shorter ad
+   panel and tighter type so the number still fits on one line. */
+@media (max-width: 640px) {
+    .tf-uc { gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .tf-uc-card { border-radius: 16px; min-width: 0 }
+    .tf-uc-ad { min-height: 96px; padding: 12px }
+    .tf-uc-ad::after { bottom: 10px; left: 12px; width: 22px }
+    .tf-uc-where { font-size: 9px; letter-spacing: .08em }
+    .tf-uc-call { font-size: 10.5px; margin-top: 12px }
+    .tf-uc-num { font-size: 13px; letter-spacing: .01em; margin-bottom: 10px }
+    .tf-uc-body { padding: 12px 12px 14px }
+    .tf-uc-ic { border-radius: 8px; font-size: 14px; height: 28px; margin-bottom: 8px; width: 28px }
+    body.design-v2 .lp .tf-uc-title { font-size: 14px !important }
+    body.design-v2 .lp .tf-uc-text { font-size: 12px !important; line-height: 1.45 !important }
+}
+
+/* Phones: a tidier usage card. The gauge sits beside the overflow summary,
+   the three alerts become a row of status tiles beneath, and the slider
+   closes the card — everything visible at a glance without a tall stack. */
+@media (max-width: 640px) {
+    .tf-meter { border-radius: 20px; padding: 14px 14px 16px }
+    .tf-meter-head { gap: 8px; margin-bottom: 12px }
+    .tf-meter-head span { font-size: 12.5px; line-height: 1.3; min-width: 0 }
+    .tf-meter-head em { flex: none; font-size: 10px; padding: 3px 8px }
+    .tf-meter-body {
+        align-items: center;
+        gap: 12px;
+        grid-template-areas: 'ring over' 'alerts alerts';
+        grid-template-columns: 124px minmax(0, 1fr);
+        justify-items: stretch
+    }
+    .tf-meter-side { display: contents }
+    .tf-ring { grid-area: ring; height: 124px; width: 124px }
+    .tf-ring-mid b { font-size: 25px }
+    .tf-ring-mid span { font-size: 9.5px; margin-top: 3px }
+    .tf-over { align-self: stretch; grid-area: over; justify-content: center; margin-top: 0; padding: 10px 12px }
+    .tf-over span { font-size: 9.5px }
+    .tf-over b { font-size: 16px; line-height: 1.25; margin-top: 2px }
+    .tf-over em { font-size: 11px; line-height: 1.35; margin-top: 2px }
+    .tf-alerts { display: grid; gap: 6px; grid-area: alerts; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+    .tf-alerts li {
+        align-items: center;
+        border-radius: 12px;
+        flex-direction: column;
+        font-size: 12px;
+        gap: 2px;
+        padding: 9px 6px 8px;
+        text-align: center
+    }
+    .tf-alerts li i { font-size: 15px }
+    .tf-alerts li em { font-size: 10.5px; margin-left: 0 }
+    .tf-alerts li.is-hit { background: color-mix(in srgb, var(--m) 8%, #fff) }
+    .tf-meter-slider { border-top: 1px solid rgba(16, 2, 44, .07); margin-top: 14px; padding-top: 12px }
+    .tf-meter-slider span { font-size: 11.5px }
+}
+
+/* Number list without scrolling: four rows at a time (fixed height), and a
+   pager strip under them — count, page dots, prev/next. Each page slides in. */
+.tfm-listbox { border: 1px solid var(--tfm-line); border-radius: 14px; overflow: hidden }
+.tfm-listbox .tfm-list { animation: tfm-page .3s cubic-bezier(.2, .8, .2, 1); border: 0; border-radius: 0; height: auto; min-height: 176px; overflow: visible }
+@keyframes tfm-page { from { opacity: 0; transform: translateX(10px) } to { opacity: 1; transform: none } }
+.tfm-pager { align-items: center; background: #faf8f5; border-top: 1px solid var(--tfm-line); display: flex; gap: 10px; padding: 6px 8px 6px 12px }
+.tfm-pager-count { color: var(--tfm-ink); font-size: 11.5px; font-variant-numeric: tabular-nums; font-weight: 700 }
+.tfm-pager-count em { color: #8a8f9c; font-style: normal; font-weight: 600 }
+.tfm-pager-dots { display: inline-flex; gap: 4px; margin: 0 auto }
+.tfm-pager-dots i { background: #ddd6ce; border-radius: 999px; height: 5px; transition: all .25s ease; width: 5px }
+.tfm-pager-dots i.is-on { background: var(--tfm-acc); width: 16px }
+.tfm-pager-btns { display: inline-flex; gap: 4px }
+.tfm-pager-btns button { align-items: center; background: #fff; border: 1px solid var(--tfm-line); border-radius: 8px; color: var(--tfm-ink); display: inline-flex; font-size: 16px; height: 26px; justify-content: center; padding: 0; transition: all .15s ease; width: 26px }
+.tfm-pager-btns button:hover:not(:disabled) { background: #ecfdf5; border-color: rgba(5, 150, 105, .4); color: var(--tfm-acc) }
+.tfm-pager-btns button:disabled { color: #c9c2ba; cursor: default }
+@media (prefers-reduced-motion: reduce) { .tfm-listbox .tfm-list { animation: none } }
+@media (max-width: 560px) { .tfm-listbox .tfm-list { min-height: 180px } }
+
+/* Pager turns itself every 3s: no buttons. The current page's dot is a
+   short track that fills over the 3s; earlier pages stay solid. */
+.tfm-pager { justify-content: space-between; padding: 8px 12px }
+.tfm-pager-dots { margin: 0 }
+.tfm-pager-dots i { overflow: hidden; position: relative }
+.tfm-pager-dots i.is-on { background: rgba(5, 150, 105, .22); width: 22px }
+.tfm-pager-dots i.is-done { background: rgba(5, 150, 105, .55) }
+.tfm-pager-dots i b {
+    animation: psm-progress 3s linear forwards;
+    background: var(--tfm-acc);
+    border-radius: inherit;
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left
+}
+.tfm-pager-dots i.is-on:not(:has(b)) { background: var(--tfm-acc) }
+
+/* ── Hero mock as transparent glass (as on the Unified Communication, Hosted
+   Phone System, Team Chat and SMS heroes) ──────────────────────────────────
+   Mostly see-through shell with a strong blur so the landscape shows
+   through; search, chips, results and pager become lighter frosted layers
+   with white hairlines; status chips turn translucent. */
+.lp-hero--toll-free .tfm {
+    --tfm-line: rgba(255, 255, 255, .55);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    backdrop-filter: blur(24px) saturate(165%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, .16));
+    border: 1px solid rgba(255, 255, 255, .55);
+    box-shadow: 0 44px 90px -40px rgba(15, 23, 42, .6), inset 0 1px 0 rgba(255, 255, 255, .8), inset 0 0 0 1px rgba(255, 255, 255, .12);
+    position: relative
+}
+.lp-hero--toll-free .tfm::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), transparent);
+    content: "";
+    height: 1px;
+    left: 12%;
+    pointer-events: none;
+    position: absolute;
+    right: 12%;
+    top: 0
+}
+.lp-hero--toll-free .tfm-meta { background: rgba(236, 253, 245, .6); border: 1px solid rgba(255, 255, 255, .6) }
+.lp-hero--toll-free .tfm-search { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); background: rgba(255, 255, 255, .62); border-color: rgba(255, 255, 255, .75) }
+.lp-hero--toll-free .tfm-search em { background: rgba(245, 243, 255, .75) }
+.lp-hero--toll-free .tfm-chips button:not(.is-on) { background: rgba(255, 255, 255, .42); border-color: rgba(255, 255, 255, .55) }
+.lp-hero--toll-free .tfm-chips button.is-on { background: #1a1a1a }
+.lp-hero--toll-free .tfm-listbox, .lp-hero--toll-free .tfm-list { background: rgba(255, 255, 255, .3); border-color: rgba(255, 255, 255, .6) }
+.lp-hero--toll-free .tfm-listbox .tfm-list { background: transparent }
+.lp-hero--toll-free .tfm-row:hover:not(:disabled) { background: rgba(255, 255, 255, .45) }
+.lp-hero--toll-free .tfm-row.is-on { background: rgba(236, 253, 245, .7) }
+.lp-hero--toll-free .tfm-pick, .lp-hero--toll-free .tfm-pager-btns button { background: rgba(255, 255, 255, .78); border-color: rgba(255, 255, 255, .85) }
+.lp-hero--toll-free .tfm-pager { background: rgba(255, 255, 255, .32); border-top-color: rgba(255, 255, 255, .55) }
+.lp-hero--toll-free .tfm-go:disabled { background: rgba(255, 255, 255, .45); color: #78716c }
+.lp-hero--toll-free .tfm-live-tags li { background: rgba(255, 255, 255, .6); border-color: rgba(255, 255, 255, .75) }
+/* No page dots in the pager — just the "1–4 of 10" count. */
+.tfm-pager-dots { display: none !important }

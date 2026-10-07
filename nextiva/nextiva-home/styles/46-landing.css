@@ -1,0 +1,1963 @@
+/* ── Features & Solutions pages (components/landing/LandingPage.jsx) ─────── */
+/* Scoped under `.lp`. The pages keep their own layout and components; the
+   background theme is the home page's — the hero sits on the home aurora
+   (pastel gradient, cloud crest, snow; drawn by the home
+   .section-hero--aurora rules) and the sections alternate the home cream
+   and white grounds. Headings take their size from the global scale in
+   39-typography-unified.css; small UI text avoids <p> so it is not inflated
+   to the 18px prose size. */
+
+.lp {
+    --lp-ink: #10022c;
+    --lp-muted: #5b6475;
+    --lp-line: rgba(16, 2, 44, .09);
+    --lp-card: #fff;
+    --lp-tint: #fff;
+    background: var(--brand-cream, #f8f8f6);
+    color: var(--lp-ink);
+    font-family: var(--font-body, 'Space Grotesk', sans-serif);
+    overflow-x: clip
+}
+
+.lp-wrap {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 clamp(20px, 4vw, 40px)
+}
+
+/* ── Tones (shared by icon tiles) ─────────────────────────────────────── */
+.lp-tone--blue { --t-fg: #2563eb; --t-bg: #eff6ff; --t-bd: #dbeafe }
+.lp-tone--violet { --t-fg: #7c3aed; --t-bg: #f5f3ff; --t-bd: #ede9fe }
+.lp-tone--teal { --t-fg: #0d9488; --t-bg: #f0fdfa; --t-bd: #ccfbf1 }
+.lp-tone--amber { --t-fg: #d97706; --t-bg: #fffbeb; --t-bd: #fde68a }
+.lp-tone--green { --t-fg: #16a34a; --t-bg: #f0fdf4; --t-bd: #bbf7d0 }
+.lp-tone--rose { --t-fg: #e11d48; --t-bg: #fff1f2; --t-bd: #fecdd3 }
+.lp-tone--slate { --t-fg: #334155; --t-bg: #f1f5f9; --t-bd: #e2e8f0 }
+
+.lp-ic {
+    align-items: center;
+    background: var(--t-bg, #f1f5f9);
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px var(--t-bd, #e2e8f0);
+    color: var(--t-fg, #334155);
+    display: inline-flex;
+    flex: none;
+    font-size: 20px;
+    height: 44px;
+    justify-content: center;
+    width: 44px
+}
+
+/* ── Hero on the home aurora background ───────────────────────────────── */
+/* The aurora, cloud and snow layers are positioned absolutely by the home
+   rules; the hero only needs to be their positioning context and to size to
+   its own content instead of the home hero's full viewport. */
+.lp-hero {
+    overflow: hidden;
+    padding: 150px 0 96px;
+    position: relative
+}
+
+.design-v2 .lp-hero.section-hero--aurora {
+    min-height: 0
+}
+
+/* Clouds crest along the lower part of the hero, behind the panel — the copy
+   sits on the plain pastel gradient, as on the home page. */
+.design-v2 .lp-hero.section-hero--aurora .hero-clouds {
+    background-position: 50% 0;
+    background-size: cover;
+    height: 52%;
+    inset: auto 0 0 0
+}
+
+.lp-hero > .lp-wrap {
+    position: relative;
+    z-index: 2
+}
+
+.lp-hero-grid {
+    align-items: center;
+    display: grid;
+    gap: 56px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr)
+}
+
+.lp-crumbs {
+    align-items: center;
+    color: var(--lp-muted);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    gap: 8px;
+    margin-bottom: 22px
+}
+
+.lp-crumbs a {
+    color: var(--lp-muted);
+    text-decoration: none
+}
+
+.lp-crumbs a:hover { color: var(--lp-ink) }
+.lp-crumbs [aria-current] { color: var(--lp-ink); font-weight: 500 }
+
+/* Hero eyebrow — the home page's orange icon pill (.arf-eyebrow, e.g.
+   "AI RECEPTIONIST"). */
+.lp-eyebrow {
+    align-items: center;
+    background: rgba(249, 115, 22, .1);
+    border: 1px solid rgba(249, 115, 22, .22);
+    border-radius: 999px;
+    color: #c2410c;
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 700;
+    gap: 7px;
+    letter-spacing: .06em;
+    padding: 7px 15px;
+    text-transform: uppercase
+}
+
+.lp-eyebrow i { color: #c2410c; font-size: 15px }
+
+body.design-v2 .lp .lp-title {
+    color: var(--lp-ink);
+    margin: 20px 0 18px;
+    max-width: 16ch
+}
+
+body.design-v2 .lp .lp-lede {
+    color: var(--lp-muted);
+    margin: 0 0 30px;
+    max-width: 560px
+}
+
+.lp-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px
+}
+
+.lp-btn {
+    align-items: center;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 15px;
+    font-weight: 600;
+    gap: 8px;
+    justify-content: center;
+    padding: 13px 24px;
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease
+}
+
+.lp-btn--solid { background: #1a1a1a; color: #fff }
+.lp-btn--solid:hover { background: #333; transform: translateY(-1px) }
+.lp-btn--ghost { background: #fff; box-shadow: inset 0 0 0 1px rgba(16, 2, 44, .16); color: var(--lp-ink) }
+.lp-btn--ghost:hover { box-shadow: inset 0 0 0 1px rgba(16, 2, 44, .34) }
+.lp-btn--light { background: #fff; color: #10022c }
+.lp-btn--light:hover { transform: translateY(-1px) }
+.lp-btn--outline { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .4); color: #fff }
+.lp-btn--outline:hover { background: rgba(255, 255, 255, .08) }
+
+.lp-ticks {
+    color: var(--lp-muted);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    gap: 8px 20px;
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0
+}
+
+.lp-ticks li { align-items: center; display: flex; gap: 6px }
+.lp-ticks i { color: #16a34a; font-size: 16px }
+
+/* Hero visual: a product-style panel with floating stats. */
+.lp-hero-visual {
+    position: relative
+}
+
+.lp-panel {
+    background: rgba(255, 255, 255, .86);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, .9);
+    border-radius: 22px;
+    box-shadow: 0 30px 70px -30px rgba(16, 2, 44, .35), 0 0 0 1px var(--lp-line);
+    padding: 18px
+}
+
+.lp-panel-head {
+    align-items: center;
+    border-bottom: 1px solid var(--lp-line);
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 2px 4px 14px
+}
+
+.lp-dots { display: flex; gap: 5px }
+.lp-dots i { background: #e2e5ea; border-radius: 50%; display: block; height: 9px; width: 9px }
+.lp-dots i:first-child { background: #f87171 }
+.lp-dots i:nth-child(2) { background: #fbbf24 }
+.lp-dots i:nth-child(3) { background: #34d399 }
+
+.lp-panel-title {
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 7px
+}
+
+.lp-panel-title i { color: #7c3aed }
+
+.lp-live {
+    background: #dcfce7;
+    border-radius: 999px;
+    color: #15803d;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: auto;
+    padding: 3px 9px
+}
+
+.lp-panel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.lp-panel-list li {
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--lp-line);
+    border-radius: 14px;
+    display: flex;
+    gap: 12px;
+    padding: 11px 12px
+}
+
+.lp-panel-list .lp-ic { border-radius: 10px; font-size: 17px; height: 38px; width: 38px }
+.lp-panel-list li > span:not(.lp-ic) { display: flex; flex: 1; flex-direction: column; min-width: 0 }
+.lp-panel-list b { font-size: 14px; font-weight: 600 }
+.lp-panel-list em { color: var(--lp-muted); font-size: 12.5px; font-style: normal }
+.lp-ok { color: #16a34a; font-size: 18px }
+
+.lp-float {
+    background: #10022c;
+    border-radius: 16px;
+    box-shadow: 0 18px 40px -16px rgba(16, 2, 44, .55);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 16px;
+    position: absolute
+}
+
+.lp-float b { font-family: 'Fraunces', Georgia, serif; font-size: 24px; font-weight: 500; line-height: 1.1 }
+.lp-float span { font-size: 12px; opacity: .75 }
+.lp-float--a { left: -26px; top: -22px }
+.lp-float--b { background: #fff; bottom: -24px; color: var(--lp-ink); right: -18px }
+.lp-float--b span { color: var(--lp-muted); opacity: 1 }
+
+/* ── Stats strip ──────────────────────────────────────────────────────── */
+.lp-stats { padding: 40px 0 24px }
+
+.lp-stats-grid {
+    background: #fff;
+    border: 1px solid var(--lp-line);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden
+}
+
+.lp-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 26px 24px
+}
+
+.lp-stat + .lp-stat { border-left: 1px solid var(--lp-line) }
+
+.lp-stat b {
+    color: var(--lp-ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(26px, 2.6vw, 34px);
+    font-weight: 500;
+    line-height: 1.05
+}
+
+.lp-stat span { color: var(--lp-muted); font-size: 14px; line-height: 1.4 }
+
+/* ── Sections (home cream / white grounds) ────────────────────────────── */
+.lp-section { padding: 88px 0 }
+.lp-section--tint { background: var(--lp-tint) }
+
+.lp-head {
+    margin: 0 auto 44px;
+    max-width: 720px;
+    text-align: center
+}
+
+/* Section kicker — the home page's grey badge (.platform-badge, e.g.
+   "NEW FROM UCAAS"). */
+.lp-kicker {
+    background: rgba(0, 0, 0, .06);
+    border-radius: 4px;
+    color: var(--text-secondary, #5b5b5b);
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-caption, 13px);
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    text-transform: uppercase
+}
+
+body.design-v2 .lp .lp-h2 { color: var(--lp-ink); margin: 0 }
+
+body.design-v2 .lp .lp-intro {
+    color: var(--lp-muted);
+    font-size: 17px !important;
+    margin: 14px auto 0;
+    max-width: 600px
+}
+
+/* Capability cards */
+.lp-cards {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+
+.lp-card {
+    background: var(--lp-card);
+    border: 1px solid var(--lp-line);
+    border-radius: 20px;
+    padding: 28px;
+    transition: box-shadow .3s ease, transform .3s ease
+}
+
+.lp-card:hover {
+    box-shadow: 0 22px 44px -26px rgba(16, 2, 44, .3);
+    transform: translateY(-3px)
+}
+
+body.design-v2 .lp .lp-card-title {
+    font-size: 19px !important;
+    line-height: 1.3 !important;
+    margin: 18px 0 8px
+}
+
+.lp-card-text {
+    color: var(--lp-muted);
+    font-size: 15px;
+    line-height: 1.6
+}
+
+/* Steps */
+.lp-steps {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.lp-step {
+    background: var(--brand-cream, #f8f8f6);
+    border: 1px solid var(--lp-line);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative
+}
+
+.lp-step-n {
+    color: #7c3aed;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 30px;
+    font-weight: 500
+}
+
+.lp-step .lp-card-title { margin-top: 10px }
+
+/* Challenge → answer pairs */
+.lp-pairs {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
+.lp-pair {
+    background: var(--brand-cream, #f8f8f6);
+    border: 1px solid var(--lp-line);
+    border-radius: 18px;
+    overflow: hidden
+}
+
+.lp-pair-problem,
+.lp-pair-answer {
+    align-items: flex-start;
+    display: flex;
+    font-size: 15px;
+    gap: 10px;
+    line-height: 1.5;
+    padding: 16px 20px
+}
+
+.lp-pair-problem { color: var(--lp-muted) }
+.lp-pair-problem i { color: #e11d48; font-size: 18px; margin-top: 1px }
+
+.lp-pair-answer {
+    background: #f3faf5;
+    border-top: 1px dashed var(--lp-line);
+    color: var(--lp-ink);
+    font-weight: 500
+}
+
+.lp-pair-answer i { color: #16a34a; font-size: 18px; margin-top: 1px }
+
+/* Audience split */
+.lp-split {
+    align-items: center;
+    display: grid;
+    gap: 56px;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr)
+}
+
+.lp-split .lp-head { margin: 0; text-align: left }
+body.design-v2 .lp .lp-split .lp-intro { margin-left: 0 }
+
+.lp-audience {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.lp-audience li {
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--lp-line);
+    border-radius: 18px;
+    display: flex;
+    gap: 14px;
+    padding: 18px
+}
+
+.lp-audience li > span:not(.lp-ic) { display: flex; flex-direction: column; gap: 4px }
+.lp-audience b { font-size: 16px; font-weight: 600 }
+.lp-audience em { color: var(--lp-muted); font-size: 14px; font-style: normal; line-height: 1.5 }
+
+/* Related / hub cards */
+/* ── Works with (Related) ─────────────────────────────────────────────── */
+.lp-ww-sec { padding: 72px 0 }
+.lp-ww { align-items: stretch; background: linear-gradient(135deg, #fffaf4 0%, #ffffff 55%, #f6f4ff 100%); border: 1px solid rgba(16, 2, 44, .08); border-radius: 28px; box-shadow: 0 34px 70px -56px rgba(30, 41, 79, .55); display: grid; gap: 36px; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); padding: 40px }
+.lp-ww-intro { display: flex; flex-direction: column; gap: 12px }
+.lp-ww-intro .lp-kicker { align-self: flex-start }
+body.design-v2 .lp .lp-ww-title { margin: 0; text-align: left }
+body.design-v2 .lp .lp-ww-text { color: var(--lp-muted, #5b6475); font-size: 15px !important; line-height: 1.6 !important; margin: 0; max-width: 400px }
+.lp-ww-hub { align-items: center; display: flex; gap: 10px; margin-top: auto; padding-top: 18px }
+.lp-ww-hub-core { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 999px; box-shadow: 0 10px 22px -16px rgba(16, 2, 44, .4); display: inline-flex; gap: 8px; padding: 5px 14px 5px 5px }
+.lp-ww-hub-core .lp-ic { border-radius: 50%; font-size: 15px; height: 32px; width: 32px }
+.lp-ww-hub-core b { color: #10022c; font-size: 13.5px; font-weight: 600; white-space: nowrap }
+.lp-ww-hub-lines { display: flex; flex-direction: column; gap: 4px; width: 34px }
+.lp-ww-hub-lines i { background: linear-gradient(90deg, rgba(124, 58, 237, .5), rgba(124, 58, 237, .08)); border-radius: 2px; height: 2px }
+.lp-ww-hub-n { color: #7c3aed; font-size: 12.5px; font-weight: 700; white-space: nowrap }
+.lp-ww-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)) }
+.lp-ww-card { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 18px; color: inherit; display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 16px; text-decoration: none; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease }
+.lp-ww-card:hover { border-color: var(--t-bd, rgba(124, 58, 237, .35)); box-shadow: 0 22px 40px -30px rgba(16, 2, 44, .45); transform: translateY(-3px) }
+.lp-ww-card-top { align-items: flex-start; display: flex; justify-content: space-between; margin-bottom: 6px }
+.lp-ww-arrow { color: #cbd5e1; font-size: 18px; transition: color .2s ease, transform .2s ease }
+.lp-ww-card:hover .lp-ww-arrow { color: #7c3aed; transform: translate(2px, -2px) }
+.lp-ww-card b { color: #10022c; font-size: 15.5px; font-weight: 600 }
+.lp-ww-card em { color: var(--lp-muted, #5b6475); font-size: 13.5px; font-style: normal; line-height: 1.45 }
+.lp-ww-more { align-items: center; border-top: 1px dashed rgba(16, 2, 44, .1); color: #7c3aed; display: inline-flex; font-size: 12.5px; font-weight: 700; gap: 4px; margin-top: auto; padding-top: 10px }
+.lp-ww-more::after { content: "→"; transition: transform .2s ease }
+.lp-ww-card:hover .lp-ww-more::after { transform: translateX(3px) }
+.lp-ww-card:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px }
+@media (max-width: 1024px) {
+    .lp-ww { gap: 24px; grid-template-columns: minmax(0, 1fr); padding: 28px }
+    .lp-ww-hub { margin-top: 4px; padding-top: 4px }
+}
+@media (max-width: 640px) {
+    .lp-ww-sec { padding: 48px 0 }
+    .lp-ww { padding: 20px 14px; border-radius: 22px }
+    .lp-ww-intro { padding: 0 6px }
+    .lp-ww-hub-n { display: none }
+    /* Cards two by two: a smaller icon, tighter type and padding so each
+       half-width card still reads cleanly. */
+    .lp-ww-grid { gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .lp-ww-card { border-radius: 14px; gap: 4px; padding: 12px 12px 10px }
+    .lp-ww-card-top { margin-bottom: 4px }
+    .lp-ww-card .lp-ic { border-radius: 10px; font-size: 16px; height: 34px; width: 34px }
+    .lp-ww-arrow { font-size: 15px }
+    body.design-v2 .lp .lp-ww-card b { font-size: 13.5px !important; line-height: 1.3 !important }
+    body.design-v2 .lp .lp-ww-card em { font-size: 12px !important; line-height: 1.4 !important }
+    body.design-v2 .lp .lp-ww-more { font-size: 12px !important; padding-top: 8px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .lp-ww-card, .lp-ww-arrow, .lp-ww-more::after { transition: none }
+}
+
+.lp-related {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr))
+}
+
+.lp-related--hub { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+
+.lp-related-card {
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--lp-line);
+    border-radius: 18px;
+    color: var(--lp-ink);
+    display: flex;
+    gap: 14px;
+    padding: 18px;
+    position: relative;
+    text-decoration: none;
+    transition: border-color .2s ease, box-shadow .25s ease, transform .25s ease
+}
+
+.lp-section--tint .lp-related-card { background: var(--brand-cream, #f8f8f6) }
+
+.lp-related-card:hover {
+    border-color: rgba(124, 58, 237, .35);
+    box-shadow: 0 18px 36px -24px rgba(16, 2, 44, .35);
+    transform: translateY(-2px)
+}
+
+.lp-related-card > span:not(.lp-ic) { display: flex; flex-direction: column; gap: 4px; padding-right: 18px }
+.lp-related-card b { font-size: 15.5px; font-weight: 600 }
+.lp-related-card em { color: var(--lp-muted); font-size: 13.5px; font-style: normal; line-height: 1.45 }
+
+.lp-related-arrow {
+    color: #94a3b8;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    transition: color .2s ease, transform .2s ease
+}
+
+.lp-related-card:hover .lp-related-arrow { color: #7c3aed; transform: translate(2px, -2px) }
+
+/* FAQ */
+.lp-faq-wrap { max-width: 860px }
+
+.lp-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.lp-faq-item {
+    background: #fff;
+    border: 1px solid var(--lp-line);
+    border-radius: 16px;
+    transition: box-shadow .2s ease
+}
+
+.lp-faq-item.is-open { border-color: rgba(16, 2, 44, .1); box-shadow: 0 18px 36px -26px rgba(16, 2, 44, .38) }
+
+.lp-faq-q {
+    align-items: center;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    gap: 16px;
+    justify-content: space-between;
+    padding: 20px 22px;
+    text-align: left;
+    width: 100%
+}
+
+.lp-faq-q:focus-visible { border-radius: 16px; outline: 2px solid #ea580c; outline-offset: -2px }
+
+.lp-faq-q i {
+    align-items: center;
+    background: #f4f5f8;
+    border-radius: 50%;
+    display: inline-flex;
+    flex: none;
+    font-size: 18px;
+    height: 30px;
+    justify-content: center;
+    transition: transform .4s cubic-bezier(.2, .8, .2, 1), background .25s ease, color .25s ease;
+    width: 30px
+}
+
+.lp-faq-q:hover i { background: #e9eaf0 }
+.lp-faq-item.is-open .lp-faq-q i { background: #10022c; color: #fff; transform: rotate(135deg) }
+
+/* Smooth open/close: the panel's single grid row animates 0fr ↔ 1fr, which
+   eases to the answer's real height whatever its length. */
+.lp-faq-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .45s cubic-bezier(.2, .8, .2, 1)
+}
+.lp-faq-item.is-open .lp-faq-panel { grid-template-rows: 1fr }
+.lp-faq-inner { min-height: 0; overflow: hidden }
+
+.lp-faq-a {
+    color: var(--lp-muted);
+    font-size: 15.5px;
+    line-height: 1.65;
+    opacity: 0;
+    padding: 0 22px 22px;
+    transform: translateY(-6px);
+    transition: opacity .3s ease, transform .4s cubic-bezier(.2, .8, .2, 1)
+}
+.lp-faq-item.is-open .lp-faq-a { opacity: 1; transform: none; transition-delay: .08s }
+
+/* Closing CTA — fluid marbled card with a live call card (see ClosingCta) */
+.lp-cta-wrap { padding: 24px 0 104px }
+
+.lp-cta {
+    align-items: center;
+    background: #12032e;
+    border-radius: 28px;
+    box-shadow:
+        0 40px 80px -40px rgba(194, 65, 12, .6),
+        0 16px 34px -20px rgba(16, 2, 44, .4),
+        inset 0 0 0 1px rgba(255, 255, 255, .08);
+    color: #fff;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+    isolation: isolate;
+    overflow: hidden;
+    padding: 60px 64px;
+    position: relative
+}
+
+.lp-cta-bg {
+    animation: lp-cta-drift 26s ease-in-out infinite alternate;
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    transform-origin: 60% 50%;
+    width: 100%;
+    will-change: transform;
+    z-index: -3
+}
+@keyframes lp-cta-drift {
+    from { transform: scale(1.12) translate(0, 0) }
+    to { transform: scale(1.22) translate(-3%, 2%) }
+}
+
+/* Live WebGL fluid (CtaFluidCanvas) over the static SVG marbling; fades in
+   once its first frame is drawn. */
+.lp-cta-canvas {
+    height: 100%;
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+    transition: opacity .8s ease;
+    width: 100%;
+    z-index: -3
+}
+.lp-cta-canvas.is-ready { opacity: 1 }
+
+/* Scrim: deep under the copy, opening up towards the call card. */
+.lp-cta::before {
+    background:
+        linear-gradient(90deg, rgba(16, 2, 44, .86) 0%, rgba(16, 2, 44, .6) 45%, rgba(16, 2, 44, .18) 80%, rgba(16, 2, 44, .05) 100%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: -2
+}
+
+/* Fine film grain so the gradient never looks flat or banded. */
+.lp-cta-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    inset: 0;
+    mix-blend-mode: overlay;
+    opacity: .35;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1
+}
+
+/* A soft light sheen sweeps across every few seconds. */
+.lp-cta::after {
+    animation: lp-cta-sheen 9s ease-in-out infinite;
+    background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .09) 50%, transparent 65%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(-100%)
+}
+@keyframes lp-cta-sheen {
+    0%, 55% { transform: translateX(-100%) }
+    80%, 100% { transform: translateX(100%) }
+}
+
+/* Copy */
+.lp-cta-copy { max-width: 600px; position: relative }
+.lp-cta-eyebrow {
+    align-items: center;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, .9);
+    display: inline-flex;
+    font-size: 12.5px;
+    font-weight: 600;
+    gap: 8px;
+    letter-spacing: .04em;
+    margin-bottom: 18px;
+    padding: 6px 12px
+}
+.lp-cta-eyebrow i { background: #fb923c; border-radius: 50%; box-shadow: 0 0 0 3px rgba(251, 146, 60, .25); height: 7px; width: 7px }
+body.design-v2 .lp .lp-cta-title { color: #fff; letter-spacing: -.015em; max-width: 560px }
+.lp-cta-text {
+    color: rgba(255, 255, 255, .8);
+    font-size: 17px;
+    line-height: 1.65;
+    margin-top: 14px;
+    max-width: 520px
+}
+
+.lp-cta .lp-actions { gap: 12px; margin-top: 30px }
+.lp-cta-btn {
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    color: #10022c;
+    font-size: 15.5px;
+    font-weight: 600;
+    gap: 8px;
+    padding: 14px 26px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease
+}
+.lp-cta-btn i { color: #ea580c; transition: transform .2s ease }
+.lp-cta-btn:hover { box-shadow: 0 14px 30px -12px rgba(234, 88, 12, .6); transform: translateY(-2px) }
+.lp-cta-btn:hover .ri-arrow-right-line { transform: translateX(3px) }
+.lp-cta-btn--glass {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .28);
+    color: #fff
+}
+.lp-cta-btn--glass i { color: #fdba74 }
+.lp-cta-btn--glass:hover { background: rgba(255, 255, 255, .14); box-shadow: none }
+
+.lp-cta-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    list-style: none;
+    margin: 26px 0 0;
+    padding: 0
+}
+.lp-cta-trust li { align-items: center; color: rgba(255, 255, 255, .72); display: flex; font-size: 13.5px; gap: 7px }
+.lp-cta-trust i {
+    align-items: center;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 50%;
+    color: #fdba74;
+    display: inline-flex;
+    font-size: 11px;
+    height: 18px;
+    justify-content: center;
+    width: 18px
+}
+
+
+
+
+@media (max-width: 1100px) {
+    .lp-cta { grid-template-columns: minmax(0, 1fr) 300px; padding: 52px 44px }
+}
+@media (max-width: 900px) {
+    .lp-cta { grid-template-columns: minmax(0, 1fr); padding: 44px 36px 48px }
+    .lp-cta::before { background: linear-gradient(180deg, rgba(16, 2, 44, .82), rgba(16, 2, 44, .45)) }
+}
+@media (max-width: 640px) {
+    .lp-cta { border-radius: 22px; padding: 34px 22px 36px }
+    .lp-cta-text { font-size: 15.5px }
+    .lp-cta .lp-actions { align-items: stretch; flex-direction: column; width: 100% }
+    .lp-cta-btn { justify-content: center; width: 100% }
+    .lp-cta-trust { gap: 8px 16px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .lp-cta-bg, .lp-cta::after { animation: none }
+    .lp-cta-bg { transform: scale(1.12) }
+    .lp-cta::after { display: none }
+}
+
+/* Hub hero */
+.lp-hero--hub { padding-bottom: 140px }
+.lp-hero-copy--center { margin: 0 auto; max-width: 780px; text-align: center }
+body.design-v2 .lp .lp-hero-copy--center .lp-title { margin-left: auto; margin-right: auto; max-width: 20ch }
+body.design-v2 .lp .lp-hero-copy--center .lp-lede { margin-left: auto; margin-right: auto }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .lp-hero-grid { gap: 48px; grid-template-columns: minmax(0, 1fr) }
+    .lp-hero-visual { margin: 0 auto; max-width: 520px; width: 100% }
+    .design-v2 .lp-hero.section-hero--aurora .hero-clouds { height: 42% }
+    .lp-cards, .lp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .lp-related { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .lp-related--hub { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .lp-split { gap: 32px; grid-template-columns: minmax(0, 1fr) }
+    .lp-split .lp-head { text-align: center }
+    body.design-v2 .lp .lp-split .lp-intro { margin-left: auto }
+    .lp-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .lp-stat:nth-child(3) { border-left: 0 }
+    .lp-stat:nth-child(n+3) { border-top: 1px solid var(--lp-line) }
+}
+
+@media (max-width: 640px) {
+    .lp-hero { padding: 112px 0 72px }
+    body.design-v2 .lp .lp-title { max-width: none }
+    .lp-float--a { left: -6px; top: -18px }
+    .lp-float--b { bottom: -18px; right: -6px }
+    .lp-float b { font-size: 20px }
+    .lp-section { padding: 64px 0 }
+    .lp-head { margin-bottom: 32px }
+    .lp-cards, .lp-steps, .lp-pairs, .lp-audience, .lp-related, .lp-related--hub { grid-template-columns: minmax(0, 1fr) }
+    .lp-card, .lp-step { padding: 22px }
+    .lp-stat { padding: 20px 16px }
+    .lp-cta .lp-actions { width: 100% }
+    .lp-actions .lp-btn { flex: 1 1 auto }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lp-card, .lp-btn, .lp-related-card, .lp-faq-q i, .lp-faq-panel, .lp-faq-a { transition: none }
+}
+
+/* Grey badge variant of the hero eyebrow — the home page's .platform-badge
+   look (e.g. "NEW FROM UCAAS"). A page opts in with eyebrowStyle: 'badge'. */
+.lp-eyebrow.lp-eyebrow--badge {
+    background: rgba(0, 0, 0, .06);
+    border: 0;
+    border-radius: 4px;
+    color: var(--text-secondary, #5b5b5b);
+    font-size: var(--text-caption, 12px);
+    font-weight: 600;
+    gap: 8px;
+    letter-spacing: .08em;
+    padding: 8px 14px
+}
+
+.lp-eyebrow.lp-eyebrow--badge i {
+    color: var(--text-secondary, #5b5b5b);
+    font-size: 14px
+}
+
+/* Per-page hero artwork (heroArt in content/landingPages.js): a full-bleed
+   painting in place of the cloud crest — e.g. the orange dawn mountains on
+   Hosted Phone System. Anchored low so the ridge line sits under the panel,
+   with a soft warm wash on the left so the headline and copy stay crisp. */
+.lp-hero-art {
+    background-position: 50% 78%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    inset: 0;
+    position: absolute;
+    z-index: 1
+}
+
+.lp-hero-art::after {
+    background: linear-gradient(90deg,
+        rgba(255, 246, 236, .72) 0%,
+        rgba(255, 246, 236, .45) 38%,
+        rgba(255, 246, 236, 0) 62%);
+    content: "";
+    inset: 0;
+    position: absolute
+}
+
+@media (max-width: 1024px) {
+    .lp-hero-art::after {
+        background: linear-gradient(180deg, rgba(255, 246, 236, .7) 0%, rgba(255, 246, 236, .35) 55%, rgba(255, 246, 236, 0) 100%)
+    }
+}
+
+/* ── Integrated hero panel (panelStyle: 'integrated') ──────────────────────
+   Warm glass to sit on the orange dawn art: frosted white with a soft amber
+   edge and a deep, warm shadow. The header gets a dark icon tile, the rows
+   tighten, and the two headline stats move into a footer bar inside the
+   panel instead of floating over its corners. */
+.lp-hero-visual--integrated .lp-panel {
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    background: rgba(255, 252, 248, .78);
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 24px;
+    box-shadow:
+        0 0 0 1px rgba(194, 65, 12, .08),
+        0 40px 80px -36px rgba(124, 45, 18, .45),
+        inset 0 1px 0 rgba(255, 255, 255, .9);
+    padding: 20px
+}
+
+.lp-hero-visual--integrated .lp-panel-head {
+    border-bottom-color: rgba(16, 2, 44, .07);
+    padding: 2px 4px 16px
+}
+
+.lp-hero-visual--integrated .lp-panel-title {
+    font-size: 15px;
+    gap: 10px;
+    margin-left: 4px
+}
+
+.lp-panel-badge {
+    align-items: center;
+    background: #1a1a1a;
+    border-radius: 9px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 14px;
+    height: 28px;
+    justify-content: center;
+    width: 28px
+}
+
+.lp-panel-badge i { color: #fff }
+
+.lp-hero-visual--integrated .lp-panel-list { gap: 10px }
+
+.lp-hero-visual--integrated .lp-panel-list li {
+    border-color: rgba(16, 2, 44, .06);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(16, 2, 44, .04);
+    padding: 12px 14px;
+    transition: transform .25s ease, box-shadow .25s ease
+}
+
+.lp-hero-visual--integrated .lp-panel-list b { font-size: 14.5px }
+
+/* Stats footer */
+.lp-panel-stats {
+    border-top: 1px solid rgba(16, 2, 44, .07);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 16px;
+    padding-top: 16px
+}
+
+.lp-panel-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 6px
+}
+
+.lp-panel-stat + .lp-panel-stat {
+    border-left: 1px solid rgba(16, 2, 44, .08);
+    padding-left: 20px
+}
+
+.lp-panel-stat b {
+    color: #10022c;
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.05
+}
+
+.lp-panel-stat span {
+    color: #5b6475;
+    font-size: 13px
+}
+
+/* ── Hero fits the first screen (desktop) ──────────────────────────────────
+   The whole hero — copy, CTAs, tick line and the full mockup including its
+   stats footer — should be visible without scrolling. On desktop the hero
+   fills the viewport and centres its content, and on shorter screens (laptop
+   zoom levels, small displays) type, gaps and the mockup's rows step down by
+   viewport HEIGHT so nothing falls below the fold. `body` + !important is
+   needed to override the site-wide h1 size in 39-typography-unified.css. */
+@media (min-width: 1025px) {
+    /* Matches the weight of the `min-height: 0` reset above, which would
+       otherwise win and clip the mockup at the hero edge. */
+    .design-v2 .lp-hero.section-hero--aurora:not(.lp-hero--hub) {
+        align-items: center;
+        display: flex;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 96px 0 36px
+    }
+
+    .lp-hero:not(.lp-hero--hub) > .lp-wrap { width: 100% }
+}
+
+@media (min-width: 1025px) and (max-height: 860px) {
+    .lp-hero:not(.lp-hero--hub) { padding: 88px 0 28px }
+    .lp-crumbs { margin-bottom: 14px }
+    body.design-v2 .lp .lp-title {
+        font-size: clamp(32px, 6vh, 46px) !important;
+        line-height: 1.1 !important;
+        margin: 14px 0 12px
+    }
+    body.design-v2 .lp .lp-lede {
+        font-size: 16px !important;
+        line-height: 1.55 !important;
+        margin-bottom: 20px
+    }
+    .lp-btn { padding: 11px 22px }
+    .lp-ticks { margin-top: 14px }
+
+    .lp-panel { padding: 14px }
+    .lp-panel-head { margin-bottom: 8px; padding-bottom: 10px }
+    .lp-panel-list { gap: 7px }
+    .lp-panel-list li { padding: 8px 12px }
+    .lp-hero-visual--integrated .lp-panel { padding: 16px }
+    .lp-hero-visual--integrated .lp-panel-head { padding-bottom: 12px }
+    .lp-hero-visual--integrated .lp-panel-list { gap: 8px }
+    .lp-hero-visual--integrated .lp-panel-list li { padding: 9px 12px }
+    .lp-panel-list .lp-ic { height: 34px; width: 34px }
+    .lp-panel-stats { margin-top: 12px; padding-top: 12px }
+    .lp-panel-stat b { font-size: 24px }
+}
+
+@media (min-width: 1025px) and (max-height: 680px) {
+    .lp-hero:not(.lp-hero--hub) { padding: 80px 0 20px }
+    .lp-crumbs { font-size: 12px; margin-bottom: 10px }
+    .lp-eyebrow { font-size: 11px; padding: 5px 12px }
+    body.design-v2 .lp .lp-title {
+        font-size: clamp(28px, 5.6vh, 36px) !important;
+        margin: 10px 0 10px
+    }
+    body.design-v2 .lp .lp-lede {
+        font-size: 15px !important;
+        margin-bottom: 16px
+    }
+    .lp-btn { font-size: 14px; padding: 9px 18px }
+    .lp-ticks { font-size: 13px; margin-top: 10px }
+
+    .lp-panel, .lp-hero-visual--integrated .lp-panel { border-radius: 18px; padding: 12px }
+    .lp-panel-head, .lp-hero-visual--integrated .lp-panel-head { padding-bottom: 8px }
+    .lp-panel-list, .lp-hero-visual--integrated .lp-panel-list { gap: 6px }
+    .lp-panel-list li, .lp-hero-visual--integrated .lp-panel-list li { padding: 6px 10px }
+    .lp-panel-list .lp-ic { border-radius: 8px; font-size: 15px; height: 30px; width: 30px }
+    .lp-panel-list b, .lp-hero-visual--integrated .lp-panel-list b { font-size: 13.5px }
+    .lp-panel-list em { font-size: 12px }
+    .lp-panel-badge { height: 24px; width: 24px }
+    .lp-panel-stats { margin-top: 8px; padding-top: 8px }
+    .lp-panel-stat b { font-size: 20px }
+    .lp-panel-stat span { font-size: 12px }
+    .lp-float { padding: 9px 13px }
+    .lp-float b { font-size: 20px }
+}
+
+/* ── Hero trust bar (the "No hardware · Live in minutes · Cancel anytime"
+   line under the CTAs) ───────────────────────────────────────────────────
+   Set as one frosted-glass bar rather than loose text: filled green check
+   badges, a hairline divider between items, and a quiet weight so it reads
+   as reassurance under the buttons, not as a second row of links. */
+.lp-ticks {
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+    background: rgba(255, 255, 255, .55);
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(16, 2, 44, .04), 0 8px 20px -14px rgba(16, 2, 44, .25);
+    color: #3b4356;
+    display: inline-flex;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+    font-weight: 500;
+    gap: 0;
+    margin-top: 22px;
+    padding: 8px 6px
+}
+
+.lp-ticks li {
+    align-items: center;
+    display: inline-flex;
+    gap: 7px;
+    padding: 2px 14px;
+    position: relative;
+    white-space: nowrap
+}
+
+.lp-ticks li + li::before {
+    background: rgba(16, 2, 44, .12);
+    content: "";
+    height: 14px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px
+}
+
+.lp-ticks i {
+    color: #16a34a;
+    font-size: 17px;
+    line-height: 1
+}
+
+/* Short desktop screens: keep the bar compact so the hero still fits. */
+@media (min-width: 1025px) and (max-height: 860px) {
+    .lp-ticks { margin-top: 16px; padding: 6px 4px }
+}
+
+@media (min-width: 1025px) and (max-height: 680px) {
+    .lp-ticks { font-size: 12.5px; margin-top: 12px; padding: 5px 2px }
+    .lp-ticks li { padding: 1px 11px }
+    .lp-ticks i { font-size: 15px }
+}
+
+/* Phones: the bar wraps into a neat stack-free row; items centre. */
+@media (max-width: 640px) {
+    .lp-ticks {
+        border-radius: 16px;
+        justify-content: center;
+        width: 100%
+    }
+    .lp-ticks li { padding: 4px 10px }
+}
+
+/* ── Scattered capability cards (capStyle: 'scatter') ──────────────────────
+   Small cards strewn across the section at slight, uneven angles and
+   heights — like leaves fallen on the ground — instead of a rigid grid.
+   Uses the independent `rotate` / `translate` properties so the page's
+   scroll-reveal (which animates `transform`) keeps working. Hovering a card
+   straightens and lifts it to the front. */
+.lp-cards.lp-cards--scatter {
+    display: flex;
+    flex-wrap: wrap;
+    /* Row gap leaves room for the tilt and vertical offsets, so no two
+       leaves touch. */
+    gap: 46px 30px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1020px;
+    padding: 22px 0 34px
+}
+
+.lp-cards--scatter .lp-card {
+    border-color: rgba(16, 2, 44, .07);
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(16, 2, 44, .05), 0 14px 30px -20px rgba(16, 2, 44, .35);
+    flex: 0 0 290px;
+    padding: 20px 20px 22px;
+    position: relative;
+    transition: rotate .45s cubic-bezier(.34, 1.3, .5, 1), translate .45s cubic-bezier(.34, 1.3, .5, 1), box-shadow .3s ease, opacity .6s ease-out, transform .6s ease-out
+}
+
+/* Each "leaf" lands at its own angle and height. */
+.lp-cards--scatter .lp-card:nth-child(6n+1) { rotate: -4deg;   translate: 0 6px }
+.lp-cards--scatter .lp-card:nth-child(6n+2) { rotate: 2.5deg;  translate: 0 26px }
+.lp-cards--scatter .lp-card:nth-child(6n+3) { rotate: -1.5deg; translate: 0 -6px }
+.lp-cards--scatter .lp-card:nth-child(6n+4) { rotate: 3deg;    translate: 0 -10px }
+.lp-cards--scatter .lp-card:nth-child(6n+5) { rotate: -2.5deg; translate: 0 14px }
+.lp-cards--scatter .lp-card:nth-child(6n+6) { rotate: 1.8deg;  translate: 0 -2px }
+
+.lp-cards--scatter .lp-card:hover {
+    box-shadow: 0 2px 4px rgba(16, 2, 44, .06), 0 28px 50px -24px rgba(16, 2, 44, .45);
+    rotate: 0deg;
+    translate: 0 -8px;
+    z-index: 2
+}
+
+.lp-cards--scatter .lp-ic {
+    border-radius: 11px;
+    font-size: 18px;
+    height: 40px;
+    width: 40px
+}
+
+body.design-v2 .lp .lp-cards--scatter .lp-card-title {
+    font-size: 17px !important;
+    line-height: 1.3 !important;
+    margin: 14px 0 6px
+}
+
+.lp-cards--scatter .lp-card-text {
+    font-size: 14px;
+    line-height: 1.55
+}
+
+/* Tablet: two leaves per row, gentler angles. */
+@media (max-width: 1024px) {
+    .lp-cards.lp-cards--scatter { gap: 20px; max-width: 660px }
+    .lp-cards--scatter .lp-card { flex-basis: calc(50% - 14px) }
+}
+
+/* Phones: one column, the tilt kept small so text stays easy to read. */
+@media (max-width: 640px) {
+    .lp-cards.lp-cards--scatter { gap: 16px; padding: 8px 6px 16px }
+    .lp-cards--scatter .lp-card { flex-basis: 100% }
+    .lp-cards--scatter .lp-card:nth-child(odd) { rotate: -1.2deg; translate: 0 0 }
+    .lp-cards--scatter .lp-card:nth-child(even) { rotate: 1.2deg; translate: 0 0 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lp-cards--scatter .lp-card { transition: none }
+}
+
+/* Home hero cursor constellation (components/hero/HeroCursorNet.jsx). */
+.design-v2 .section-hero--aurora .hero-cursor-net {
+    height: 100%;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    z-index: 1
+}
+.design-v2 .section-hero--aurora > .hero-container { position: relative; z-index: 2 }
+@media (max-width: 1024px), (hover: none) {
+    .design-v2 .section-hero--aurora .hero-cursor-net { display: none }
+}
+
+/* ── Persona cards (audienceStyle: 'persona') ──────────────────────────────
+   "Built for" cards on the Hosted Phone System page: a numbered index and
+   tone icon up top, a large faint watermark of the same icon in the corner,
+   a tone accent line along the top edge, and fit tags in a footer. Hover
+   lifts the card, draws the accent line across and nudges the arrow. */
+.lp-personas {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.lp-persona {
+    background:
+        radial-gradient(120% 90% at 100% 100%, var(--t-bg) 0%, transparent 55%),
+        #fff;
+    border: 1px solid var(--lp-line);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 22px 22px 18px;
+    position: relative;
+    transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease, border-color .35s ease
+}
+
+.lp-persona::before {
+    background: linear-gradient(90deg, var(--t-fg), transparent);
+    border-radius: 0 0 3px 3px;
+    content: "";
+    height: 3px;
+    left: 22px;
+    position: absolute;
+    right: 22px;
+    top: 0;
+    transform: scaleX(.14);
+    transform-origin: left;
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1)
+}
+
+.lp-persona-mark {
+    bottom: -26px;
+    color: var(--t-fg);
+    font-size: 120px;
+    line-height: 1;
+    opacity: .06;
+    pointer-events: none;
+    position: absolute;
+    right: -14px;
+    transform: rotate(-12deg);
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1), opacity .35s ease;
+    z-index: -1
+}
+
+.lp-persona-top {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px
+}
+
+.lp-persona-num {
+    color: var(--t-fg);
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    opacity: .8
+}
+.lp-persona-num::after {
+    background: currentColor;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    margin-left: 10px;
+    opacity: .4;
+    vertical-align: middle;
+    width: 28px
+}
+
+.lp-persona .lp-ic { border-radius: 12px; font-size: 19px; height: 42px; width: 42px }
+
+.lp-persona-title {
+    color: #10022c;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    line-height: 1.3
+}
+
+.lp-persona-text {
+    color: var(--lp-muted);
+    display: block;
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-top: 6px
+}
+
+.lp-persona-foot {
+    align-items: center;
+    border-top: 1px dashed rgba(16, 2, 44, .1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: auto;
+    padding-top: 14px
+}
+.lp-persona-text + .lp-persona-foot { margin-top: 18px }
+
+.lp-persona-tag {
+    background: var(--t-bg);
+    border: 1px solid var(--t-bd);
+    border-radius: 999px;
+    color: var(--t-fg);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 9px
+}
+
+.lp-persona-go {
+    align-items: center;
+    border: 1px solid var(--lp-line);
+    border-radius: 50%;
+    color: #10022c;
+    display: inline-flex;
+    font-size: 15px;
+    height: 26px;
+    justify-content: center;
+    margin-left: auto;
+    transition: background .3s ease, color .3s ease, transform .35s cubic-bezier(.2, .8, .2, 1), border-color .3s ease;
+    width: 26px
+}
+
+.lp-persona:hover {
+    border-color: var(--t-bd);
+    box-shadow: 0 24px 44px -30px rgba(16, 2, 44, .4);
+    transform: translateY(-4px)
+}
+.lp-persona:hover::before { transform: scaleX(1) }
+.lp-persona:hover .lp-persona-mark { opacity: .1; transform: rotate(0deg) scale(1.08) }
+.lp-persona:hover .lp-persona-go { background: var(--t-fg); border-color: var(--t-fg); color: #fff; transform: scale(1.08) }
+
+@media (max-width: 640px) {
+    .lp-personas { grid-template-columns: minmax(0, 1fr) }
+    .lp-persona { padding: 20px 18px 16px }
+    .lp-persona-mark { font-size: 96px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lp-persona, .lp-persona::before, .lp-persona-mark, .lp-persona-go { transition: none }
+}
+
+/* Persona section alignment: the head (kicker, title, intro and the points
+   list straight under it) is one compact block, centred against the card
+   grid so it sits level with the cards with even space above and below. */
+@media (min-width: 1025px) {
+    .lp-split.lp-split--persona {
+        align-items: center;
+        gap: 64px;
+        grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr)
+    }
+    .lp-persona-head { display: flex; flex-direction: column }
+}
+
+.lp-persona-head .lp-head { margin: 0 }
+body.design-v2 .lp .lp-persona-head .lp-intro { font-size: 16.5px !important; line-height: 1.65; max-width: 500px }
+
+.lp-persona-points {
+    border-top: 1px solid var(--lp-line);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 22px 0 0
+}
+.lp-persona-points li {
+    align-items: center;
+    color: #10022c;
+    display: flex;
+    font-size: 15px;
+    font-weight: 500;
+    gap: 12px
+}
+.lp-persona-points i {
+    align-items: center;
+    background: #10022c;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    flex: none;
+    font-size: 13px;
+    height: 22px;
+    justify-content: center;
+    width: 22px
+}
+
+@media (max-width: 1024px) {
+    .lp-persona-head { text-align: center }
+    .lp-persona-points { align-items: center; margin-left: auto; margin-right: auto; max-width: 420px }
+}
+@media (max-width: 640px) {
+    .lp-persona-points { align-items: flex-start }
+}
+
+/* Persona cards — compact sizing: tighter padding, a smaller icon row and
+   footer, so each card is ~25% shorter. */
+.lp-persona { border-radius: 18px; padding: 16px 18px 14px }
+.lp-persona::before { left: 18px; right: 18px }
+.lp-persona-top { margin-bottom: 10px }
+.lp-persona .lp-ic { border-radius: 10px; font-size: 16px; height: 34px; width: 34px }
+.lp-persona-num { font-size: 13.5px }
+.lp-persona-num::after { width: 22px }
+.lp-persona-title { font-size: 16.5px }
+.lp-persona-text { font-size: 14px; line-height: 1.5; margin-top: 4px }
+.lp-persona-text + .lp-persona-foot { margin-top: 12px }
+.lp-persona-foot { padding-top: 10px }
+.lp-persona-tag { font-size: 11px; padding: 3px 9px }
+.lp-persona-go { font-size: 14px; height: 24px; width: 24px }
+.lp-persona-mark { bottom: -20px; font-size: 96px; right: -10px }
+/* Keep the head block no taller than the compact card grid. */
+.lp-persona-points { gap: 10px; margin-top: 22px; padding-top: 18px }
+
+/* Closing CTA — compact sizing: tighter padding, smaller type and a smaller
+   call card, so the banner is ~30% shorter. */
+.lp-cta { border-radius: 24px; gap: 36px; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); padding: 40px 48px }
+.lp-cta-eyebrow { font-size: 11.5px; margin-bottom: 12px; padding: 5px 11px }
+body.design-v2 .lp .lp-cta-title { font-size: clamp(24px, 2.3vw, 30px) !important; line-height: 1.2 !important }
+.lp-cta-text { font-size: 15px; line-height: 1.6; margin-top: 10px }
+.lp-cta .lp-actions { margin-top: 20px }
+.lp-cta-btn { font-size: 14.5px; padding: 11px 22px }
+.lp-cta-trust { margin-top: 16px }
+.lp-cta-trust li { font-size: 12.5px }
+@media (max-width: 1100px) { .lp-cta { grid-template-columns: minmax(0, 1fr) 270px; padding: 36px 36px } }
+@media (max-width: 900px) { .lp-cta { grid-template-columns: minmax(0, 1fr); padding: 34px 30px } }
+@media (max-width: 640px) { .lp-cta { border-radius: 20px; padding: 28px 20px 30px } }
+
+/* CTA layout: copy on the left, the two actions on the right. */
+.lp-cta { grid-template-columns: minmax(0, 1fr) auto }
+.lp-cta-side { align-self: center; flex: none }
+.lp-cta .lp-cta-side .lp-actions { flex-wrap: nowrap; margin-top: 0 }
+@media (max-width: 1100px) { .lp-cta { grid-template-columns: minmax(0, 1fr) auto } }
+@media (max-width: 900px) {
+    .lp-cta { grid-template-columns: minmax(0, 1fr) }
+    .lp-cta .lp-cta-side .lp-actions { margin-top: 4px }
+}
+@media (max-width: 640px) {
+    .lp-cta-side { width: 100% }
+    /* Both actions share one row, splitting the width evenly. */
+    .lp-cta .lp-cta-side .lp-actions { align-items: stretch; flex-direction: row; flex-wrap: nowrap; gap: 10px; width: 100% }
+    .lp-cta .lp-cta-side .lp-actions .lp-cta-btn {
+        flex: 1 1 0;
+        font-size: 13.5px;
+        gap: 6px;
+        justify-content: center;
+        min-width: 0;
+        padding: 12px 10px;
+        white-space: nowrap;
+        width: auto
+    }
+}
+@media (max-width: 360px) {
+    .lp-cta .lp-cta-side .lp-actions .lp-cta-btn { font-size: 12.5px; padding: 11px 8px }
+}
+
+
+/* ── CTA polish ────────────────────────────────────────────────────────
+   Cleaner hierarchy: a quiet uppercase kicker, a bigger title with the
+   product name in a warm gradient, an icon trust line without bubbles, and
+   on the right the two actions with a "speak with our team" link beneath.
+   A brighter top edge and a softer scrim make the card read as glass. */
+.lp-cta {
+    box-shadow:
+        0 40px 80px -40px rgba(194, 65, 12, .55),
+        0 18px 36px -22px rgba(16, 2, 44, .45),
+        inset 0 1px 0 rgba(255, 255, 255, .16),
+        inset 0 0 0 1px rgba(255, 255, 255, .06);
+    padding: 48px 56px
+}
+.lp-cta::before {
+    background:
+        linear-gradient(90deg, rgba(16, 2, 44, .9) 0%, rgba(16, 2, 44, .66) 38%, rgba(16, 2, 44, .2) 72%, rgba(16, 2, 44, .1) 100%),
+        radial-gradient(60% 120% at 100% 50%, rgba(16, 2, 44, 0), rgba(16, 2, 44, .25))
+}
+
+.lp-cta-eyebrow {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: none;
+    border: 0;
+    color: #fdba74;
+    font-size: 12px;
+    font-weight: 700;
+    gap: 10px;
+    letter-spacing: .14em;
+    margin-bottom: 14px;
+    padding: 0;
+    text-transform: uppercase
+}
+.lp-cta-eyebrow::before { background: linear-gradient(90deg, transparent, #fb923c); content: ""; height: 1px; width: 28px }
+
+body.design-v2 .lp .lp-cta-title {
+    font-size: clamp(28px, 2.6vw, 38px) !important;
+    letter-spacing: -.02em;
+    line-height: 1.12 !important;
+    max-width: 620px
+}
+.lp-cta-hl {
+    background: linear-gradient(90deg, #fed7aa, #fb923c 55%, #f97316);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent
+}
+.lp-cta-text { color: rgba(255, 255, 255, .78); font-size: 16px; line-height: 1.6; margin-top: 12px; max-width: 500px }
+
+.lp-cta-trust { gap: 8px 0; margin-top: 22px }
+.lp-cta-trust li { color: rgba(255, 255, 255, .82); font-size: 13.5px; font-weight: 500; gap: 8px; padding: 0 18px }
+.lp-cta-trust li:first-child { padding-left: 0 }
+.lp-cta-trust li + li { border-left: 1px solid rgba(255, 255, 255, .16) }
+.lp-cta-trust i { background: none; color: #fdba74; font-size: 15px; height: auto; width: auto }
+
+.lp-cta-side { align-items: flex-end; display: flex; flex-direction: column; gap: 14px }
+.lp-cta-btn { font-size: 15px; padding: 14px 24px }
+.lp-cta-btn:not(.lp-cta-btn--glass) {
+    box-shadow: 0 10px 30px -10px rgba(251, 146, 60, .65);
+    overflow: hidden;
+    position: relative
+}
+.lp-cta-btn:not(.lp-cta-btn--glass)::after {
+    background: linear-gradient(105deg, transparent 30%, rgba(251, 146, 60, .25) 50%, transparent 70%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: translateX(-120%);
+    transition: transform .7s ease
+}
+.lp-cta-btn:not(.lp-cta-btn--glass):hover::after { transform: translateX(120%) }
+.lp-cta-btn--glass { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .3) }
+
+.lp-cta-help {
+    align-items: center;
+    color: rgba(255, 255, 255, .62);
+    display: inline-flex;
+    font-size: 13px;
+    gap: 5px;
+    text-decoration: none;
+    transition: color .2s ease
+}
+.lp-cta-help b { color: #fff; font-weight: 600 }
+.lp-cta-help i { color: #fdba74; transition: transform .2s ease }
+.lp-cta-help:hover { color: rgba(255, 255, 255, .85) }
+.lp-cta-help:hover i { transform: translate(2px, -2px) }
+
+@media (max-width: 1100px) {
+    .lp-cta { padding: 40px 40px }
+}
+@media (max-width: 900px) {
+    .lp-cta-side { align-items: flex-start }
+}
+@media (max-width: 640px) {
+    .lp-cta { padding: 30px 22px 32px }
+    /* One row of three: icon over a short label, hairline dividers. */
+    .lp-cta-trust { display: grid; gap: 0; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+    .lp-cta-trust li { flex-direction: column; gap: 5px; line-height: 1.25; padding: 0 6px; text-align: center }
+    .lp-cta-trust li:first-child { padding-left: 0 }
+    .lp-cta-trust li:last-child { padding-right: 0 }
+    body.design-v2 .lp .lp-cta-trust li { font-size: 12px !important }
+    .lp-cta-trust i { font-size: 16px }
+    .lp-cta-side { align-items: stretch }
+    .lp-cta-help { justify-content: center }
+}
+
+/* Hero CTA — compact: smaller buttons and a slimmer trust bar so the actions
+   sit lighter under the headline (hero only; the closing CTA is untouched). */
+.lp-hero .lp-actions { gap: 10px }
+.lp-hero .lp-btn { font-size: 14px; gap: 7px; padding: 10px 20px }
+.lp-hero .lp-btn i { font-size: 15px }
+.lp-hero .lp-ticks { font-size: 12.5px; margin-top: 16px; padding: 5px 4px }
+.lp-hero .lp-ticks li { gap: 6px; padding: 1px 11px }
+.lp-hero .lp-ticks li + li::before { height: 12px }
+.lp-hero .lp-ticks i { font-size: 15px }
+/* Phones: three ticks are too long for one line of text, so each becomes a
+   small column (icon over label) and all three share a single row. */
+@media (max-width: 640px) {
+    .lp-hero .lp-ticks { align-items: stretch; display: grid; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; padding: 8px 4px }
+    .lp-hero .lp-ticks li { flex-direction: column; font-size: 11.5px; gap: 4px; justify-content: flex-start; line-height: 1.25; padding: 0 6px; text-align: center; white-space: normal }
+    .lp-hero .lp-ticks li + li::before { height: 60% }
+    .lp-hero .lp-ticks i { font-size: 15px }
+}
+@media (min-width: 1025px) and (max-height: 680px) {
+    .lp-hero .lp-btn { font-size: 13.5px; padding: 9px 18px }
+    .lp-hero .lp-ticks { font-size: 12px; margin-top: 10px }
+}
+
+/* Hero proof stats (statsInHero): the four numbers from the stats band as a
+   compact frosted strip under the hero actions. */
+.lp-hero-stats {
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+    background: rgba(255, 255, 255, .55);
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(16, 2, 44, .04), 0 10px 24px -16px rgba(16, 2, 44, .28);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 16px 0 0;
+    max-width: 580px;
+    padding: 12px 4px
+}
+.lp-hero-stats > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 0 14px }
+.lp-hero-stats > div + div { border-left: 1px solid rgba(16, 2, 44, .1) }
+.lp-hero-stats dt {
+    color: var(--lp-ink, #10022c);
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.1;
+    white-space: nowrap
+}
+.lp-hero-stats dd { color: #5b6475; font-size: 12px; line-height: 1.35; margin: 0; text-wrap: balance }
+
+@media (min-width: 1025px) and (max-height: 760px) {
+    .lp-hero-stats { margin-top: 12px; padding: 9px 2px }
+    .lp-hero-stats dt { font-size: 19px }
+    .lp-hero-stats dd { font-size: 11.5px }
+}
+@media (max-width: 1024px) {
+    .lp-hero-stats { margin-left: auto; margin-right: auto }
+}
+/* Phones keep all four on one row: centred columns, a tighter figure and a
+   small label that may wrap beneath it. */
+@media (max-width: 560px) {
+    .lp-hero-stats {
+        /* Columns size to their content: each is at least as wide as its
+           figure (never clipped), and spare room goes to longer labels. */
+        grid-template-columns: repeat(4, auto);
+        padding: 12px 4px
+    }
+    .lp-hero-stats > div { align-items: center; gap: 3px; padding: 0 5px; text-align: center }
+    body.design-v2 .lp .lp-hero-stats dt { font-size: 15px !important; letter-spacing: -.01em }
+    body.design-v2 .lp .lp-hero-stats dd { font-size: 10.5px !important; line-height: 1.3 }
+}
+@media (max-width: 360px) {
+    .lp-hero-stats > div { padding: 0 4px }
+    body.design-v2 .lp .lp-hero-stats dt { font-size: 14.5px !important }
+    body.design-v2 .lp .lp-hero-stats dd { font-size: 10px !important }
+}
+
+/* Hosted Phone System hero art (starry dusk over a pine ridge): the sky is
+   deep blue, so the copy side gets a fuller cream wash and the ridge line is
+   kept low, under the panel. */
+.lp-hero-art[style*="starlit-ridge-dusk"] { background-position: 50% 70% }
+.lp-hero-art[style*="starlit-ridge-dusk"]::after {
+    background: linear-gradient(90deg, rgba(255, 248, 242, .95) 0%, rgba(255, 248, 242, .88) 36%, rgba(255, 248, 242, .42) 56%, rgba(255, 248, 242, .08) 74%, rgba(255, 248, 242, 0) 100%)
+}
+@media (max-width: 1024px) {
+    .lp-hero-art[style*="starlit-ridge-dusk"]::after { background: linear-gradient(180deg, rgba(255, 248, 242, .93) 0%, rgba(255, 248, 242, .78) 55%, rgba(255, 248, 242, .4) 100%) }
+}
+
+/* Once a hero column has revealed, drop its leftover transform/will-change.
+   Either one makes the column a "backdrop root", so the frosted stats strip
+   and the glass mockup could only blur what's inside the column (the ticks
+   pill) instead of the hero art behind — which showed as a lighter band at
+   the end of the strip where the ticks pill stops. transform: none looks the
+   same as translateY(0), so the reveal itself is unchanged. */
+.design-v2 .lp-hero .reveal.revealed {
+    transform: none;
+    will-change: auto
+}
+
+/* Home hero actions on phones: the two buttons sit side by side at the same
+   height instead of stacking full-width. */
+@media (max-width: 640px) {
+    body.design-v2 .section-hero--aurora .hero-ctas { flex-direction: row; flex-wrap: nowrap; gap: 10px }
+    body.design-v2 .section-hero--aurora .hero-ctas .btn { flex: 1 1 0; font-size: 14px; justify-content: center; min-height: 48px; min-width: 0; padding: 8px 12px; white-space: nowrap; width: auto }
+    body.design-v2 .section-hero--aurora .hero-ctas .btn-primary { gap: 8px; padding-right: 8px }
+    body.design-v2 .section-hero--aurora .hero-ctas .btn-arrow { flex: none; height: 32px; width: 32px }
+}
+
+/* Home hero dashboard on phones. Shrinking the 1080px window to fit a phone
+   left every panel unreadable, so the window takes the phone's width at its
+   real size and a switcher (HeroDashboard) shows one panel at a time —
+   chat list, conversation or customer info — like a mobile app would. */
+.hero-showcase .app-mobile-tabs { display: none }
+@media (max-width: 640px) {
+    body.design-v2 .section-hero--aurora .hero-showcase .desktop-app-bg { height: auto }
+    body.design-v2 .section-hero--aurora .hero-showcase .desktop-app-window { height: 560px; transform: none; width: 100% }
+    body.design-v2 .section-hero--aurora .hero-showcase .app-mobile-tabs {
+        background: rgba(255, 255, 255, .45);
+        border-bottom: 1px solid rgba(255, 255, 255, .35);
+        display: flex;
+        flex: none;
+        gap: 4px;
+        padding: 8px
+    }
+    body.design-v2 .section-hero--aurora .hero-showcase .app-mobile-tabs button {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        border-radius: 10px;
+        color: rgba(16, 2, 44, .6);
+        cursor: pointer;
+        display: inline-flex;
+        flex: 1 1 0;
+        font: inherit;
+        font-size: 12.5px;
+        font-weight: 600;
+        gap: 5px;
+        justify-content: center;
+        padding: 8px 4px;
+        transition: background .2s ease, color .2s ease
+    }
+    body.design-v2 .section-hero--aurora .hero-showcase .app-mobile-tabs button i { font-size: 15px }
+    body.design-v2 .section-hero--aurora .hero-showcase .app-mobile-tabs button.is-on { background: #10022c; color: #fff }
+    body.design-v2 .section-hero--aurora .hero-showcase .app-mobile-tabs button:focus-visible { outline: 2px solid #f97316; outline-offset: 2px }
+
+    /* One panel at a time, each at the full width of the window. */
+    body.design-v2 .section-hero--aurora .hero-showcase .app-body > .app-sidebar,
+    body.design-v2 .section-hero--aurora .hero-showcase .app-body > .app-chat,
+    body.design-v2 .section-hero--aurora .hero-showcase .app-body > .app-customer-panel { display: none }
+    body.design-v2 .section-hero--aurora .hero-showcase .app-body--list > .app-sidebar,
+    body.design-v2 .section-hero--aurora .hero-showcase .app-body--chat > .app-chat,
+    body.design-v2 .section-hero--aurora .hero-showcase .app-body--info > .app-customer-panel {
+        animation: psm-in .25s ease;
+        border: 0;
+        display: flex;
+        flex: 1 1 auto;
+        min-width: 0;
+        width: 100%
+    }
+}
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+    body.design-v2 .section-hero--aurora .hero-showcase .app-body > * { animation: none }
+}
+
+/* Phones: persona cards two by two — compact head, tighter type, tags that
+   wrap under the text, and the check mark tucked into the top row. */
+@media (max-width: 640px) {
+    .lp-personas { gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .lp-persona { border-radius: 14px; min-width: 0; padding: 12px 12px 10px }
+    .lp-persona::before { left: 12px; right: 12px }
+    .lp-persona-mark { font-size: 64px }
+    .lp-persona-top { margin-bottom: 8px }
+    .lp-persona .lp-ic { border-radius: 9px; font-size: 14px; height: 30px; width: 30px }
+    .lp-persona-num { font-size: 12px }
+    .lp-persona-num::after { width: 14px }
+    body.design-v2 .lp .lp-persona-title { font-size: 13.5px !important; line-height: 1.3 !important }
+    body.design-v2 .lp .lp-persona-text { font-size: 12px !important; line-height: 1.45 !important; margin-top: 4px }
+    .lp-persona-text + .lp-persona-foot { margin-top: 10px }
+    .lp-persona-foot { gap: 4px; padding-top: 9px }
+    body.design-v2 .lp .lp-persona-tag { font-size: 10px !important; padding: 3px 7px }
+    .lp-persona-go { display: none }
+}
+
+/* Closing CTA on the lighter peach marble: the glass button and the help
+   line get a deeper tint / soft shadow so white text stays crisp on the
+   pale bands. */
+.lp-cta .lp-cta-btn--glass {
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    backdrop-filter: blur(10px) saturate(140%);
+    background: rgba(18, 3, 46, .42);
+    border-color: rgba(255, 255, 255, .38)
+}
+.lp-cta .lp-cta-btn--glass:hover { background: rgba(18, 3, 46, .55) }
+.lp-cta .lp-cta-btn--glass i { color: #fed7aa }
+.lp-cta .lp-cta-help { text-shadow: 0 1px 8px rgba(18, 3, 46, .55) }
+.lp-cta .lp-cta-btn:not(.lp-cta-btn--glass) i { color: #f97316 }
+
+/* FAQ gets its own band — a soft warm tint with a hairline top edge and a
+   bit more room — so it never reads as part of the "Works with" block (or
+   any section) above it. */
+.lp-section.lp-faq-sec {
+    background: linear-gradient(180deg, #fbf3ea 0%, #fdf8f2 55%, #fbf3ea 100%);
+    border-top: 1px solid #f1e3d2;
+    border-bottom: 1px solid #f1e3d2;
+    padding-bottom: 88px;
+    padding-top: 80px
+}
+.lp-faq-sec .lp-faq-item { background: #fff }
+@media (max-width: 640px) {
+    .lp-section.lp-faq-sec { padding-bottom: 56px; padding-top: 52px }
+}
+
+/* "Works with" in the brand palette (all landing pages): a neutral warm
+   frame, near-black icons on cream tiles, dark "Explore" links with an
+   orange arrow, and orange as the only hover accent — no purple. */
+.lp-ww { background: linear-gradient(135deg, #fffaf4 0%, #ffffff 60%, #faf6f1 100%) }
+.lp-ww .lp-ic, .lp-ww .lp-ic[class*="lp-tone--"] { background: #f6f1ea; box-shadow: inset 0 0 0 1px rgba(16, 2, 44, .08); color: #1a1a1a }
+.lp-ww-card { --t-bd: #fed7aa }
+.lp-ww-card:hover { border-color: #fed7aa; box-shadow: 0 22px 40px -30px rgba(16, 2, 44, .35) }
+.lp-ww-card:hover .lp-ww-arrow { color: #ea580c }
+.lp-ww-more { color: #1a1a1a }
+.lp-ww-more::after { color: #ea580c }
+.lp-ww-hub-n { color: #5b6475 }
+.lp-ww-hub-lines i { background: linear-gradient(90deg, rgba(234, 88, 12, .45), rgba(234, 88, 12, .06)) }
+.lp-ww-card:focus-visible { outline-color: #ea580c }
+
+/* "Works with" card icons: a colourful gradient glyph (from each product's
+   own tone) on a clean white tile — the same treatment as the integration
+   logos. The hub chip beside "Pairs well with" stays as it is. */
+.lp-ww-card .lp-ic, .lp-ww-card .lp-ic[class*="lp-tone--"] {
+    --g1: #60a5fa; --g2: #1d4ed8;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px rgba(16, 2, 44, .1), 0 4px 10px -6px rgba(16, 2, 44, .3)
+}
+.lp-ww-card .lp-ic.lp-tone--blue { --g1: #38bdf8; --g2: #2563eb }
+.lp-ww-card .lp-ic.lp-tone--teal { --g1: #2dd4bf; --g2: #0f766e }
+.lp-ww-card .lp-ic.lp-tone--violet { --g1: #a78bfa; --g2: #6d28d9 }
+.lp-ww-card .lp-ic.lp-tone--amber { --g1: #fbbf24; --g2: #ea580c }
+.lp-ww-card .lp-ic.lp-tone--orange { --g1: #fdba74; --g2: #ea580c }
+.lp-ww-card .lp-ic.lp-tone--green { --g1: #4ade80; --g2: #15803d }
+.lp-ww-card .lp-ic.lp-tone--rose { --g1: #fb7185; --g2: #be123c }
+.lp-ww-card .lp-ic.lp-tone--slate { --g1: #94a3b8; --g2: #334155 }
+.lp-ww-card .lp-ic i {
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(135deg, var(--g1), var(--g2));
+    color: transparent;
+    display: inline-block;
+    -webkit-text-fill-color: transparent
+}
+
+/* ── "Built for" persona cards, brand pass ─────────────────────────────────
+   No animated accent bar along the top. One palette for every card instead
+   of a colour per audience: the number in the site's orange, a near-black
+   icon on a cream tile, neutral cream tags, a faint watermark, and orange
+   only on hover (rim and check). */
+.lp-persona::before, .lp-persona:hover::before { content: none; display: none }
+.lp-persona,
+.lp-persona[class*="lp-tone--"] { --t-fg: #1a1a1a; --t-bg: #f6f1ea; --t-bd: rgba(16, 2, 44, .1) }
+.lp-persona { background: #fff; border-color: rgba(16, 2, 44, .08); box-shadow: 0 14px 30px -26px rgba(16, 2, 44, .4) }
+.lp-persona .lp-ic, .lp-persona .lp-ic[class*="lp-tone--"] { background: #f6f1ea; box-shadow: inset 0 0 0 1px rgba(16, 2, 44, .08); color: #1a1a1a }
+.lp-persona-num { color: #ea580c }
+.lp-persona-num::after { background: #fdba74 }
+.lp-persona-mark { color: #1a1a1a; opacity: .035 }
+.lp-persona:hover .lp-persona-mark { opacity: .06 }
+.lp-persona-tag { background: #f6f1ea; border-color: rgba(16, 2, 44, .08); color: #3b4356 }
+.lp-persona-go { border-color: rgba(16, 2, 44, .14); color: #1a1a1a }
+.lp-persona:hover { border-color: #fed7aa; box-shadow: 0 24px 44px -30px rgba(16, 2, 44, .45) }
+.lp-persona:hover .lp-persona-go { background: #1a1a1a; border-color: #1a1a1a; color: #fff }
+.lp-persona-points i { background: #1a1a1a }
+
+/* Persona cards: the large background mark, clearly visible but soft — a
+   warm orange gradient glyph in the lower-right corner of each card. */
+.lp-persona .lp-persona-mark {
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(150deg, #fdba74, #ea580c);
+    color: transparent;
+    opacity: .16;
+    -webkit-text-fill-color: transparent
+}
+.lp-persona:hover .lp-persona-mark { opacity: .24 }
+
+/* Hosted Phone System hero, matched to Unified Communication: ticks and
+   proof numbers sit straight on the hero (no frosted boxes), and the two
+   actions use the home hero's button style. */
+/* Shared by the Hosted Phone System, Team Chat, SMS, Toll-free and Video heroes. */
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-ticks {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0
+}
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-ticks li:first-child { padding-left: 0 }
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-hero-stats {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    border-top: 1px solid rgba(16, 2, 44, .1);
+    box-shadow: none;
+    margin-top: 22px;
+    padding: 18px 0 0
+}
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-hero-stats > div:first-child { padding-left: 0 }
+
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions { gap: 16px }
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn {
+    align-items: center;
+    border: 0;
+    border-radius: 10px;
+    display: inline-flex;
+    font-size: 15px;
+    font-weight: 500;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: -.02em;
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease
+}
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--solid { background: #1a1a1a; box-shadow: none; color: #fff; gap: 24px; padding: 8px 8px 8px 20px }
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--solid i {
+    align-items: center;
+    background: rgba(255, 255, 255, .16);
+    border-radius: 4px;
+    display: inline-flex;
+    font-size: 16px;
+    height: 32px;
+    justify-content: center;
+    transition: transform .2s ease, background .2s ease;
+    width: 40px
+}
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--solid:hover { background: #000; transform: translateY(-1px) }
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--solid:hover i { background: rgba(255, 255, 255, .24); transform: translateX(2px) }
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--ghost {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .68);
+    box-shadow: inset 0 0 0 1px rgba(43, 43, 43, .18);
+    color: #2b2b2b;
+    min-width: 188px;
+    padding: 8px 20px
+}
+:is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--ghost:hover { background: rgba(255, 255, 255, .9); transform: translateY(-1px) }
+@media (max-width: 640px) {
+    :is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions { gap: 10px }
+    :is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn { flex: 1 1 0; font-size: 14px; min-width: 0 }
+    :is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--solid { gap: 12px; padding-left: 14px }
+    :is(.lp-hero--phone-system, .lp-hero--team-chat, .lp-hero--sms, .lp-hero--toll-free, .lp-hero--video) .lp-actions .lp-btn--solid i { width: 34px }
+}

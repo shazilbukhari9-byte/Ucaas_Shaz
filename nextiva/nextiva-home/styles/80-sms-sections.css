@@ -1,0 +1,475 @@
+/* Business SMS & MMS page sections (components/landing/sms/SmsSections.jsx).
+   Brand palette: near-black, orange accent, warm cream; semantic colours
+   only for status dots. */
+.sms-head { margin: 0 auto 40px; max-width: 760px; text-align: center }
+body.design-v2 .lp .sms-head .lp-h2 { text-wrap: balance }
+body.design-v2 .lp .sms-head .lp-intro { margin: 14px auto 0 }
+
+/* ── 1 · What you get ─────────────────────────────────────────────────── */
+.smx {
+    background: linear-gradient(180deg, #fdfbf8, #f8f3ec);
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 28px;
+    box-shadow: 0 40px 80px -56px rgba(16, 2, 44, .45);
+    padding: 14px
+}
+.smx-tabs { background: #fff; border: 1px solid rgba(16, 2, 44, .06); border-radius: 18px; display: grid; gap: 4px; grid-template-columns: repeat(6, minmax(0, 1fr)); padding: 5px }
+.smx-tab {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 13px;
+    color: #57534e;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 7px;
+    justify-content: center;
+    padding: 11px 8px;
+    text-align: center;
+    transition: background .3s ease, color .3s ease
+}
+.smx-tab i { color: #a8a29e; font-size: 15px; transition: color .3s ease }
+.smx-tab:hover { background: #f6f1ea }
+.smx-tab:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.smx-tab.is-on { background: #1a1a1a; color: #fff }
+.smx-tab.is-on i { color: #fdba74 }
+
+.smx-body { align-items: center; display: grid; gap: 22px; grid-template-columns: minmax(0, .8fr) 280px minmax(0, 1.1fr); min-height: 420px; padding: 26px 22px 18px }
+.smx-copy { animation: smx-in .5s cubic-bezier(.2, .8, .2, 1) both }
+.smx-num { color: #a39e99; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .08em }
+body.design-v2 .lp .smx-copy h3 { color: #1a1a1a; font-size: clamp(22px, 2vw, 28px) !important; line-height: 1.2 !important; margin: 10px 0 10px }
+.smx-copy p { color: #6b6560; font-size: 15px; line-height: 1.6; margin: 0 }
+.smx-label { color: #a39e99; display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; margin-bottom: 10px; text-align: center; text-transform: uppercase }
+
+/* Phone */
+.smx-device {
+    background: #fff;
+    border: 8px solid #1a1a1a;
+    border-radius: 36px;
+    box-shadow: 0 34px 60px -30px rgba(16, 2, 44, .55);
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+    overflow: hidden;
+    position: relative
+}
+.smx-notch { background: #1a1a1a; border-radius: 0 0 12px 12px; height: 18px; left: 50%; position: absolute; top: 0; translate: -50% 0; width: 90px; z-index: 1 }
+.smx-from { align-items: center; border-bottom: 1px solid #f1ece5; display: flex; flex-direction: column; gap: 2px; padding: 26px 10px 10px }
+.smx-logo { align-items: center; background: #1a1a1a; border-radius: 50%; color: #fdba74; display: inline-flex; font-size: 11px; font-weight: 700; height: 34px; justify-content: center; width: 34px }
+.smx-from b { color: #1a1a1a; font-size: 12.5px; font-weight: 600 }
+.smx-from em { color: #a8a29e; font-size: 10px; font-style: normal }
+.smx-thread { animation: smx-in .5s cubic-bezier(.2, .8, .2, 1) both; background: #faf7f3; display: flex; flex: 1; flex-direction: column; gap: 8px; justify-content: flex-end; padding: 12px }
+.smx-bub { align-self: flex-start; background: #fff; border: 1px solid #ede7de; border-radius: 16px 16px 16px 4px; color: #292524; display: flex; flex-direction: column; font-size: 12.5px; gap: 3px; line-height: 1.4; max-width: 86%; padding: 8px 11px }
+.smx-bub--out { align-self: flex-end; background: #1a1a1a; border-color: #1a1a1a; border-radius: 16px 16px 4px 16px; color: #fff }
+.smx-bub em { color: rgba(255, 255, 255, .6); font-size: 10px; font-style: normal }
+.smx-photo { align-items: center; align-self: flex-start; background: #fff; border: 1px solid #ede7de; border-radius: 14px; display: grid; gap: 0 8px; grid-template-columns: 44px 1fr; padding: 6px 10px 6px 6px }
+.smx-photo i { align-items: center; background: linear-gradient(135deg, #fed7aa, #fb923c); border-radius: 10px; color: #fff; display: inline-flex; font-size: 18px; grid-row: span 2; height: 44px; justify-content: center; width: 44px }
+.smx-photo b { color: #1a1a1a; font-size: 12px }
+.smx-photo em { color: #a8a29e; font-size: 10.5px; font-style: normal }
+
+/* Dashboard */
+.smx-desk-win { animation: smx-in .5s .1s cubic-bezier(.2, .8, .2, 1) both; background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 18px; box-shadow: 0 24px 50px -36px rgba(16, 2, 44, .45); min-height: 270px; padding: 16px }
+.smx-desk-in { display: flex; flex-direction: column; gap: 9px }
+.smx-row-k { color: #1a1a1a; font-size: 14px; font-weight: 600; margin-bottom: 4px }
+.smx-line, .smx-drip, .smx-rule, .smx-log, .smx-tl { align-items: center; background: #faf7f3; border: 1px solid #f1ece5; border-radius: 11px; color: #44403c; display: flex; font-size: 12.5px; gap: 9px; padding: 9px 12px }
+.smx-line i, .smx-tl i { color: #ea580c; font-size: 15px }
+.smx-line b { color: #1a1a1a; font-weight: 600; margin-left: auto }
+.smx-compose { align-items: center; background: #fff; border: 1px solid #ede7de; border-radius: 11px; color: #57534e; display: flex; font-size: 12.5px; gap: 10px; justify-content: space-between; margin-top: 4px; padding: 7px 7px 7px 12px }
+.smx-compose span { background: #1a1a1a; border-radius: 8px; color: #fff; font-size: 11.5px; font-weight: 600; padding: 6px 12px }
+.smx-compose--meta { color: #a39e99 }
+.smx-tpl { background: #faf7f3; border: 1px dashed #e4d9ca; border-radius: 11px; color: #292524; font-size: 13px; line-height: 1.6; padding: 11px 12px }
+.smx-tpl mark { background: #fff7ed; border-radius: 5px; color: #c2410c; font-weight: 600; padding: 1px 5px }
+.smx-chips { display: flex; flex-wrap: wrap; gap: 6px }
+.smx-chips span { background: #f6f1ea; border-radius: 999px; color: #57534e; font-size: 11px; font-weight: 600; padding: 4px 10px }
+.smx-drip span { color: #a39e99; font-size: 11px; font-weight: 700; width: 46px }
+.smx-drip b { color: #1a1a1a; flex: 1; font-weight: 600 }
+.smx-drip em, .smx-log em, .smx-tl em { color: #a39e99; font-size: 11px; font-style: normal }
+.smx-drip.is-on, .smx-rule.is-on, .smx-tl.is-on { background: #fff; border-color: #fdba74; box-shadow: 0 10px 20px -14px rgba(234, 88, 12, .5) }
+.smx-note { align-items: center; color: #57534e; display: flex; font-size: 12px; gap: 7px; margin-top: 2px }
+.smx-note i { color: #ea580c; font-size: 14px }
+.smx-rule kbd, .smx-log kbd { background: #1a1a1a; border-radius: 6px; color: #fdba74; font: inherit; font-size: 10.5px; font-weight: 700; padding: 3px 7px }
+.smx-rule b { color: #1a1a1a; flex: 1; font-weight: 600 }
+.smx-toggle { background: #d6d3d1; border-radius: 999px; display: inline-flex; height: 18px; padding: 2px; width: 32px }
+.smx-toggle i { background: #fff; border-radius: 50%; height: 14px; width: 14px }
+.smx-rule.is-on .smx-toggle { background: #ea580c; justify-content: flex-end }
+.smx-log b { color: #1a1a1a; flex: 1; font-weight: 600 }
+.smx-log span { color: #15803d; font-size: 11px; font-weight: 600; min-width: 84px; text-align: right }
+.smx-tl b { color: #1a1a1a; flex: 1; font-weight: 600 }
+
+@keyframes smx-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+
+/* ── 2 · 10DLC tracker ────────────────────────────────────────────────── */
+.srt-sec { background: #fff }
+.srt {
+    background:
+        radial-gradient(50% 80% at 100% 0%, rgba(253, 186, 116, .2), transparent 60%),
+        #fbf8f4;
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 28px;
+    margin: 0 auto;
+    max-width: 1120px;
+    padding: 22px 24px 24px
+}
+.srt-top { align-items: center; display: flex; justify-content: space-between; margin-bottom: 22px }
+.srt-title { align-items: center; display: flex; gap: 12px }
+.srt-logo { align-items: center; background: #1a1a1a; border-radius: 12px; color: #fdba74; display: inline-flex; font-size: 19px; height: 42px; justify-content: center; width: 42px }
+.srt-title > span:last-child { display: flex; flex-direction: column; gap: 2px }
+.srt-title b { color: #1a1a1a; font-size: 16px; font-weight: 600 }
+.srt-title em { color: #8a857c; font-size: 12.5px; font-style: normal }
+.srt-status { align-items: center; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 999px; color: #c2410c; display: inline-flex; font-size: 12px; font-weight: 700; gap: 7px; padding: 6px 12px }
+.srt-status i { animation: srt-ping 1.6s ease-out infinite; background: #f97316; border-radius: 50%; height: 7px; width: 7px }
+.srt-status.is-live { background: #f0fdf4; border-color: #bbf7d0; color: #15803d }
+.srt-status.is-live i { background: #22c55e }
+
+.srt-steps { display: grid; gap: 10px; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; margin: 0 0 16px; padding: 0 }
+.srt-step button { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 16px; color: inherit; cursor: pointer; display: flex; font: inherit; gap: 11px; height: 100%; padding: 13px 14px; text-align: left; transition: background .3s ease, border-color .3s ease, box-shadow .3s ease; width: 100% }
+.srt-step button:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.srt-dot { align-items: center; background: #f6f1ea; border-radius: 50%; color: #57534e; display: inline-flex; flex: none; font-size: 13px; font-weight: 700; height: 32px; justify-content: center; transition: background .3s ease, color .3s ease; width: 32px }
+.srt-step-t { display: flex; flex-direction: column; gap: 2px; min-width: 0 }
+.srt-step-t b { color: #1a1a1a; font-size: 14px; font-weight: 600 }
+.srt-step-t em { color: #8a857c; font-size: 11.5px; font-style: normal }
+.srt-step.is-done .srt-dot { background: #1a1a1a; color: #fdba74 }
+.srt-step.is-on button { background: #1a1a1a; border-color: #1a1a1a; box-shadow: 0 18px 32px -20px rgba(16, 2, 44, .7) }
+.srt-step.is-on .srt-dot { background: #ea580c; color: #fff }
+.srt-step.is-on .srt-step-t b { color: #fff }
+.srt-step.is-on .srt-step-t em { color: rgba(255, 255, 255, .65) }
+
+.srt-detail { animation: smx-in .5s cubic-bezier(.2, .8, .2, 1) both; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 250px }
+.srt-now { background: #fff; border: 1px solid rgba(16, 2, 44, .06); border-radius: 20px; display: flex; flex-direction: column; gap: 8px; padding: 22px 24px }
+.srt-who { align-self: flex-start; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .06em; padding: 4px 10px; text-transform: uppercase }
+.srt-who--us { background: #f6f1ea; color: #57534e }
+.srt-who--you { background: #fff7ed; color: #c2410c }
+body.design-v2 .lp .srt-now h3 { color: #1a1a1a; font-size: 22px !important; line-height: 1.25 !important; margin: 4px 0 0 }
+.srt-now p { color: #6b6560; font-size: 14.5px; line-height: 1.6; margin: 0 }
+.srt-eta { align-items: center; color: #1a1a1a; display: inline-flex; font-size: 13px; font-weight: 600; gap: 6px; margin-top: auto }
+.srt-eta i { color: #ea580c }
+.srt-log { background: #fff; border: 1px solid rgba(16, 2, 44, .06); border-radius: 20px; display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 14px 18px }
+.srt-log li { align-items: flex-start; border-bottom: 1px solid #f3eee7; display: flex; gap: 10px; padding: 10px 0 }
+.srt-log li:last-child { border-bottom: 0 }
+.srt-log li i { align-items: center; background: #f6f1ea; border-radius: 50%; color: #1a1a1a; display: inline-flex; flex: none; font-size: 12px; height: 22px; justify-content: center; width: 22px }
+.srt-log li.is-new { animation: smx-in .5s cubic-bezier(.2, .8, .2, 1) both }
+.srt-log li.is-new i { background: #fff7ed; color: #ea580c }
+.srt-log span { display: flex; flex-direction: column; gap: 2px }
+.srt-log b { color: #1a1a1a; font-size: 13.5px; font-weight: 600 }
+.srt-log em { color: #8a857c; font-size: 12px; font-style: normal }
+@keyframes srt-ping { 0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, .5) } 100% { box-shadow: 0 0 0 6px rgba(249, 115, 22, 0) } }
+
+/* ── 3 · Shared inbox flow ────────────────────────────────────────────── */
+.sif { align-items: center; display: grid; gap: 56px; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr) }
+.sif-steps { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 26px 0 0; padding: 0 }
+.sif-steps button { align-items: center; background: transparent; border: 1px solid transparent; border-radius: 14px; color: #44403c; cursor: pointer; display: flex; font: inherit; font-size: 15px; font-weight: 500; gap: 14px; padding: 10px 12px; text-align: left; transition: background .3s ease, border-color .3s ease, color .3s ease; width: 100% }
+.sif-steps button:hover { background: rgba(255, 255, 255, .7) }
+.sif-steps button:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.sif-n { align-items: center; background: #f6f1ea; border-radius: 50%; color: #1a1a1a; display: inline-flex; flex: none; font-size: 12px; font-weight: 700; height: 28px; justify-content: center; transition: background .3s ease, color .3s ease; width: 28px }
+.sif-steps button.is-on { background: #fff; border-color: rgba(234, 88, 12, .3); box-shadow: 0 16px 30px -24px rgba(16, 2, 44, .5); color: #1a1a1a }
+.sif-steps button.is-on .sif-n { background: #1a1a1a; color: #fdba74 }
+
+.sif-app { background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 24px; box-shadow: 0 40px 80px -50px rgba(16, 2, 44, .5); overflow: hidden }
+.sif-bar { align-items: center; background: #faf7f3; border-bottom: 1px solid #f1ece5; display: flex; justify-content: space-between; padding: 13px 18px }
+.sif-bar b { align-items: center; color: #1a1a1a; display: inline-flex; font-size: 14px; font-weight: 600; gap: 8px }
+.sif-bar b i { color: #ea580c }
+.sif-bar span { background: #1a1a1a; border-radius: 999px; color: #fff; font-size: 11.5px; font-weight: 600; padding: 3px 10px }
+.sif-body { display: grid; grid-template-columns: 230px minmax(0, 1fr); height: 330px }
+.sif-list { border-right: 1px solid #f1ece5; display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 10px }
+.sif-item { align-items: center; border-radius: 12px; display: flex; gap: 9px; padding: 9px 10px; transition: background .3s ease, opacity .3s ease }
+.sif-item.is-sel { background: #faf3ea; box-shadow: inset 0 0 0 1px #fde4c8 }
+.sif-item.is-done { opacity: .6 }
+.sif-av { align-items: center; border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 10px; font-weight: 700; height: 32px; justify-content: center; width: 32px }
+.sif-av--a { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.sif-av--b { background: linear-gradient(135deg, #57534e, #1c1917) }
+.sif-av--c { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.sif-av--d { background: linear-gradient(135deg, #a8a29e, #57534e) }
+.sif-av--xs { font-size: 7.5px; height: 18px; width: 18px }
+.sif-t { display: flex; flex: 1; flex-direction: column; gap: 2px; min-width: 0 }
+.sif-t b { color: #1a1a1a; font-size: 13px; font-weight: 600 }
+.sif-t em { align-items: center; color: #8a857c; display: flex; font-size: 11.5px; font-style: normal; gap: 4px; overflow: hidden; white-space: nowrap }
+.sif-meta { align-items: flex-end; color: #a8a29e; display: flex; flex-direction: column; font-size: 10.5px; gap: 2px }
+.sif-meta small { color: #57534e; font-size: 10px; font-weight: 600 }
+.sif-chip { animation: smx-in .4s ease both; border-radius: 999px; font-size: 10px; font-weight: 700; padding: 3px 8px }
+.sif-chip--new { background: #ea580c; color: #fff }
+.sif-chip--assigned { background: #1a1a1a; color: #fdba74 }
+.sif-chip--done { background: #f0fdf4; color: #15803d }
+.sif-thread { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px }
+.sif-th-head { align-items: center; border-bottom: 1px solid #f1ece5; display: flex; justify-content: space-between; padding-bottom: 10px }
+.sif-th-head b { color: #1a1a1a; font-size: 14px; font-weight: 600 }
+.sif-assignee { align-items: center; animation: smx-in .4s ease both; background: #f6f1ea; border-radius: 999px; color: #8a857c; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 6px; padding: 3px 10px 3px 4px }
+.sif-assignee:not(.is-set) { padding-left: 10px }
+.sif-assignee.is-set { background: #1a1a1a; color: #fff }
+.sif-msg { align-items: center; align-self: flex-start; background: #faf7f3; border: 1px solid #f1ece5; border-radius: 14px 14px 14px 4px; color: #292524; display: flex; font-size: 13px; gap: 6px; max-width: 88%; padding: 9px 12px }
+.sif-msg i { color: #ea580c }
+.sif-msg--out { align-self: flex-end; animation: smx-in .45s ease both; background: #1a1a1a; border-color: #1a1a1a; border-radius: 14px 14px 4px 14px; color: #fff }
+.sif-sys { align-items: center; align-self: center; animation: smx-in .45s ease both; color: #8a857c; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 5px }
+.sif-sys i { color: #ea580c }
+.sif-note { animation: smx-in .45s ease both; background: #fff7ed; border: 1px dashed #fdba74; border-radius: 12px; color: #9a3412; display: flex; flex-direction: column; font-size: 12.5px; font-weight: 600; gap: 2px; padding: 9px 12px; position: relative; padding-left: 34px }
+.sif-note i { left: 12px; position: absolute; top: 10px }
+.sif-note em { color: #c2410c; font-size: 11px; font-style: normal; font-weight: 500 }
+.sif-done { align-items: center; align-self: flex-start; background: #f6f1ea; border-radius: 10px; color: #57534e; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 6px; margin-top: auto; padding: 8px 14px; transition: background .3s ease, color .3s ease }
+.sif-done.is-done { background: #1a1a1a; color: #fff }
+.sif-done.is-done i { color: #86efac }
+
+/* ── 4 · Use cases: notification wall ─────────────────────────────────── */
+.stw {
+    background-color: #1a1a1a;
+    background-position: center;
+    background-size: cover;
+    border-radius: 28px;
+    box-shadow: 0 40px 80px -50px rgba(16, 2, 44, .6);
+    overflow: hidden;
+    padding: 34px 34px 40px;
+    position: relative
+}
+.stw::before { background: linear-gradient(180deg, rgba(12, 10, 9, .25), rgba(12, 10, 9, .5)); content: ""; inset: 0; position: absolute }
+.stw-time { color: #fff; display: flex; flex-direction: column; align-items: center; margin-bottom: 26px; position: relative; text-shadow: 0 2px 12px rgba(0, 0, 0, .3) }
+.stw-time b { font-size: 54px; font-weight: 500; letter-spacing: -.02em; line-height: 1 }
+.stw-time em { font-size: 14px; font-style: normal; opacity: .85 }
+.stw-grid { display: grid; gap: 18px 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; margin: 0 auto; max-width: 900px; padding: 0; position: relative }
+.stw-item { animation: stw-float 6s ease-in-out infinite; animation-delay: calc(var(--k) * -1.5s); display: flex; flex-direction: column; gap: 10px }
+.stw-item:nth-child(even) { translate: 0 24px }
+.stw-note {
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    background: rgba(255, 255, 255, .62);
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 20px;
+    box-shadow: 0 24px 44px -26px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .7);
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px 14px
+}
+.stw-note-top { align-items: center; display: flex; gap: 7px }
+.stw-app { align-items: center; background: #1a1a1a; border-radius: 7px; color: #fdba74; display: inline-flex; font-size: 12px; height: 22px; justify-content: center; width: 22px }
+.stw-note-top b { font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em }
+.stw-note-top em { color: #57534e; font-size: 11.5px; font-style: normal; margin-left: auto }
+.stw-note-txt { color: #292524; font-size: 14px; line-height: 1.45 }
+.stw-use { align-items: center; color: #fff; display: flex; gap: 10px; padding: 0 6px }
+.stw-use > i { align-items: center; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .25); border-radius: 10px; color: #fdba74; display: inline-flex; flex: none; font-size: 16px; height: 34px; justify-content: center; width: 34px }
+.stw-use span { display: flex; flex-direction: column; gap: 1px }
+.stw-use b { font-size: 14.5px; font-weight: 600 }
+.stw-use em { color: rgba(255, 255, 255, .78); font-size: 12.5px; font-style: normal }
+@keyframes stw-float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .smx-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+    .smx-body { grid-template-columns: 260px minmax(0, 1fr) }
+    .smx-copy { grid-column: 1 / -1; text-align: center }
+}
+@media (max-width: 1024px) {
+    .sif { gap: 32px; grid-template-columns: minmax(0, 1fr) }
+    .srt-steps { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .srt-detail { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 760px) {
+    .smx-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .smx-tab { font-size: 12px; justify-content: flex-start; padding: 9px 10px; text-align: left }
+    .smx-body { gap: 18px; grid-template-columns: minmax(0, 1fr); padding: 18px 6px 8px }
+    .smx-phone { margin: 0 auto; max-width: 280px; width: 100% }
+    .sif-body { grid-template-columns: minmax(0, 1fr); height: auto }
+    .sif-list { border-right: 0; border-bottom: 1px solid #f1ece5 }
+    .sif-list .sif-item:not(.is-sel) { display: none }
+    .sif-thread { min-height: 280px }
+    .stw { border-radius: 22px; padding: 26px 14px 30px }
+    .stw-time b { font-size: 42px }
+    .stw-grid { grid-template-columns: minmax(0, 1fr) }
+    .stw-item:nth-child(even) { translate: none }
+}
+@media (max-width: 640px) {
+    .srt { padding: 16px }
+    .srt-top { align-items: flex-start; flex-direction: column; gap: 12px }
+    .srt-steps { grid-template-columns: minmax(0, 1fr) }
+}
+@media (prefers-reduced-motion: reduce) {
+    .smx-copy, .smx-thread, .smx-desk-win, .srt-detail, .srt-log li.is-new, .srt-status i,
+    .sif-chip, .sif-assignee, .sif-msg--out, .sif-sys, .sif-note, .stw-item { animation: none }
+}
+
+/* Inbox flow extras: last-replier labels lit on step 1, call history line. */
+.sif-item.is-last .sif-meta small { background: #1a1a1a; border-radius: 999px; color: #fdba74; padding: 1px 7px; transition: background .3s ease }
+.sif-hist { align-items: center; align-self: center; animation: smx-in .45s ease both; background: #f6f1ea; border-radius: 999px; color: #57534e; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 6px; padding: 4px 11px }
+.sif-hist i { color: #ea580c }
+
+/* Realistic phone: ~9:19.5 proportions, slim bezel with a side-button hint,
+   status bar with Dynamic Island, an input bar and a home indicator. */
+.smx-body { min-height: 540px }
+.smx-phone { justify-self: center; width: 240px }
+.smx-device {
+    aspect-ratio: 9 / 19.5;
+    border: 7px solid #1a1a1a;
+    border-radius: 40px;
+    box-shadow: 0 0 0 1px #3f3f46, 0 40px 70px -30px rgba(16, 2, 44, .55), inset 0 0 0 1px rgba(255, 255, 255, .06);
+    height: auto;
+    width: 100%
+}
+.smx-notch { display: none }
+.smx-status { align-items: center; display: flex; height: 34px; justify-content: space-between; padding: 0 16px 0 22px; position: relative }
+.smx-status b { color: #1a1a1a; font-size: 12px; font-weight: 600 }
+.smx-island { background: #1a1a1a; border-radius: 999px; height: 20px; left: 50%; position: absolute; top: 7px; translate: -50% 0; width: 74px }
+.smx-sig { color: #1a1a1a; display: inline-flex; font-size: 12px; gap: 3px }
+.smx-from { gap: 3px; padding: 4px 10px 9px }
+.smx-logo { font-size: 10px; height: 30px; width: 30px }
+.smx-thread { min-height: 0; overflow: hidden; padding: 10px 10px 8px }
+.smx-bub { font-size: 11.5px; max-width: 88% }
+.smx-photo { grid-template-columns: 38px 1fr }
+.smx-photo i { font-size: 16px; height: 38px; width: 38px }
+.smx-input { align-items: center; border-top: 1px solid #f1ece5; color: #a8a29e; display: flex; font-size: 11px; justify-content: space-between; padding: 7px 10px 6px 14px }
+.smx-input span { background: #f6f1ea; border-radius: 999px; flex: 1; margin-right: 6px; padding: 5px 10px }
+.smx-input i { color: #ea580c; font-size: 22px }
+.smx-home { align-self: center; background: #1a1a1a; border-radius: 999px; height: 4px; margin: 2px 0 7px; width: 34%; }
+@media (max-width: 760px) {
+    .smx-body { min-height: 0 }
+    .smx-phone { width: 230px }
+}
+
+/* Smaller phone: 204px wide (still 9:19.5), with type and chrome scaled to
+   match so it reads like a real handset rather than a tall card. */
+.smx-body { grid-template-columns: minmax(0, .85fr) 230px minmax(0, 1.15fr); min-height: 480px }
+.smx-phone { width: 204px }
+.smx-device { border-radius: 34px; border-width: 6px }
+.smx-status { height: 28px; padding: 0 13px 0 18px }
+.smx-status b { font-size: 10.5px }
+.smx-island { height: 17px; top: 6px; width: 62px }
+.smx-sig { font-size: 10.5px }
+.smx-from { padding: 2px 8px 7px }
+.smx-logo { font-size: 9px; height: 26px; width: 26px }
+.smx-from b { font-size: 11px }
+.smx-from em { font-size: 9px }
+.smx-thread { gap: 6px; padding: 8px 8px 6px }
+.smx-bub { border-radius: 14px 14px 14px 4px; font-size: 10.5px; padding: 6px 9px }
+.smx-bub--out { border-radius: 14px 14px 4px 14px }
+.smx-bub em { font-size: 9px }
+.smx-photo { grid-template-columns: 32px 1fr; padding: 5px 8px 5px 5px }
+.smx-photo i { font-size: 14px; height: 32px; width: 32px }
+.smx-photo b { font-size: 10.5px }
+.smx-photo em { font-size: 9.5px }
+.smx-input { font-size: 10px; padding: 6px 8px 5px 10px }
+.smx-input span { padding: 4px 9px }
+.smx-input i { font-size: 19px }
+.smx-home { height: 3px; margin: 2px 0 6px }
+@media (max-width: 760px) {
+    .smx-phone { width: 204px }
+}
+
+/* "What you get" panel over a nature photo per tab: the photos crossfade
+   with the tab; a dark wash keeps the copy (now white) readable, and the
+   tabs bar and dashboard card turn to glass. */
+.smx { background: #1a1a1a; border-color: transparent; overflow: hidden; position: relative }
+.smx-bg { inset: 0; position: absolute; z-index: 0 }
+.smx-bg i { background-position: center; background-size: cover; inset: 0; opacity: 0; position: absolute; scale: 1.04; transition: opacity .9s ease, scale 6s ease }
+.smx-bg i.on { opacity: 1; scale: 1 }
+.smx-bg::after {
+    background:
+        linear-gradient(90deg, rgba(12, 10, 9, .62) 0%, rgba(12, 10, 9, .3) 50%, rgba(12, 10, 9, .2) 100%),
+        linear-gradient(180deg, rgba(12, 10, 9, .25), rgba(12, 10, 9, .45));
+    content: "";
+    inset: 0;
+    position: absolute
+}
+.smx-tabs, .smx-body { position: relative; z-index: 1 }
+.smx-tabs {
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    background: rgba(255, 255, 255, .16);
+    border-color: rgba(255, 255, 255, .28)
+}
+.smx-tab { color: rgba(255, 255, 255, .85) }
+.smx-tab i { color: rgba(255, 255, 255, .6) }
+.smx-tab:hover { background: rgba(255, 255, 255, .14) }
+.smx-tab.is-on { background: rgba(255, 255, 255, .95); color: #1a1a1a }
+.smx-tab.is-on i { color: #ea580c }
+.smx-num { color: #fdba74 }
+body.design-v2 .lp .smx-copy h3 { color: #fff }
+.smx-copy p { color: rgba(255, 255, 255, .82) }
+.smx-label { color: rgba(255, 255, 255, .75) }
+.smx-desk-win {
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .62));
+    border-color: rgba(255, 255, 255, .7);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .8)
+}
+.smx-line, .smx-drip, .smx-rule, .smx-log, .smx-tl, .smx-tpl { background: rgba(255, 255, 255, .6); border-color: rgba(255, 255, 255, .75) }
+.smx-device { box-shadow: 0 0 0 1px #3f3f46, 0 40px 70px -26px rgba(0, 0, 0, .7) }
+@media (prefers-reduced-motion: reduce) { .smx-bg i { scale: none; transition: none } }
+
+/* Phone screen as glass: the tab's photo glows through a frosted screen,
+   like a translucent iOS surface. The bezel stays solid black; incoming
+   bubbles and the input are brighter frosted layers, outgoing bubbles stay
+   near-black so the conversation reads at a glance. */
+.smx-device {
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    background: linear-gradient(165deg, rgba(255, 255, 255, .46) 0%, rgba(255, 255, 255, .26) 55%, rgba(255, 255, 255, .34) 100%);
+    box-shadow: 0 0 0 1px #3f3f46, 0 40px 70px -26px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .55), inset 0 0 0 1px rgba(255, 255, 255, .12)
+}
+.smx-status, .smx-from { background: rgba(255, 255, 255, .22) }
+.smx-from { border-bottom-color: rgba(255, 255, 255, .45) }
+.smx-from em { color: #44403c }
+.smx-thread { background: transparent }
+.smx-bub:not(.smx-bub--out), .smx-photo { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); background: rgba(255, 255, 255, .78); border-color: rgba(255, 255, 255, .85) }
+.smx-bub--out { box-shadow: 0 8px 18px -10px rgba(0, 0, 0, .6) }
+.smx-photo em { color: #57534e }
+.smx-input { background: rgba(255, 255, 255, .22); border-top-color: rgba(255, 255, 255, .45); color: #57534e }
+.smx-input span { background: rgba(255, 255, 255, .6); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7) }
+
+/* Dashboard card as clear glass, matching the phone: lighter tint, strong
+   blur, bright rim and top shine; rows are thin frosted layers, the active
+   row a brighter pill with the orange edge. */
+.smx-desk-win {
+    -webkit-backdrop-filter: blur(24px) saturate(175%);
+    backdrop-filter: blur(24px) saturate(175%);
+    background: linear-gradient(150deg, rgba(255, 255, 255, .44) 0%, rgba(255, 255, 255, .22) 60%, rgba(255, 255, 255, .3) 100%);
+    border: 1px solid rgba(255, 255, 255, .6);
+    box-shadow: 0 34px 64px -30px rgba(0, 0, 0, .65), inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 0 0 1px rgba(255, 255, 255, .12);
+    position: relative
+}
+.smx-desk-win::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), transparent);
+    content: "";
+    height: 1px;
+    left: 10%;
+    pointer-events: none;
+    position: absolute;
+    right: 10%;
+    top: 0
+}
+.smx-line, .smx-drip, .smx-rule, .smx-log, .smx-tl, .smx-tpl {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, .38);
+    border-color: rgba(255, 255, 255, .6);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55)
+}
+.smx-drip.is-on, .smx-rule.is-on, .smx-tl.is-on { background: rgba(255, 255, 255, .82); border-color: #fdba74; box-shadow: 0 12px 24px -14px rgba(234, 88, 12, .55) }
+.smx-compose, .smx-chips span { background: rgba(255, 255, 255, .55); border-color: rgba(255, 255, 255, .7) }
+.smx-row-k { color: #1a1a1a }
+.smx-drip span, .smx-drip em, .smx-log em, .smx-tl em, .smx-compose--meta { color: #57534e }
+.smx-note { color: #292524 }
+/* The footnote line sits on a frosted pill so it stays readable on glass. */
+.smx-note { align-self: flex-start; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: rgba(255, 255, 255, .55); border: 1px solid rgba(255, 255, 255, .7); border-radius: 999px; font-weight: 600; padding: 5px 12px 5px 9px }
+/* A touch wider (204 → 222px), height kept about the same. */
+.smx-body { grid-template-columns: minmax(0, .85fr) 250px minmax(0, 1.15fr) }
+.smx-phone, .smx-phone { width: 222px }
+.smx-device { aspect-ratio: 9 / 18 }
+@media (max-width: 760px) { .smx-phone { width: 222px } }
+
+/* Tab bar: every label on one line, icon and text centred together, tabs
+   sized to their label and spread evenly across the bar. */
+.smx-tabs { align-items: stretch; display: flex; gap: 4px }
+.smx-tab { flex: 1 1 auto; font-size: 13px; gap: 8px; line-height: 1; min-height: 42px; padding: 0 14px; white-space: nowrap }
+.smx-tab i { flex: none; font-size: 15px; line-height: 1 }
+@media (max-width: 1100px) {
+    .smx-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) }
+    .smx-tab { justify-content: flex-start; padding: 0 12px }
+}
+@media (max-width: 760px) {
+    .smx-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .smx-tab { font-size: 12px; line-height: 1.25; min-height: 40px; padding: 6px 10px; text-align: left; white-space: normal }
+}
+@media (min-width: 1101px) {
+    .smx-tab { font-size: 12.5px; gap: 7px; min-width: 0; padding: 0 10px }
+}

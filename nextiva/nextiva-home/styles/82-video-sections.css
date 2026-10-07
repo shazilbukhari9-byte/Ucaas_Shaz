@@ -1,0 +1,868 @@
+/* HD Video Meetings page sections (components/landing/video/*): the
+   post-call playback. Brand palette: near-black, orange accent, cream. */
+
+.vap-head { margin: 0 auto 40px; max-width: 780px; text-align: center }
+body.design-v2 .lp .vap-head .lp-h2 { text-wrap: balance }
+body.design-v2 .lp .vap-head .lp-intro { margin: 14px auto 0 }
+
+.vap {
+    background:
+        radial-gradient(60% 80% at 100% 0%, rgba(253, 186, 116, .2), transparent 60%),
+        linear-gradient(180deg, #fdfbf8, #f8f3ec);
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 28px;
+    box-shadow: 0 40px 80px -56px rgba(16, 2, 44, .45);
+    padding: 18px
+}
+
+/* Player-style timeline */
+.vap-track { background: #fff; border: 1px solid rgba(16, 2, 44, .06); border-radius: 18px; display: grid; gap: 4px; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; margin: 0; padding: 6px; position: relative }
+.vap-mark { align-items: center; background: transparent; border: 0; border-radius: 13px; color: inherit; cursor: pointer; display: flex; font: inherit; gap: 10px; padding: 9px 12px; text-align: left; transition: background .3s ease; width: 100% }
+.vap-mark:hover { background: #faf6f0 }
+.vap-mark:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.vap-dot { align-items: center; background: #f6f1ea; border-radius: 50%; color: #78716c; display: inline-flex; flex: none; font-size: 15px; height: 34px; justify-content: center; transition: background .3s ease, color .3s ease, box-shadow .3s ease; width: 34px }
+.vap-mark-t { display: flex; flex-direction: column; gap: 1px; min-width: 0 }
+.vap-mark-t em { color: #a39e99; font-size: 11px; font-style: normal; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .04em }
+.vap-mark-t b { color: #44403c; font-size: 13.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.vap-mark.is-past .vap-dot { background: #1a1a1a; color: #fdba74 }
+.vap-mark.is-on { background: #1a1a1a }
+.vap-mark.is-on .vap-dot { background: #ea580c; box-shadow: 0 0 0 4px rgba(234, 88, 12, .25); color: #fff }
+.vap-mark.is-on .vap-mark-t em { color: #fdba74 }
+.vap-mark.is-on .vap-mark-t b { color: #fff }
+
+/* Body: copy + recap window */
+.vap-body { align-items: center; display: grid; gap: 28px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); padding: 26px 18px 10px }
+.vap-copy { animation: vap-in .5s cubic-bezier(.2, .8, .2, 1) both }
+.vap-time { align-items: baseline; color: #ea580c; display: flex; font-family: var(--font-display, Georgia, serif); font-size: 46px; font-variant-numeric: tabular-nums; font-weight: 500; gap: 10px; line-height: 1 }
+.vap-time small { color: #a39e99; font-family: var(--font-body, inherit); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase }
+body.design-v2 .lp .vap-copy h3 { color: #1a1a1a; font-size: 24px !important; line-height: 1.25 !important; margin: 14px 0 8px }
+.vap-copy p { color: #6b6560; font-size: 15px; line-height: 1.6; margin: 0 }
+
+.vap-win { background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 20px; box-shadow: 0 30px 60px -40px rgba(16, 2, 44, .5); overflow: hidden }
+.vap-win-bar { align-items: center; background: #faf6f0; border-bottom: 1px solid #f1ece5; display: flex; gap: 10px; padding: 12px 16px }
+.vap-win-ic { align-items: center; background: linear-gradient(140deg, #fdba74, #ea580c); border-radius: 10px; color: #fff; display: inline-flex; font-size: 16px; height: 34px; justify-content: center; width: 34px }
+.vap-win-t { display: flex; flex-direction: column; gap: 1px }
+.vap-win-t b { color: #1a1a1a; font-size: 14px; font-weight: 600 }
+.vap-win-t em { color: #8a857c; font-size: 11.5px; font-style: normal }
+.vap-win-body { animation: vap-in .5s cubic-bezier(.2, .8, .2, 1) both; height: 236px; padding: 16px 18px }
+.vap-screen { display: flex; flex-direction: column; gap: 10px; height: 100% }
+.vap-k { color: #a39e99; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase }
+
+.vap-ended { align-items: center; background: #faf6f0; border: 1px solid #f1ece5; border-radius: 14px; display: flex; gap: 12px; padding: 12px 14px }
+.vap-ended-ic { align-items: center; background: #ef4444; border-radius: 50%; color: #fff; display: inline-flex; font-size: 15px; height: 36px; justify-content: center; rotate: 135deg; width: 36px }
+.vap-ended-t { display: flex; flex-direction: column; gap: 2px }
+.vap-ended-t b { color: #1a1a1a; font-size: 14px; font-weight: 600 }
+.vap-ended-t em { color: #8a857c; font-size: 12px; font-style: normal }
+.vap-checks { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 4px 0 0; padding: 0 }
+.vap-checks li { align-items: center; color: #292524; display: flex; font-size: 13.5px; gap: 8px }
+.vap-checks i { color: #16a34a; font-size: 16px }
+.vap-checks li.is-wait { color: #c2410c; font-weight: 600 }
+.vap-checks li.is-wait i { color: #ea580c }
+.vap-spin { animation: vap-spin 1s linear infinite; display: inline-block }
+
+.vap-sum { background: #fff7ed; border-left: 3px solid #ea580c; border-radius: 0 12px 12px 0; color: #292524; font-size: 15px; line-height: 1.55; margin: 0; padding: 12px 14px }
+.vap-sent { align-items: center; display: flex; gap: 12px; margin-top: auto }
+.vap-sent > span:last-child { display: flex; flex-direction: column; gap: 1px }
+.vap-sent b { color: #1a1a1a; font-size: 13px; font-weight: 600 }
+.vap-sent em { color: #8a857c; font-size: 12px; font-style: normal }
+.vap-stack { display: inline-flex }
+.vap-stack .vap-av + .vap-av { margin-left: -8px }
+.vap-av { align-items: center; border: 2px solid #fff; border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 8.5px; font-style: normal; font-weight: 700; height: 26px; justify-content: center; width: 26px }
+.vap-av--a { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.vap-av--b { background: linear-gradient(135deg, #57534e, #1c1917) }
+.vap-av--c { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.vap-av--d { background: linear-gradient(135deg, #a8a29e, #57534e) }
+
+.vap-task { align-items: center; animation: vap-in .45s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--i) * 120ms); background: #faf6f0; border: 1px solid #f1ece5; border-radius: 12px; display: flex; gap: 10px; padding: 9px 12px }
+.vap-task > i { color: #c9c2b8; font-size: 17px }
+.vap-task > b { color: #1a1a1a; flex: 1; font-size: 13.5px; font-weight: 600 }
+.vap-task.is-done > i { color: #16a34a }
+.vap-task.is-done > b { color: #8a857c; text-decoration: line-through }
+.vap-owner { align-items: center; color: #44403c; display: inline-flex; font-size: 12px; font-weight: 600; gap: 6px }
+.vap-owner .vap-av { border: 0; font-size: 7.5px; height: 20px; width: 20px }
+.vap-owner em { background: #1a1a1a; border-radius: 999px; color: #fdba74; font-size: 10.5px; font-style: normal; padding: 2px 8px }
+
+.vap-search { align-items: center; background: #fff; border: 1px solid rgba(16, 2, 44, .1); border-radius: 12px; box-shadow: 0 8px 20px -16px rgba(16, 2, 44, .4); display: flex; gap: 9px; padding: 10px 13px }
+.vap-search i { color: #ea580c; font-size: 16px }
+.vap-search b { color: #1a1a1a; font-size: 14px; font-weight: 600 }
+.vap-search em { background: #f6f1ea; border-radius: 999px; color: #57534e; font-size: 11px; font-style: normal; font-weight: 600; margin-left: auto; padding: 3px 9px }
+.vap-hit { animation: vap-in .45s .1s cubic-bezier(.2, .8, .2, 1) both; background: #faf6f0; border: 1px solid #fed7aa; border-radius: 12px; padding: 10px 13px }
+.vap-hit-top { align-items: center; display: flex; gap: 7px; margin-bottom: 5px }
+.vap-hit-top .vap-av { border: 0; font-size: 7.5px; height: 20px; width: 20px }
+.vap-hit-top b { color: #1a1a1a; font-size: 12.5px; font-weight: 600 }
+.vap-hit-top em { color: #a39e99; font-size: 11.5px; font-style: normal; margin-left: auto }
+.vap-hit p { color: #292524; font-size: 14px; margin: 0 }
+.vap-hit mark { background: #fed7aa; border-radius: 4px; color: #9a3412; font-weight: 600; padding: 0 3px }
+.vap-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto }
+.vap-chips span { align-items: center; background: #f6f1ea; border-radius: 999px; color: #44403c; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 5px; padding: 4px 10px }
+.vap-chips i { color: #ea580c }
+.vap-chips span.is-ok { background: #f0fdf4; color: #15803d }
+.vap-chips span.is-ok i { color: #16a34a }
+
+@keyframes vap-in { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+@keyframes vap-spin { to { transform: rotate(360deg) } }
+
+@media (max-width: 1024px) {
+    .vap-body { gap: 20px; grid-template-columns: minmax(0, 1fr) }
+    .vap-copy { text-align: center }
+    .vap-time { justify-content: center }
+}
+@media (max-width: 760px) {
+    .vap { border-radius: 22px; padding: 12px }
+    .vap-track { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .vap-body { padding: 18px 4px 6px }
+    .vap-time { font-size: 36px }
+    .vap-win-body { height: 270px; padding: 14px }
+    .vap-owner em { display: none }
+}
+@media (prefers-reduced-motion: reduce) {
+    .vap-copy, .vap-win-body, .vap-task, .vap-hit, .vap-spin { animation: none }
+}
+
+/* ── What meetings need: spec showcase (SpecShowcase.jsx) ──────────────────
+   Left: the selected spec as a big number with a small product visual;
+   right: all six as a list, the active row near-black with its text
+   revealed. Brand palette only. */
+.vss { align-items: stretch; display: grid; gap: 18px; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr) }
+.vss-show {
+    background:
+        radial-gradient(70% 80% at 100% 0%, rgba(253, 186, 116, .3), transparent 60%),
+        linear-gradient(180deg, #fdfbf8, #f6efe6);
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 28px;
+    box-shadow: 0 40px 80px -56px rgba(16, 2, 44, .45);
+    display: flex;
+    flex-direction: column;
+    min-height: 430px;
+    overflow: hidden;
+    padding: 28px 30px;
+    position: relative
+}
+.vss-count { color: #a39e99; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .08em }
+.vss-spec { align-items: baseline; animation: vss-in .5s cubic-bezier(.2, .8, .2, 1) both; display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 18px 0 4px }
+.vss-spec b { color: #1a1a1a; font-family: var(--font-display, Georgia, serif); font-size: clamp(72px, 8vw, 112px); font-weight: 500; letter-spacing: -.03em; line-height: .95 }
+.vss-spec em { color: #ea580c; font-size: 16px; font-style: normal; font-weight: 600; letter-spacing: .02em }
+.vss-vis { animation: vss-in .55s .08s cubic-bezier(.2, .8, .2, 1) both; display: flex; flex: 1; align-items: flex-end }
+.vss-v { background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 18px; box-shadow: 0 20px 40px -30px rgba(16, 2, 44, .5); padding: 14px; width: 100% }
+
+.vss-v--people { display: grid; gap: 5px; grid-template-columns: repeat(10, 1fr) }
+.vss-v--people i { animation: vss-pop 2.4s ease-in-out infinite; animation-delay: calc(var(--k) * 40ms); aspect-ratio: 1; background: #f6f1ea; border-radius: 50% }
+.vss-v--people i:nth-child(3n) { background: #fed7aa }
+.vss-v--people i:nth-child(7n) { background: #1a1a1a }
+.vss-v-cap { align-items: center; color: #57534e; display: flex; font-size: 12px; gap: 8px; grid-column: 1 / -1; margin-top: 6px }
+.vss-v-cap b { background: #1a1a1a; border-radius: 6px; color: #fdba74; font-size: 10.5px; padding: 2px 6px }
+
+.vss-v--sum { display: flex; flex-direction: column; gap: 7px }
+.vss-line { color: #44403c; display: flex; font-size: 12.5px; gap: 8px }
+.vss-line b { color: #1a1a1a; flex: none; font-weight: 600; width: 58px }
+.vss-sumcard { align-items: center; background: #1a1a1a; border-radius: 10px; color: #fff; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 7px; margin-top: 4px; padding: 8px 12px }
+.vss-sumcard i { color: #fdba74 }
+
+.vss-v--tasks { display: flex; flex-direction: column; gap: 7px }
+.vss-task { align-items: center; background: #faf6f0; border: 1px solid #f1ece5; border-radius: 10px; display: flex; gap: 8px; padding: 8px 10px }
+.vss-task i { color: #c9c2b8; font-size: 16px }
+.vss-task b { color: #1a1a1a; flex: 1; font-size: 12.5px; font-weight: 600 }
+.vss-task em { background: #1a1a1a; border-radius: 999px; color: #fdba74; font-size: 10.5px; font-style: normal; font-weight: 600; padding: 2px 9px }
+
+.vss-v--rec { display: flex; flex-direction: column; gap: 9px }
+.vss-rec { align-items: center; color: #b91c1c; display: inline-flex; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 700; gap: 6px }
+.vss-rec i { animation: vss-blink 1.2s ease-in-out infinite; background: #ef4444; border-radius: 50%; height: 7px; width: 7px }
+.vss-wave { align-items: center; display: flex; gap: 3px; height: 38px }
+.vss-wave i { background: linear-gradient(180deg, #fdba74, #ea580c); border-radius: 2px; flex: 1; height: var(--h, 50%) }
+.vss-keep { align-items: center; color: #57534e; display: inline-flex; font-size: 12px; gap: 6px }
+.vss-keep i { color: #ea580c }
+
+.vss-v--rooms { display: grid; gap: 7px; grid-template-columns: repeat(4, 1fr) }
+.vss-v--rooms span { align-items: center; background: #faf6f0; border: 1px solid #f1ece5; border-radius: 10px; display: flex; flex-direction: column; gap: 2px; padding: 8px 4px }
+.vss-v--rooms em { color: #8a857c; font-size: 10.5px; font-style: normal; font-weight: 600 }
+.vss-v--rooms b { color: #1a1a1a; font-size: 15px; font-weight: 600 }
+.vss-v--rooms span.is-on { background: #1a1a1a; border-color: #1a1a1a }
+.vss-v--rooms span.is-on em { color: #fdba74 }
+.vss-v--rooms span.is-on b { color: #fff }
+
+.vss-v--join { align-items: center; display: flex; flex-direction: column; gap: 10px; text-align: center }
+.vss-url { align-items: center; align-self: stretch; background: #faf6f0; border: 1px solid #f1ece5; border-radius: 10px; color: #57534e; display: flex; font-size: 12px; gap: 7px; padding: 8px 12px }
+.vss-url i { color: #16a34a }
+.vss-joinbtn { align-items: center; background: #1a1a1a; border-radius: 10px; color: #fff; display: inline-flex; font-size: 13px; font-weight: 600; gap: 8px; padding: 9px 16px }
+.vss-joinbtn i { color: #fdba74 }
+.vss-v--join em { color: #8a857c; font-size: 11.5px; font-style: normal }
+
+/* List */
+.vss-list { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 0; padding: 0 }
+.vss-row { align-items: flex-start; background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 18px; color: inherit; cursor: pointer; display: flex; font: inherit; gap: 14px; padding: 13px 16px; text-align: left; transition: background .3s ease, border-color .3s ease, box-shadow .3s ease; width: 100% }
+.vss-row:hover { border-color: rgba(234, 88, 12, .3) }
+.vss-row:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.vss-ic { align-items: center; background: #f6f1ea; border-radius: 11px; color: #1a1a1a; display: inline-flex; flex: none; font-size: 17px; height: 38px; justify-content: center; transition: background .3s ease, color .3s ease; width: 38px }
+.vss-t { display: flex; flex-direction: column; gap: 4px; min-width: 0 }
+.vss-t b { align-items: center; color: #1a1a1a; display: flex; flex-wrap: wrap; font-size: 15.5px; font-weight: 600; gap: 4px 10px; line-height: 38px; min-height: 38px }
+.vss-t b small { background: #f6f1ea; border-radius: 999px; color: #6b6560; font-size: 11px; font-weight: 600; line-height: 1.6; padding: 0 9px }
+.vss-t em { color: rgba(255, 255, 255, .72); display: -webkit-box; font-size: 13px; font-style: normal; line-height: 1.5; max-height: 0; overflow: hidden; transition: max-height .35s ease; -webkit-box-orient: vertical; -webkit-line-clamp: 2 }
+.vss-row.is-on { background: #1a1a1a; border-color: #1a1a1a; box-shadow: 0 22px 40px -26px rgba(16, 2, 44, .7) }
+.vss-row.is-on .vss-ic { background: #ea580c; color: #fff }
+.vss-row.is-on .vss-t b { color: #fff; line-height: 1.3; min-height: 0; padding-top: 2px }
+.vss-row.is-on .vss-t b small { background: rgba(255, 255, 255, .12); color: #fdba74 }
+.vss-row.is-on .vss-t em { max-height: 40px }
+
+@keyframes vss-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@keyframes vss-pop { 0%, 100% { transform: scale(1) } 50% { transform: scale(.82) } }
+@keyframes vss-blink { 50% { opacity: .3 } }
+
+@media (max-width: 1024px) {
+    .vss { grid-template-columns: minmax(0, 1fr) }
+    .vss-show { min-height: 360px }
+}
+@media (max-width: 640px) {
+    .vss-show { border-radius: 22px; min-height: 330px; padding: 20px }
+    .vss-spec b { font-size: 64px }
+    .vss-row { gap: 11px; padding: 11px 13px }
+    .vss-t b { font-size: 14.5px }
+    .vss-t b small { display: none }
+}
+@media (prefers-reduced-motion: reduce) {
+    .vss-spec, .vss-vis, .vss-v--people i, .vss-rec i { animation: none }
+}
+/* Finer "people" grid: smaller dots. */
+.vss-v--people { gap: 4px; grid-template-columns: repeat(14, 1fr) }
+
+/* ── Scheduling: invite flow (ScheduleDemo.jsx) ────────────────────────────
+   Calendar pills with the real marks, a week view with the event, an event
+   card that plays the steps, and a light security strip underneath. Brand
+   palette; the old dark purple security panel is gone. */
+.vsc-head { margin: 0 auto 40px; max-width: 780px; text-align: center }
+body.design-v2 .lp .vsc-head .lp-h2 { text-wrap: balance }
+body.design-v2 .lp .vsc-head .lp-intro { margin: 14px auto 0 }
+.vsc {
+    background: linear-gradient(180deg, #fff, #fcf9f5);
+    border: 1px solid rgba(16, 2, 44, .07);
+    border-radius: 28px;
+    box-shadow: 0 40px 80px -56px rgba(16, 2, 44, .45);
+    padding: 16px
+}
+.vsc-top { align-items: center; display: flex; justify-content: space-between; margin-bottom: 14px }
+.vsc-cals { background: #f6f1ea; border-radius: 14px; display: inline-flex; gap: 4px; padding: 4px }
+.vsc-cals button { align-items: center; background: transparent; border: 0; border-radius: 11px; color: #57534e; cursor: pointer; display: inline-flex; font: inherit; font-size: 13.5px; font-weight: 600; gap: 8px; padding: 7px 14px 7px 8px; transition: background .3s ease, color .3s ease, box-shadow .3s ease }
+.vsc-cals button.is-on { background: #fff; box-shadow: 0 6px 14px -10px rgba(16, 2, 44, .45); color: #1a1a1a }
+.vsc-cals button:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px }
+.vsc-week { color: #8a857c; font-size: 13px; font-weight: 600 }
+
+.vsc-body { display: grid; gap: 16px; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr) }
+
+/* Week view */
+.vsc-cal { background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 18px; overflow: hidden }
+.vsc-days, .vsc-grid { display: grid; grid-template-columns: 52px repeat(5, minmax(0, 1fr)) }
+.vsc-days { border-bottom: 1px solid #f1ece5 }
+.vsc-days span { align-items: center; display: flex; flex-direction: column; gap: 1px; padding: 9px 0 8px }
+.vsc-days em { color: #a39e99; font-size: 10.5px; font-style: normal; font-weight: 700; letter-spacing: .06em; text-transform: uppercase }
+.vsc-days b { color: #1a1a1a; font-size: 16px; font-weight: 600 }
+.vsc-days span.is-today b { background: #ea580c; border-radius: 50%; color: #fff; display: inline-flex; height: 28px; justify-content: center; line-height: 28px; width: 28px }
+.vsc-grid { height: 232px; position: relative }
+.vsc-hours { display: flex; flex-direction: column }
+.vsc-hours span { border-top: 1px solid #f6f1ea; color: #a39e99; flex: 1; font-size: 10.5px; font-weight: 600; padding: 4px 6px 0 0; text-align: right }
+.vsc-col { background: repeating-linear-gradient(180deg, transparent 0 57px, #f6f1ea 57px 58px); border-left: 1px solid #f1ece5; position: relative }
+.vsc-ev { background: #f6f1ea; border-left: 3px solid #d6cdc1; border-radius: 6px; color: #57534e; font-size: 10.5px; font-weight: 600; height: calc(var(--len) * 58px - 4px); left: 4px; overflow: hidden; padding: 4px 6px; position: absolute; right: 4px; top: calc(var(--at) * 58px + 2px) }
+.vsc-ev--main { background: #1a1a1a; border-left-color: #ea580c; box-shadow: 0 10px 20px -12px rgba(16, 2, 44, .7); color: #fff; display: flex; flex-direction: column; gap: 2px; transition: box-shadow .3s ease }
+.vsc-ev--main b { font-size: 10.5px; font-weight: 600; line-height: 1.2 }
+.vsc-ev--main em { align-items: center; color: #fdba74; display: inline-flex; font-size: 9.5px; font-style: normal; gap: 3px }
+.vsc-ev--main.has-meet { box-shadow: 0 0 0 2px #fdba74, 0 10px 20px -12px rgba(16, 2, 44, .7) }
+
+/* Event card */
+.vsc-card { background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 18px; display: flex; flex-direction: column; gap: 9px; padding: 16px 18px }
+.vsc-src { align-items: center; color: #8a857c; display: inline-flex; font-size: 12px; font-weight: 600; gap: 8px }
+.vsc-title { color: #1a1a1a; font-size: 20px; font-weight: 600 }
+.vsc-row { align-items: center; color: #44403c; display: flex; flex-wrap: wrap; font-size: 13.5px; gap: 7px }
+.vsc-row > i { color: #a39e99; font-size: 15px }
+.vsc-guests em { background: #f6f1ea; border-radius: 999px; color: #1a1a1a; font-size: 12px; font-style: normal; font-weight: 600; padding: 3px 9px }
+.vsc-meet { min-height: 92px }
+.vsc-add { align-items: center; background: #1a1a1a; border-radius: 10px; color: #fff; display: inline-flex; font-size: 13.5px; font-weight: 600; gap: 7px; padding: 9px 14px; transition: background .3s ease, transform .2s ease }
+.vsc-add i { color: #fdba74 }
+.vsc-add.is-press { background: #ea580c; transform: scale(.97) }
+.vsc-add.is-press i { color: #fff }
+.vsc-spin { animation: vsc-spin .9s linear infinite; display: inline-block }
+.vsc-meetbox { animation: vsc-in .45s cubic-bezier(.2, .8, .2, 1) both; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px; display: flex; flex-direction: column; gap: 5px; padding: 10px 12px }
+.vsc-meet-top { align-items: center; color: #c2410c; display: inline-flex; font-size: 12px; font-weight: 700; gap: 6px }
+.vsc-link, .vsc-dial { align-items: center; color: #1a1a1a; display: flex; font-size: 12.5px; gap: 7px }
+.vsc-link { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-weight: 600 }
+.vsc-link i, .vsc-dial i { color: #ea580c }
+.vsc-dial { animation: vsc-in .4s ease both }
+.vsc-sent { align-items: center; align-self: flex-start; background: #f6f1ea; border-radius: 10px; color: #8a857c; display: inline-flex; font-size: 12.5px; font-weight: 600; gap: 7px; margin-top: auto; padding: 8px 13px; transition: background .3s ease, color .3s ease }
+.vsc-sent.is-on { background: #f0fdf4; color: #15803d }
+
+/* Security strip */
+.vsc-secure { align-items: center; background: #faf6f0; border: 1px solid #f1ece5; border-radius: 18px; display: grid; gap: 14px 20px; grid-template-columns: minmax(0, 1fr) auto; margin-top: 16px; padding: 14px 18px }
+.vsc-secure-h { align-items: center; display: flex; gap: 12px; min-width: 0 }
+.vsc-lock { align-items: center; background: #1a1a1a; border-radius: 12px; color: #fdba74; display: inline-flex; flex: none; font-size: 18px; height: 40px; justify-content: center; width: 40px }
+.vsc-secure-h > span:last-child { display: flex; flex-direction: column; gap: 2px; min-width: 0 }
+.vsc-secure-h b { color: #1a1a1a; font-size: 15px; font-weight: 600 }
+.vsc-secure-h em { color: #6b6560; font-size: 12.5px; font-style: normal; line-height: 1.45 }
+.vsc-secure ul { display: grid; gap: 6px 16px; grid-template-columns: repeat(2, auto); list-style: none; margin: 0; padding: 0 }
+.vsc-secure li { align-items: center; color: #292524; display: flex; font-size: 12.5px; font-weight: 600; gap: 6px; white-space: nowrap }
+.vsc-secure li i { color: #ea580c; font-size: 14px }
+
+@keyframes vsc-in { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+@keyframes vsc-spin { to { transform: rotate(360deg) } }
+
+@media (max-width: 1024px) {
+    .vsc-body { grid-template-columns: minmax(0, 1fr) }
+    .vsc-secure { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 640px) {
+    .vsc { border-radius: 22px; padding: 10px }
+    .vsc-top { align-items: flex-start; flex-direction: column; gap: 8px }
+    .vsc-cals button { font-size: 12.5px; padding: 6px 10px 6px 6px }
+    .vsc-days, .vsc-grid { grid-template-columns: 38px repeat(5, minmax(0, 1fr)) }
+    .vsc-ev { font-size: 9px; padding: 3px 4px }
+    .vsc-ev:not(.vsc-ev--main) { color: transparent }
+    .vsc-secure ul { grid-template-columns: minmax(0, 1fr) }
+    .vsc-secure li { white-space: normal }
+}
+@media (prefers-reduced-motion: reduce) { .vsc-meetbox, .vsc-dial, .vsc-spin { animation: none } }
+/* 30-minute block: one line — video icon (once added) then the title. */
+.vsc-ev--main { align-items: center; flex-direction: row; gap: 4px; white-space: nowrap }
+.vsc-ev--main b { min-width: 0; overflow: hidden; text-overflow: ellipsis }
+.vsc-ev--main em { font-size: 0; order: -1 }
+.vsc-ev--main em i { font-size: 11px }
+
+/* ── Use cases: meeting tickets (VideoPage.jsx) ─────────────────────────── */
+.vtk-head { margin: 0 auto 40px; max-width: 780px; text-align: center }
+body.design-v2 .lp .vtk-head .lp-h2 { text-wrap: balance }
+.vtk { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)) }
+.vtk-card { background: #fff; border: 1px solid rgba(16, 2, 44, .07); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; transition: border-color .3s ease, box-shadow .3s ease, translate .3s ease }
+.vtk-card:hover { border-color: rgba(234, 88, 12, .3); box-shadow: 0 30px 54px -34px rgba(16, 2, 44, .5); translate: 0 -3px }
+.vtk-photo { background-color: #e9e4dc; background-position: center; background-size: cover; display: flex; flex-direction: column; height: 132px; justify-content: space-between; padding: 12px; position: relative }
+.vtk-photo::before { background: linear-gradient(180deg, rgba(12, 10, 9, .05), rgba(12, 10, 9, .45)); content: ""; inset: 0; position: absolute }
+.vtk-photo > * { position: relative }
+.vtk-when { align-items: center; align-self: flex-start; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255, 255, 255, .78); border: 1px solid rgba(255, 255, 255, .8); border-radius: 999px; color: #1a1a1a; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 6px; padding: 4px 10px 4px 8px }
+.vtk-when i { color: #ea580c }
+.vtk-who { align-items: center; display: flex; gap: 8px }
+.vtk-stack { display: inline-flex }
+.vtk-av { align-items: center; border: 2px solid #fff; border-radius: 50%; color: #fff; display: inline-flex; font-size: 8.5px; font-style: normal; font-weight: 700; height: 26px; justify-content: center; width: 26px }
+.vtk-av + .vtk-av { margin-left: -8px }
+.vtk-av--0 { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.vtk-av--1 { background: linear-gradient(135deg, #57534e, #1c1917) }
+.vtk-av--2 { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.vtk-av--3 { background: linear-gradient(135deg, #a8a29e, #57534e) }
+.vtk-who em { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); background: rgba(26, 26, 26, .6); border-radius: 999px; color: #fff; font-size: 10.5px; font-style: normal; font-weight: 600; padding: 3px 9px }
+
+.vtk-body { display: flex; flex: 1; flex-direction: column; gap: 8px; padding: 16px 18px 14px }
+.vtk-top { align-items: center; display: flex; gap: 10px }
+.vtk-ic { align-items: center; background: #1a1a1a; border-radius: 10px; color: #fdba74; display: inline-flex; flex: none; font-size: 16px; height: 34px; justify-content: center; width: 34px }
+body.design-v2 .lp .vtk-title { color: #1a1a1a; font-size: 17px !important; line-height: 1.25 !important; margin: 0 }
+body.design-v2 .lp .vtk-text { color: #6b6560; font-size: 13.5px !important; line-height: 1.5 !important; margin: 0 }
+.vtk-agenda { border-top: 1px dashed #ece4d9; counter-reset: ag; display: flex; flex-direction: column; gap: 5px; list-style: none; margin: 4px 0 0; padding: 10px 0 0 }
+.vtk-agenda li { align-items: center; color: #292524; counter-increment: ag; display: flex; font-size: 12.5px; font-weight: 600; gap: 8px }
+.vtk-agenda li::before { align-items: center; background: #f6f1ea; border-radius: 6px; color: #57534e; content: counter(ag); display: inline-flex; flex: none; font-size: 10.5px; font-weight: 700; height: 20px; justify-content: center; width: 20px }
+
+.vtk-out { align-items: center; background: #faf6f0; border-top: 1px solid #f1ece5; display: flex; gap: 10px; padding: 11px 18px }
+.vtk-out > i:first-child { align-items: center; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 9px; color: #ea580c; display: inline-flex; flex: none; font-size: 15px; height: 30px; justify-content: center; width: 30px }
+.vtk-out span { display: flex; flex: 1; flex-direction: column; gap: 1px; min-width: 0 }
+.vtk-out em { color: #a39e99; font-size: 10px; font-style: normal; font-weight: 700; letter-spacing: .1em; text-transform: uppercase }
+.vtk-out b { color: #1a1a1a; font-size: 13.5px; font-weight: 600 }
+.vtk-ai { color: #fdba74; font-size: 15px }
+
+@media (max-width: 1100px) { .vtk { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+@media (max-width: 640px) {
+    .vtk { gap: 12px; grid-template-columns: minmax(0, 1fr) }
+    .vtk-photo { height: 116px }
+}
+
+/* No jumping: the open row's text always takes exactly two lines (shorter
+   texts leave the space), so the list — and the section — keep one height
+   whichever feature is selected. */
+.vss-t em { height: 0; max-height: none; transition: height .35s ease }
+.vss-row.is-on .vss-t em { height: 39px; max-height: none }
+.vss-show { min-height: 0 }
+.vss-vis { min-height: 170px }
+/* Fixed-size dots, so the "people" visual is never taller than the others
+   on wide panels; on stacked layouts the visual area has one fixed height. */
+.vss-v--people { grid-template-columns: repeat(14, minmax(0, 18px)); justify-content: space-between }
+@media (max-width: 1024px) { .vss-vis { height: 190px; min-height: 0 } }
+/* Stacked layouts: the spec stays on one line and the panel has one fixed
+   height, so the page never moves as the feature changes. */
+@media (max-width: 1024px) {
+    .vss-spec { flex-wrap: nowrap; white-space: nowrap }
+    .vss-show { height: 400px }
+    .vss-vis { flex: 1; height: auto }
+}
+@media (max-width: 640px) {
+    .vss-show { height: 370px }
+    .vss-spec b { font-size: 60px }
+    .vss-spec em { font-size: 14px }
+}
+
+/* Fade only — no slide, no growing rows. The big spec and visual cross-fade
+   in place; the open row's text fades in (its space switches instantly, so
+   nothing slides) and the row colour fades. */
+@keyframes vss-fade { from { opacity: 0 } to { opacity: 1 } }
+.vss-spec { animation: vss-fade .45s ease both }
+.vss-vis { animation: vss-fade .5s .05s ease both }
+.vss-t em { opacity: 0; transition: none }
+.vss-row.is-on .vss-t em { animation: vss-fade .4s .05s ease both; opacity: 1 }
+.vss-row { transition: background .35s ease, border-color .35s ease, box-shadow .35s ease }
+.vss-row.is-on .vss-t b { transition: none }
+@media (prefers-reduced-motion: reduce) { .vss-spec, .vss-vis, .vss-row.is-on .vss-t em { animation: none } }
+
+/* ── Spec showcase, product-window version ──────────────────────────────────
+   The left panel: a compact spec headline, then a meeting-app window that
+   fills the rest and shows the selected feature full size. Fade only. */
+.vss-show { display: flex; flex-direction: column; gap: 14px; height: 100%; min-height: 0; padding: 22px 22px 22px }
+.vss-headline { align-items: flex-end; animation: vss-fade .45s ease both; display: flex; justify-content: space-between }
+.vss-spec2 { align-items: baseline; display: flex; gap: 10px }
+.vss-spec2 b { color: #1a1a1a; font-family: var(--font-display, Georgia, serif); font-size: 54px; font-weight: 500; letter-spacing: -.02em; line-height: 1 }
+.vss-spec2 em { color: #ea580c; font-size: 15px; font-style: normal; font-weight: 600 }
+.vss-show .vss-count { padding-bottom: 6px }
+.vss-spec, .vss-vis { display: none }
+
+.vsx-win { background: #fff; border: 1px solid rgba(16, 2, 44, .08); border-radius: 18px; box-shadow: 0 30px 60px -36px rgba(16, 2, 44, .5); display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden }
+.vsx-bar-top { align-items: center; background: #faf7f3; border-bottom: 1px solid #f1ece5; display: flex; gap: 10px; padding: 9px 14px }
+.vsx-dots { display: inline-flex; gap: 4px }
+.vsx-dots i { border-radius: 50%; height: 8px; width: 8px }
+.vsx-dots i:nth-child(1) { background: #f87171 }
+.vsx-dots i:nth-child(2) { background: #fbbf24 }
+.vsx-dots i:nth-child(3) { background: #34d399 }
+.vsx-bar-top b { align-items: center; color: #1a1a1a; display: inline-flex; flex: 1; font-size: 12.5px; font-weight: 600; gap: 6px }
+.vsx-bar-top b i { color: #ea580c }
+.vsx-live { align-items: center; background: #fef2f2; border-radius: 999px; color: #b91c1c; display: inline-flex; font-size: 10.5px; font-weight: 700; gap: 5px; padding: 3px 9px }
+.vsx-live i { animation: vss-blink 1.2s ease-in-out infinite; background: #ef4444; border-radius: 50%; height: 6px; width: 6px }
+.vsx-screen { animation: vss-fade .45s ease both; flex: 1; min-height: 0; padding: 12px }
+.vsx { display: flex; flex-direction: column; gap: 9px; height: 100% }
+.vsx-foot { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto }
+.vsx-chip { align-items: center; background: #f6f1ea; border-radius: 999px; color: #44403c; display: inline-flex; font-size: 11px; font-weight: 600; gap: 5px; padding: 4px 10px }
+.vsx-chip i { color: #ea580c }
+.vsx-chip b { background: #fdba74; border-radius: 4px; color: #431407; font-size: 9.5px; padding: 0 4px }
+.vsx-chip--dark { background: #1a1a1a; color: #fff }
+.vsx-chip--dark i { color: #fdba74 }
+
+.vsx-av { align-items: center; border: 2px solid #fff; border-radius: 50%; color: #fff; display: inline-flex; flex: none; font-size: 9px; font-weight: 700; height: 26px; justify-content: center; width: 26px }
+.vsx-av--0 { background: linear-gradient(135deg, #fdba74, #ea580c) }
+.vsx-av--1 { background: linear-gradient(135deg, #57534e, #1c1917) }
+.vsx-av--2 { background: linear-gradient(135deg, #d6b89c, #9a6b47) }
+.vsx-av--3 { background: linear-gradient(135deg, #a8a29e, #57534e) }
+
+/* 1 · Video grid */
+.vsx-tiles { display: grid; flex: 1; gap: 6px; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr) }
+.vsx-tile { align-items: center; border: 2px solid transparent; border-radius: 12px; display: flex; justify-content: center; position: relative }
+.vsx-tile .vsx-av { border: 0; font-size: 12px; height: 40px; width: 40px; background: rgba(255, 255, 255, .16) }
+.vsx-tile em { align-items: center; background: rgba(0, 0, 0, .4); border-radius: 6px; bottom: 6px; color: #fff; display: inline-flex; font-size: 10px; font-style: normal; font-weight: 600; gap: 4px; left: 6px; padding: 2px 7px; position: absolute }
+.vsx-tile em i { color: #fdba74 }
+.vsx-tile--0 { background: linear-gradient(135deg, #57534e, #292524) }
+.vsx-tile--1 { background: linear-gradient(135deg, #44403c, #1c1917) }
+.vsx-tile--2 { background: linear-gradient(135deg, #9a3412, #431407) }
+.vsx-tile--3 { background: linear-gradient(135deg, #78716c, #3f3a36) }
+.vsx-tile--4 { background: linear-gradient(135deg, #a8a29e, #57534e) }
+.vsx-tile--5 { background: linear-gradient(135deg, #3f3f46, #18181b) }
+.vsx-tile.is-talk { border-color: #fb923c; box-shadow: 0 0 0 3px rgba(251, 146, 60, .25) }
+
+/* 2 · Transcript */
+.vsx-line { align-items: flex-start; display: flex; gap: 9px }
+.vsx-line > span:last-child { color: #44403c; display: flex; flex-direction: column; font-size: 12.5px; gap: 2px; line-height: 1.45 }
+.vsx-line b { color: #1a1a1a; font-size: 12.5px; font-weight: 600 }
+.vsx-line b em { color: #a39e99; font-style: normal; font-weight: 500; margin-left: 6px }
+.vsx-sum { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px; margin-top: auto; padding: 10px 12px }
+.vsx-sum-k { align-items: center; color: #c2410c; display: inline-flex; font-size: 11.5px; font-weight: 700; gap: 5px }
+.vsx-sum p { color: #292524; font-size: 12.5px; line-height: 1.5; margin: 4px 0 0 }
+
+/* 3 · Tasks */
+.vsx-task { align-items: center; background: #faf7f3; border: 1px solid #f1ece5; border-radius: 12px; display: grid; gap: 10px; grid-template-columns: auto minmax(0, 1fr) auto 52px; padding: 9px 12px }
+.vsx-task > i { color: #c9c2b8; font-size: 18px }
+.vsx-task-t { display: flex; flex-direction: column; gap: 1px; min-width: 0 }
+.vsx-task-t b { color: #1a1a1a; font-size: 12.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.vsx-task-t em { color: #a39e99; font-size: 10.5px; font-style: normal }
+.vsx-owner { align-items: center; color: #44403c; display: inline-flex; font-size: 11.5px; font-weight: 600; gap: 6px }
+.vsx-owner .vsx-av { border: 0; font-size: 7.5px; height: 20px; width: 20px }
+.vsx-due { background: #1a1a1a; border-radius: 999px; color: #fdba74; font-size: 10.5px; font-weight: 600; padding: 3px 0; text-align: center }
+.vsx-due.is-done { background: #f0fdf4; color: #15803d }
+.vsx-task.is-done > i { color: #16a34a }
+.vsx-task.is-done .vsx-task-t b { color: #8a857c; text-decoration: line-through }
+
+/* 4 · Recording */
+.vsx-player { border-radius: 12px; flex: 1; min-height: 120px; overflow: hidden; position: relative }
+.vsx-frame { display: grid; gap: 3px; grid-template-columns: 1fr 1fr; height: 100%; inset: 0; position: absolute }
+.vsx-mini { display: block }
+.vsx-play { align-items: center; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: rgba(255, 255, 255, .85); border-radius: 50%; color: #1a1a1a; display: inline-flex; font-size: 22px; height: 46px; justify-content: center; left: 50%; position: absolute; top: 50%; translate: -50% -50%; width: 46px }
+.vsx-recbadge { align-items: center; background: rgba(0, 0, 0, .5); border-radius: 6px; color: #fff; display: inline-flex; font-size: 10px; font-weight: 700; gap: 5px; left: 8px; padding: 3px 7px; position: absolute; top: 8px }
+.vsx-recbadge i { background: #ef4444; border-radius: 50%; height: 6px; width: 6px }
+.vsx-scrub { display: flex; flex-direction: column; gap: 6px }
+.vsx-bar { background: #f1ece5; border-radius: 999px; display: block; height: 5px; position: relative }
+.vsx-bar > i { background: #ea580c; border-radius: 999px; display: block; height: 100% }
+.vsx-bar > b { background: #fff; border: 2px solid #1a1a1a; border-radius: 50%; height: 9px; position: absolute; top: -2px; translate: -50% 0; width: 9px }
+.vsx-chapters { display: flex; justify-content: space-between }
+.vsx-chapters em { color: #a39e99; font-size: 10.5px; font-style: normal; font-weight: 600 }
+.vsx-chapters em.is-on { color: #1a1a1a }
+
+/* 5 · Breakout rooms */
+.vsx-rooms { display: grid; flex: 1; gap: 7px; grid-template-columns: repeat(3, 1fr) }
+.vsx-room { background: #faf7f3; border: 1px solid #f1ece5; border-radius: 12px; display: flex; flex-direction: column; gap: 8px; justify-content: space-between; padding: 9px 10px }
+.vsx-room b { color: #1a1a1a; font-size: 12px; font-weight: 600 }
+.vsx-stack { display: inline-flex }
+.vsx-stack .vsx-av { font-size: 7.5px; height: 22px; width: 22px }
+.vsx-stack .vsx-av + .vsx-av { margin-left: -7px }
+.vsx-room.is-on { background: #1a1a1a; border-color: #1a1a1a }
+.vsx-room.is-on b { color: #fdba74 }
+.vsx-room.is-on .vsx-av { border-color: #1a1a1a }
+
+/* 6 · Browser join */
+.vsx-url { align-items: center; background: #faf7f3; border: 1px solid #f1ece5; border-radius: 9px; color: #57534e; display: flex; font-size: 11.5px; gap: 6px; padding: 6px 10px }
+.vsx-url i { color: #16a34a }
+.vsx-join { align-items: center; display: grid; flex: 1; gap: 14px; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) }
+.vsx-cam { align-items: center; background: linear-gradient(135deg, #57534e, #1c1917); border-radius: 12px; display: flex; height: 100%; justify-content: center; min-height: 130px; position: relative }
+.vsx-cam .vsx-av { border: 0; font-size: 14px; height: 48px; width: 48px }
+.vsx-cam-ctrls { bottom: 8px; display: flex; gap: 6px; left: 50%; position: absolute; translate: -50% 0 }
+.vsx-cam-ctrls i { align-items: center; background: rgba(255, 255, 255, .18); border-radius: 50%; color: #fff; display: inline-flex; font-size: 13px; height: 28px; justify-content: center; width: 28px }
+.vsx-form { display: flex; flex-direction: column; gap: 8px }
+.vsx-form b { color: #1a1a1a; font-size: 15px; font-weight: 600 }
+.vsx-field { background: #fff; border: 1px solid #e6dfd5; border-radius: 9px; color: #1a1a1a; font-size: 12.5px; padding: 8px 10px }
+.vsx-joinbtn { align-items: center; background: #1a1a1a; border-radius: 9px; color: #fff; display: inline-flex; font-size: 13px; font-weight: 600; gap: 6px; justify-content: center; padding: 9px 12px }
+.vsx-joinbtn i { color: #fdba74 }
+.vsx-form em { align-items: center; color: #15803d; display: inline-flex; font-size: 11px; font-style: normal; font-weight: 600; gap: 4px }
+
+@media (max-width: 1024px) {
+    .vss-show { height: 440px }
+}
+@media (max-width: 640px) {
+    .vss-show { height: 420px; padding: 16px }
+    .vss-spec2 b { font-size: 42px }
+    .vsx-screen { padding: 10px }
+    .vsx-task { grid-template-columns: auto minmax(0, 1fr) 46px }
+    .vsx-owner { display: none }
+    .vsx-join { grid-template-columns: minmax(0, 1fr) }
+    .vsx-cam { min-height: 90px }
+    .vsx-tile .vsx-av { height: 32px; width: 32px }
+}
+@media (prefers-reduced-motion: reduce) { .vsx-screen, .vss-headline, .vsx-live i { animation: none } }
+
+/* Product-shot crop: the app window runs flush into the panel's left and
+   bottom edges (only the top-right corner rounded), keeping the gap on the
+   right. */
+.vss-show { overflow: hidden }
+.vsx-win {
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 0 18px 0 0;
+    box-shadow: 0 -2px 0 rgba(255, 255, 255, .6), 24px -10px 50px -36px rgba(16, 2, 44, .45);
+    margin: 0 0 -22px -22px
+}
+.vsx-bar-top { padding-left: 22px }
+.vsx-screen { padding: 12px 12px 22px 22px }
+@media (max-width: 640px) {
+    .vsx-win { margin: 0 0 -16px -16px }
+    .vsx-bar-top { padding-left: 16px }
+    .vsx-screen { padding: 10px 10px 16px 16px }
+}
+
+/* Showcase panel over a nature photo per feature: the photos crossfade with
+   the selection; a dark wash at the top keeps the spec (now white) readable;
+   the app window stays white. */
+.vss-show { background: #1a1a1a; border-color: transparent; position: relative }
+.vss-bg { inset: 0; position: absolute; z-index: 0 }
+.vss-bg i { background-position: center; background-size: cover; inset: 0; opacity: 0; position: absolute; scale: 1.04; transition: opacity .9s ease, scale 6s ease }
+.vss-bg i.on { opacity: 1; scale: 1 }
+.vss-bg::after { background: linear-gradient(180deg, rgba(12, 10, 9, .55) 0%, rgba(12, 10, 9, .25) 38%, rgba(12, 10, 9, .1) 100%); content: ""; inset: 0; position: absolute }
+.vss-headline, .vsx-win { position: relative; z-index: 1 }
+.vss-spec2 b { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, .25) }
+.vss-spec2 em { color: #fdba74 }
+.vss-show .vss-count { color: rgba(255, 255, 255, .75) }
+.vsx-win { box-shadow: 0 -1px 0 rgba(255, 255, 255, .5), 24px -10px 50px -30px rgba(0, 0, 0, .55) }
+@media (prefers-reduced-motion: reduce) { .vss-bg i { scale: none; transition: none } }
+
+/* Sharp on hover: no lift (a sub-pixel translate on a GPU layer made the
+   photo and text render soft). Hover is a border + shadow only, and the
+   reveal's will-change is released once the card is in. */
+.vtk-card { transition: border-color .3s ease, box-shadow .3s ease }
+.vtk-card:hover { translate: none }
+.design-v2 .vtk-card.reveal.revealed { will-change: auto }
+
+/* App window as transparent glass over the feature photo: a light tint with
+   a strong blur and a bright rim; inner rows, cards and chips become thin
+   frosted layers; text a touch darker for contrast. Video tiles, the player
+   and dark pills stay solid. */
+.vsx-win {
+    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    backdrop-filter: blur(24px) saturate(170%);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, .28) 60%, rgba(255, 255, 255, .36) 100%);
+    border-color: rgba(255, 255, 255, .6);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85), 24px -10px 50px -30px rgba(0, 0, 0, .55)
+}
+.vsx-bar-top { background: rgba(255, 255, 255, .28); border-bottom-color: rgba(255, 255, 255, .5) }
+.vsx-live { background: rgba(254, 242, 242, .75) }
+
+.vsx-task, .vsx-room:not(.is-on), .vsx-url, .vsx-sum, .vsx-chip:not(.vsx-chip--dark) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .42);
+    border-color: rgba(255, 255, 255, .65);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6)
+}
+.vsx-chip:not(.vsx-chip--dark) { border: 1px solid rgba(255, 255, 255, .65) }
+.vsx-sum { background: rgba(255, 247, 237, .62) }
+.vsx-field { background: rgba(255, 255, 255, .7); border-color: rgba(255, 255, 255, .8) }
+.vsx-bar { background: rgba(255, 255, 255, .55) }
+.vsx-due.is-done { background: rgba(240, 253, 244, .85) }
+
+.vsx-task-t em, .vsx-line b em, .vsx-chapters em, .vsx-url { color: #57534e }
+.vsx-line > span:last-child, .vsx-owner, .vsx-chip { color: #292524 }
+.vsx-task.is-done .vsx-task-t b { color: #57534e }
+
+/* Smaller product window: a fixed, compact height at the bottom of the panel
+   (more of the photo shows above it) with slightly smaller content. */
+.vsx-win { flex: 0 0 auto; height: 318px; margin-top: auto }
+.vsx-bar-top { padding-bottom: 7px; padding-top: 7px }
+.vsx-bar-top b { font-size: 12px }
+.vsx-screen { padding: 10px 10px 18px 22px }
+.vsx { gap: 7px }
+.vsx-chip { font-size: 10.5px; padding: 3px 9px }
+.vsx-tile .vsx-av { font-size: 11px; height: 34px; width: 34px }
+.vsx-tile em { font-size: 9.5px }
+.vsx-player { min-height: 0 }
+.vsx-play { font-size: 18px; height: 38px; width: 38px }
+.vsx-task { gap: 8px; padding: 6px 10px }
+.vsx-task-t b, .vsx-line b, .vsx-line > span:last-child { font-size: 12px }
+.vsx-task > i { font-size: 16px }
+.vsx-room { gap: 6px; padding: 7px 9px }
+.vsx-sum { padding: 8px 10px }
+.vsx-sum p { font-size: 12px }
+.vsx-cam { min-height: 0 }
+.vsx-form b { font-size: 14px }
+.vsx-joinbtn { padding: 7px 10px }
+@media (max-width: 1024px) { .vsx-win { height: 300px } }
+@media (max-width: 640px) { .vsx-win { height: 290px } }
+@media (max-width: 640px) { .vsx--tx .vsx-line:nth-child(3) { display: none } }
+
+/* Legibility pass: the glass window gets a firmer frosted tint so dark text
+   reads on every photo; dark pills keep white text; avatar initials are
+   larger with less overlap so two letters never get cut off. */
+.vsx-win { background: linear-gradient(160deg, rgba(255, 255, 255, .78) 0%, rgba(255, 255, 255, .66) 60%, rgba(255, 255, 255, .72) 100%) }
+.vsx-bar-top { background: rgba(255, 255, 255, .5) }
+.vsx-task, .vsx-room:not(.is-on), .vsx-url, .vsx-chip:not(.vsx-chip--dark) { background: rgba(255, 255, 255, .62) }
+.vsx-chip.vsx-chip--dark { color: #fff }
+.vsx-line { background: rgba(255, 255, 255, .5); border: 1px solid rgba(255, 255, 255, .7); border-radius: 10px; padding: 6px 9px }
+.vsx-line > span:last-child { min-width: 0 }
+body.design-v2 .lp .vsx-sum p, .vsx-sum p { font-size: 12px !important; line-height: 1.45 !important }
+.vsx-chapters em { color: #44403c }
+.vsx-stack .vsx-av, .vsx-owner .vsx-av { font-size: 8.5px; height: 25px; letter-spacing: -.02em; width: 25px }
+.vsx-stack .vsx-av + .vsx-av { margin-left: -4px }
+.vsx-owner .vsx-av { height: 22px; width: 22px; font-size: 8px }
+/* Headline stays readable on bright photos (sky, snow). */
+.vss-bg::after { background: linear-gradient(180deg, rgba(12, 10, 9, .66) 0%, rgba(12, 10, 9, .34) 40%, rgba(12, 10, 9, .14) 100%) }
+.vss-spec2 b, .vss-spec2 em, .vss-show .vss-count { text-shadow: 0 1px 12px rgba(0, 0, 0, .45) }
+
+/* ── After the call: nature photo behind the playback, glass on top ────────
+   One photo per moment, crossfading; a dark wash keeps the copy legible.
+   The timeline and the recap window are frosted glass; rows inside them
+   are thinner frosted layers. Brand palette only. */
+.vap { background: #1a1a1a; border-color: transparent; isolation: isolate; overflow: hidden; position: relative }
+.vap-bg { inset: 0; position: absolute; z-index: -1 }
+.vap-bg i { background-position: center; background-size: cover; inset: 0; opacity: 0; position: absolute; scale: 1.04; transition: opacity .9s ease, scale 6s ease }
+.vap-bg i.on { opacity: 1; scale: 1 }
+.vap-bg::after { background: linear-gradient(90deg, rgba(12, 10, 9, .62) 0%, rgba(12, 10, 9, .38) 45%, rgba(12, 10, 9, .18) 100%); content: ""; inset: 0; position: absolute }
+
+.vap-track {
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+    background: rgba(255, 255, 255, .68);
+    border-color: rgba(255, 255, 255, .7);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85), 0 20px 40px -30px rgba(0, 0, 0, .5)
+}
+.vap-mark:hover { background: rgba(255, 255, 255, .55) }
+.vap-mark.is-on, .vap-mark.is-on:hover { background: #1a1a1a }
+.vap-dot { background: rgba(255, 255, 255, .7) }
+.vap-mark-t em { color: #78716c }
+.vap-mark-t b { color: #292524 }
+
+.vap-time { color: #fdba74; text-shadow: 0 2px 16px rgba(0, 0, 0, .3) }
+.vap-time small { color: rgba(255, 255, 255, .72) }
+body.design-v2 .lp .vap-copy h3 { color: #fff; text-shadow: 0 2px 16px rgba(0, 0, 0, .3) }
+.vap-copy p { color: rgba(255, 255, 255, .84) }
+
+.vap-win {
+    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    backdrop-filter: blur(24px) saturate(170%);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .68) 60%, rgba(255, 255, 255, .74) 100%);
+    border-color: rgba(255, 255, 255, .7);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 34px 60px -36px rgba(0, 0, 0, .6)
+}
+.vap-win-bar { background: rgba(255, 255, 255, .45); border-bottom-color: rgba(255, 255, 255, .6) }
+.vap-ended, .vap-task, .vap-search, .vap-hit, .vap-chips span:not(.is-ok) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, .55);
+    border-color: rgba(255, 255, 255, .75);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6)
+}
+.vap-hit { border-color: rgba(253, 186, 116, .7) }
+.vap-sum { background: rgba(255, 247, 237, .7) }
+.vap-chips span.is-ok { background: rgba(240, 253, 244, .8) }
+.vap-k, .vap-hit-top em, .vap-sent em, .vap-ended-t em { color: #78716c }
+
+/* Avatars: initials never clipped (bigger, less overlap) */
+.vap-av, .vtk-av { font-size: 9px; height: 28px; letter-spacing: -.02em; width: 28px }
+.vap-stack .vap-av + .vap-av, .vtk-av + .vtk-av { margin-left: -5px }
+.vap-owner .vap-av, .vap-hit-top .vap-av { font-size: 8px; height: 22px; width: 22px }
+
+/* Avatar hover card: the person's name in a small dark pill above. */
+.vap-av[data-name], .vtk-av[data-name], .vsx-av[data-name] { cursor: default; position: relative; transition: transform .2s ease, box-shadow .2s ease }
+.vap-av[data-name]:hover, .vtk-av[data-name]:hover, .vsx-av[data-name]:hover { box-shadow: 0 0 0 2px #fdba74; transform: scale(1.08); z-index: 5 }
+.vap-av[data-name]::after, .vtk-av[data-name]::after, .vsx-av[data-name]::after {
+    background: #1a1a1a;
+    border-radius: 8px;
+    bottom: calc(100% + 8px);
+    box-shadow: 0 10px 22px -10px rgba(0, 0, 0, .6);
+    color: #fff;
+    content: attr(data-name);
+    font-family: var(--font-body, inherit);
+    font-size: 11.5px;
+    font-weight: 600;
+    left: 50%;
+    letter-spacing: 0;
+    line-height: 1;
+    opacity: 0;
+    padding: 6px 9px;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, 4px) scale(calc(1 / 1.08));
+    transition: opacity .18s ease, transform .18s ease;
+    white-space: nowrap;
+    z-index: 10
+}
+.vap-av[data-name]::before, .vtk-av[data-name]::before, .vsx-av[data-name]::before {
+    border: 5px solid transparent;
+    border-top-color: #1a1a1a;
+    bottom: calc(100% - 2px);
+    content: "";
+    left: 50%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, 4px);
+    transition: opacity .18s ease, transform .18s ease;
+    z-index: 10
+}
+.vap-av[data-name]:hover::after, .vtk-av[data-name]:hover::after, .vsx-av[data-name]:hover::after { opacity: 1; transform: translate(-50%, 0) scale(calc(1 / 1.08)) }
+.vap-av[data-name]:hover::before, .vtk-av[data-name]:hover::before, .vsx-av[data-name]:hover::before { opacity: 1; transform: translate(-50%, 0) }
+@media (prefers-reduced-motion: reduce) { .vap-bg i { scale: none; transition: none } }
+
+/* After the call — clear glass. The timeline and the recap window are
+   see-through (thin white tint, strong blur, bright rim) so the photo
+   reads through them; everything inside switches to light text. */
+.vap-bg::after { background: linear-gradient(90deg, rgba(12, 10, 9, .66) 0%, rgba(12, 10, 9, .44) 45%, rgba(12, 10, 9, .34) 100%) }
+.vap-track, .vap-win {
+    -webkit-backdrop-filter: blur(26px) saturate(160%);
+    backdrop-filter: blur(26px) saturate(160%);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .08) 100%);
+    border: 1px solid rgba(255, 255, 255, .28);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 30px 60px -36px rgba(0, 0, 0, .7)
+}
+.vap-mark:hover { background: rgba(255, 255, 255, .1) }
+.vap-mark.is-on, .vap-mark.is-on:hover { background: rgba(26, 26, 26, .72); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12) }
+.vap-dot { background: rgba(255, 255, 255, .16); color: #fed7aa }
+.vap-mark.is-past .vap-dot { background: rgba(26, 26, 26, .55); color: #fdba74 }
+.vap-mark-t em { color: rgba(255, 255, 255, .62) }
+.vap-mark-t b { color: #fff }
+
+.vap-win-bar { background: rgba(255, 255, 255, .08); border-bottom-color: rgba(255, 255, 255, .18) }
+.vap-win-t b { color: #fff }
+.vap-win-t em { color: rgba(255, 255, 255, .62) }
+
+.vap-ended, .vap-task, .vap-search, .vap-hit, .vap-chips span:not(.is-ok) {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16)
+}
+.vap-hit { background: rgba(234, 88, 12, .12); border-color: rgba(253, 186, 116, .45) }
+.vap-k, .vap-hit-top em, .vap-sent em, .vap-ended-t em { color: rgba(255, 255, 255, .6) }
+.vap-ended-t b, .vap-task > b, .vap-search b, .vap-hit-top b, .vap-sent b { color: #fff }
+.vap-hit p, .vap-checks li, .vap-owner, .vap-chips span { color: rgba(255, 255, 255, .88) }
+.vap-checks i { color: #86efac }
+.vap-checks li.is-wait, .vap-checks li.is-wait i { color: #fdba74 }
+.vap-sum { background: rgba(234, 88, 12, .14); border-left-color: #fb923c; color: #fff }
+.vap-hit mark { background: rgba(253, 186, 116, .3); color: #fed7aa }
+.vap-search i, .vap-chips i { color: #fdba74 }
+.vap-search em { background: rgba(255, 255, 255, .14); color: rgba(255, 255, 255, .85) }
+.vap-chips span.is-ok { background: rgba(34, 197, 94, .16); border: 1px solid rgba(134, 239, 172, .3); color: #bbf7d0 }
+.vap-chips span.is-ok i { color: #86efac }
+.vap-task > i { color: rgba(255, 255, 255, .5) }
+.vap-task.is-done > i { color: #86efac }
+.vap-task.is-done > b { color: rgba(255, 255, 255, .5) }
+.vap-owner em { background: rgba(26, 26, 26, .6) }
+.vap-av { border-color: rgba(255, 255, 255, .55) }
+
+/* Six things — clear glass, same as "After the call": the app window and
+   every card inside it are see-through (thin tint, strong blur, bright rim)
+   with light text; video tiles become tinted glass instead of solid. */
+.vss-bg::after { background: linear-gradient(180deg, rgba(12, 10, 9, .62) 0%, rgba(12, 10, 9, .42) 45%, rgba(12, 10, 9, .4) 100%) }
+.vsx-win {
+    -webkit-backdrop-filter: blur(26px) saturate(160%);
+    backdrop-filter: blur(26px) saturate(160%);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .08) 100%);
+    border: 1px solid rgba(255, 255, 255, .28);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 24px -10px 50px -30px rgba(0, 0, 0, .6)
+}
+.vsx-bar-top { background: rgba(255, 255, 255, .08); border-bottom-color: rgba(255, 255, 255, .18) }
+.vsx-bar-top b { color: #fff }
+.vsx-bar-top b i { color: #fdba74 }
+.vsx-live { background: rgba(239, 68, 68, .2); color: #fecaca }
+
+/* shared glass layer for cards, rows and chips */
+.vsx-line, .vsx-task, .vsx-room:not(.is-on), .vsx-url, .vsx-chip:not(.vsx-chip--dark), .vsx-field, .vsx-cam, .vsx-tile {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16)
+}
+.vsx-chip, .vsx-owner, .vsx-line > span:last-child { color: rgba(255, 255, 255, .88) }
+.vsx-chip i { color: #fdba74 }
+.vsx-chip.vsx-chip--dark { background: rgba(26, 26, 26, .62); border: 1px solid rgba(255, 255, 255, .12); color: #fff }
+
+/* video tiles: tinted glass */
+.vsx-tile--0 { background: rgba(255, 255, 255, .12) }
+.vsx-tile--1 { background: rgba(26, 26, 26, .32) }
+.vsx-tile--2 { background: rgba(234, 88, 12, .26) }
+.vsx-tile--3 { background: rgba(255, 255, 255, .18) }
+.vsx-tile--4 { background: rgba(26, 26, 26, .22) }
+.vsx-tile--5 { background: rgba(253, 186, 116, .16) }
+.vsx-tile.is-talk { border: 2px solid #fb923c; box-shadow: 0 0 0 3px rgba(251, 146, 60, .25), inset 0 1px 0 rgba(255, 255, 255, .16) }
+.vsx-tile .vsx-av { background: rgba(255, 255, 255, .2); border: 1px solid rgba(255, 255, 255, .3) }
+.vsx-tile em { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: rgba(12, 10, 9, .45) }
+
+/* transcript */
+.vsx-line b { color: #fff }
+.vsx-line b em { color: rgba(255, 255, 255, .6) }
+.vsx-sum { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(234, 88, 12, .16); border: 1px solid rgba(253, 186, 116, .4) }
+.vsx-sum-k { color: #fdba74 }
+body.design-v2 .lp .vsx-sum p, .vsx-sum p { color: #fff }
+
+/* action items */
+.vsx-task > i { color: rgba(255, 255, 255, .5) }
+.vsx-task-t b { color: #fff }
+.vsx-task-t em { color: rgba(255, 255, 255, .6) }
+.vsx-due { background: rgba(26, 26, 26, .6) }
+.vsx-due.is-done { background: rgba(34, 197, 94, .18); color: #bbf7d0 }
+.vsx-task.is-done > i { color: #86efac }
+.vsx-task.is-done .vsx-task-t b { color: rgba(255, 255, 255, .5) }
+
+/* recording */
+.vsx-player { border: 1px solid rgba(255, 255, 255, .2) }
+.vsx-mini.vsx-tile--0, .vsx-mini.vsx-tile--1, .vsx-mini.vsx-tile--2, .vsx-mini.vsx-tile--3 { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px) }
+.vsx-play { background: rgba(255, 255, 255, .85) }
+.vsx-bar { background: rgba(255, 255, 255, .22) }
+.vsx-bar > b { background: #1a1a1a; border-color: #fff }
+.vsx-chapters em { color: rgba(255, 255, 255, .6) }
+.vsx-chapters em.is-on { color: #fff }
+
+/* breakout rooms */
+.vsx-room b { color: #fff }
+.vsx-room.is-on { background: rgba(26, 26, 26, .62); border: 1px solid rgba(253, 186, 116, .45) }
+.vsx-av { border-color: rgba(255, 255, 255, .55) }
+.vsx-room.is-on .vsx-av { border-color: rgba(26, 26, 26, .8) }
+
+/* browser join */
+.vsx-url { color: rgba(255, 255, 255, .85) }
+.vsx-url i { color: #86efac }
+.vsx-cam .vsx-av { border: 1px solid rgba(255, 255, 255, .3) }
+.vsx-form b { color: #fff }
+.vsx-field { color: #fff }
+.vsx-joinbtn { background: #ea580c }
+.vsx-joinbtn i { color: #fff }
+.vsx-form em { color: #86efac }
